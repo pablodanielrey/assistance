@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReporteComponent } from './reporte/reporte.component';
 
 const routes: Routes = [
-  { path: 'reporte/:id', component: ReporteComponent }
+  { path: 'reporte/:id', component: ReporteComponent },
+  { path: 'reporte', component: ReporteComponent }
 ]
 
 

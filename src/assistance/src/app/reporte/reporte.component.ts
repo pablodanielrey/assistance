@@ -10,6 +10,8 @@ export class ReporteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('alogoo');
+    console.log('alog2');
   }
 
 }
