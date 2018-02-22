@@ -5,18 +5,13 @@ import { ReporteComponent } from './reporte/reporte.component';
 
 const routes: Routes = [
   { path: 'reporte/:id', component: ReporteComponent },
-  { path: 'reporte', component: ReporteComponent }
-]
+  { path: 'reporte', component: ReporteComponent },
+  { path: '', redirectTo: '/reporte', pathMatch: 'full' }
+];
 
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ],
-  declarations: []
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
