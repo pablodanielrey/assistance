@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-reporte',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReporteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private oauthService: OAuthService,
+              private http: HttpClient) { }
 
   ngOnInit() {
-    console.log('alogoo');
-    console.log('alog2');
+  }
+
+  salir():void {
+    this.oauthService.logOut(true);
+    window.location.href = this.oauthService.logoutUrl;
+    //window.location.reload();
   }
 
 }

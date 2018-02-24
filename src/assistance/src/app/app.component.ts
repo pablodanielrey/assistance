@@ -9,6 +9,8 @@ export const authConfig: AuthConfig = {
   //tokenEndpoint: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
   //userinfoEndpoint: 'https://oidp.econo.unlp.edu.ar/userinfo',
   loginUrl: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
+  logoutUrl: 'https://consent.econo.unlp.edu.ar/logout',
+  requireHttps: false,
   clientId: 'assistance-ui',
   dummyClientSecret: 'assistance-ui',
   scope: 'openid profile email',
