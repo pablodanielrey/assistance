@@ -3,8 +3,10 @@
   access token:
   </div>
   <div>{{oauthService.getAccessToken()}}</div>
-  <div>
-    reporte works! algooo
+  <div *ngIf='info'>
+    {{info.name}}
+    {{info.family_name}}
+    {{info.email}}
   </div>
 
   <button (click)='salir()'>logout</button>

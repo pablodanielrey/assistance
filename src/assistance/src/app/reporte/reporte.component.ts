@@ -12,7 +12,14 @@ export class ReporteComponent implements OnInit {
   constructor(private oauthService: OAuthService,
               private http: HttpClient) { }
 
+
+  info: any = null;
+
   ngOnInit() {
+    this.oauthService.loadUserProfile().then(r => {
+      console.log(r);
+      this.info = r;
+    });
   }
 
   salir():void {
