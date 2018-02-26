@@ -6,5 +6,8 @@
 <app-seleccionar-usuario>
 </app-seleccionar-usuario>
 
-aca van las fechas
-aca va el boton
+<div *ngIf='usuario'>
+  aca van las fechas
+  <p><button mat-raised-button class="btn" routerLink="/reporte/{{usuario.id}}"><mat-icon>add</mat-icon> GENERAR REPORTE</button></p>
+  <button mat-button (click)='usuario = null'>Volver</button>
+</div>

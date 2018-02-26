@@ -1,0 +1,15 @@
+<div>
+  <mat-toolbar color='primary'>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menu"><span *ngIf='info'>{{info.name}}</span></button>
+    <mat-menu #menu='matMenu'>
+      <button mat-menu-item>Cambiar Clave</button>
+      <button mat-menu-item>Salir</button>
+    </mat-menu>
+  </mat-toolbar>
+
+
+</div>
