@@ -1,0 +1,10 @@
+.cabecera .toolbar {
+  display: flex;
+  -webkit-display: flex;
+  -moz-display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  /*background-color: #222222;
+  color: white;*/
+}

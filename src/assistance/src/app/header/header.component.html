@@ -1,15 +1,21 @@
-<div>
-  <mat-toolbar color='primary'>
-    <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-
-    <button mat-button [matMenuTriggerFor]="menu"><span *ngIf='info'>{{info.name}}</span></button>
-    <mat-menu #menu='matMenu'>
-      <button mat-menu-item>Cambiar Clave</button>
-      <button mat-menu-item>Salir</button>
-    </mat-menu>
-  </mat-toolbar>
-
-
+<div class="cabecera">
+    <mat-toolbar class="toolbar" color="primary">
+        <div>
+            <button mat-icon-button>
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>account_circle</mat-icon>
+                <span *ngIf='info'>{{info.name}}</span>
+                <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #menu='matMenu'>
+              <button mat-menu-item><mat-icon>portrait</mat-icon> Mi Perfil</button>
+              <button mat-menu-item><mat-icon>lock_outline</mat-icon> Cambiar Clave</button>
+              <button mat-menu-item>  <mat-icon>exit_to_app</mat-icon> Salir</button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
 </div>

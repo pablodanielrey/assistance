@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="menu">
 
   <mat-sidenav #sidenav mode="over" [(opened)]="abierto">
       <p><button mat-raised-button class="btn" routerLink="/inicio"><mat-icon>add</mat-icon> Inicio</button></p>
@@ -10,7 +10,7 @@
 
   <mat-sidenav-content>
     <router-outlet class="pantalla"></router-outlet>
-    <button mat-button (click)='abierto = !abierto'>a</button>
+    <button mat-button (click)='abierto = !abierto'><mat-icon>menu</mat-icon></button>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
