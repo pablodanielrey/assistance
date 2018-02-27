@@ -1,11 +1,13 @@
 <mat-sidenav-container class="menu">
 
   <mat-sidenav #sidenav mode="over" [(opened)]="abierto">
-      <p><button mat-raised-button class="btn" routerLink="/inicio"><mat-icon>add</mat-icon> Inicio</button></p>
-      <p><button mat-raised-button class="btn" routerLink="/reporte_inicial"><mat-icon>add</mat-icon> Reportes</button></p>
-      <p><button mat-raised-button class="btn" routerLink="/horarios"><mat-icon>add</mat-icon> Horarios</button></p>
-      <p><button mat-raised-button class="btn" routerLink="/justificaciones"><mat-icon>add</mat-icon> Justificaciones</button></p>
-      <p><button mat-raised-button class="btn" routerLink="/admin_relojes"><mat-icon>add</mat-icon> Administrar Relojes</button></p>
+
+    <button class="btn" mat-button routerLink="/inicio"><mat-icon>bookmark_border</mat-icon> Inicio</button><br>
+    <button class="btn" mat-button routerLink="/reporte_inicial"><mat-icon>list</mat-icon> Reportes</button><br>
+    <button class="btn" mat-button routerLink="/justificaciones"><mat-icon>star_border</mat-icon> Justificaciones</button><br>
+    <button class="btn" mat-button routerLink="/horarios"><mat-icon>alarm_on</mat-icon> Horarios</button><br>
+    <button class="btn" mat-button routerLink="/admin_relojes"><mat-icon>query_builder</mat-icon> Administrar Relojes</button><br>
+
   </mat-sidenav>
 
   <mat-sidenav-content>
