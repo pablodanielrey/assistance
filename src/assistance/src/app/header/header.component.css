@@ -8,3 +8,23 @@
   /*background-color: #222222;
   color: white;*/
 }
+
+.cabecera .cabeceraIzquierda {
+  display: flex;
+  -webkit-display: flex;
+  -moz-display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+}
+
+.cabecera .tituloSistema {
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 769px) {
+  .cabecera .tituloSistema {
+    display: none;
+  }
+}
