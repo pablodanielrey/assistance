@@ -6,5 +6,13 @@
 .menu .btn {
   width: 100%;
   text-align: left;
-  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 5px 25px 5px 25px;
+}
+
+.menu .icoMenu {
+  color: rgba(0,0,0,.54);
+  margin-right: 10px;
 }

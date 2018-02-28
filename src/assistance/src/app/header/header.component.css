@@ -5,8 +5,8 @@
   justify-content: space-between;
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
-  /*background-color: #222222;
-  color: white;*/
+  background-color: #4186e1;
+  /*color: white;*/
 }
 
 .cabecera .cabeceraIzquierda {
@@ -19,7 +19,7 @@
 }
 
 .cabecera .tituloSistema {
-  font-size: 0.9em;
+  font-size: 0.8em;
   margin-left: 10px;
 }
 

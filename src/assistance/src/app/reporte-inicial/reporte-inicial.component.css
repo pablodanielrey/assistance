@@ -1,0 +1,15 @@
+.reportes {
+}
+
+.reportes .seccionSistema {
+  /*background-color: #2D2D2D;*/
+  color: #4186e1;
+  padding: 5px;
+}
+
+.reportes .btnVolverSeccion {
+}
+
+.reportes .contenidoPantalla {
+  padding: 20px;
+}
