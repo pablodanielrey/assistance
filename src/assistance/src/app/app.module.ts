@@ -17,7 +17,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
+import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj.component';
 
+import { AssistanceService } from './assistance.service';
+import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-princi
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    PantallaPrincipalComponent
+    PantallaPrincipalComponent,
+    SeleccionarRelojComponent,
+    DetalleRelojComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,7 @@ import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-princi
     AppRoutingModule,
     OAuthModule.forRoot()
   ],
-  providers: [],
+  providers: [AssistanceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

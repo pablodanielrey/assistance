@@ -1,0 +1,18 @@
+<div class="seleccionarReloj">
+      <div class="textoResultadoDeBusqueda"><b>{{relojes.length}}</b>  </div>
+      <div class="listaDeRelojes">
+        <div *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}' class="mdc-list-item">
+          <div class="itemReloj">
+              <div>
+                  <mat-icon class="ico">account_circle</mat-icon>
+              </div>
+              <div>
+                  <div>{{reloj.nombre }}</div>
+                  <div>{{reloj.ip}}</div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+</div>

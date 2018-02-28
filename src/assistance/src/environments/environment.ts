@@ -4,5 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  assistanceApiUrl: 'https://api.econo.unlp.edu.ar/assistance/api_test/v1.0'
 };
