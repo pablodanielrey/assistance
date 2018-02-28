@@ -1,13 +1,23 @@
-<p>
-  generar-reporte-personal works!
-</p>
+<div class="reportePersonal">
 
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Reporte Personal
+    </div>
 
-<app-seleccionar-usuario>
-</app-seleccionar-usuario>
+    <mat-divider></mat-divider>
 
-<div *ngIf='usuario'>
-  aca van las fechas
-  <p><button mat-raised-button class="btn" routerLink="/reporte/{{usuario.id}}"><mat-icon>add</mat-icon> GENERAR REPORTE</button></p>
-  <button mat-button (click)='usuario = null'>Volver</button>
+    <div class="contenidoPantalla">
+
+      <app-seleccionar-usuario>
+      </app-seleccionar-usuario>
+
+      <div *ngIf='usuario'>
+        aca van las fechas
+        <p><button mat-raised-button class="btn" routerLink="/reporte/{{usuario.id}}"><mat-icon>add</mat-icon> GENERAR REPORTE</button></p>
+        <button mat-button (click)='usuario = null'>Volver</button>
+      </div>
+
+    </div>
+
 </div>

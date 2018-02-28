@@ -1,0 +1,19 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+.reportePersonal {
+}
+
+.reportePersonal .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.reportePersonal .btnVolverSeccion {
+  color: grey;
+}
+
+.reportePersonal .contenidoPantalla {
+  padding: 20px;
+}
+
+/* ---------------------------------------*/

@@ -1,16 +1,15 @@
 <div class="reportes">
 
     <div class="seccionSistema">
-      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_backspace</mat-icon></button>
-       Reportes
+      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Reportes
     </div>
 
     <mat-divider></mat-divider>
 
-
     <div class="contenidoPantalla">
-      <button mat-raised-button  routerLink="/generar_reporte_personal"><mat-icon>add</mat-icon> Personales</button>
-      <button mat-raised-button  routerLink="/'"><mat-icon>add</mat-icon> Generales</button>
+      <button mat-raised-button class="btnPrimario"  routerLink="/generar_reporte_personal"><mat-icon class="btnIco">person</mat-icon> REPORTE PERSONAL</button><br>
+      <button mat-raised-button class="btnPrimario" routerLink="/'"><mat-icon class="btnIco">people</mat-icon> REPORTES GENERALES</button>
     </div>
 
 </div>
