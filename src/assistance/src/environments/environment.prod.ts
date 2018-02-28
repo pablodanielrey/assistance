@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  assistanceApiUrl: 'https://api.econo.unlp.edu.ar/assistance/v1.0/api'
+  assistanceApiUrl: 'https://api.econo.unlp.edu.ar/assistance/api/v1.0'
 };
