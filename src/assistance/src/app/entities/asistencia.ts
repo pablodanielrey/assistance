@@ -14,6 +14,14 @@ export class Reloj {
   zona_horaria: string;
   activo: boolean = true;
   url_api: string;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export class Justificacion {
@@ -23,18 +31,42 @@ export class Justificacion {
   descripcion: string;
   nombre: string;
   general: boolean;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export class FechaJustificada {
   fecha: Date;
   usuario: Usuario;
   justificacion: Justificacion;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export class Marcacion {
   marcacion: Date;
   tipo: number;
   reloj: Reloj;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export class Horario {

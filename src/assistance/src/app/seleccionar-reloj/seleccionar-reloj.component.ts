@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Reloj } from '../entities/asistencia';
+import { AssistanceService } from '../assistance.service';
+
 @Component({
   selector: 'app-seleccionar-reloj',
   templateUrl: './seleccionar-reloj.component.html',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeleccionarRelojComponent implements OnInit {
 
-  constructor() { }
+  relojes: Reloj[] = [];
+  constructor(public service: AssistanceService) { }
 
   ngOnInit() {
+    this.service.obtenerRelojes().subscribe(rs =>
+      {
+        console.log(rs);
+        this.relojes = rs;
+      });
   }
 
 }
