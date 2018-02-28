@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
+import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj.component';
 
 
 
@@ -30,7 +31,8 @@ import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-princi
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    PantallaPrincipalComponent
+    PantallaPrincipalComponent,
+    SeleccionarRelojComponent
   ],
   imports: [
     BrowserModule,
