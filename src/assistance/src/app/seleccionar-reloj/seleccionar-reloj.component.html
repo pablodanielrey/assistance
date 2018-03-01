@@ -1,18 +1,50 @@
 <div class="seleccionarReloj">
-      <div class="textoResultadoDeBusqueda"><b>{{relojes.length}}</b>  </div>
-      <div class="listaDeRelojes">
-        <div *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}' class="mdc-list-item">
-          <div class="itemReloj">
-              <div>
-                  <mat-icon class="ico">account_circle</mat-icon>
-              </div>
-              <div>
-                  <div>{{reloj.nombre }}</div>
-                  <div>{{reloj.ip}}</div>
-              </div>
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Administrar Relojes
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+
+        <div class="textoResultadoDeBusqueda"><b>{{relojes.length}}</b>  </div>
+        <div class="listaDeRelojes">
+          <div *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}' class="mdc-list-item">
+            <div class="itemReloj">
+                <div>
+                    <mat-icon class="ico">account_circle</mat-icon>
+                </div>
+                <div>
+                    <div *ngIf='reloj.activo'>activo</div>
+                    <div *ngIf='!reloj.activo'>no activo</div>
+                    <div>{{reloj.nombre }}</div>
+                    <div>{{reloj.ip}}</div>
+                </div>
+            </div>
           </div>
         </div>
-      </div>
+
+    <!-- <mat-list>
+      <mat-list-item *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}' class="mdc-list-item">
+        <img matListAvatar src="..." alt="...">
+        <h3 matLine> {{reloj.nombre }} </h3>
+        <p matLine>
+          <span>{{reloj.ip }}</span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card> -->
+
+    </div>
 
 
 </div>
