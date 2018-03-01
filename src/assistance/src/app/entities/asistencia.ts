@@ -101,6 +101,13 @@ export class Reporte {
   reportes: RenglonReporte[] = [];
   detalle: Detalle;
 
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export class Asistencia {

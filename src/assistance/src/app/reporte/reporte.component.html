@@ -21,6 +21,11 @@
 
   <button (click)='generarReporte()'>Generar Reporte</button>
 </div>
+
+<div *ngFor="let r of obtenerReportes()" class="mdc-list-item">
+  <span> {{r}} </span>
+</div>
+
 <div>
   <button (click)='salir()'>logout</button>
 </div>
