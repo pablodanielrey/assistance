@@ -21,6 +21,7 @@ import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj
 
 import { AssistanceService } from './assistance.service';
 import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
     MenuComponent,
     PantallaPrincipalComponent,
     SeleccionarRelojComponent,
-    DetalleRelojComponent
+    DetalleRelojComponent,
+    GaleriaComponent
   ],
   imports: [
     BrowserModule,
