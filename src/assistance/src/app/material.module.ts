@@ -10,6 +10,8 @@ import { MatButtonModule,
          MatMenuModule,
          MatSidenavModule,
          MatToolbarModule,
+         MatDatepickerModule,
+         MatNativeDateModule
        } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -39,6 +43,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     BrowserAnimationsModule
   ],
 })

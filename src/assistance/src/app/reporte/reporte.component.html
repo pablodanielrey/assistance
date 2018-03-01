@@ -1,15 +1,26 @@
 
-  <div>
-  access token:
-  </div>
-  <div>{{oauthService.getAccessToken()}}</div>
   <div *ngIf='info'>
     {{info.name}}
     {{info.family_name}}
     {{info.email}}
-
-    Fecha inicio: {{fecha_inicial}}
-    Fecha fin: {{fecha_final}} 
   </div>
 
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="datePickerInicio" [value]="fecha_inicial">
+    <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+    <mat-datepicker #datePickerInicio></mat-datepicker>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="datePickerFin" [value]="fecha_final">
+    <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+    <mat-datepicker #datePickerFin></mat-datepicker>
+  </mat-form-field>
+
+  <button (click)='generarReporte()'>Generar Reporte</button>
+</div>
+<div>
   <button (click)='salir()'>logout</button>
+</div>

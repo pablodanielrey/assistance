@@ -17,13 +17,14 @@ export class SeleccionarUsuarioComponent implements OnInit {
   busquedaActivada: boolean = false;
   subscriptions: any[] = [];
   inicio: Date;
+  fin: Date;
 
   constructor(public service: AssistanceService) {
   }
 
   ngOnInit() {
     this.fin = new Date(Date.now());
-    this.inicio = new Date(new Date(Date.now()).setDate(this.fin.getDate() - 7);
+    this.inicio = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
     console.log('Inicio:' + this.inicio);
     console.log('Fin:' + this.fin);
   }

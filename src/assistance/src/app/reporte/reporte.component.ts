@@ -23,6 +23,7 @@ export class ReporteComponent implements OnInit {
   fecha_inicial: Date = null;
   fecha_final: Date = null;
   usuario_id: string = null;
+  startDate = new Date(1990, 0, 1);
 
   ngOnInit() {
 
@@ -46,6 +47,10 @@ export class ReporteComponent implements OnInit {
     this.oauthService.logOut(true);
     window.location.href = this.oauthService.logoutUrl;
     //window.location.reload();
+  }
+
+  generarReporte():void {
+    
   }
 
 }
