@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
+import { Reporte } from '../entities/asistencia';
+import { AssistanceService } from '../assistance.service';
+
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -14,6 +17,7 @@ import { Location } from '@angular/common';
 export class ReporteComponent implements OnInit {
 
   constructor(private oauthService: OAuthService,
+              private service: AssistanceService,
               private http: HttpClient,
               private route: ActivatedRoute,
               private location: Location) { }
@@ -23,7 +27,9 @@ export class ReporteComponent implements OnInit {
   fecha_inicial: Date = null;
   fecha_final: Date = null;
   usuario_id: string = null;
-  startDate = new Date(1990, 0, 1);
+  subscriptions: any[] = [];
+
+  reporte: Reporte = null;
 
   ngOnInit() {
 
@@ -49,8 +55,24 @@ export class ReporteComponent implements OnInit {
     //window.location.reload();
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
+  }
+
   generarReporte():void {
-    
+    this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha_inicial, this.fecha_final)
+    .subscribe(r => {
+      console.log();
+      this.reporte = r;
+    }));
+  }
+
+  obtenerReportes() {
+    if (this.reporte ==  null) {
+      return []
+    }
+    return this.reporte.reportes;
   }
 
 }
