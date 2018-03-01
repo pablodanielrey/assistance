@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
 import { Usuario } from '../entities/usuario';
+import { AssistanceService } from '../assistance.service';
+
 
 @Component({
   selector: 'app-seleccionar-usuario',
@@ -15,7 +17,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
   busquedaActivada: boolean = false;
   subscriptions: any[] = [];
 
-  constructor() {
+  constructor(public service: AssistanceService) {
   }
 
   ngOnInit() {
@@ -33,13 +35,11 @@ export class SeleccionarUsuarioComponent implements OnInit {
 
   buscarUsuarios(): void {
     this.usuarios = [];
-    /*
     this.subscriptions.push(this.service.buscarUsuarios(this.busqueda)
       .subscribe(usuarios => {
         console.log(usuarios);
         this.usuarios = usuarios;
       }));
-    */
   }
 
 }

@@ -102,3 +102,23 @@ export class Reporte {
   detalle: Detalle;
 
 }
+
+export class Asistencia {
+  actualizado: string;
+  creado: string;
+  id: string;
+}
+
+export class DatosAsistencia {
+  agregado: boolean;
+  asistencia: Asistencia;
+  usuario: Usuario;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
