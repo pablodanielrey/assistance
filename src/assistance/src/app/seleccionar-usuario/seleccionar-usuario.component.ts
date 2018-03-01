@@ -16,12 +16,16 @@ export class SeleccionarUsuarioComponent implements OnInit {
   busqueda:string = "";
   busquedaActivada: boolean = false;
   subscriptions: any[] = [];
+  inicio: Date;
 
   constructor(public service: AssistanceService) {
   }
 
   ngOnInit() {
-
+    this.fin = new Date(Date.now());
+    this.inicio = new Date(new Date(Date.now()).setDate(this.fin.getDate() - 7);
+    console.log('Inicio:' + this.inicio);
+    console.log('Fin:' + this.fin);
   }
 
   ngOnDestroy() {

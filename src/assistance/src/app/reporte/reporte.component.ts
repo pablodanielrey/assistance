@@ -27,8 +27,13 @@ export class ReporteComponent implements OnInit {
   ngOnInit() {
 
     let params = this.route.snapshot.paramMap;
-    this.fecha_inicial = new Date(params.get('fecha_ini'));
-    this.fecha_final = new Date(params.get('fecha_fin'));
+    let paramsQ = this.route.snapshot.queryParamMap;
+
+    this.fecha_inicial = new Date(paramsQ.get('fecha_inicial'));
+    this.fecha_final = new Date(paramsQ.get('fecha_final'));
+
+    // this.fecha_inicial = new Date(params.get('fecha_ini'));
+    // this.fecha_final = new Date(params.get('fecha_fin'));
     this.usuario_id = params.get('uid');
 
     this.oauthService.loadUserProfile().then(r => {

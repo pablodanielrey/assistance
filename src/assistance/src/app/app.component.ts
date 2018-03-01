@@ -6,7 +6,7 @@ import { AuthConfig } from 'angular-oauth2-oidc';
 export const authConfig: AuthConfig = {
   issuer: 'https://oidp.econo.unlp.edu.ar',
   redirectUri: window.location.origin,
-  tokenEndpoint: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
+  // tokenEndpoint: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
   userinfoEndpoint: 'https://oidp.econo.unlp.edu.ar/userinfo',
   loginUrl: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
   logoutUrl: 'https://consent.econo.unlp.edu.ar/logout',
