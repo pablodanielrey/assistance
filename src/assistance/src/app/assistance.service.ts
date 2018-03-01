@@ -13,12 +13,21 @@ import 'rxjs/add/operator/toPromise';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Reporte } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
 
   constructor(private http: HttpClient) { }
+
+  buscarUsuarios(texto:string): Observable<DatosAsistencia[]> {
+    const options = { params: new HttpParams()
+              .set('q', texto ? texto : 'algoquenoexiste')
+          };
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
+    return this.http.get<DatosAsistencia[]>(apiUrl, options).map(datos => datos.map(d => new DatosAsistencia(d)));
+  }
+
 
   obtenerRelojes(): Observable<Reloj[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/relojes`;
@@ -29,6 +38,16 @@ export class AssistanceService {
     let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}`;
     return this.http.get<[Reloj]>(apiUrl).map(datos => new Reloj(datos));
   }
+
+  generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
+    const options = { params: new HttpParams()
+              .set('inicio', fecha_inicio.toString() )
+              .set('fin', fecha_fin.toString() )
+          };
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/reporte/`;
+    return this.http.get<[Reporte]>(apiUrl).map(datos => new Reporte(datos));
+  }
+
 
 
 }

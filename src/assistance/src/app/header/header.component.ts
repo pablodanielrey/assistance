@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { OAuthService } from 'angular-oauth2-oidc';
 
@@ -9,9 +9,9 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class HeaderComponent implements OnInit {
 
-
+  @Output() menu = new EventEmitter<boolean>();
   info: any;
-  
+
   constructor(private oauthService: OAuthService) { }
 
   ngOnInit() {
@@ -22,8 +22,15 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  cambiar():void {
-    //this.menu.abierto = !this.menu.abierto;
+  cambiar_menu():void {
+    this.menu.emit(true);
+  }
+
+
+  salir():void {
+    this.oauthService.logOut(true);
+    window.location.href = this.oauthService.logoutUrl;
+    //window.location.reload();
   }
 
 }
