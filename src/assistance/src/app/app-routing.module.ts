@@ -5,7 +5,7 @@ import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-princi
 import { ReporteInicialComponent } from './reporte-inicial/reporte-inicial.component';
 import { GenerarReportePersonalComponent } from './generar-reporte-personal/generar-reporte-personal.component';
 import { ReporteComponent } from './reporte/reporte.component';
-
+import { GaleriaComponent } from './galeria/galeria.component';
 import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj.component';
 import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
 
@@ -17,7 +17,7 @@ const routes: Routes = [
 
   { path: 'admin_relojes', component: SeleccionarRelojComponent },
   { path: 'detalle_reloj/:rid', component: DetalleRelojComponent },
-
+  { path: 'galeria', component: GaleriaComponent },
   { path: 'inicial', component: PantallaPrincipalComponent },
   { path: '', redirectTo: '/inicial', pathMatch: 'full' }
 ];
