@@ -29,8 +29,22 @@ import { NullValidationHandler, JwksValidationHandler } from 'angular-oauth2-oid
 })
 export class AppComponent {
 
+  private menu_abierto: boolean = false;
+
   constructor(private oauthService: OAuthService) {
     this.configureWithNewConfigApi();
+  }
+
+  onMenu(abierto: boolean):void {
+    this.menu_abierto = !this.menu_abierto;
+  }
+
+  onOpenedChange(abierto: boolean): void {
+    this.menu_abierto = abierto;
+  }
+
+  onItem(v:boolean):void {
+    this.menu_abierto = v;
   }
 
   private configureWithNewConfigApi() {

@@ -1,9 +1,7 @@
 <div class="cabecera">
     <mat-toolbar class="toolbar" color="primary">
         <div class="cabeceraIzquierda">
-            <button mat-icon-button>
-                <mat-icon>menu</mat-icon>
-            </button>
+            <button mat-icon-button (click)='cambiar_menu()'><mat-icon>menu</mat-icon></button>
             <div class="tituloSistema">Asistencia</div>
         </div>
         <div>
@@ -15,7 +13,7 @@
             <mat-menu #menu='matMenu'>
               <button mat-menu-item><mat-icon>portrait</mat-icon> Mi Perfil</button>
               <button mat-menu-item><mat-icon>lock_outline</mat-icon> Cambiar Clave</button>
-              <button mat-menu-item><mat-icon>exit_to_app</mat-icon> Salir</button>
+              <button mat-menu-item (click)='salir()'><mat-icon>exit_to_app</mat-icon> Salir</button>
             </mat-menu>
         </div>
     </mat-toolbar>
