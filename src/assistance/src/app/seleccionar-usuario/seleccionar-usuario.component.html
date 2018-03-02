@@ -1,11 +1,13 @@
 <div class="seleccionarUsuario">
 
-
+    <form (ngSubmit)="buscarUsuarios()" #usuarioForm="ngForm">
       <mat-form-field class="search">
-          <input matInput type='search'  placeholder="Buscar Usuario"  [(ngModel)]='busqueda' (keyup)='actualizarBusqueda()'/>
+          <input matInput type='search'  placeholder="Buscar Usuario"  [(ngModel)]='busqueda'  name="search" id="search" required/>
       </mat-form-field>
 
-      <button mat-raised-button (click)='buscarUsuarios()' [disabled]='!busquedaActivada' title="Buscar usuario"><mat-icon>search</mat-icon> </button>
+      <button type="submit" mat-raised-button (click)='buscarUsuarios()' [disabled]="!usuarioForm.form.valid" title="Buscar usuario"><mat-icon>search</mat-icon> </button>
+
+    </form>
       <!-- <button *ngIf='false' mat-raised-button routerLink='/crear' class="btnNuevoUsuario" title="Crear usuario nuevo"><mat-icon>person_add</mat-icon> </button> -->
 
       <div class="textoResultadoDeBusqueda"> Resultado de búqueda: <b>{{usuarios.length}}</b>  </div>
