@@ -39,6 +39,11 @@ export class AssistanceService {
     return this.http.get<[Reloj]>(apiUrl).map(datos => new Reloj(datos));
   }
 
+  obtenerUsuariosReloj(rid:string): Observable<any[]> {
+    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/usuarios`;
+    return this.http.get<[Reloj]>(apiUrl);
+  }
+
   generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
 
     const options = { params: new HttpParams()

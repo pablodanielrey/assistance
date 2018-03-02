@@ -1,3 +1,12 @@
-<p>
-  usuarios-reloj works!
-</p>
+<div *ngFor="let usuario of usuarios" routerLink="/detalle_reloj/{{rid}}/usuarios/{{usuario.PIN2}}" class="mdc-list-item">
+  <div class="itemUser">
+      <div>
+          <mat-icon class="ico">account_circle</mat-icon>
+      </div>
+      <div>
+          <div>{{usuario.PIN2}}</div>
+          <div>{{usuario.Password}}</div>
+          <!-- <div>{{datos.usuario.dni}} {{datos.sileg != null ? 'tiene' : 'no tiene'}}</div> -->
+      </div>
+  </div>
+</div>

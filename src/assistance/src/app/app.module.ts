@@ -23,6 +23,7 @@ import { AssistanceService } from './assistance.service';
 import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
+import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.componen
     SeleccionarRelojComponent,
     DetalleRelojComponent,
     GaleriaComponent,
-    UsuariosRelojComponent
+    UsuariosRelojComponent,
+    DetalleUsuarioRelojComponent
   ],
   imports: [
     BrowserModule,
