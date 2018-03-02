@@ -9,42 +9,26 @@
 
     <div class="contenidoPantalla">
 
-        <div class="textoResultadoDeBusqueda"><b>{{relojes.length}}</b>  </div>
-        <div class="listaDeRelojes">
-          <div *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}' class="mdc-list-item">
-            <div class="itemReloj">
-                <div>
-                    <mat-icon class="ico">account_circle</mat-icon>
-                </div>
-                <div>
-                    <div *ngIf='reloj.activo'>activo</div>
-                    <div *ngIf='!reloj.activo'>no activo</div>
-                    <div>{{reloj.nombre }}</div>
-                    <div>{{reloj.ip}}</div>
-                </div>
-            </div>
-          </div>
+        <div class="subtitulo">
+            <div class="fdr"><mat-icon class="icoMenu">query_builder</mat-icon> <span>Relojes</span></div>
+            <button mat-button class="btnClasico">AGREGAR RELOJ</button>
         </div>
 
-    <!-- <mat-list>
-      <mat-list-item *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}' class="mdc-list-item">
-        <img matListAvatar src="..." alt="...">
-        <h3 matLine> {{reloj.nombre }} </h3>
-        <p matLine>
-          <span>{{reloj.ip }}</span>
-        </p>
-      </mat-list-item>
-    </mat-list>
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card> -->
+
+        <mat-card class="tarjeta"  *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}'>
+          <mat-card-header class="contenidoTarjeta">
+            <div mat-card-avatar><mat-icon class="icoTarjeta">query_builder</mat-icon></div>
+            <mat-card-title class="tituloReloj">{{reloj.nombre }} | {{reloj.descripcion }} </mat-card-title>
+            <mat-card-subtitle class="subtitulo">
+              <div *ngIf='reloj.activo' class="parpadea colorActivo"><mat-icon class="iconoEstado">fiber_manual_record</mat-icon></div>
+              <div *ngIf='!reloj.activo' class="parpadea colorInactivo"><mat-icon class="iconoEstado">fiber_manual_record</mat-icon></div>
+              <div>{{reloj.ip }}</div>
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+
 
     </div>
-
 
 </div>
