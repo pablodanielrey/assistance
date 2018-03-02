@@ -61,11 +61,18 @@ export class ReporteComponent implements OnInit {
   }
 
   generarReporte():void {
+    console.log(this.fecha_inicial);
     this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha_inicial, this.fecha_final)
     .subscribe(r => {
-      console.log();
+      console.log(r);
       this.reporte = r;
     }));
+  }
+
+  obtenerUsuario():string {
+    if (this.reporte && this.reporte.usuario) {
+      return this.reporte.usuario.dni;
+    }
   }
 
   obtenerReportes() {
