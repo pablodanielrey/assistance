@@ -14,6 +14,7 @@ export class GenerarReportePersonalComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit() {
   }
 

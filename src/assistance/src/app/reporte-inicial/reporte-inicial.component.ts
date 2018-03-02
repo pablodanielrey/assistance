@@ -9,6 +9,7 @@ export class ReporteInicialComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit() {
   }
 
