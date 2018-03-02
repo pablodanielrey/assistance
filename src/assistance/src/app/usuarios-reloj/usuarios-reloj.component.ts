@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+
+import { Usuario } from '../entities/usuario';
+import { AssistanceService } from '../assistance.service';
 
 @Component({
   selector: 'app-usuarios-reloj',
@@ -7,9 +13,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuariosRelojComponent implements OnInit {
 
-  constructor() { }
+  private rid: string = null;
+  private usuarios: any[] = [];
+  private subscriptions: any[] = [];
+
+  constructor(private service: AssistanceService,
+              private route: ActivatedRoute,
+              private location: Location) { }
 
   ngOnInit() {
+      this.rid = this.route.snapshot.paramMap.get('rid');
+      this.buscarUsuariosReloj();
+  }
+
+  buscarUsuariosReloj(): void {
+    this.usuarios = [];
+    this.subscriptions.push(this.service.obtenerUsuariosReloj(this.rid)
+      .subscribe(usuarios => {
+        console.log(usuarios);
+        this.usuarios = usuarios;
+      }));
   }
 
 }
