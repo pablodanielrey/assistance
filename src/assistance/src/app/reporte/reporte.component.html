@@ -26,5 +26,6 @@
   <li *ngFor="let r of obtenerReportes()" class="mdc-list-item">
     <span>{{obtenerUsuario()}}</span>
     <span> {{r.fecha}} </span>
+    <span> {{obtenerHorario(r)}} </span>
   </li>
 </ul>

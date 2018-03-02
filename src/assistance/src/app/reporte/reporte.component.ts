@@ -69,6 +69,16 @@ export class ReporteComponent implements OnInit {
     }));
   }
 
+  obtenerHorario(r: ReporteRenglon): string {
+    if (r.horario) {
+      let e = new Date(r.fecha); e.setSeconds(0); e.setMinutes(0); e.setHours(0);
+      let s = new Date(e.getTime());
+      e.setSeconds(r.horario.hora_entrada);
+      s.setSeconds(r.horario.hora_salida);
+      return e + "-" + s;
+    }
+  }
+
   obtenerUsuario():string {
     if (this.reporte && this.reporte.usuario) {
       return this.reporte.usuario.dni;
