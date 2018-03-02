@@ -7,14 +7,14 @@
 
 <div>
   <mat-form-field>
-    <input matInput [matDatepicker]="datePickerInicio" [value]="fecha_inicial">
+    <input matInput [matDatepicker]="datePickerInicio" [(ngModel)]="fecha_inicial">
     <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
     <mat-datepicker #datePickerInicio></mat-datepicker>
   </mat-form-field>
 
 
   <mat-form-field>
-    <input matInput [matDatepicker]="datePickerFin" [value]="fecha_final">
+    <input matInput [matDatepicker]="datePickerFin" [(ngModel)]="fecha_final">
     <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
     <mat-datepicker #datePickerFin></mat-datepicker>
   </mat-form-field>
@@ -22,10 +22,9 @@
   <button (click)='generarReporte()'>Generar Reporte</button>
 </div>
 
-<div *ngFor="let r of obtenerReportes()" class="mdc-list-item">
-  <span> {{r}} </span>
-</div>
-
-<div>
-  <button (click)='salir()'>logout</button>
-</div>
+<ul>
+  <li *ngFor="let r of obtenerReportes()" class="mdc-list-item">
+    <span>{{obtenerUsuario()}}</span>
+    <span> {{r.fecha}} </span>
+  </li>
+</ul>

@@ -45,12 +45,14 @@ export class AssistanceService {
   }
 
   generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
+
     const options = { params: new HttpParams()
-              .set('inicio', fecha_inicio.toString() )
-              .set('fin', fecha_fin.toString() )
+              .set('inicio', fecha_inicio.toDateString())
+              .set('fin', fecha_fin.toDateString())
           };
+    console.log(options);
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/reporte/`;
-    return this.http.get<[Reporte]>(apiUrl).map(datos => new Reporte(datos));
+    return this.http.get<[Reporte]>(apiUrl, options).map(datos => new Reporte(datos));
   }
 
 

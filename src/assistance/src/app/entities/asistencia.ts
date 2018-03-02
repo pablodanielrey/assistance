@@ -91,6 +91,14 @@ export class RenglonReporte {
   cantidad_horas_trabajadas: number;
   justifcacion: FechaJustificada;
 
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+
+    } catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export class Reporte {
@@ -98,12 +106,14 @@ export class Reporte {
   usuario: Usuario;
   fecha_inicial: Date;
   fecha_final: Date;
-  reportes: RenglonReporte[] = [];
+  reportes: Array<RenglonReporte>;
   detalle: Detalle;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
+      this.fecha_inicial = (this.fecha_inicial == null ? null : new Date(this.fecha_inicial));
+      this.fecha_final = (this.fecha_final == null ? null : new Date(this.fecha_final));
     } catch(e) {
       console.log(e);
     }
