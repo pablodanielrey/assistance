@@ -11,6 +11,7 @@ import { MatButtonModule,
          MatSidenavModule,
          MatToolbarModule,
          MatDatepickerModule,
+         MatCardModule,
          MatNativeDateModule
        } from '@angular/material';
 
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatToolbarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -45,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatToolbarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
     BrowserAnimationsModule
   ],
 })
