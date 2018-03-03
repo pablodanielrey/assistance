@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'admin_relojes', component: SeleccionarRelojComponent },
   { path: 'detalle_reloj/:rid', component: DetalleRelojComponent },
   { path: 'detalle_reloj/:rid/usuarios', component: UsuariosRelojComponent },
-  { path: 'detalle_reloj/:rid/usuarios/:uid', component: DetalleUsuarioRelojComponent },
+  { path: 'detalle_reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent },
 
   { path: 'galeria', component: GaleriaComponent },
   { path: 'inicial', component: PantallaPrincipalComponent },

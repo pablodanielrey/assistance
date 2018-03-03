@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
-import { Reporte } from '../entities/asistencia';
+import { Reporte, RenglonReporte } from '../entities/asistencia';
 import { AssistanceService } from '../assistance.service';
 
 
@@ -69,7 +69,7 @@ export class ReporteComponent implements OnInit {
     }));
   }
 
-  obtenerHorario(r: ReporteRenglon): string {
+  obtenerHorario(r: RenglonReporte): string {
     if (r.horario) {
       let e = new Date(r.fecha); e.setSeconds(0); e.setMinutes(0); e.setHours(0);
       let s = new Date(e.getTime());

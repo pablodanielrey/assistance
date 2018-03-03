@@ -44,6 +44,11 @@ export class AssistanceService {
     return this.http.get<[Reloj]>(apiUrl);
   }
 
+  obtenerUsuarioReloj(rid:string, ruid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/usuarios/${ruid}`;
+    return this.http.get<any>(apiUrl);
+  }
+
   generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
 
     const options = { params: new HttpParams()
