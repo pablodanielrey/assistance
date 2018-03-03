@@ -14,9 +14,16 @@
   zona_horaria<div>{{reloj.zona_horaria}}</div>
 
   <div>
-    <button mat-button routerLink='/detalle_reloj/{{reloj.id}}/usuarios'>Administrar Usuarios</button>
+    <button mat-button routerLink='/detalle_reloj/{{reloj.id}}/usuarios'>Ver Usuarios</button>
+    <button mat-button (click)='sincronizar()'>Sincronizar Logs</button>
     <button mat-button (click)='agregar_usuario()'>Agregar Usuario</button>
-    <button mat-button (click)='quitar_usuario()'>Quitar Usuario</button>
+    <div>
+      <div>ATENCION!!! peligrosas!!!</div>
+      <mat-button-toggle (change)='activar_eliminar($event)'>Activar</mat-button-toggle>
+      <button disabled='{{!eliminar_activo}}' mat-button (click)='eliminar_usuarios()'>Eliminar Usuarios</button>
+      <button disabled='{{!eliminar_activo}}' mat-button (click)='eliminar_huellas()'>Eliminar Huellas</button>
+    </div>
+
   </div>
 
 </div>

@@ -49,6 +49,21 @@ export class AssistanceService {
     return this.http.get<any>(apiUrl);
   }
 
+  eliminarHuellas(rid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/eliminar_huellas`;
+    return this.http.get<any>(apiUrl);
+  }
+
+  eliminarUsuarios(rid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/eliminar_usuarios`;
+    return this.http.get<any>(apiUrl);
+  }
+
+  sincronizarLogs(rid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/sincronizar`;
+    return this.http.get<any>(apiUrl);
+  }
+
   generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
 
     const options = { params: new HttpParams()

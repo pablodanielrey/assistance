@@ -9,12 +9,12 @@
     <mat-list-item *ngFor="let huella of datos.huellas">
       <mat-icon matListIcon>folder</mat-icon>
       <h3 matLine> Dedo {{huella.FingerID}} </h3>
-      <p matLine>
-        <span> {{huella.Size}} </span>
-        <span> {{huella.Template}} </span>
-        <span *ngIf="huella.Valid == '1'"> Valida </span>
-        <span *ngIf="huella.Valid == '0'"> In-Valida </span>
-      </p>
+      <div matLine>
+        <div> {{huella.Size}} </div>
+        <div> {{huella.Template}} </div>
+        <div *ngIf="huella.Valid == '1'"> Valida </div>
+        <div *ngIf="huella.Valid == '0'"> In-Valida </div>
+      </div>
     </mat-list-item>
   </mat-list>
 

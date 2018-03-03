@@ -14,6 +14,8 @@ export class DetalleRelojComponent implements OnInit {
 
   reloj: Reloj = null;
   subscriptions: any[] = [];
+  eliminar_activo: boolean = false;
+
 
   constructor(private service: AssistanceService,
               private route: ActivatedRoute,
@@ -33,4 +35,29 @@ export class DetalleRelojComponent implements OnInit {
     this.subscriptions = [];
   }
 
+
+  activar_eliminar():void {
+    this.eliminar_activo = !this.eliminar_activo;
+  }
+
+  eliminar_usuarios():void {
+    this.subscriptions.push(this.service.eliminarUsuarios(this.reloj.id).subscribe(
+      r => console.log(r),
+      err => console.log(err);
+    ))
+  }
+
+  eliminar_huellas():void {
+    this.subscriptions.push(this.service.eliminarHuellas(this.reloj.id).subscribe(
+      r => console.log(r),
+      err => console.log(err);
+    ))
+  }
+
+  sincronizar():void {
+    this.subscriptions.push(this.service.sincronizarLogs(this.reloj.id).subscribe(
+      r => console.log(r),
+      err => console.log(err);
+    ))
+  }
 }
