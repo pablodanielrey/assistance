@@ -11,7 +11,7 @@ import { AssistanceService } from '../assistance.service';
 })
 export class DetalleUsuarioRelojComponent implements OnInit {
 
-  usuario: any = null;
+  datos: any = null;
   subscriptions: any[] = [];
 
   constructor(private service: AssistanceService,
@@ -25,7 +25,7 @@ export class DetalleUsuarioRelojComponent implements OnInit {
     this.subscriptions.push(this.service.obtenerUsuarioReloj(rid, ruid).subscribe(
       rs => {
         console.log(rs);
-        this.usuario = rs;
+        this.datos = rs;
       }));
   }
 

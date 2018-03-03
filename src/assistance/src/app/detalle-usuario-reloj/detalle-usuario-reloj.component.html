@@ -1,3 +1,21 @@
-<p>
-  detalle-usuario-reloj works!
-</p>
+
+<div *ngIf='datos'>
+  <div>{{datos.usuario.PIN2}}</div>
+  <div>{{datos.usuario.Password}}</div>
+  <div>{{datos.usuario.PIN}}</div>
+
+
+  <mat-list>
+    <mat-list-item *ngFor="let huella of datos.huellas">
+      <mat-icon matListIcon>folder</mat-icon>
+      <h3 matLine> Dedo {{huella.FingerID}} </h3>
+      <p matLine>
+        <span> {{huella.Size}} </span>
+        <span> {{huella.Template}} </span>
+        <span *ngIf="huella.Valid == '1'"> Valida </span>
+        <span *ngIf="huella.Valid == '0'"> In-Valida </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+
+</div>

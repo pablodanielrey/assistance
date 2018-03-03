@@ -12,9 +12,11 @@
   Soap url:<div>{{reloj.api_url}}</div>
   algoritmo:<div>{{reloj.algoritmo}}</div>
   zona_horaria<div>{{reloj.zona_horaria}}</div>
-</div>
-<div>
-  <button mat-button routerLink='/detalle_reloj/{{reloj.id}}/usuarios'>Administrar Usuarios</button>
-  <button mat-button (click)='agregar_usuario()'>Agregar Usuario</button>
-  <button mat-button (click)='quitar_usuario()'>Quitar Usuario</button>
+
+  <div>
+    <button mat-button routerLink='/detalle_reloj/{{reloj.id}}/usuarios'>Administrar Usuarios</button>
+    <button mat-button (click)='agregar_usuario()'>Agregar Usuario</button>
+    <button mat-button (click)='quitar_usuario()'>Quitar Usuario</button>
+  </div>
+
 </div>
