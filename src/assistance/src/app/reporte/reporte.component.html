@@ -1,7 +1,6 @@
 
   <div *ngIf='info'>
     {{info.name}}
-    {{info.family_name}}
     {{info.email}}
   </div>
 
@@ -22,10 +21,21 @@
   <button (click)='generarReporte()'>Generar Reporte</button>
 </div>
 
-<ul>
-  <li *ngFor="let r of obtenerReportes()" class="mdc-list-item">
-    <span>{{obtenerUsuario()}}</span>
-    <span> {{r.fecha}} </span>
-    <span> {{obtenerHorario(r)}} </span>
-  </li>
-</ul>
+<table>
+  <tr>
+    <th>Usuario</th>
+    <th>Día</th>
+    <th>Fecha</th>
+    <th>Horario</th>
+    <th>Entrada</th>
+    <th>Salida</th>
+  </tr>
+  <tr *ngFor="let r of obtenerReportes()" class="mdc-list-item">
+    <td>{{obtenerUsuario()}}</td>
+    <td> {{r.fecha | date: 'EEE'}} </td>
+    <td> {{r.fecha | date: 'dd/MM/yyyy'}} </td>
+    <td> {{obtenerHorario(r)}} </td>
+    <td> {{obtenerMarcacion(r.entrada) | date:'shortTime'}} </td>
+    <td> {{obtenerMarcacion(r.salida) | date:'shortTime'}} </td>
+  </tr>
+</table>

@@ -63,6 +63,7 @@ export class Marcacion {
   constructor(o:Object) {
     try {
       Object.assign(this, o);
+      this.marcacion = (this.marcacion == null ? null : new Date(this.marcacion));
     } catch(e) {
       console.log(e);
     }
@@ -75,6 +76,15 @@ export class Horario {
   hora_entrada: number;
   hora_salida: number;
   eliminado: Date = null;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.fecha_valido = (this.fecha_valido == null ? null : new Date(this.fecha_valido));
+    } catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export class Detalle {
@@ -94,7 +104,11 @@ export class RenglonReporte {
   constructor(o:Object) {
     try {
       Object.assign(this, o);
-
+      this.fecha = (this.fecha == null ? null : new Date(this.fecha));
+      this.horario = (this.horario == null) ? null : new Horario(this.horario);
+      this.marcaciones = (this.marcaciones == null) ? [] : this.marcaciones.map(m => new Marcacion(m));
+      this.entrada = (this.entrada == null) ? null : new Marcacion(this.entrada);
+      this.salida = (this.salida == null) ? null : new Marcacion(this.salida);
     } catch(e) {
       console.log(e);
     }
@@ -114,6 +128,7 @@ export class Reporte {
       Object.assign(this, o);
       this.fecha_inicial = (this.fecha_inicial == null ? null : new Date(this.fecha_inicial));
       this.fecha_final = (this.fecha_final == null ? null : new Date(this.fecha_final));
+      this.reportes = (this.reportes == null) ? [] : this.reportes.map(r => new RenglonReporte(r));
     } catch(e) {
       console.log(e);
     }
