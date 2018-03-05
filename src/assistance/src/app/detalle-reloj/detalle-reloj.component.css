@@ -1,0 +1,104 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+.detalleReloj {
+}
+
+.detalleReloj .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+
+}
+
+.detalleReloj .btnVolverSeccion {
+  color: grey;
+}
+
+.detalleReloj .contenidoPantalla {
+  padding: 20px;
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+}
+
+/* ---------------------------------------*/
+
+.detalleReloj .contenidoPrincipal {
+  max-width: 400px;
+
+}
+
+.subtitulo {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.textSubtitulo {
+  color:#4186e1;
+}
+
+.fdr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icoMenu {
+  color: rgba(0,0,0,.54);
+  margin-right: 10px;
+}
+
+
+.formulario {
+  width: 100%;
+
+}
+
+.formulario .itemFormularioFull {
+  width: 98%;
+}
+
+.formulario .itemFormularioMedio {
+  width: 49%;
+}
+
+.contenidoSecundario {
+  padding-left: 50px;
+  width: 300px;
+}
+
+.btnAcciones {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+  padding: 5px 10px 5px 15px;
+  background-color: white;
+  border: solid 1px #E0E0E0;
+}
+
+.btnClasico {
+  background-color: #4186e1;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+
+}
+
+.btnActivacion {
+  margin-bottom: 10px;
+  color: #4186e1;
+}

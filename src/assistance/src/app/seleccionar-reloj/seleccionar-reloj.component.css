@@ -23,21 +23,18 @@
 
 .subtitulo {
   display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
   flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
   align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
   justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
   margin-bottom: 20px;
-}
-
-.icoTarjeta {
-  font-size: 2.5em;
-  margin-right: 20px;
-  color: grey;
-}
-
-.tituloReloj {
-  font-size: 1em;
-  padding-left: 5px;
 }
 
 .fdr {
@@ -57,24 +54,6 @@
     font-size: 12px;
 }
 
-
-.example-card {
-  max-width: 400px;
-  margin-bottom: 10px;
-  padding: 5px;
-  padding-top: 15px;
-  padding: 15px 15px 5px 15px;
-}
-
-.mat-card-title {
-  margin-bottom: 10px;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-
 .tarjeta {
 padding: 0px;
 margin-bottom: 10px;
@@ -82,7 +61,7 @@ margin-bottom: 10px;
 
 .tarjeta :hover {
   cursor: pointer;
-  background-color: #dbdbdb;
+  background-color: #e0e0e0;
 }
 
 .contenidoTarjeta {
@@ -90,28 +69,23 @@ margin-bottom: 10px;
   padding-bottom: 0px;
 }
 
-.subtitulo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.icoTarjeta {
+  font-size: 2.5em;
+  margin-right: 20px;
+  color: grey;
+}
+
+.tituloReloj {
+  font-size: 1em;
   padding-left: 5px;
 }
+
 
 .iconoEstado {
   font-size: 14px;
   height: 15px;
-width: 15px;
+  width: 15px;
 }
-
-.colorActivo {
-  color:#35AC19;
-}
-
-.colorInactivo {
-  color: #E23237;
-}
-
-
 
 .parpadea {
 
@@ -142,4 +116,12 @@ width: 15px;
   0% { opacity: 1.0; }
    50% { opacity: 0.4; }
   100% { opacity: 1.0; }
+}
+
+.colorActivo {
+  color:#35AC19;
+}
+
+.colorInactivo {
+  color: #E23237;
 }
