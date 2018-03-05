@@ -43,21 +43,21 @@ export class DetalleRelojComponent implements OnInit {
   eliminar_usuarios():void {
     this.subscriptions.push(this.service.eliminarUsuarios(this.reloj.id).subscribe(
       r => console.log(r),
-      err => console.log(err);
+      err => console.log(err)
     ))
   }
 
   eliminar_huellas():void {
     this.subscriptions.push(this.service.eliminarHuellas(this.reloj.id).subscribe(
       r => console.log(r),
-      err => console.log(err);
+      err => console.log(err)
     ))
   }
 
   sincronizar():void {
     this.subscriptions.push(this.service.sincronizarLogs(this.reloj.id).subscribe(
       r => console.log(r),
-      err => console.log(err);
+      err => console.log(err)
     ))
   }
 }
