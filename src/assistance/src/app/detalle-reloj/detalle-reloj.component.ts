@@ -15,6 +15,7 @@ export class DetalleRelojComponent implements OnInit {
   reloj: Reloj = null;
   subscriptions: any[] = [];
   eliminar_activo: boolean = false;
+  opcions_avanzadas: boolean = false;
 
 
   constructor(private service: AssistanceService,

@@ -89,6 +89,14 @@
   border: solid 1px #E0E0E0;
 }
 
+.btnOpcionesAvanzadas {
+  /*width: 100%;*/
+  text-align: left;
+  color: grey;
+  margin-bottom: 5px;
+}
+
+
 .btnClasico {
   background-color: #4186e1;
     color: #fff;
