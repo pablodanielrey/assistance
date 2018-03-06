@@ -29,6 +29,7 @@
     <th>Horario</th>
     <th>Entrada</th>
     <th>Salida</th>
+    <th>Horas trabajadas</th>
   </tr>
   <tr *ngFor="let r of obtenerReportes()" class="mdc-list-item">
     <td>{{obtenerUsuario()}}</td>
@@ -37,5 +38,6 @@
     <td> {{obtenerHorario(r)}} </td>
     <td> {{obtenerMarcacion(r.entrada) | date:'shortTime'}} </td>
     <td> {{obtenerMarcacion(r.salida) | date:'shortTime'}} </td>
+    <td> {{ obtenerHorasTrabajadas(r) }}</td>
   </tr>
 </table>

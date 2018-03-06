@@ -105,6 +105,8 @@ export class RenglonReporte {
     try {
       Object.assign(this, o);
       if (this.fecha != null) {
+        // "fecha" = 'yyyy-mm-dd'
+        // el mes del Date empieza desde 0 (0-11)
         let f = o["fecha"].split("-");
         this.fecha = new Date(f[0], f[1] - 1, f[2]);
       }

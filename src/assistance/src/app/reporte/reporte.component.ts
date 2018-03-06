@@ -92,6 +92,13 @@ export class ReporteComponent implements OnInit {
     }
   }
 
+  obtenerHorasTrabajadas(r:RenglonReporte) {
+    let segundos = r.cantidad_horas_trabajadas;
+    let min = parseInt((segundos / 60) % 60);
+    let hs = parseInt((segundos / 60) / 60);
+    return hs + ":" + min;
+  }
+
   obtenerReportes() {
     if (this.reporte ==  null) {
       return []
