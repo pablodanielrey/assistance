@@ -43,7 +43,7 @@ export class DetalleRelojComponent implements OnInit {
   eliminar_usuarios():void {
     this.subscriptions.push(this.service.eliminarUsuarios(this.reloj.id).subscribe(
       r => console.log(r),
-      err => console.log(err);
+      err => console.log(err)
     ))
   }
 

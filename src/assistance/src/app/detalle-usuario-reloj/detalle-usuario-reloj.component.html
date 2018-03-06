@@ -1,21 +1,62 @@
+<div class="detalleUsuarioReloj">
 
-<div *ngIf='datos'>
-  <div>{{datos.usuario.PIN2}}</div>
-  <div>{{datos.usuario.Password}}</div>
-  <div>{{datos.usuario.PIN}}</div>
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Detalle de usuario en el reloj
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla" *ngIf='datos'>
 
 
-  <mat-list>
-    <mat-list-item *ngFor="let huella of datos.huellas">
-      <mat-icon matListIcon>folder</mat-icon>
-      <h3 matLine> Dedo {{huella.FingerID}} </h3>
-      <div matLine>
-        <div> {{huella.Size}} </div>
-        <div> {{huella.Template}} </div>
-        <div *ngIf="huella.Valid == '1'"> Valida </div>
-        <div *ngIf="huella.Valid == '0'"> In-Valida </div>
-      </div>
-    </mat-list-item>
-  </mat-list>
+                <form class="formulario">
+                    <mat-form-field class="itemFormularioFull">
+                      <mat-placeholder>Nombre</mat-placeholder>
+                    <input matInput placeholder="" value="Walter">
+                    </mat-form-field>
+                    <mat-form-field class="itemFormularioFull">
+                      <mat-placeholder>Apellido</mat-placeholder>
+                    <input matInput placeholder="" value="Blanco">
+                    </mat-form-field>
+                    <mat-form-field class="itemFormularioFull">
+                      <mat-placeholder>DNI</mat-placeholder>
+                    <input matInput placeholder="" value="{{datos.usuario.PIN2}}">
+                    </mat-form-field>
+                </form>
+
+                <!-- <div>{{datos.usuario.PIN2}}</div>
+                <div>{{datos.usuario.Password}}</div>
+                <div>{{datos.usuario.PIN}}</div> -->
+
+                <div class="subtitulo">
+                    <div class="fdr"><mat-icon class="icoMenu">fingerprint</mat-icon> <span>Huellas Registradas</span></div>
+                </div>
+
+                <mat-list>
+                    <mat-list-item class="itemLista" *ngFor="let huella of datos.huellas">
+                      <mat-icon mat-list-icon class="iconoHuella">fingerprint</mat-icon>
+                        <h3 matLine> Pulgar Derecho </h3>
+                        <mat-icon matChipRemove class="btnEliminarHuella">cancel</mat-icon>
+                    </mat-list-item>
+                </mat-list>
+
+                <mat-list>
+                    <mat-list-item class="itemLista" *ngFor="let huella of datos.huellas">
+                      <mat-icon mat-list-icon class="iconoHuella">fingerprint</mat-icon>
+                        <h3 matLine> Indice Derecho </h3>
+                        <mat-icon matChipRemove class="btnEliminarHuella">cancel</mat-icon>
+                    </mat-list-item>
+                </mat-list>
+
+                <!-- <div> Dedo {{huella.FingerID}} </div>
+                <div> {{huella.Size}} </div>
+                <div> {{huella.Template}} </div>
+                <div *ngIf="huella.Valid == '1'"> Valida </div>
+                <div *ngIf="huella.Valid == '0'"> In-Valida </div> -->
+
+
+
+    </div>
 
 </div>

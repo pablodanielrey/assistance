@@ -1,0 +1,72 @@
+
+.detalleUsuarioReloj .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+
+}
+
+.detalleUsuarioReloj .btnVolverSeccion {
+  color: grey;
+}
+
+.detalleUsuarioReloj .contenidoPantalla {
+  padding: 20px;
+  max-width: 400px;
+
+}
+
+.formulario {
+  width: 100%;
+
+}
+
+.formulario .itemFormularioFull {
+  width: 100%;
+}
+
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+}
+
+
+.iconoHuella {
+  font-size: 2em;
+}
+
+.btnEliminarHuella {
+    color: grey;
+}
+
+.btnEliminarHuella:hover {
+    color: #9b2626;
+    cursor: pointer;
+}
+
+.subtitulo {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  /*margin-bottom: 20px;*/
+}
+
+.fdr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icoMenu {
+  color: rgba(0,0,0,.54);
+  margin-right: 5px;
+}
