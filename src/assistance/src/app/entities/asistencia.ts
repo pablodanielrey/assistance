@@ -104,7 +104,10 @@ export class RenglonReporte {
   constructor(o:Object) {
     try {
       Object.assign(this, o);
-      this.fecha = (this.fecha == null ? null : new Date(this.fecha));
+      if (this.fecha != null) {
+        let f = o["fecha"].split("-");
+        this.fecha = new Date(f[0], f[1] - 1, f[2]);
+      }
       this.horario = (this.horario == null) ? null : new Horario(this.horario);
       this.marcaciones = (this.marcaciones == null) ? [] : this.marcaciones.map(m => new Marcacion(m));
       this.entrada = (this.entrada == null) ? null : new Marcacion(this.entrada);
