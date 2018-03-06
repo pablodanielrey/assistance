@@ -94,9 +94,9 @@ export class ReporteComponent implements OnInit {
 
   obtenerHorasTrabajadas(r:RenglonReporte) {
     let segundos = r.cantidad_horas_trabajadas;
-    let min = parseInt((segundos / 60) % 60);
-    let hs = parseInt((segundos / 60) / 60);
-    return hs + ":" + min;
+    let min = Math.trunc((segundos / 60) % 60);
+    let hs = Math.trunc((segundos / 60) / 60);
+    return String(hs) + ":" + String(min);
   }
 
   obtenerReportes() {
