@@ -1,16 +1,43 @@
-<div *ngIf='usuarios'>
-  <h3>Cantidad : {{usuarios.length}}</h3>
-</div>
-<div *ngFor="let usuario of usuarios" routerLink="/detalle_reloj/{{rid}}/usuarios/{{usuario.PIN2}}" class="mdc-list-item">
-  <div class="itemUser">
-      <div>
-          <mat-icon class="ico">account_circle</mat-icon>
-      </div>
-      <div>
-          <div>{{usuario.PIN2}}</div>
+<div class="usuariosReloj">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Usuarios del Reloj
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+
+      <div class="moduloListaUsuarios" *ngIf='usuarios'>
+
+          <form>
+              <mat-form-field class="inputSearch">
+                <mat-placeholder>Buscar Usuario</mat-placeholder>
+                <input matInput class="inputSearch">
+                <mat-hint><strong>{{usuarios.length}}</strong> Usuarios encontrados </mat-hint>
+                <button mat-button matSuffix class="btnBuscar"><mat-icon>search</mat-icon> BUSCAR</button>
+              </mat-form-field>
+          </form>
+
+          <mat-list>
+              <mat-list-item class="itemLista" *ngFor="let usuario of usuarios" routerLink="/detalle_reloj/{{rid}}/usuarios/{{usuario.PIN2}}">
+                <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
+                <h3 matLine> Walter Blanco </h3>
+                <p matLine>
+                  <span class="itemTextoSubtitulo">{{usuario.PIN2}}</span>
+                </p>
+              </mat-list-item>
+          </mat-list>
+
+          <!-- <div>{{usuario.PIN2}}</div>
           <div>{{usuario.Password}}</div>
           <div>{{usuario.Privilege}}</div>
-          <!-- <div>{{datos.usuario.dni}} {{datos.sileg != null ? 'tiene' : 'no tiene'}}</div> -->
+          <div>{{datos.usuario.dni}} {{datos.sileg != null ? 'tiene' : 'no tiene'}}</div> -->
+
       </div>
-  </div>
+
+
+    </div>
+
 </div>
