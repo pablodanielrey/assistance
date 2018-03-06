@@ -54,30 +54,19 @@
     font-size: 12px;
 }
 
-.tarjeta {
-padding: 0px;
-margin-bottom: 10px;
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-bottom: 5px;
 }
 
-.tarjeta :hover {
-  cursor: pointer;
-  background-color: #e0e0e0;
+.itemLista:hover {
+    background-color: #E0E0E0;
+    cursor: pointer;
 }
 
-.contenidoTarjeta {
-  padding: 20px;
-  padding-bottom: 0px;
-}
-
-.icoTarjeta {
-  font-size: 2.5em;
-  margin-right: 20px;
+.textoIP {
   color: grey;
-}
-
-.tituloReloj {
-  font-size: 1em;
-  padding-left: 5px;
 }
 
 
