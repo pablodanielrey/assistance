@@ -30,6 +30,7 @@
     <th>Entrada</th>
     <th>Salida</th>
     <th>Horas trabajadas</th>
+    <th>Justificación</th>
   </tr>
   <tr *ngFor="let r of obtenerReportes()" class="mdc-list-item">
     <td>{{obtenerUsuario()}}</td>
@@ -39,5 +40,8 @@
     <td> {{obtenerMarcacion(r.entrada) | date:'shortTime'}} </td>
     <td> {{obtenerMarcacion(r.salida) | date:'shortTime'}} </td>
     <td> {{ obtenerHorasTrabajadas(r) }}</td>
+    <td *ngIf="r.justificacion"> {{ r.justificacion  }}</td>
+    <td *ngIf="r.justificacion == null"> <button routerLink="" [queryParams]="{ fecha: r.fecha }">Justificar</button></td>
+
   </tr>
 </table>
