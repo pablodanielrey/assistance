@@ -28,6 +28,9 @@
 .itemLista {
   background-color: white;
   border: solid 1px #E0E0E0;
+  width: 48%;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 
 
@@ -57,7 +60,8 @@
   justify-content: space-between;
   -moz-justify-content: space-between;
   -webkit-justify-content: space-between;
-  /*margin-bottom: 20px;*/
+  margin-bottom: 5px;
+  color: #4186e1;
 }
 
 .fdr {
@@ -69,4 +73,20 @@
 .icoMenu {
   color: rgba(0,0,0,.54);
   margin-right: 5px;
+}
+
+.textoDedo {
+  font-size: 0.8em !important;
+  /*color: red;*/
+  margin-left: -15px !important;
+}
+
+.listaDeHuellas {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: wrap;
 }
