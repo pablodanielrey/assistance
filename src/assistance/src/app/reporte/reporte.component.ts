@@ -89,6 +89,8 @@ export class ReporteComponent implements OnInit {
   obtenerUsuario():string {
     if (this.reporte && this.reporte.usuario) {
       return this.reporte.usuario.dni;
+    } else {
+      return "";
     }
   }
 

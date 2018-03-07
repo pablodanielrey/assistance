@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -53,7 +53,8 @@ import { JustificacionPersonalComponent } from './justificacion-personal/justifi
     AppRoutingModule,
     OAuthModule.forRoot()
   ],
-  providers: [AssistanceService],
+  providers: [AssistanceService,
+             {provide: LOCALE_ID, useValue: "en"}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
