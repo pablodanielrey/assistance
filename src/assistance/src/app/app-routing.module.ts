@@ -10,12 +10,16 @@ import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj
 import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
 import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
+import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
 
 const routes: Routes = [
   { path: 'reporte_inicial', component: ReporteInicialComponent },
   { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent },
   { path: 'reporte/:uid', component: ReporteComponent },
   { path: 'reporte', component: ReporteComponent },
+
+
+  { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent },
 
   { path: 'admin_relojes', component: SeleccionarRelojComponent },
   { path: 'detalle_reloj/:rid', component: DetalleRelojComponent },
