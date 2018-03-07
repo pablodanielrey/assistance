@@ -25,6 +25,9 @@ import { GaleriaComponent } from './galeria/galeria.component';
 import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
 import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
+import { HorarioInicialComponent } from './horario-inicial/horario-inicial.component';
+import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';
+import { HorarioModificarComponent } from './horario-modificar/horario-modificar.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { JustificacionPersonalComponent } from './justificacion-personal/justifi
     GaleriaComponent,
     UsuariosRelojComponent,
     DetalleUsuarioRelojComponent,
-    JustificacionPersonalComponent
+    JustificacionPersonalComponent,
+    HorarioInicialComponent,
+    HorarioDetalleComponent,
+    HorarioModificarComponent
   ],
   imports: [
     BrowserModule,
