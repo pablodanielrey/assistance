@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
-import { Reporte, RenglonReporte } from '../entities/asistencia';
+import { Reporte, RenglonReporte, Marcacion } from '../entities/asistencia';
 import { AssistanceService } from '../assistance.service';
 
 
@@ -71,18 +71,32 @@ export class ReporteComponent implements OnInit {
 
   obtenerHorario(r: RenglonReporte): string {
     if (r.horario) {
-      let e = new Date(r.fecha); e.setSeconds(0); e.setMinutes(0); e.setHours(0);
+      let e = new Date(r.fecha.getTime()); e.setSeconds(0); e.setMinutes(0); e.setHours(0);
       let s = new Date(e.getTime());
       e.setSeconds(r.horario.hora_entrada);
       s.setSeconds(r.horario.hora_salida);
-      return e + "-" + s;
+      return e.toLocaleTimeString() + "-" + s.toLocaleTimeString();
     }
+  }
+
+  obtenerMarcacion(m: Marcacion): Date {
+    if (m == null) {
+      return null
+    }
+    return m.marcacion
   }
 
   obtenerUsuario():string {
     if (this.reporte && this.reporte.usuario) {
       return this.reporte.usuario.dni;
     }
+  }
+
+  obtenerHorasTrabajadas(r:RenglonReporte) {
+    let segundos = r.cantidad_horas_trabajadas;
+    let min = Math.trunc((segundos / 60) % 60);
+    let hs = Math.trunc((segundos / 60) / 60);
+    return String(hs) + ":" + String(min);
   }
 
   obtenerReportes() {
