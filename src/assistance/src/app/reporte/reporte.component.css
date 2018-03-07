@@ -1,3 +1,24 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+
+.reporte {
+}
+
+.reporte .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.reporte .btnVolverSeccion {
+  color: grey;
+}
+
+.reporte .contenidoPantalla {
+  padding: 20px;
+}
+
+/* ---------------------------------------*/
+
 tr {
   border: 1px solid;
 }
