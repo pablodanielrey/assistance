@@ -54,7 +54,7 @@
     <td> {{obtenerMarcacion(r.salida) | date:'shortTime'}} </td>
     <td> {{ obtenerHorasTrabajadas(r) }}</td>
     <td *ngIf="r.justificacion"> {{ r.justificacion  }}</td>
-    <td *ngIf="r.justificacion == null"> <button routerLink="" [queryParams]="{ fecha: r.fecha }">Justificar</button></td>
+    <td *ngIf="r.justificacion == null"> <button routerLink="/justificacion_personal/{{reporte.usuario.id}}"  [queryParams]="{ fecha: r.fecha }">Justificar</button></td>
 
   </tr>
 </table>

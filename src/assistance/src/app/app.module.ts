@@ -24,6 +24,7 @@ import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
+import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-us
     DetalleRelojComponent,
     GaleriaComponent,
     UsuariosRelojComponent,
-    DetalleUsuarioRelojComponent
+    DetalleUsuarioRelojComponent,
+    JustificacionPersonalComponent
   ],
   imports: [
     BrowserModule,
