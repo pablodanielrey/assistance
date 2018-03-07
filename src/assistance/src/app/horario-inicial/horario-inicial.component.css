@@ -1,0 +1,49 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+.horarioInicial {
+}
+
+.horarioInicial .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+
+}
+
+.horarioInicial .btnVolverSeccion {
+  color: grey;
+}
+
+.horarioInicial .contenidoPantalla {
+  padding: 20px;
+  max-width: 400px;
+
+}
+
+
+/* ---------------------------------------*/
+
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-top: 5px;
+}
+
+.itemLista:hover {
+    background-color: #E0E0E0;
+    cursor: pointer;
+}
+
+.inputSearch {
+  width: 100%;
+  color:#4186e1;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.btnBuscar {
+  background-color: #4186e1;
+  color: white;
+}

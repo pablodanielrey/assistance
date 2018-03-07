@@ -1,3 +1,34 @@
-<p>
-  horario-inicial works!
-</p>
+<div class="horarioInicial">
+
+  <div class="seccionSistema">
+    <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+     | Horarios
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="contenidoPantalla">
+        <!-- Filtro de búsqueda -->
+      <form (ngSubmit)="buscarUsuarios()" #usuarioForm="ngForm">
+        <mat-form-field class="inputSearch">
+          <mat-placeholder>Buscar Usuario</mat-placeholder>
+          <input matInput type='search'  [(ngModel)]='busqueda'  name="search" id="search" required class="inputSearch"/>
+          <mat-hint><strong>{{usuarios.length}}</strong> Usuarios encontrados </mat-hint>
+          <button type="submit" mat-button matSuffix class="btnBuscar" (click)='buscarUsuarios()' [disabled]="!usuarioForm.form.valid" title="Buscar usuario"><mat-icon>search</mat-icon> </button>
+        </mat-form-field>
+      </form>
+
+      <!-- Lista -->
+      <mat-list>
+        <mat-list-item class="itemLista"  *ngFor="let datos of usuarios" routerLink="/horario_detalle/{{datos.usuario.id}}">
+          <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
+          <h3 matLine> {{datos.usuario.nombre }} {{datos.usuario.apellido}} </h3>
+          <p matLine>
+            <span class="itemTextoSubtitulo">{{datos.usuario.dni}}</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+
+  </div>
+
+</div>
