@@ -41,6 +41,7 @@ margin-right: 10px;
 .itemLista {
   background-color: white;
   border: solid 1px #E0E0E0;
+  margin-right: 20px;
 
 }
 
@@ -51,18 +52,15 @@ margin-right: 10px;
 .cabeceraReporte {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
-tr {
-  border: 1px solid;
+.datosDeUsuarios {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
-
-td {
-  border: 1px solid;
-  padding:0.5em;
-}
-
 
 
 .example-container {
@@ -75,4 +73,22 @@ td {
 .mat-table {
   overflow: auto;
   max-height: 500px;
+}
+
+.Tabs {
+  background-color: white;
+}
+
+
+.btnAcciones {
+background-color: #D1D1D1;
+color: grey;
+}
+
+.btnAcciones:hover {
+background-color: white;
+}
+
+.btnJustificar {
+color: grey;
 }

@@ -14,6 +14,7 @@ import { MatButtonModule,
          MatCardModule,
          MatSlideToggleModule,
          MatTableModule,
+         MatTabsModule,
          MatNativeDateModule
        } from '@angular/material';
 
@@ -36,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatSlideToggleModule,
     MatTableModule,
+    MatTabsModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -54,6 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatSlideToggleModule,
     MatTableModule,
+    MatTabsModule,
     BrowserAnimationsModule
   ],
 })

@@ -2,7 +2,7 @@
 
     <div class="seccionSistema">
       <button mat-button class="btnVolverSeccion" disabled><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
-       | Reportes
+       | Reporte Personal
     </div>
 
     <mat-divider></mat-divider>
@@ -10,6 +10,8 @@
     <div class="contenidoPantalla">
 
       <div class="cabeceraReporte">
+
+          <div class="datosDeUsuarios">
 
             <mat-list *ngIf='reporte.usuario' class="usuario">
                 <mat-list-item class="itemLista">
@@ -38,58 +40,77 @@
                     <mat-datepicker #datePickerFin></mat-datepicker>
                   </mat-form-field>
 
-                  <button mat-button class="btnClasico" (click)='generarReporte()'>BUSCAR</button>
+                  <button mat-button class="btnClasico" (click)='generarReporte()'>GENERAR REPORTE</button>
 
+            </div>
+
+         </div>
+
+            <div>
+              <button mat-button class="btnAcciones" title="Imprimir"><i class="material-icons">print</i></button>
+              <button mat-button class="btnAcciones" title="Descargar"><i class="material-icons">cloud_download</i></button>
+              <button mat-button class="btnAcciones" title="Compartir"><i class="material-icons">share</i></button>
             </div>
 
       </div>
 
-      <div *ngIf='reporte'>
-      <mat-table [dataSource]='reporte.reportes' matSort>
 
-        <ng-container matColumnDef='Dia'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
-          <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEE'}} </mat-cell>
-        </ng-container>
+      <mat-tab-group>
+          <mat-tab label="Reporte" class="Tabs">
 
-        <ng-container matColumnDef='Fecha'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
-          <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
-        </ng-container>
 
-        <ng-container matColumnDef='Horario'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Horario </mat-header-cell>
-          <mat-cell *matCellDef='let renglon'> {{obtenerHorario(renglon)}} </mat-cell>
-        </ng-container>
+              <div *ngIf='reporte'>
+              <mat-table [dataSource]='reporte.reportes' matSort>
 
-        <ng-container matColumnDef='Entrada'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
-          <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef='Dia'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEE'}} </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef='Salida'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
-          <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef='Fecha'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef='Horas_trabajadas'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Horas Trabajadas </mat-header-cell>
-          <mat-cell *matCellDef='let renglon'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef='Horario'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horario </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerHorario(renglon)}} </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef='Justificacion'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
-          <mat-cell *matCellDef='let renglon'>
-            <div *ngIf='renglon.justificacion'> {{renglon.justificacion }} </div>
-            <button *ngIf='!renglon.justificacion' mat-button routerLink="" [queryParams]="{ fecha: renglon.fecha }">Justificar</button>
-          </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef='Entrada'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
 
-        <mat-header-row *matHeaderRowDef="['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-row>
-      </mat-table>
-      </div>
+                <ng-container matColumnDef='Salida'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
 
+                <ng-container matColumnDef='Horas_trabajadas'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Justificacion'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'>
+                    <div *ngIf='renglon.justificacion'> {{renglon.justificacion }} </div>
+                    <button mat-icon-button *ngIf='!renglon.justificacion' routerLink="" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">playlist_add_check</i></button>
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-row>
+              </mat-table>
+              </div>
+
+          </mat-tab>
+
+          <mat-tab label="Detalle" class="Tabs">
+            Detalle del reporte
+          </mat-tab>
+      </mat-tab-group>
 
 
 
