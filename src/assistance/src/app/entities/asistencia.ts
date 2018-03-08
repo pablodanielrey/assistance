@@ -159,3 +159,18 @@ export class DatosAsistencia {
     }
   }
 }
+
+
+
+export class DatosHorario {
+  horarios:  Array<Horario>;
+  usuario: Usuario;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
