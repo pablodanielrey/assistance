@@ -1,3 +1,16 @@
-<p>
-  horario-detalle works!
-</p>
+<div *ngIf="info">
+  <p>{{info.usuario["nombre"]}}, {{info.usuario["apellido"]}}</p>
+  <p>{{info.usuario["dni"]}}</p>
+</div>
+
+<div>
+  <ul *ngIf="info">
+    <li *ngFor="let h of info.horarios" >
+      dia_semanal: {{h.obtenerDiaSemanal()}}
+      fecha_valido: {{h.fecha_valido}}
+      hora_entrada: {{h.hora_entrada}}
+      hora_salida: {{h.hora_salida}}
+    </li>
+  </ul>
+
+</div>

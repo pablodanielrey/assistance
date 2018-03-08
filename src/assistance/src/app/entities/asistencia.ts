@@ -70,6 +70,8 @@ export class Marcacion {
   }
 }
 
+const DIAS: Array<string> = ['Lunes', 'Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
 export class Horario {
   fecha_valido: Date = null;
   dia_semanal: number;
@@ -84,6 +86,10 @@ export class Horario {
     } catch(e) {
       console.log(e);
     }
+  }
+
+  obtenerDiaSemanal() {
+    return DIAS[this.dia_semanal];
   }
 }
 
@@ -169,6 +175,7 @@ export class DatosHorario {
   constructor(o:Object) {
     try {
       Object.assign(this, o);
+      this.horarios = (this.horarios == null) ? [] : this.horarios.map(r => new Horario(r));
     } catch(e) {
       console.log(e);
     }
