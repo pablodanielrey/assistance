@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { ToogleFullscreenDirective } from '../toogle-fullscreen.directive';
+
 
 @Component({
   selector: 'app-header',

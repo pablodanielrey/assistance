@@ -25,6 +25,7 @@ import { GaleriaComponent } from './galeria/galeria.component';
 import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
 import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
+import { ToogleFullscreenDirective } from './toogle-fullscreen.directive';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { JustificacionPersonalComponent } from './justificacion-personal/justifi
     GaleriaComponent,
     UsuariosRelojComponent,
     DetalleUsuarioRelojComponent,
-    JustificacionPersonalComponent
+    JustificacionPersonalComponent,
+    ToogleFullscreenDirective
   ],
   imports: [
     BrowserModule,
