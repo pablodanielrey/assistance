@@ -6,7 +6,7 @@
 .reportePersonal .seccionSistema {
   color: #4186e1;
   padding: 5px;
-  
+
 }
 
 .reportePersonal .btnVolverSeccion {
@@ -15,6 +15,8 @@
 
 .reportePersonal .contenidoPantalla {
   padding: 20px;
+  max-width: 400px;
+
 }
 
 /* ---------------------------------------*/

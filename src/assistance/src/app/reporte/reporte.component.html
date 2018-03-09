@@ -1,47 +1,150 @@
+<div  class="reporte">
 
-  <div *ngIf='info'>
-    {{info.name}}
-    {{info.email}}
-  </div>
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" disabled><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Reporte Personal
+    </div>
 
-<div>
-  <mat-form-field>
-    <input matInput [matDatepicker]="datePickerInicio" [(ngModel)]="fecha_inicial">
-    <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
-    <mat-datepicker #datePickerInicio></mat-datepicker>
-  </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+
+      <div class="cabeceraReporte">
+
+          <div class="datosDeUsuarios">
+
+            <mat-list *ngIf='reporte' class="usuario">
+                <mat-list-item class="itemLista">
+                  <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
+                  <h3 matLine> Nombre Apellido </h3>
+                  <p matLine>
+                    <span class="itemTextoSubtitulo">{{reporte.usuario.dni}}</span>
+                  </p>
+                </mat-list-item>
+            </mat-list>
 
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="datePickerFin" [(ngModel)]="fecha_final">
-    <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
-    <mat-datepicker #datePickerFin></mat-datepicker>
-  </mat-form-field>
+            <div>
+                  <mat-form-field class="contenidoFecha">
+                      <mat-placeholder>Fecha Inicio</mat-placeholder>
+                    <input matInput [matDatepicker]="datePickerInicio" [(ngModel)]="fecha_inicial">
+                    <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #datePickerInicio></mat-datepicker>
+                  </mat-form-field>
 
-  <button (click)='generarReporte()'>Generar Reporte</button>
+
+                  <mat-form-field class="contenidoFecha">
+                    <mat-placeholder>Fecha Fin</mat-placeholder>
+                    <input matInput [matDatepicker]="datePickerFin" [(ngModel)]="fecha_final">
+                    <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+                    <mat-datepicker #datePickerFin></mat-datepicker>
+                  </mat-form-field>
+
+                  <button mat-button class="btnClasico" (click)='generarReporte()'>GENERAR REPORTE</button>
+
+            </div>
+
+         </div>
+
+            <div>
+              <button mat-button class="btnAcciones" title="Imprimir"><i class="material-icons">print</i></button>
+              <button mat-button class="btnAcciones" title="Descargar"><i class="material-icons">cloud_download</i></button>
+              <button mat-button class="btnAcciones" title="Compartir"><i class="material-icons">share</i></button>
+            </div>
+
+      </div>
+
+
+      <mat-tab-group>
+          <mat-tab label="Reporte" class="Tabs">
+
+
+              <div *ngIf='reporte'>
+              <mat-table [dataSource]='reporte.reportes' matSort>
+
+                <ng-container matColumnDef='Dia'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEE'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Fecha'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Horario'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horario </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerHorario(renglon)}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Entrada'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Salida'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Horas_trabajadas'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Justificacion'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'>
+                    <div *ngIf='renglon.justificacion'> {{renglon.justificacion }} </div>
+                    <button mat-icon-button *ngIf='!renglon.justificacion' routerLink="" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">playlist_add_check</i></button>
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-row>
+              </mat-table>
+              </div>
+
+          </mat-tab>
+
+          <mat-tab label="Detalle" class="Tabs">
+            Detalle del reporte
+          </mat-tab>
+      </mat-tab-group>
+
+
+
+
+
+
+    </div>
+
 </div>
 
-<table>
-  <tr>
-    <th>Usuario</th>
-    <th>Día</th>
-    <th>Fecha</th>
-    <th>Horario</th>
-    <th>Entrada</th>
-    <th>Salida</th>
-    <th>Horas trabajadas</th>
-    <th>Justificación</th>
-  </tr>
-  <tr *ngFor="let r of obtenerReportes()" class="mdc-list-item">
-    <td>{{obtenerUsuario()}}</td>
-    <td> {{r.fecha | date: 'EEE'}} </td>
-    <td> {{r.fecha | date: 'dd/MM/yyyy'}} </td>
-    <td> {{obtenerHorario(r)}} </td>
-    <td> {{obtenerMarcacion(r.entrada) | date:'shortTime'}} </td>
-    <td> {{obtenerMarcacion(r.salida) | date:'shortTime'}} </td>
-    <td> {{ obtenerHorasTrabajadas(r) }}</td>
-    <td *ngIf="r.justificacion"> {{ r.justificacion  }}</td>
-    <td *ngIf="r.justificacion == null"> <button routerLink="/justificacion_personal/{{reporte.usuario.id}}"  [queryParams]="{ fecha: r.fecha }">Justificar</button></td>
 
-  </tr>
-</table>
+
+
+<!--
+<tr>
+  <th>Usuario</th>
+  <th>Día</th>
+  <th>Fecha</th>
+  <th>Horario</th>
+  <th>Entrada</th>
+  <th>Salida</th>
+  <th>Horas trabajadas</th>
+  <th>Justificación</th>
+</tr>
+<tr *ngFor="let r of obtenerReportes()" class="mdc-list-item">
+  <td>{{obtenerUsuario()}}</td>
+  <td> {{r.fecha | date: 'EEE'}} </td>
+  <td> {{r.fecha | date: 'dd/MM/yyyy'}} </td>
+  <td> {{obtenerHorario(r)}} </td>
+  <td> {{obtenerMarcacion(r.entrada) | date:'shortTime'}} </td>
+  <td> {{obtenerMarcacion(r.salida) | date:'shortTime'}} </td>
+  <td> {{ obtenerHorasTrabajadas(r) }}</td>
+  <td *ngIf="r.justificacion"> {{ r.justificacion  }}</td>
+  <td *ngIf="r.justificacion == null"> <button routerLink="" [queryParams]="{ fecha: r.fecha }">Justificar</button></td>
+
+</tr>
+-->
