@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -25,9 +25,11 @@ import { GaleriaComponent } from './galeria/galeria.component';
 import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
 import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
+
 import { HorarioInicialComponent } from './horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';
 import { HorarioModificarComponent } from './horario-modificar/horario-modificar.component';
+import { ToogleFullscreenDirective } from './toogle-fullscreen.directive';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { HorarioModificarComponent } from './horario-modificar/horario-modificar
     JustificacionPersonalComponent,
     HorarioInicialComponent,
     HorarioDetalleComponent,
-    HorarioModificarComponent
+    HorarioModificarComponent,
+    ToogleFullscreenDirective
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { HorarioModificarComponent } from './horario-modificar/horario-modificar
     AppRoutingModule,
     OAuthModule.forRoot()
   ],
-  providers: [AssistanceService],
+  providers: [AssistanceService,
+             {provide: LOCALE_ID, useValue: "en"}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
