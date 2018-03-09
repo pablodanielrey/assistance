@@ -80,6 +80,7 @@ export class Horario {
   eliminado: Date = null;
   entrada: Date;
   salida: Date;
+  cantidadHoras: number = 0;
 
   constructor(o:Object) {
     try {
@@ -87,6 +88,8 @@ export class Horario {
       this.fecha_valido = (this.fecha_valido == null ? null : new Date(this.fecha_valido));
       this.setEntrada(this.hora_entrada);
       this.setSalida(this.hora_salida);
+      this.cantidadHoras = this.hora_salida - this.hora_entrada;
+      this.cantidadHoras = (this.cantidadHoras == 0) ? 0 : this.cantidadHoras / 3600;
     } catch(e) {
       console.log(e);
     }
