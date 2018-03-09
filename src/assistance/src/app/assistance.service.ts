@@ -85,7 +85,6 @@ export class AssistanceService {
     const options = { params: new HttpParams()
               .set('fecha', fecha.toDateString())
           };
-    console.log(options);
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/horario/`;
     return this.http.get<[DatosHorario]>(apiUrl, options).map(datos => new DatosHorario(datos));
   }
