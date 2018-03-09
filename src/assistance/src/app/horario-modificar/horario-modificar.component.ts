@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssistanceService } from '../assistance.service';
 
-import { DatosHorario } from '../entities/asistencia';
+import { DatosHorario, Horario } from '../entities/asistencia';
 
 
 import { ActivatedRoute } from '@angular/router';
