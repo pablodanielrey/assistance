@@ -47,6 +47,7 @@ export class ReporteComponent implements OnInit {
       console.log(r);
       this.info = r;
     });
+    this.generarReporte();
   }
 
   salir():void {
