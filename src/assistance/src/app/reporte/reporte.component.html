@@ -90,12 +90,12 @@
                 </ng-container>
 
                 <!-- VISTA PC -->
-                <!-- <mat-header-row *matHeaderRowDef="['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-row> -->
+                <mat-header-row *matHeaderRowDef="['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-row>
 
                 <!-- VISTA CELULAR -->
-                <mat-header-row *matHeaderRowDef="['Fecha','Entrada','Salida','Horas_trabajadas']"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: ['Fecha','Entrada','Salida','Horas_trabajadas']"></mat-row>
+                <!-- <mat-header-row *matHeaderRowDef="['Fecha','Entrada','Salida','Horas_trabajadas']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['Fecha','Entrada','Salida','Horas_trabajadas']"></mat-row> -->
 
 
               </mat-table>
@@ -104,7 +104,95 @@
           </mat-tab>
 
           <mat-tab label="Detalle" class="Tabs">
-            Detalle del reporte
+              <div clasS="detalleReporte">
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre días</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Días seleccionados:</div><div>365</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días laborables:</div><div>286</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días trabajados:</div><div>274</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Faltas justificadas:</div><div>10</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Faltas injustificadas:</div><div>2</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre horas</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas a trabajar:</div><div>420</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas trabajadas:</div><div>380</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas justificadas:</div><div>47</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Diferencia de horas:</div><div>+7</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Justficaciones</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Vacaciones:</div><div>28</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Ausentes con aviso:</div><div>5</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Articulo 102:</div><div>4</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Pre-exámen:</div><div>7</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Licencias medicas:</div><div>4</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                    <div class="titulo">Stock</div>
+                    <mat-divider></mat-divider>
+                    <div class="contenedorItemDetalles">
+                      <div class="itemDetalles">
+                        <div>Vacaciones:</div><div>0</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Ausente con aviso:</div><div>1</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Articulo 102:</div><div>2</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Boletas de salida (HS):</div><div>36</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Pre-Exámen:</div><div>16</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Compensatorio:</div><div>7</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Cumpleaños:</div><div>1</div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
           </mat-tab>
       </mat-tab-group>
 

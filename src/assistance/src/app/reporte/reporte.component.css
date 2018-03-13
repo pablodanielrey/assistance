@@ -119,6 +119,51 @@ background-color: white;
 }
 
 
+.detalleReporte {
+  background-color: white;
+  padding: 40px;
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+
+}
+
+.columna {
+  width: 300px;
+  margin-right: 80px;
+  margin-bottom: 20px;
+}
+
+.titulo {
+  color: grey;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.contenedorItemDetalles {
+  margin-top: 15px;
+  font-size: 14px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+
+}
+
+.itemDetalles {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+
 
 @media screen and (max-width: 769px) {
   .contenedorSeleccionDeFechas {
@@ -147,6 +192,18 @@ background-color: white;
   .textFecha {
     color: grey !important;
     font-size: 0.5em !important;
+  }
+  .detalleReporte {
+    padding: 20px;
+    flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+  }
+
+  .columna {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 20px;
   }
 
 }
