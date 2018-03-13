@@ -72,6 +72,7 @@ export class Marcacion {
 
 const DIAS: Array<string> = ['Lunes', 'Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado', 'Domingo'];
 const DIA_INICIAL: Date = new Date(2018,1,1,0,0,0);
+
 export class Horario {
   fecha_valido: Date = null;
   dia_semanal: number;
@@ -81,6 +82,7 @@ export class Horario {
   entrada: Date;
   salida: Date;
   cantidadHoras: number = 0;
+  usuario_id: string;
 
   constructor(o:Object) {
     try {

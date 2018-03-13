@@ -74,8 +74,15 @@ export class HorarioModificarComponent implements OnInit {
   guardar() {
     for (let i=0; i < this.info.horarios.length; i++) {
       let h = this.info.horarios[i];
-      console.log(h.obtenerDiaSemanal() + " " + h.entrada + "  --- HS:" + h.cantidadHoras);
+      h.fecha_valido = this.fecha;
+      h.hora_salida = h.cantidadHoras * 3600 + h.hora_entrada;
+      h.usuario_id = this.usuario_id;
+      console.log(h);
     }
+    this.subscriptions.push(this.service.crearHorario(this.info.horarios)
+    .subscribe(r => {
+      console.log(r);
+    }));
   }
 
 }

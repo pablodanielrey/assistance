@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Reporte, DatosHorario } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -87,6 +87,11 @@ export class AssistanceService {
           };
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/horario/`;
     return this.http.get<[DatosHorario]>(apiUrl, options).map(datos => new DatosHorario(datos));
+  }
+
+  crearHorario(horarios: Horario[]):Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/horario/`;
+    return this.http.put<any>(apiUrl, horarios);
   }
 
 }
