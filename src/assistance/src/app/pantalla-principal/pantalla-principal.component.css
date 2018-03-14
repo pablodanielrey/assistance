@@ -1,0 +1,186 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+
+.inicio {
+}
+
+.inicio .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.inicio .btnVolverSeccion {
+  color: grey;
+}
+
+.inicio .contenidoPantalla {
+  padding: 20px;
+  width: 70%;
+}
+
+/* ---------------------------------------*/
+
+.contenedorFecha {
+  /*display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;*/
+  margin-right: 40px;
+  width: 300px;
+}
+
+
+.contenedorAsitencias {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  padding: 20px;
+  width: 100%;
+}
+
+.cabeceraInicio {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  margin-bottom: 5px;
+  /*padding: 20px;*/
+}
+
+.hora {
+  font-size: 50px;
+  color:#5e5e5e;
+}
+
+.fecha {
+  color: #5e5e5e;
+  font-size: 20px;
+}
+
+
+.contenedorItem {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+
+}
+
+.contenedorcantidadP {
+  background-color: #00897B;
+  color: white;
+  padding: 15px 20px 15px 20px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.contenedorcantidadR {
+  background-color: #D24231;
+  color: white;
+  padding: 15px 20px 15px 20px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.contenedorcantidadA {
+  background-color: grey;
+  color: white;
+  padding: 15px 20px 15px 20px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+
+
+.textSubCantidad {
+  color: grey;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.buscadorUsuarios {
+  width: 100%;
+}
+
+.formularioBuscar {
+  width: 100%;
+}
+
+.inputBuscar {
+  width: 100%;
+}
+
+
+
+.listasDeUsuarios {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+
+.tituloLista {
+  margin-top: 10px;
+  font-size: 16px;
+
+}
+
+
+.listaEyS {
+  width: 47%;
+}
+
+.listaAusentes {
+  width: 47%;
+
+}
+
+.mat-list, .mat-nav-list, .mat-selection-list {
+    padding-top: 0px !important;
+}
+
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-top: 5px;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.colorEntrada {
+  border-left: 5px solid #00897B;
+}
+
+.colorSalida {
+  border-left: 5px solid #D24231;
+}
+
+.colorAUsente {
+  border-left: 5px solid grey;
+}
