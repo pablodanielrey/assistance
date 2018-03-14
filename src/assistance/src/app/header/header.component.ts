@@ -17,11 +17,14 @@ export class HeaderComponent implements OnInit {
   constructor(private oauthService: OAuthService) { }
 
   ngOnInit() {
+    /*
     this.oauthService.loadUserProfile().then(r => {
       console.log(r);
       this.info = r;
     });
-
+    */
+     this.info = this.oauthService.getIdentityClaims();
+     console.log(this.info);
   }
 
   cambiar_menu():void {

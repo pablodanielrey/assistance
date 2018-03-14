@@ -1,0 +1,21 @@
+<div *ngIf="info">
+  <p>{{info.usuario["nombre"]}}, {{info.usuario["apellido"]}}</p>
+  <p>{{info.usuario["dni"]}}</p>
+</div>
+
+<button routerLink="/horario_modificar/{{usuario_id}}"  [queryParams]="{ fecha:fecha }" >Modificar</button>
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="datePicker" [(ngModel)]="fecha" placeholder="Fecha" (dateChange)="obtenerHorario()">
+    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+  </mat-form-field>
+  <span *ngIf="info">Horas Semanales: {{info.horasSemanales.horas}}</span>
+  <ul *ngIf="info">
+    <li *ngFor="let h of info.horarios" >
+      {{h.obtenerDiaSemanal()}}
+      {{ h.entrada | date: 'HH:mm' }} a {{h.salida | date: 'HH:mm'}}
+    </li>
+  </ul>
+
+</div>

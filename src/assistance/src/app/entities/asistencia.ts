@@ -70,20 +70,45 @@ export class Marcacion {
   }
 }
 
+const DIAS: Array<string> = ['Lunes', 'Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado', 'Domingo'];
+const DIA_INICIAL: Date = new Date(2018,1,1,0,0,0);
+
 export class Horario {
   fecha_valido: Date = null;
   dia_semanal: number;
   hora_entrada: number;
   hora_salida: number;
   eliminado: Date = null;
+  entrada: Date;
+  salida: Date;
+  cantidadHoras: number = 0;
+  usuario_id: string;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
       this.fecha_valido = (this.fecha_valido == null ? null : new Date(this.fecha_valido));
+      this.setEntrada(this.hora_entrada);
+      this.setSalida(this.hora_salida);
+      this.cantidadHoras = this.hora_salida - this.hora_entrada;
+      this.cantidadHoras = (this.cantidadHoras == 0) ? 0 : this.cantidadHoras / 3600;
     } catch(e) {
       console.log(e);
     }
+  }
+
+  obtenerDiaSemanal() {
+    return DIAS[this.dia_semanal];
+  }
+
+  setEntrada(sec: number) {
+    this.entrada = new Date(DIA_INICIAL);
+    this.entrada.setSeconds(sec);
+  }
+
+  setSalida(sec: number) {
+    this.salida = new Date(DIA_INICIAL);
+    this.salida.setSeconds(sec);
   }
 }
 
@@ -154,6 +179,23 @@ export class DatosAsistencia {
   constructor(o:Object) {
     try {
       Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+
+
+export class DatosHorario {
+  horarios:  Array<Horario>;
+  usuario: Usuario;
+  horasSemanales: number;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.horarios = (this.horarios == null) ? [] : this.horarios.map(r => new Horario(r));
     } catch(e) {
       console.log(e);
     }

@@ -14,9 +14,9 @@
               <mat-list class="listaUsuario">
                 <mat-list-item class="itemLista">
                   <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
-                  <h3 matLine> Nombre Apellido </h3>
+                  <h3 matLine *ngIf="reporte"> {{reporte.usuario.nombre}} {{reporte.usuario.apellido}}</h3>
                   <p matLine>
-                    <span class="itemTextoSubtitulo">{{reporte.usuario.dni}}</span>
+                    <span class="itemTextoSubtitulo" *ngIf="reporte">{{reporte.usuario.dni}}</span>
                   </p>
                 </mat-list-item>
               </mat-list>

@@ -10,7 +10,7 @@ export const authConfig: AuthConfig = {
   userinfoEndpoint: 'https://oidp.econo.unlp.edu.ar/userinfo',
   loginUrl: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
   logoutUrl: 'https://consent.econo.unlp.edu.ar/logout',
-  oidc: false,
+  oidc: true,
   requireHttps: false,
   clientId: 'assistance-ui',
   dummyClientSecret: 'assistance-ui',
