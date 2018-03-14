@@ -1,15 +1,68 @@
-<div *ngIf="info">
-  <p>{{info.usuario["nombre"]}}, {{info.usuario["apellido"]}}</p>
-  <p>{{info.usuario["dni"]}}</p>
+<div  class="modificarHorario">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" disabled><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Modificar Horario
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla" *ngIf="info">
+
+      <mat-list>
+        <mat-list-item class="itemLista">
+          <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
+          <h3 matLine> {{info.usuario["nombre"]}} {{info.usuario["apellido"]}} </h3>
+          <p matLine>
+            <span class="itemTextoSubtitulo">{{info.usuario["dni"]}}</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-form-field class="inputFecha">
+        <input  matInput [matDatepicker]="datePicker" [(ngModel)]="fecha" placeholder="A partir de la fecha">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="conenedorHoras">
+
+      <div class="textoHorasSemanales">Horas Semanales: {{obtenerHorasSemanales()}}</div>
+
+      <mat-divider></mat-divider>
+
+
+      <div *ngFor="let h of info.horarios" >
+
+            <form class=formularioHorario>
+
+                <mat-form-field class="inputDia">
+                  <input type="time" matInput placeholder="{{h.obtenerDiaSemanal()}} | Hora de entrada" value="{{h.entrada | date: 'HH:mm'}}" (change)="cambio($event, h)">
+                </mat-form-field>
+                <mat-form-field class="inputHoras">
+                  <input type="numer" matInput placeholder="Cantidad de horas" value="{{h.cantidadHoras}}">
+                </mat-form-field>
+                <button mat-icon-button>
+                  <mat-icon class="icoCortar" title="Cortar Horario">add</mat-icon>
+                </button>
+            </form>
+
+
+      </div>
+    </div>
+
+      <button mat-button class="btnGuardar" (click)="guardar()">GUARDAR</button>
+
+
+
+
+    </div>
 </div>
 
+
+<!--
 <div>
-  <mat-form-field>
-    <input matInput [matDatepicker]="datePicker" [(ngModel)]="fecha" placeholder="Fecha">
-    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
-    <mat-datepicker #datePicker></mat-datepicker>
-  </mat-form-field>
-  <span *ngIf="info">Horas Semanales: {{obtenerHorasSemanales()}}</span>
+
   <ul *ngIf="info">
     <li *ngFor="let h of info.horarios" >
       {{h.obtenerDiaSemanal()}}
@@ -20,4 +73,4 @@
   </ul>
 </div>
 
-<button (click)="guardar()">Guardar</button>
+<button (click)="guardar()">Guardar</button> -->
