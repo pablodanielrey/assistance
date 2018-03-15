@@ -87,6 +87,17 @@ mat-divider {
   .horario .contenidoPantalla {
     width: 100%;
   }
+
+  .inputHoras {
+    width: 25%;
+    margin-top: 0px;
+  }
+
+  .inputDia {
+    width: 50%;
+    margin-right: 20px;
+  }
+
   .btnGuardar {
     width: 100%;
     padding: 10px;
