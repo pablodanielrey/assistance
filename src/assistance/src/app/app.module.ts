@@ -10,6 +10,7 @@ import { MyMaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { ReporteComponent } from './reporte/reporte.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchFilterPipe } from './search-filter.pipe';
 import { SeleccionarUsuarioComponent } from './seleccionar-usuario/seleccionar-usuario.component';
 import { GenerarReportePersonalComponent } from './generar-reporte-personal/generar-reporte-personal.component';
 import { ReporteInicialComponent } from './reporte-inicial/reporte-inicial.component';
@@ -39,6 +40,7 @@ import { JustificacionModificarComponent } from './justificacion-modificar/justi
 @NgModule({
   declarations: [
     AppComponent,
+    SearchFilterPipe,
     ReporteComponent,
     SeleccionarUsuarioComponent,
     GenerarReportePersonalComponent,

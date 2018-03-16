@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AssistanceService } from '../assistance.service';
+
+import { Justificacion } from '../entities/asistencia';
+
+
 @Component({
   selector: 'app-justificacion-admin',
   templateUrl: './justificacion-admin.component.html',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JustificacionAdminComponent implements OnInit {
 
-  constructor() { }
+  subscriptions: any[] = [];
+  justificaciones: Justificacion[];
+
+  constructor(public service: AssistanceService) { }
 
   ngOnInit() {
+    this.buscarJustificaciones();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
+  }
+
+  buscarJustificaciones() {
+    this.justificaciones = [];
+    this.subscriptions.push(this.service.buscarJustificaciones()
+      .subscribe(justificaciones => {
+        this.justificaciones = justificaciones;
+      }));
   }
 
 }

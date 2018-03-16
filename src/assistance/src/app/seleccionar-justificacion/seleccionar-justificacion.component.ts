@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Justificacion } from '../entities/asistencia';
 
 @Component({
   selector: 'app-seleccionar-justificacion',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeleccionarJustificacionComponent implements OnInit {
 
+  @Input() justificaciones: Justificacion[];
+  busqueda: string = "";
+
   constructor() { }
 
   ngOnInit() {
+    this.busqueda = "";
   }
 
 }

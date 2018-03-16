@@ -1,3 +1,18 @@
-<p>
-  seleccionar-justificacion works!
-</p>
+<div class="seleccionarJustificacion">
+
+  <input matInput type='search'  [(ngModel)]='busqueda' class="inputSearch" placeholder="Buscar Justificación"/>
+
+
+
+  <!-- Lista -->
+  <mat-list>
+    <mat-list-item class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  routerLink="/modificar_justificacion/{{j.id}}">
+      <h3 matLine> {{ j.nombre }}</h3>
+      <p matLine>
+        <span class="itemTextoSubtitulo">{{ j.codigo }}</span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+
+
+</div>

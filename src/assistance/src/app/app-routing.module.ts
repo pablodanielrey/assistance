@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent },
   { path: 'justificacion_admin', component: JustificacionAdminComponent },
   { path: 'crear_justificacion', component: JustificacionModificarComponent},
+  { path: 'modificar_justificacion/:jid', component: JustificacionModificarComponent},
 
   { path: 'horarios', component: HorarioInicialComponent },
   { path: 'horario_detalle/:uid', component: HorarioDetalleComponent },
