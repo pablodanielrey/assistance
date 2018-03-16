@@ -20,19 +20,10 @@
 
 /* ---------------------------------------*/
 
-.contenedorFecha {
-  /*display: flex;
-  -moz-display: flex;
-  -webkit-display: flex;
-  flex-direction: row;
-  -moz-flex-direction: row;
-  -webkit-flex-direction: row;*/
-  margin-right: 40px;
-  width: 300px;
-}
 
 
-.contenedorAsitencias {
+
+.cabeceraInicio {
   display: flex;
   -moz-display: flex;
   -webkit-display: flex;
@@ -42,31 +33,18 @@
   justify-content: space-between;
   -moz-justify-content: space-between;
   -webkit-justify-content: space-between;
-  background-color: white;
-  border: solid 1px #E0E0E0;
-  padding: 20px;
-  width: 100%;
-}
-
-.cabeceraInicio {
-  display: flex;
-  -moz-display: flex;
-  -webkit-display: flex;
-  flex-direction: row;
-  -moz-flex-direction: row;
-  -webkit-flex-direction: row;
   margin-bottom: 5px;
   /*padding: 20px;*/
 }
 
 .hora {
-  font-size: 50px;
+  font-size: 30px;
   color:#5e5e5e;
 }
 
 .fecha {
   color: #5e5e5e;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 
@@ -84,27 +62,27 @@
 }
 
 .contenedorcantidadP {
-  background-color: #00897B;
-  color: white;
-  padding: 15px 20px 15px 20px;
-  font-size: 16px;
+  font-size: 40px;
+  padding-left: 10px;
   margin-right: 10px;
+  border-left: 5px solid #00897B;
+  color:#5e5e5e;
 }
 
 .contenedorcantidadR {
-  background-color: #D24231;
-  color: white;
-  padding: 15px 20px 15px 20px;
-  font-size: 16px;
+  font-size: 40px;
+  padding-left: 10px;
   margin-right: 10px;
+  border-left: 5px solid #D24231;
+  color:#5e5e5e;
 }
 
 .contenedorcantidadA {
-  background-color: grey;
-  color: white;
-  padding: 15px 20px 15px 20px;
-  font-size: 16px;
+  font-size: 40px;
+  padding-left: 10px;
   margin-right: 10px;
+  border-left: 5px solid grey;
+  color:#5e5e5e;
 }
 
 
@@ -183,4 +161,49 @@
 
 .colorAUsente {
   border-left: 5px solid grey;
+}
+
+@media screen and (max-width: 769px) {
+
+  .inicio .contenidoPantalla {
+    padding: 20px;
+    width: 100%;
+  }
+  .cabeceraInicio {
+    display: flex;
+    -moz-display: flex;
+    -webkit-display: flex;
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    justify-content: space-between;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    margin-bottom: 5px;
+    /*padding: 20px;*/
+  }
+
+  .contenedorItem {
+    margin-top: 10px;
+  }
+
+  .listasDeUsuarios {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+
+  }
+
+  .listaEyS {
+    width: 100%;
+  }
+
+  .listaAusentes {
+    width: 100%;
+
+  }
+
+
+
+
 }
