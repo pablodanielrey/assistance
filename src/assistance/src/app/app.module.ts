@@ -30,6 +30,10 @@ import { HorarioInicialComponent } from './horario-inicial/horario-inicial.compo
 import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';
 import { HorarioModificarComponent } from './horario-modificar/horario-modificar.component';
 import { ToogleFullscreenDirective } from './toogle-fullscreen.directive';
+import { JustificacionInicialComponent } from './justificacion-inicial/justificacion-inicial.component';
+import { JustificacionAdminComponent } from './justificacion-admin/justificacion-admin.component';
+import { SeleccionarJustificacionComponent } from './seleccionar-justificacion/seleccionar-justificacion.component';
+import { JustificacionModificarComponent } from './justificacion-modificar/justificacion-modificar.component';
 
 
 @NgModule({
@@ -52,7 +56,11 @@ import { ToogleFullscreenDirective } from './toogle-fullscreen.directive';
     HorarioInicialComponent,
     HorarioDetalleComponent,
     HorarioModificarComponent,
-    ToogleFullscreenDirective
+    ToogleFullscreenDirective,
+    JustificacionInicialComponent,
+    JustificacionAdminComponent,
+    SeleccionarJustificacionComponent,
+    JustificacionModificarComponent
   ],
   imports: [
     BrowserModule,
