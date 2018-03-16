@@ -10,7 +10,12 @@ import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj
 import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
 import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
+
 import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
+import { JustificacionInicialComponent } from './justificacion-inicial/justificacion-inicial.component';
+import { JustificacionAdminComponent } from './justificacion-admin/justificacion-admin.component';
+import { JustificacionModificarComponent } from './justificacion-modificar/justificacion-modificar.component';
+
 import { HorarioInicialComponent } from './horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';
 import { HorarioModificarComponent } from './horario-modificar/horario-modificar.component';
@@ -21,7 +26,10 @@ const routes: Routes = [
   { path: 'reporte/:uid', component: ReporteComponent },
   { path: 'reporte', component: ReporteComponent },
 
+  { path: 'justificaciones', component: JustificacionInicialComponent },
   { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent },
+  { path: 'justificacion_admin', component: JustificacionAdminComponent },
+  { path: 'crear_justificacion', component: JustificacionModificarComponent},
 
   { path: 'horarios', component: HorarioInicialComponent },
   { path: 'horario_detalle/:uid', component: HorarioDetalleComponent },
