@@ -1,3 +1,32 @@
-<p>
-  justificacion-modificar works!
-</p>
+<div class="justificaciones">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" routerLink="/justificacion_admin"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Justificaciones
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla" *ngIf="justificacion">
+      <form (ngSubmit)=guardar() #justificacionForm="ngForm">
+
+        <mat-form-field class="itemFormularioFull">
+          <input matInput placeholder="Nombre"  [(ngModel)]="justificacion.nombre" required name="nombre">
+        </mat-form-field>
+
+        <mat-form-field class="itemFormularioFull">
+          <input matInput placeholder="Descripcion" [(ngModel)]="justificacion.descripcion" required name="descripcion">
+        </mat-form-field>
+
+        <mat-form-field class="itemFormularioFull">
+          <input matInput placeholder="Código" [(ngModel)]="justificacion.codigo" required name="codigo">
+        </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="justificacion.general" name="general">Justificación General</mat-checkbox>
+
+        <button mat-button class="btnClasico" type="submit" [disabled]="!justificacionForm.form.valid"> GUARDAR</button>
+
+      </form>
+    </div>
+
+</div>

@@ -33,6 +33,21 @@ export class AssistanceService {
     return this.http.get<Justificacion[]>(apiUrl).map(datos => datos.map(j => new Justificacion(j)));
   }
 
+  obtenerJustificacion(jid:string): Observable<Justificacion> {
+    let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${jid}`;
+    return this.http.get<[Justificacion]>(apiUrl).map(datos => new Justificacion(datos));
+  }
+
+  crearJustificacion(justificacion: Justificacion):Observable<Justificacion> {
+    let apiUrl = `${ASSISTANCE_API_URL}/justificaciones`;
+    return this.http.put<Justificacion>(apiUrl, justificacion);
+  }
+
+  modificarJustificacion(justificacion: Justificacion):Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${justificacion.id}`;
+    return this.http.post<any>(apiUrl, justificacion);
+  }
+
   obtenerUsuario(uid:string): Observable<DatosAsistencia> {
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
     return this.http.get<DatosAsistencia>(apiUrl).map(datos => new DatosAsistencia(datos));
