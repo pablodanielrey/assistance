@@ -40,7 +40,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
 
   buscarUsuarios(): void {
     this.usuarios = [];
-    this.subscriptions.push(this.service.buscarUsuarios(this.busqueda)
+    this.subscriptions.push(this.service.buscarUsuariosAsistencia(this.busqueda)
       .subscribe(usuarios => {
         console.log(usuarios);
         this.usuarios = usuarios;

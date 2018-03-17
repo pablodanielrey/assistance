@@ -25,7 +25,23 @@ export class AssistanceService {
               .set('q', texto ? texto : 'algoquenoexiste')
           };
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
-    return this.http.get<DatosAsistencia[]>(apiUrl, options).map(datos => datos.map(d => new DatosAsistencia(d)));
+    return this.http.get<DatosAsistencia[]>(apiUrl, options)
+    //.map(datos => datos.map(d => d));
+    /*
+    .map(datos => datos; console.log(datos))
+    .filter(datos => datos.filter(d => { d.asistencia != null }))
+    .map(datos => datos.map(d => new DatosAsistencia(d)));
+    */
+  }
+
+  buscarUsuariosAsistencia(texto:string): Observable<DatosAsistencia[]> {
+    const options = { params: new HttpParams()
+              .set('q', texto ? texto : 'algoquenoexiste')
+              .set('assistance', 'true')
+          };
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
+    return this.http.get<DatosAsistencia[]>(apiUrl, options);
+                    //.map(datos => datos.filter(d => d.asistencia != null));
   }
 
   buscarJustificaciones(): Observable<Justificacion[]> {
