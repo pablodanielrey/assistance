@@ -1,7 +1,7 @@
 <div class="seleccionarReloj">
 
     <div class="seccionSistema">
-      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+      <button mat-button class="btnVolverSeccion" routerLink='/'><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
        | Administrar Relojes
     </div>
 
@@ -15,7 +15,7 @@
         </div>
 
         <mat-list>
-            <mat-list-item class="itemLista" *ngFor="let reloj of relojes" routerLink='/detalle_reloj/{{reloj.id}}'>
+            <mat-list-item class="itemLista" *ngFor="let reloj of relojes" routerLink='/relojes/reloj/{{reloj.id}}/detalle'>
               <img matListAvatar src="https://www.gokeyless.com/wp-content/uploads/2016/01/2680.jpg">
               <h3 matLine> {{reloj.nombre }} | {{reloj.descripcion }} </h3>
               <p matLine>

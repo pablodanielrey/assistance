@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 
-import { Usuario } from '../entities/usuario';
-import { AssistanceService } from '../assistance.service';
+import { Usuario } from '../../entities/usuario';
+import { AssistanceService } from '../../assistance.service';
 
 @Component({
   selector: 'app-usuarios-reloj',
@@ -33,6 +33,11 @@ export class UsuariosRelojComponent implements OnInit {
         console.log(usuarios);
         this.usuarios = usuarios;
       }));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
   }
 
 }

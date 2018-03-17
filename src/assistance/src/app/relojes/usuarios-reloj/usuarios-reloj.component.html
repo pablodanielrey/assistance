@@ -1,7 +1,7 @@
 <div class="usuariosReloj">
 
     <div class="seccionSistema">
-      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+      <button mat-button class="btnVolverSeccion" routerLink='/relojes/reloj/{{rid}}/detalle'><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
        | Usuarios del Reloj
     </div>
 
@@ -21,7 +21,7 @@
           </form>
 
           <mat-list>
-              <mat-list-item class="itemLista" *ngFor="let usuario of usuarios" routerLink="/detalle_reloj/{{rid}}/usuarios/{{usuario.PIN2}}">
+              <mat-list-item class="itemLista" *ngFor="let usuario of usuarios" routerLink="/relojes/reloj/{{rid}}/usuarios/{{usuario.PIN2}}">
                 <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
                 <h3 matLine> Walter Blanco </h3>
                 <p matLine>

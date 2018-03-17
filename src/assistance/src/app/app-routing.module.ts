@@ -6,10 +6,11 @@ import { ReporteInicialComponent } from './reporte-inicial/reporte-inicial.compo
 import { GenerarReportePersonalComponent } from './generar-reporte-personal/generar-reporte-personal.component';
 import { ReporteComponent } from './reporte/reporte.component';
 import { GaleriaComponent } from './galeria/galeria.component';
-import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj.component';
-import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
-import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
-import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
+
+import { SeleccionarRelojComponent } from './relojes/seleccionar-reloj/seleccionar-reloj.component';
+import { DetalleRelojComponent } from './relojes/detalle-reloj/detalle-reloj.component';
+import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.component';
+import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/detalle-usuario-reloj.component';
 
 import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
 import { JustificacionInicialComponent } from './justificacion-inicial/justificacion-inicial.component';
@@ -36,10 +37,15 @@ const routes: Routes = [
   { path: 'horario_detalle/:uid', component: HorarioDetalleComponent },
   { path: 'horario_modificar/:uid', component: HorarioModificarComponent },
 
-  { path: 'admin_relojes', component: SeleccionarRelojComponent },
-  { path: 'detalle_reloj/:rid', component: DetalleRelojComponent },
-  { path: 'detalle_reloj/:rid/usuarios', component: UsuariosRelojComponent },
-  { path: 'detalle_reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent },
+  {
+    path: 'relojes',
+    children: [
+      { path: 'buscar', component: SeleccionarRelojComponent },
+      { path: 'reloj/:rid/detalle', component: DetalleRelojComponent },
+      { path: 'reloj/:rid/usuarios', component: UsuariosRelojComponent },
+      { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent }
+    ]
+  },
 
   { path: 'galeria', component: GaleriaComponent },
   { path: 'inicial', component: PantallaPrincipalComponent },

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AssistanceService } from '../assistance.service';
+import { AssistanceService } from '../../assistance.service';
 
 @Component({
   selector: 'app-detalle-usuario-reloj',
@@ -13,6 +13,8 @@ export class DetalleUsuarioRelojComponent implements OnInit {
 
   datos: any = null;
   subscriptions: any[] = [];
+  rid: string = null;
+  ruid: string = null;
 
   constructor(private service: AssistanceService,
               private route: ActivatedRoute,
@@ -20,9 +22,10 @@ export class DetalleUsuarioRelojComponent implements OnInit {
 
   ngOnInit() {
     let params = this.route.snapshot.paramMap;
-    let rid = params.get('rid');
-    let ruid = params.get('ruid');
-    this.subscriptions.push(this.service.obtenerUsuarioReloj(rid, ruid).subscribe(
+    this.rid = params.get('rid');
+    this.ruid = params.get('ruid');
+
+    this.subscriptions.push(this.service.obtenerUsuarioReloj(this.rid, this.ruid).subscribe(
       rs => {
         console.log(rs);
         this.datos = rs;

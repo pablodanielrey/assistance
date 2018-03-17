@@ -18,14 +18,16 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
-import { SeleccionarRelojComponent } from './seleccionar-reloj/seleccionar-reloj.component';
+
 
 import { AssistanceService } from './assistance.service';
-import { DetalleRelojComponent } from './detalle-reloj/detalle-reloj.component';
 import { GaleriaComponent } from './galeria/galeria.component';
-import { UsuariosRelojComponent } from './usuarios-reloj/usuarios-reloj.component';
-import { DetalleUsuarioRelojComponent } from './detalle-usuario-reloj/detalle-usuario-reloj.component';
 import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
+
+import { SeleccionarRelojComponent } from './relojes/seleccionar-reloj/seleccionar-reloj.component';
+import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.component';
+import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/detalle-usuario-reloj.component';
+import { DetalleRelojComponent } from './relojes/detalle-reloj/detalle-reloj.component';
 
 import { HorarioInicialComponent } from './horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';

@@ -1,7 +1,7 @@
 <div class="detalleReloj">
 
     <div class="seccionSistema">
-      <button mat-button class="btnVolverSeccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+      <button mat-button class="btnVolverSeccion" routerLink='/relojes/buscar'><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
        | Detalle del Reloj
     </div>
 
@@ -77,7 +77,7 @@
           </div> -->
 
             <mat-slide-toggle class="btnActivacion" title="Activar / Desactivar Reloj">Activar / Desactivar Reloj</mat-slide-toggle>
-            <button mat-button class="btnAcciones" routerLink='/detalle_reloj/{{reloj.id}}/usuarios'> <mat-icon class="icoMenu">people</mat-icon> USUARIOS DEL RELOJ</button>
+            <button mat-button class="btnAcciones" routerLink='/relojes/reloj/{{reloj.id}}/usuarios'> <mat-icon class="icoMenu">people</mat-icon> USUARIOS DEL RELOJ</button>
             <button mat-button class="btnAcciones" (click)='agregar_usuario()'><mat-icon class="icoMenu">person_add</mat-icon> AGREGAR USUARIO</button>
             <button mat-button class="btnAcciones" (click)='sincronizar()'><mat-icon class="icoMenu">autorenew</mat-icon> SINCRONIZAR LOGS</button>
             <button mat-button class="btnOpcionesAvanzadas" (click)='opciones_avanzadas = !opciones_avanzadas'> Más opciones <mat-icon *ngIf='!opciones_avanzadas'>arrow_drop_down</mat-icon><mat-icon *ngIf='opciones_avanzadas'>arrow_drop_up</mat-icon></button>
