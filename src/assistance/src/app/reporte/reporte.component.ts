@@ -102,6 +102,12 @@ export class ReporteComponent implements OnInit {
     return String(hs) + ":" + String(min);
   }
 
+  obtenerHorasString(minutos:number) {
+    let min = Math.trunc(minutos % 60);
+    let hs = Math.trunc(minutos / 60);
+    return String(hs) + ":" + String(min);
+  }
+
   obtenerReportes() {
     if (this.reporte ==  null) {
       return []

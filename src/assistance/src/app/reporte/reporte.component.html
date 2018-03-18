@@ -110,19 +110,25 @@
                       <mat-divider></mat-divider>
                       <div class="contenedorItemDetalles">
                         <div class="itemDetalles">
-                          <div>Días seleccionados:</div><div>365</div>
+                          <div>Días seleccionados:</div><div>{{reporte.detalle.dias_seleccionados}}</div>
                         </div>
                         <div class="itemDetalles">
-                          <div>Días laborables:</div><div>286</div>
+                          <div>Días laborables:</div><div>{{reporte.detalle.dias_laborables}}</div>
                         </div>
                         <div class="itemDetalles">
-                          <div>Días trabajados:</div><div>274</div>
+                          <div>Días trabajados:</div><div>{{reporte.detalle.dias_trabajados}}</div>
                         </div>
                         <div class="itemDetalles">
-                          <div>Faltas justificadas:</div><div>10</div>
+                          <div>Faltas justificadas:</div><div>{{reporte.detalle.faltas_justificadas}}</div>
                         </div>
                         <div class="itemDetalles">
-                          <div>Faltas injustificadas:</div><div>2</div>
+                          <div>Faltas injustificadas:</div><div>{{reporte.detalle.faltas_injustificadas}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días extra trabajados:</div><div>{{reporte.detalle.dias_extra_trabajados}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días totales trabajados:</div><div>{{reporte.detalle.dias_totales_trabajados}}</div>
                         </div>
                       </div>
                   </div>
@@ -131,16 +137,25 @@
                       <mat-divider></mat-divider>
                       <div class="contenedorItemDetalles">
                         <div class="itemDetalles">
-                          <div>Horas a trabajar:</div><div>420</div>
+                          <div>Horas a trabajar:</div><div>{{obtenerHorasString(reporte.detalle.minutos_laborables)}}</div>
                         </div>
                         <div class="itemDetalles">
-                          <div>Horas trabajadas:</div><div>380</div>
+                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_trabajados)}}</div>
                         </div>
                         <div class="itemDetalles">
-                          <div>Horas justificadas:</div><div>47</div>
+                          <div>Horas justificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_justificados)}}</div>
                         </div>
                         <div class="itemDetalles">
-                          <div>Diferencia de horas:</div><div>+7</div>
+                          <div>Horas injustificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_injustificados)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas extra perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas totales trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
                         </div>
                       </div>
                   </div>
