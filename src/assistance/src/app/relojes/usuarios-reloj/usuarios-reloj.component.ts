@@ -13,8 +13,8 @@ import { AssistanceService } from '../../assistance.service';
 })
 export class UsuariosRelojComponent implements OnInit {
 
-  private rid: string = null;
-  private usuarios: any[] = [];
+  rid: string = null;
+  usuarios: any[] = [];
   private subscriptions: any[] = [];
 
   constructor(private service: AssistanceService,
