@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Justificacion } from '../entities/asistencia';
 
 import { AssistanceService } from '../assistance.service';
+import {Location} from '@angular/common';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,6 +20,7 @@ export class JustificacionModificarComponent implements OnInit {
   nuevo: boolean = true;
 
   constructor(private service: AssistanceService,
+              private location: Location,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -58,6 +60,21 @@ export class JustificacionModificarComponent implements OnInit {
           console.log(r);
         }));
     }
+  }
+
+  cancelar() {
+    this.location.back();
+  }
+
+  eliminar() {
+    if (this.nuevo) {
+      return
+    }
+
+    this.subscriptions.push(this.service.eliminarJustificacion(this.justificacion_id)
+      .subscribe(r => {
+        console.log(r);
+      }));
   }
 
 

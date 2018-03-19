@@ -15,7 +15,7 @@
         </mat-form-field>
 
         <mat-form-field class="itemFormularioFull">
-          <input matInput placeholder="Descripcion" [(ngModel)]="justificacion.descripcion" required name="descripcion">
+          <input matInput placeholder="Descripcion" [(ngModel)]="justificacion.descripcion"  name="descripcion">
         </mat-form-field>
 
         <mat-form-field class="itemFormularioFull">
@@ -25,6 +25,8 @@
         <mat-checkbox [(ngModel)]="justificacion.general" name="general">Justificación General</mat-checkbox>
 
         <button mat-button class="btnClasico" type="submit" [disabled]="!justificacionForm.form.valid"> GUARDAR</button>
+        <button (click)="eliminar()" *ngIf="!nuevo">Eliminar</button>
+        <button (click)="cancelar()" *ngIf="nuevo">Cancelar</button>
 
       </form>
     </div>

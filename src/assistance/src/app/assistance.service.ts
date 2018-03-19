@@ -64,6 +64,11 @@ export class AssistanceService {
     return this.http.post<any>(apiUrl, justificacion);
   }
 
+  eliminarJustificacion(jid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${jid}`;
+    return this.http.delete<any>(apiUrl);  
+  }
+
   obtenerUsuario(uid:string): Observable<DatosAsistencia> {
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
     return this.http.get<DatosAsistencia>(apiUrl).map(datos => new DatosAsistencia(datos));
