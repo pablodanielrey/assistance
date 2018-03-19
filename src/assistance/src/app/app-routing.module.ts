@@ -16,6 +16,7 @@ import { JustificacionPersonalComponent } from './justificacion-personal/justifi
 import { JustificacionInicialComponent } from './justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion-admin/justificacion-admin.component';
 import { JustificacionModificarComponent } from './justificacion-modificar/justificacion-modificar.component';
+import { JustificacionPersonalInicioComponent } from './justificacion-personal-inicio/justificacion-personal-inicio.component';
 
 import { HorarioInicialComponent } from './horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'reporte', component: ReporteComponent },
 
   { path: 'justificaciones', component: JustificacionInicialComponent },
+  { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent},
   { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent },
   { path: 'justificacion_admin', component: JustificacionAdminComponent },
   { path: 'crear_justificacion', component: JustificacionModificarComponent},

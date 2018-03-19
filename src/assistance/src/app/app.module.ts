@@ -37,6 +37,8 @@ import { JustificacionInicialComponent } from './justificacion-inicial/justifica
 import { JustificacionAdminComponent } from './justificacion-admin/justificacion-admin.component';
 import { SeleccionarJustificacionComponent } from './seleccionar-justificacion/seleccionar-justificacion.component';
 import { JustificacionModificarComponent } from './justificacion-modificar/justificacion-modificar.component';
+import { JustificacionPersonalInicioComponent } from './justificacion-personal-inicio/justificacion-personal-inicio.component';
+import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { JustificacionModificarComponent } from './justificacion-modificar/justi
     JustificacionInicialComponent,
     JustificacionAdminComponent,
     SeleccionarJustificacionComponent,
-    JustificacionModificarComponent
+    JustificacionModificarComponent,
+    JustificacionPersonalInicioComponent,
+    ListadoUsuariosComponent
   ],
   imports: [
     BrowserModule,
