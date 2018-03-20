@@ -27,7 +27,7 @@ WORKDIR /src
 RUN mkdir -p /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp && chmod -R a+wrX /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp
 #RUN cd /src && npm install @angular/cli
 RUN cd /src && npm i -g npm
-RUN cd /src && npm install --global --save --ensure @angular/cli
+RUN cd /src && npm install --global --save --ensure -unsafe-perms @angular/cli
 RUN cd /src/assistance && npm install
 RUN cd /src/assistance && ng build --prod --build-optimizer
 
