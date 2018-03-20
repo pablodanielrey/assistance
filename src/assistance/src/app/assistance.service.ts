@@ -34,6 +34,11 @@ export class AssistanceService {
     */
   }
 
+  buscarUsuario(uid:string): Observable<DatosAsistencia> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
+    return this.http.get<DatosAsistencia>(apiUrl).map(info => new DatosAsistencia(info));
+  }
+
   buscarUsuariosAsistencia(texto:string): Observable<DatosAsistencia[]> {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')

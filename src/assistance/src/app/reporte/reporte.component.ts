@@ -42,10 +42,6 @@ export class ReporteComponent implements OnInit {
     // this.fecha_final = new Date(params.get('fecha_fin'));
     this.usuario_id = params.get('uid');
 
-    this.oauthService.loadUserProfile().then(r => {
-      console.log(r);
-      this.info = r;
-    });
     this.generarReporte();
   }
 

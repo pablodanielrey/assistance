@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Justificacion, FechaJustificada } from '../entities/asistencia';
+import { Usuario } from '../entities/usuario';
 import { AssistanceService } from '../assistance.service';
 
 
@@ -23,9 +24,11 @@ export class JustificacionPersonalComponent implements OnInit {
   subscriptions: any[] = [];
   seleccionFecha: string = 'simple';
   justificacion: Justificacion = null;
+  usuario: Usuario;
 
 
   constructor(private route: ActivatedRoute,
+              private location: Location,
               private service: AssistanceService) { }
 
   ngOnInit() {
@@ -39,12 +42,21 @@ export class JustificacionPersonalComponent implements OnInit {
     this.fechaInicio = new Date(this.fecha);
     this.fechaFin = new Date(this.fecha);
 
+    this.buscarUsuario()
+
     this.buscarJustificaciones();
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
     this.subscriptions = [];
+  }
+
+  buscarUsuario() {
+    this.subscriptions.push(this.service.buscarUsuario(this.usuario_id)
+      .subscribe(info => {
+        this.usuario = info.usuario;
+      }));
   }
 
   buscarJustificaciones() {
@@ -65,6 +77,10 @@ export class JustificacionPersonalComponent implements OnInit {
     fecha.setSeconds(0);
     fecha.setMilliseconds(0);
     return fecha;
+  }
+
+  volver() {
+    this.location.back();
   }
 
   justificar() {
