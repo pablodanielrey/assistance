@@ -14,7 +14,7 @@ export class ListadoUsuariosComponent implements OnInit {
   @Output()
   selected: EventEmitter<Usuario> = new EventEmitter<Usuario>();
 
-  @Output()
+  @Output('searchEvent')
   search: EventEmitter<string> = new EventEmitter<string>();
 
   @Input()
