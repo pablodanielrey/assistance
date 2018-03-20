@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { GlobalErrorHandler } from './error.handler';
 
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -78,8 +79,11 @@ import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.co
     AppRoutingModule,
     OAuthModule.forRoot()
   ],
-  providers: [AssistanceService,
-             {provide: LOCALE_ID, useValue: "en"}],
+  providers: [
+      AssistanceService,
+      { provide: LOCALE_ID, useValue: "en" },
+      { provide: ErrorHandler, useClass: GlobalErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

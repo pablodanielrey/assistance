@@ -17,13 +17,15 @@ import { MatButtonModule,
          MatTableModule,
          MatTabsModule,
          MatSortModule,
-         MatNativeDateModule
+         MatNativeDateModule,
+         MatTooltipModule
        } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
+    MatTooltipModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
@@ -45,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   exports: [
+    MatTooltipModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,

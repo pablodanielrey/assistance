@@ -23,7 +23,11 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/src/node_
 
 WORKDIR /src
 
-RUN cd /src && npm install @angular/cli
+#para evitar problemas con la instalacion del angular
+RUN mkdir -p /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp && chmod -R a+wrX /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp
+#RUN cd /src && npm install @angular/cli
+RUN cd /src && nmp i -g npm
+RUN cd /src && npm install --global --save --ensure @angular/cli
 RUN cd /src/assistance && npm install
 RUN cd /src/assistance && ng build --prod --build-optimizer
 
