@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion, FechaJustificada } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -32,6 +32,11 @@ export class AssistanceService {
     .filter(datos => datos.filter(d => { d.asistencia != null }))
     .map(datos => datos.map(d => new DatosAsistencia(d)));
     */
+  }
+
+  buscarUsuario(uid:string): Observable<DatosAsistencia> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
+    return this.http.get<DatosAsistencia>(apiUrl).map(info => new DatosAsistencia(info));
   }
 
   buscarUsuariosAsistencia(texto:string): Observable<DatosAsistencia[]> {
@@ -66,7 +71,12 @@ export class AssistanceService {
 
   eliminarJustificacion(jid:string): Observable<any> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${jid}`;
-    return this.http.delete<any>(apiUrl);  
+    return this.http.delete<any>(apiUrl);
+  }
+
+  justificar(fj: FechaJustificada):Observable<string> {
+    let apiUrl = `${ASSISTANCE_API_URL}/justificar`;
+    return this.http.put<string>(apiUrl, fj);
   }
 
   obtenerUsuario(uid:string): Observable<DatosAsistencia> {

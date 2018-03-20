@@ -5,15 +5,13 @@
 
 
   <!-- Lista -->
-  <mat-list>
-    <!-- <mat-list-item class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  routerLink="/modificar_justificacion/{{j.id}}"> -->
-    <mat-list-item class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  (click) = "seleccionarJustificacion(j)">
+  <mat-selection-list #listaJustificaciones>
+    <mat-list-option class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  (click) = "seleccionarJustificacion(j)" checkboxPosition='before'>
       <h3 matLine> {{ j.nombre }}</h3>
       <p matLine>
         <span class="itemTextoSubtitulo">{{ j.codigo }}</span>
       </p>
-    </mat-list-item>
-  </mat-list>
-
+    </mat-list-option>
+  </mat-selection-list>
 
 </div>
