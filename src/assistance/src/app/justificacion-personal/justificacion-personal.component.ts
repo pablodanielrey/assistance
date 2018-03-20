@@ -16,9 +16,13 @@ export class JustificacionPersonalComponent implements OnInit {
 
   info: any;
   fecha: Date;
+  fechaInicio: Date;
+  fechaFin: Date;
   usuario_id: string;
   justificaciones: Justificacion[];
   subscriptions: any[] = [];
+  seleccionFecha: string = 'simple';
+  justificacion: Justificacion = null;
 
 
   constructor(private route: ActivatedRoute,
@@ -32,6 +36,8 @@ export class JustificacionPersonalComponent implements OnInit {
 
     let fecha_str = paramsQ.get('fecha');
     this.fecha = (fecha_str == null)? new Date() : new Date(fecha_str);
+    this.fechaInicio = new Date(this.fecha);
+    this.fechaFin= new Date(this.fecha);
 
     this.buscarJustificaciones();
   }
@@ -50,6 +56,6 @@ export class JustificacionPersonalComponent implements OnInit {
   }
 
   seleccionarJustificacion(j:Justificacion) {
-    console.log(j);
+    this.justificacion = j;
   }
 }

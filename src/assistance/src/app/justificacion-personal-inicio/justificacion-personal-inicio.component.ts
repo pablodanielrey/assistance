@@ -22,7 +22,6 @@ export class JustificacionPersonalInicioComponent implements OnInit {
   }
 
   seleccionarUsuario(event) {
-    console.log(event);
     this.router.navigate(['justificacion_personal/' + event.id])
   }
 
