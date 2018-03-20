@@ -24,10 +24,16 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/src/node_
 WORKDIR /src
 
 #para evitar problemas con la instalacion del angular
-RUN mkdir -p /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp && chmod -R a+wrX /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp
+USER node
+RUN mkdir -p /home/node/.npm-global
+ENV PATH=/home/node/.npm-global/bin:$PATH
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+RUN npm install -g --save @angular/cli
+
+#RUN mkdir -p /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp && chmod -R a+wrX /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp
 #RUN cd /src && npm install @angular/cli
-RUN cd /src && npm i -g npm
-RUN cd /src && npm install --global --save --ensure --unsafe @angular/cli
+#RUN cd /src && npm i -g npm
+#RUN cd /src && npm install --global --save --ensure --unsafe @angular/cli
 RUN cd /src/assistance && npm install
 RUN cd /src/assistance && ng build --prod --build-optimizer
 
