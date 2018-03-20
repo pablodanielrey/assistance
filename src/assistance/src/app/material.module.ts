@@ -18,7 +18,8 @@ import { MatButtonModule,
          MatTabsModule,
          MatSortModule,
          MatNativeDateModule,
-         MatTooltipModule
+         MatTooltipModule,
+         MatSnackBarModule
        } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,6 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatTabsModule,
     MatSortModule,
+    MatSnackBarModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -66,6 +68,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatTabsModule,
     MatSortModule,
+    MatSnackBarModule,
     BrowserAnimationsModule
   ],
 })

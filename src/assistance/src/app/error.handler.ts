@@ -1,5 +1,6 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+//import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { MatSnackBar } from '@angular/material';
 //import { LoggingService } from '../services';
 //import * as StackTrace from 'stacktrace-js';
 
@@ -8,8 +9,9 @@ export class GlobalErrorHandler implements ErrorHandler {
     constructor(private injector: Injector) { }
 
     handleError(error) {
-      console.log('--------------- ERROR ------------');
-      console.log(error);
+
+      const snack = this.injector.get(MatSnackBar);
+      snack.open(error.message);
 
         /*
         const loggingService = this.injector.get(LoggingService);
@@ -27,6 +29,6 @@ export class GlobalErrorHandler implements ErrorHandler {
             //loggingService.log({ message, url, stack: stackString });
         });
         */
-      throw error;
+      //throw error;
   }
 }
