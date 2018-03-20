@@ -11,24 +11,23 @@ RUN apt-get update && apt-get install -y \
 ENV TZ=America/Argentina/Buenos_Aires
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN a2enmod rewrite
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/src/node_modules/.bin/
 
 COPY docker/supervisor/apache.conf /etc/supervisor/conf.d
 COPY docker/apache/000-default.conf /etc/apache2/sites-available
 COPY docker/entrypoint.sh /
-COPY src /src
-
-RUN a2enmod rewrite
-
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/src/node_modules/.bin/
-
-WORKDIR /src
 
 #para evitar problemas con la instalacion del angular
-USER node
+#USER node
 RUN mkdir -p /home/node/.npm-global
 ENV PATH=/home/node/.npm-global/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-RUN npm install -g --save @angular/cli
+RUN npm install -g --unsafe @angular/cli
+
+
+COPY src /src
+WORKDIR /src
 
 #RUN mkdir -p /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp && chmod -R a+wrX /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp
 #RUN cd /src && npm install @angular/cli
