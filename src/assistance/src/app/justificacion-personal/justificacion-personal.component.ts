@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Justificacion } from '../entities/asistencia';
+import { Justificacion, FechaJustificada } from '../entities/asistencia';
 import { AssistanceService } from '../assistance.service';
 
 
@@ -37,7 +37,7 @@ export class JustificacionPersonalComponent implements OnInit {
     let fecha_str = paramsQ.get('fecha');
     this.fecha = (fecha_str == null)? new Date() : new Date(fecha_str);
     this.fechaInicio = new Date(this.fecha);
-    this.fechaFin= new Date(this.fecha);
+    this.fechaFin = new Date(this.fecha);
 
     this.buscarJustificaciones();
   }
@@ -57,5 +57,33 @@ export class JustificacionPersonalComponent implements OnInit {
 
   seleccionarJustificacion(j:Justificacion) {
     this.justificacion = j;
+  }
+
+  setInit(fecha:Date): Date {
+    fecha.setHours(0);
+    fecha.setMinutes(0);
+    fecha.setSeconds(0);
+    fecha.setMilliseconds(0);
+    return fecha;
+  }
+
+  justificar() {
+    let fj=  new FechaJustificada({});
+    fj.usuario_id = this.usuario_id;
+    fj.justificacion = this.justificacion;
+    if (this.seleccionFecha == 'simple') {
+      this.fecha = this.setInit(this.fecha);
+      fj.fechaInicio = this.fecha;
+      fj.fechaFin = null;
+    } else {
+      fj.fechaInicio = this.setInit(this.fechaInicio);
+      fj.fechaFin = this.setInit(this.fechaFin);
+    }
+
+    this.subscriptions.push(this.service.justificar(fj)
+      .subscribe(r => {
+        console.log(r);
+      }));
+
   }
 }

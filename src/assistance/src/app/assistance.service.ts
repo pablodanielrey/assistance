@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion, FechaJustificada } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -66,7 +66,12 @@ export class AssistanceService {
 
   eliminarJustificacion(jid:string): Observable<any> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${jid}`;
-    return this.http.delete<any>(apiUrl);  
+    return this.http.delete<any>(apiUrl);
+  }
+
+  justificar(fj: FechaJustificada):Observable<string> {
+    let apiUrl = `${ASSISTANCE_API_URL}/justificar`;
+    return this.http.put<string>(apiUrl, fj);
   }
 
   obtenerUsuario(uid:string): Observable<DatosAsistencia> {

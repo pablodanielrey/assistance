@@ -42,13 +42,17 @@ export class Justificacion {
 }
 
 export class FechaJustificada {
-  fecha: Date;
-  usuario: Usuario;
+  fechaInicio: Date;
+  fechaFin: Date;
+  usuario_id: string;
   justificacion: Justificacion;
+  id: string;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
+      this.fechaInicio = (this.fechaInicio == null ? null : new Date(this.fechaInicio));
+      this.fechaFin = (this.fechaFin == null ? null : new Date(this.fechaFin));
     } catch(e) {
       console.log(e);
     }
