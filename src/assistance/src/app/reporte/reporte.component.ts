@@ -32,7 +32,6 @@ export class ReporteComponent implements OnInit {
   reporte: Reporte = null;
 
   ngOnInit() {
-
     let params = this.route.snapshot.paramMap;
     let paramsQ = this.route.snapshot.queryParamMap;
 
@@ -50,12 +49,6 @@ export class ReporteComponent implements OnInit {
     this.generarReporte();
   }
 
-  salir():void {
-    this.oauthService.logOut(true);
-    window.location.href = this.oauthService.logoutUrl;
-    //window.location.reload();
-  }
-
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
     this.subscriptions = [];
@@ -68,6 +61,12 @@ export class ReporteComponent implements OnInit {
       console.log(r);
       this.reporte = r;
     }));
+  }
+
+  obtenerMarcacionesIndividuales(r: RenglonReporte): string {
+    let marcaciones = ''
+    r.marcaciones.forEach(m => marcaciones = marcaciones +'<br>' + m.marcacion);
+    return marcaciones;
   }
 
   obtenerHorario(r: RenglonReporte): string {
