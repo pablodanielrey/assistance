@@ -2,3 +2,7 @@
   Usuario: {{ usuario_id }}
   Fecha: {{ fecha }}
 </p>
+<div>
+  Seleccione justificación
+  <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
+</div>

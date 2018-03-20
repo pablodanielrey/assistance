@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Justificacion } from '../entities/asistencia';
 
@@ -9,13 +9,22 @@ import { Justificacion } from '../entities/asistencia';
 })
 export class SeleccionarJustificacionComponent implements OnInit {
 
-  @Input() justificaciones: Justificacion[];
+  @Input()
+  justificaciones: Justificacion[];
+
+  @Output()
+  selected: EventEmitter<Justificacion> = new EventEmitter<Justificacion>();
+
   busqueda: string = "";
 
   constructor() { }
 
   ngOnInit() {
     this.busqueda = "";
+  }
+
+  seleccionarJustificacion(j: Justificacion):void {
+    this.selected.emit(j);
   }
 
 }

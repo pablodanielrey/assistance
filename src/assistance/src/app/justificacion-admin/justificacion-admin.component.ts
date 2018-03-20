@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 import { AssistanceService } from '../assistance.service';
 
@@ -15,7 +16,7 @@ export class JustificacionAdminComponent implements OnInit {
   subscriptions: any[] = [];
   justificaciones: Justificacion[];
 
-  constructor(public service: AssistanceService) { }
+  constructor(public service: AssistanceService, private router: Router) { }
 
   ngOnInit() {
     this.buscarJustificaciones();
@@ -32,6 +33,10 @@ export class JustificacionAdminComponent implements OnInit {
       .subscribe(justificaciones => {
         this.justificaciones = justificaciones;
       }));
+  }
+
+  seleccionarJustificacion(j: Justificacion) {
+    this.router.navigate(['modificar_justificacion/' + j.id]);
   }
 
 }

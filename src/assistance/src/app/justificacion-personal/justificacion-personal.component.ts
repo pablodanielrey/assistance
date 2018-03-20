@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
+import { Justificacion } from '../entities/asistencia';
+import { AssistanceService } from '../assistance.service';
+
 
 @Component({
   selector: 'app-justificacion-personal',
@@ -14,11 +17,12 @@ export class JustificacionPersonalComponent implements OnInit {
   info: any;
   fecha: Date;
   usuario_id: string;
+  justificaciones: Justificacion[];
+  subscriptions: any[] = [];
 
 
-  constructor(private oauthService: OAuthService,
-              private route: ActivatedRoute,
-              private location: Location) { }
+  constructor(private route: ActivatedRoute,
+              private service: AssistanceService) { }
 
   ngOnInit() {
     let params = this.route.snapshot.paramMap;
@@ -26,14 +30,26 @@ export class JustificacionPersonalComponent implements OnInit {
 
     this.usuario_id = params.get('uid');
 
-    this.fecha = new Date(paramsQ.get('fecha'));
+    let fecha_str = paramsQ.get('fecha');
+    this.fecha = (fecha_str == null)? new Date() : new Date(fecha_str);
 
-    this.oauthService.loadUserProfile().then(r => {
-      console.log(r);
-      this.info = r;
-    });
-
-
+    this.buscarJustificaciones();
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
+  }
+
+  buscarJustificaciones() {
+    this.justificaciones = [];
+    this.subscriptions.push(this.service.buscarJustificaciones()
+      .subscribe(justificaciones => {
+        this.justificaciones = justificaciones;
+      }));
+  }
+
+  seleccionarJustificacion(j:Justificacion) {
+    console.log(j);
+  }
 }

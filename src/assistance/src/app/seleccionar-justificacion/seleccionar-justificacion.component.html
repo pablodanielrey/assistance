@@ -6,7 +6,8 @@
 
   <!-- Lista -->
   <mat-list>
-    <mat-list-item class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  routerLink="/modificar_justificacion/{{j.id}}">
+    <!-- <mat-list-item class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  routerLink="/modificar_justificacion/{{j.id}}"> -->
+    <mat-list-item class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  (click) = "seleccionarJustificacion(j)">
       <h3 matLine> {{ j.nombre }}</h3>
       <p matLine>
         <span class="itemTextoSubtitulo">{{ j.codigo }}</span>

@@ -9,7 +9,7 @@
 
     <div class="contenidoPantalla">
 
-      <app-seleccionar-justificacion [justificaciones]="justificaciones"></app-seleccionar-justificacion>
+      <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
 
       <button routerLink="/crear_justificacion"> Crear nueva </button>
     </div>
