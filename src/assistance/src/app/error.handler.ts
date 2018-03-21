@@ -1,6 +1,6 @@
-import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 //import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material';
 //import { LoggingService } from '../services';
 //import * as StackTrace from 'stacktrace-js';
 
@@ -9,10 +9,14 @@ export class GlobalErrorHandler implements ErrorHandler {
     constructor(private injector: Injector) { }
 
     handleError(error) {
-
+      let zone = <NgZone>this.injector.get(NgZone);
       const snack = this.injector.get(MatSnackBar);
-      snack.open(error.message);
-
+      let ref = snack.open(error.message,'Cerrar');
+      ref.onAction().subscribe(() => {
+        zone.run(() => {
+          ref.dismiss();
+        });
+      });
         /*
         const loggingService = this.injector.get(LoggingService);
         const location = this.injector.get(LocationStrategy);
