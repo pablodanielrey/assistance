@@ -44,6 +44,7 @@ import { JustificacionPersonalComponent } from './justificacion/justificacion-pe
 
 import { SeleccionarJustificacionComponent } from './seleccionar-justificacion/seleccionar-justificacion.component';
 import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.component';
+import { JustificacionGeneralComponent } from './justificacion/justificacion-general/justificacion-general.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.co
     SeleccionarJustificacionComponent,
     JustificacionModificarComponent,
     JustificacionPersonalInicioComponent,
-    ListadoUsuariosComponent
+    ListadoUsuariosComponent,
+    JustificacionGeneralComponent
   ],
   imports: [
     BrowserModule,

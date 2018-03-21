@@ -1,0 +1,59 @@
+<div class="justificacionGeneral">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Justificaciones
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+
+      <div class="fechas">
+
+        <mat-radio-group [(ngModel)]="seleccionFecha">
+
+          <mat-radio-button value="simple">
+            <h3 matLine> Fecha</h3>
+          </mat-radio-button>
+
+          <mat-radio-button value="rango">
+            <h3 matLine> Rango de Fechas</h3>
+          </mat-radio-button>
+
+        </mat-radio-group>
+        <div *ngIf="seleccionFecha == 'simple'">
+          <mat-form-field class="seleccionFechaInicio">
+            <mat-placeholder>Fecha</mat-placeholder>
+            <input matInput [matDatepicker]="datePickerFecha" [(ngModel)]="fecha">
+            <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
+            <mat-datepicker #datePickerFecha></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="seleccionFecha == 'rango'">
+          <mat-form-field class="seleccionFechaInicio">
+            <mat-placeholder>Fecha Inicio</mat-placeholder>
+            <input matInput [matDatepicker]="datePickerInicio" [(ngModel)]="fechaInicio">
+            <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+            <mat-datepicker #datePickerInicio></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="seleccionFechaInicio">
+            <mat-placeholder>Fecha Fin</mat-placeholder>
+            <input matInput [matDatepicker]="datePickerFin" [(ngModel)]="fechaFin">
+            <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #datePickerFin></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="listado">
+        Seleccione justificación
+        <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
+      </div>
+
+      <button (click)="justificar()" [disabled]="!justificacion">Aceptar</button>
+    </div>
+
+</div>
