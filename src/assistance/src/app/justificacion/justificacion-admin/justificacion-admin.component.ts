@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import { AssistanceService } from '../assistance.service';
+import { AssistanceService } from '../../assistance.service';
 
-import { Justificacion } from '../entities/asistencia';
+import { Justificacion } from '../../entities/asistencia';
 
 
 @Component({

@@ -23,8 +23,6 @@ import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-princi
 
 import { AssistanceService } from './assistance.service';
 import { GaleriaComponent } from './galeria/galeria.component';
-import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
-
 import { SeleccionarRelojComponent } from './relojes/seleccionar-reloj/seleccionar-reloj.component';
 import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/detalle-usuario-reloj.component';
@@ -33,12 +31,17 @@ import { DetalleRelojComponent } from './relojes/detalle-reloj/detalle-reloj.com
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
 import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
+
 import { ToogleFullscreenDirective } from './toogle-fullscreen.directive';
-import { JustificacionInicialComponent } from './justificacion-inicial/justificacion-inicial.component';
-import { JustificacionAdminComponent } from './justificacion-admin/justificacion-admin.component';
+
+import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
+import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
+import { JustificacionModificarComponent } from './justificacion/justificacion-modificar/justificacion-modificar.component';
+import { JustificacionPersonalInicioComponent } from './justificacion/justificacion-personal-inicio/justificacion-personal-inicio.component';
+import { JustificacionPersonalComponent } from './justificacion/justificacion-personal/justificacion-personal.component';
+
+
 import { SeleccionarJustificacionComponent } from './seleccionar-justificacion/seleccionar-justificacion.component';
-import { JustificacionModificarComponent } from './justificacion-modificar/justificacion-modificar.component';
-import { JustificacionPersonalInicioComponent } from './justificacion-personal-inicio/justificacion-personal-inicio.component';
 import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.component';
 
 

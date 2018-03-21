@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Justificacion } from '../entities/asistencia';
+import { Justificacion } from '../../entities/asistencia';
 
-import { AssistanceService } from '../assistance.service';
+import { AssistanceService } from '../../assistance.service';
 import {Location} from '@angular/common';
 
 import { ActivatedRoute } from '@angular/router';

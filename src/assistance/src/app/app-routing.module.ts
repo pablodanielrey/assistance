@@ -12,11 +12,11 @@ import { DetalleRelojComponent } from './relojes/detalle-reloj/detalle-reloj.com
 import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/detalle-usuario-reloj.component';
 
-import { JustificacionPersonalComponent } from './justificacion-personal/justificacion-personal.component';
-import { JustificacionInicialComponent } from './justificacion-inicial/justificacion-inicial.component';
-import { JustificacionAdminComponent } from './justificacion-admin/justificacion-admin.component';
-import { JustificacionModificarComponent } from './justificacion-modificar/justificacion-modificar.component';
-import { JustificacionPersonalInicioComponent } from './justificacion-personal-inicio/justificacion-personal-inicio.component';
+import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
+import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
+import { JustificacionModificarComponent } from './justificacion/justificacion-modificar/justificacion-modificar.component';
+import { JustificacionPersonalInicioComponent } from './justificacion/justificacion-personal-inicio/justificacion-personal-inicio.component';
+import { JustificacionPersonalComponent } from './justificacion/justificacion-personal/justificacion-personal.component';
 
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';

@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Justificacion, FechaJustificada } from '../entities/asistencia';
-import { Usuario } from '../entities/usuario';
-import { AssistanceService } from '../assistance.service';
+import { Justificacion, FechaJustificada } from '../../entities/asistencia';
+import { Usuario } from '../../entities/usuario';
+import { AssistanceService } from '../../assistance.service';
 
 
 @Component({
