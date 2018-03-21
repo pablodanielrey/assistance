@@ -18,6 +18,8 @@ import { JustificacionAdminComponent } from './justificacion/justificacion-admin
 import { JustificacionModificarComponent } from './justificacion/justificacion-modificar/justificacion-modificar.component';
 import { JustificacionPersonalInicioComponent } from './justificacion/justificacion-personal-inicio/justificacion-personal-inicio.component';
 import { JustificacionPersonalComponent } from './justificacion/justificacion-personal/justificacion-personal.component';
+import { JustificacionGeneralComponent } from './justificacion/justificacion-general/justificacion-general.component';
+
 
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
@@ -35,6 +37,12 @@ const routes: Routes = [
   { path: 'justificacion_admin', component: JustificacionAdminComponent },
   { path: 'crear_justificacion', component: JustificacionModificarComponent},
   { path: 'modificar_justificacion/:jid', component: JustificacionModificarComponent},
+  {
+    path: 'justificaciones2',
+    children: [
+      {path:'general', component: JustificacionGeneralComponent}
+    ]
+  },
 
   { path: 'horarios', component: HorarioInicialComponent },
   { path: 'horario_detalle/:uid', component: HorarioDetalleComponent },
