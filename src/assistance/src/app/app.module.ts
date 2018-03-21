@@ -30,9 +30,9 @@ import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.
 import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/detalle-usuario-reloj.component';
 import { DetalleRelojComponent } from './relojes/detalle-reloj/detalle-reloj.component';
 
-import { HorarioInicialComponent } from './horario-inicial/horario-inicial.component';
-import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';
-import { HorarioModificarComponent } from './horario-modificar/horario-modificar.component';
+import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
+import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
+import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
 import { ToogleFullscreenDirective } from './toogle-fullscreen.directive';
 import { JustificacionInicialComponent } from './justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion-admin/justificacion-admin.component';

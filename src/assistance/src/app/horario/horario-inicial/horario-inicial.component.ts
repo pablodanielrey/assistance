@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
-import { Usuario } from '../entities/usuario';
-import { AssistanceService } from '../assistance.service';
+import { Usuario } from '../../entities/usuario';
+import { AssistanceService } from '../../assistance.service';
 
 @Component({
   selector: 'app-horario-inicial',

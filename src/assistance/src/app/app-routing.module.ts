@@ -18,9 +18,9 @@ import { JustificacionAdminComponent } from './justificacion-admin/justificacion
 import { JustificacionModificarComponent } from './justificacion-modificar/justificacion-modificar.component';
 import { JustificacionPersonalInicioComponent } from './justificacion-personal-inicio/justificacion-personal-inicio.component';
 
-import { HorarioInicialComponent } from './horario-inicial/horario-inicial.component';
-import { HorarioDetalleComponent } from './horario-detalle/horario-detalle.component';
-import { HorarioModificarComponent } from './horario-modificar/horario-modificar.component';
+import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
+import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
+import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
 
 const routes: Routes = [
   { path: 'reporte_inicial', component: ReporteInicialComponent },

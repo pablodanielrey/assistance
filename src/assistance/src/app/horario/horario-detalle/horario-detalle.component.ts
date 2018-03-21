@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AssistanceService } from '../assistance.service';
+import { Location } from '@angular/common';
 
-import { DatosHorario } from '../entities/asistencia';
+import { AssistanceService } from '../../assistance.service';
+
+import { DatosHorario } from '../../entities/asistencia';
 
 
 import { ActivatedRoute } from '@angular/router';
@@ -18,6 +20,7 @@ export class HorarioDetalleComponent implements OnInit {
   info: DatosHorario = null;
 
   constructor(private service: AssistanceService,
+              private location: Location,
               private route: ActivatedRoute,) { }
 
   ngOnInit() {
@@ -29,6 +32,10 @@ export class HorarioDetalleComponent implements OnInit {
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
     this.subscriptions = [];
+  }
+
+  volver() {
+    this.location.back();
   }
 
   obtenerHorario() {

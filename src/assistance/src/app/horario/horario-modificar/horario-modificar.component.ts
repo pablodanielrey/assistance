@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AssistanceService } from '../assistance.service';
+import { Location } from '@angular/common';
 
-import { DatosHorario, Horario } from '../entities/asistencia';
+import { AssistanceService } from '../../assistance.service';
+
+import { DatosHorario, Horario } from '../../entities/asistencia';
 
 
 import { ActivatedRoute } from '@angular/router';
@@ -18,6 +20,7 @@ export class HorarioModificarComponent implements OnInit {
   info: DatosHorario = null;
 
   constructor(private service: AssistanceService,
+              private location: Location,
               private route: ActivatedRoute,) { }
 
   ngOnInit() {
@@ -33,6 +36,10 @@ export class HorarioModificarComponent implements OnInit {
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
     this.subscriptions = [];
+  }
+
+  volver() {
+    this.location.back();
   }
 
   cambio(event: any, h: Horario) {
