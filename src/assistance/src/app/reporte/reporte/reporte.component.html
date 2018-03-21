@@ -84,8 +84,15 @@
                 <ng-container matColumnDef='Justificacion'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
                   <mat-cell *matCellDef='let renglon'>
-                    <div *ngIf='renglon.justificacion'> {{renglon.justificacion }} </div>
-                    <button mat-icon-button *ngIf='!renglon.justificacion' routerLink="/justificacion_personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">playlist_add_check</i></button>
+                    <div *ngIf='renglon.justificaciones.length > 0'>
+                      <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let j of renglon.justificaciones">
+                          {{j.justificacion.nombre }}
+                          <mat-icon matChipRemove *ngIf="j.eliminable">cancel</mat-icon>
+                        </mat-chip>
+                      </mat-chip-list>
+                    </div>
+                    <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/justificacion_personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">playlist_add_check</i></button>
                   </mat-cell>
                 </ng-container>
 
