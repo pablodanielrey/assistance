@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
-import { Reporte, RenglonReporte, Marcacion } from '../entities/asistencia';
-import { AssistanceService } from '../assistance.service';
+import { Reporte, RenglonReporte, Marcacion } from '../../entities/asistencia';
+import { AssistanceService } from '../../assistance.service';
 
 
 import { ActivatedRoute } from '@angular/router';
@@ -49,6 +49,10 @@ export class ReporteComponent implements OnInit {
     this.subscriptions.forEach(s => s.unsubscribe());
     this.subscriptions = [];
   }
+
+  volver() {
+    this.location.back();
+  }  
 
   generarReporte():void {
     console.log(this.fecha_inicial);

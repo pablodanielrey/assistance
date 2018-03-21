@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
-import { ReporteInicialComponent } from './reporte-inicial/reporte-inicial.component';
-import { GenerarReportePersonalComponent } from './generar-reporte-personal/generar-reporte-personal.component';
-import { ReporteComponent } from './reporte/reporte.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 
 import { SeleccionarRelojComponent } from './relojes/seleccionar-reloj/seleccionar-reloj.component';
 import { DetalleRelojComponent } from './relojes/detalle-reloj/detalle-reloj.component';
 import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/detalle-usuario-reloj.component';
+
+import { ReporteInicialComponent } from './reporte/reporte-inicial/reporte-inicial.component';
+import { GenerarReportePersonalComponent } from './reporte/generar-reporte-personal/generar-reporte-personal.component';
+import { ReporteComponent } from './reporte/reporte/reporte.component';
 
 import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';

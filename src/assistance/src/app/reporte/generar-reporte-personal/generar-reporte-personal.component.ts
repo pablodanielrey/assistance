@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SeleccionarUsuarioComponent } from '../seleccionar-usuario/seleccionar-usuario.component';
 
-import { Usuario } from '../entities/usuario';
+
+import { Usuario } from '../../entities/usuario';
 
 @Component({
   selector: 'app-generar-reporte-personal',

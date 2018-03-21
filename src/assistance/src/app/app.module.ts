@@ -9,12 +9,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { MyMaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
-import { ReporteComponent } from './reporte/reporte.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { SeleccionarUsuarioComponent } from './seleccionar-usuario/seleccionar-usuario.component';
-import { GenerarReportePersonalComponent } from './generar-reporte-personal/generar-reporte-personal.component';
-import { ReporteInicialComponent } from './reporte-inicial/reporte-inicial.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
@@ -27,6 +24,10 @@ import { SeleccionarRelojComponent } from './relojes/seleccionar-reloj/seleccion
 import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.component';
 import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/detalle-usuario-reloj.component';
 import { DetalleRelojComponent } from './relojes/detalle-reloj/detalle-reloj.component';
+
+import { ReporteComponent } from './reporte/reporte/reporte.component';
+import { ReporteInicialComponent } from './reporte/reporte-inicial/reporte-inicial.component';
+import { GenerarReportePersonalComponent } from './reporte/generar-reporte-personal/generar-reporte-personal.component';
 
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
