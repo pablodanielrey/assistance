@@ -50,7 +50,7 @@ export class DetalleRelojComponent implements OnInit {
 
   eliminar_huellas():void {
     this.subscriptions.push(this.service.eliminarHuellas(this.reloj.id).subscribe(
-      r => console.log(r),
+      resp => { console.log(resp.headers); console.log(resp.body)},
       err => console.log(err)
     ))
   }

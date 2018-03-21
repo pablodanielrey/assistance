@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -115,9 +115,9 @@ export class AssistanceService {
     return this.http.get<any>(apiUrl);
   }
 
-  sincronizarLogs(rid:string): Observable<any> {
+  sincronizarLogs(rid:string): Observable<HttpResponse<any>> {
     let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/sincronizar`;
-    return this.http.get<any>(apiUrl);
+    return this.http.get<any>(apiUrl, { observe: 'response' });
   }
 
   generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
