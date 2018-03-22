@@ -6,10 +6,11 @@
 
   <!-- Lista -->
   <mat-selection-list #listaJustificaciones>
-    <mat-list-option class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  (click) = "seleccionarJustificacion(j)" checkboxPosition='before'>
-      <h3 matLine> {{ j.nombre }}</h3>
-      <p matLine>
-        <span class="itemTextoSubtitulo">{{ j.codigo }}</span>
+    <mat-list-option class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  (click) = "seleccionarJustificacion(j)">
+      <div matListAvatar class="avatar">D</div>
+      <h3 class="texto" matLine> {{ j.nombre }}</h3>
+      <p class="texto" matLine>
+        <span class="itemTextoSubtitulo">Código {{ j.codigo }}</span>
       </p>
     </mat-list-option>
   </mat-selection-list>
