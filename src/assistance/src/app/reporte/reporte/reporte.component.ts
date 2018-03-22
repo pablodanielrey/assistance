@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
-import { Reporte, RenglonReporte, Marcacion } from '../../entities/asistencia';
+import { Reporte, RenglonReporte, Marcacion, FechaJustificada } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 
@@ -52,7 +52,7 @@ export class ReporteComponent implements OnInit {
 
   volver() {
     this.location.back();
-  }  
+  }
 
   generarReporte():void {
     console.log(this.fecha_inicial);
@@ -112,6 +112,22 @@ export class ReporteComponent implements OnInit {
       return []
     }
     return this.reporte.reportes;
+  }
+
+  eliminarJustificacion(jid:string) {
+    this.subscriptions.push(this.service.eliminarFechaJustificada(this.usuario_id, jid)
+    .subscribe(r => {
+      this.clearJustificaciones(r);
+    }));
+  }
+
+  clearJustificaciones(jid: string) {
+    this.reporte.reportes.forEach(r => r.justificaciones = this.eliminarJustificacionDeRenglon(r.justificaciones, jid));
+    console.log(this.reporte.reportes);
+  }
+
+  eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
+    return justificaciones.filter(j => j.id != jid);;
   }
 
 }

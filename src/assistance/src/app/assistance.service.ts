@@ -74,6 +74,11 @@ export class AssistanceService {
     return this.http.delete<any>(apiUrl);
   }
 
+  eliminarFechaJustificada(uid:string, jid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/justificaciones/${jid}`;
+    return this.http.delete<any>(apiUrl);
+  }
+
   justificar(fj: FechaJustificada):Observable<string> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificar`;
     return this.http.put<string>(apiUrl, fj);

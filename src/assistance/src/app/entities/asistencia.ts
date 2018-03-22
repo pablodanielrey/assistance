@@ -128,7 +128,7 @@ export class RenglonReporte {
   entrada: Marcacion;
   salida: Marcacion;
   cantidad_horas_trabajadas: number;
-  justifcaciones: Array<FechaJustificada>;
+  justificaciones: Array<FechaJustificada>;
 
   constructor(o:Object) {
     try {
