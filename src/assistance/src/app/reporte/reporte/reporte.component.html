@@ -87,8 +87,8 @@
                     <div *ngIf='renglon.justificaciones.length > 0'>
                       <mat-chip-list #chipList>
                         <mat-chip *ngFor="let j of renglon.justificaciones">
-                          {{j.justificacion.nombre }}
-                          <mat-icon matChipRemove *ngIf="j.eliminable">cancel</mat-icon>
+                          {{j.nombre }}
+                          <mat-icon matChipRemove *ngIf="j.esPrimerDia">cancel</mat-icon>
                         </mat-chip>
                       </mat-chip-list>
                     </div>
