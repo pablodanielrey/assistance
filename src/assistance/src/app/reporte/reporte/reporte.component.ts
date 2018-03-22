@@ -9,6 +9,9 @@ import { AssistanceService } from '../../assistance.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { MatDialog } from '@angular/material';
+
+
 @Component({
   selector: 'app-reporte',
   templateUrl: './reporte.component.html',
@@ -20,6 +23,7 @@ export class ReporteComponent implements OnInit {
               private service: AssistanceService,
               private http: HttpClient,
               private route: ActivatedRoute,
+              public dialog: MatDialog,
               private location: Location) { }
 
 
