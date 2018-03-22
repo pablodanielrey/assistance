@@ -73,11 +73,11 @@ export class JustificacionGeneralComponent implements OnInit {
     fj.justificacion = this.justificacion;
     if (this.seleccionFecha == 'simple') {
       this.fecha = this.setInit(this.fecha);
-      fj.fechaInicio = this.fecha;
-      fj.fechaFin = null;
+      fj.fecha_inicio = this.fecha;
+      fj.fecha_fin = null;
     } else {
-      fj.fechaInicio = this.setInit(this.fechaInicio);
-      fj.fechaFin = this.setInit(this.fechaFin);
+      fj.fecha_inicio = this.setInit(this.fechaInicio);
+      fj.fecha_fin = this.setInit(this.fechaFin);
     }
 
     this.subscriptions.push(this.service.justificar(fj)
