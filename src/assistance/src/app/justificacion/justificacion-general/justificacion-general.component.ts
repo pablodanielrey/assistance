@@ -82,7 +82,7 @@ export class JustificacionGeneralComponent implements OnInit {
 
     this.subscriptions.push(this.service.justificar(fj)
       .subscribe(r => {
-        console.log(r);
+        this.volver();
       }));
 
   }

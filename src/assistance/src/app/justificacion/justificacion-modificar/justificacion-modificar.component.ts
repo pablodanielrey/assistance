@@ -52,18 +52,22 @@ export class JustificacionModificarComponent implements OnInit {
     if (this.nuevo) {
       this.subscriptions.push(this.service.crearJustificacion(this.justificacion)
         .subscribe(r => {
-          console.log(r);
+          this.volver();
         }));
     } else {
       this.subscriptions.push(this.service.modificarJustificacion(this.justificacion)
         .subscribe(r => {
-          console.log(r);
+          this.volver();
         }));
     }
   }
 
-  cancelar() {
+  volver() {
     this.location.back();
+  }
+
+  cancelar() {
+    this.volver();
   }
 
   eliminar() {

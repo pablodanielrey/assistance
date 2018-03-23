@@ -53,7 +53,7 @@
         <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
       </div>
 
-      <button (click)="justificar()" [disabled]="!justificacion">Aceptar</button>
+      <button (click)="justificar()" [disabled]="!justificacion || !fecha">Aceptar</button>
     </div>
 
 </div>
