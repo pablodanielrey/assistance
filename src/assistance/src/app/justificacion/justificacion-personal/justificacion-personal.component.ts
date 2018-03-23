@@ -62,6 +62,7 @@ export class JustificacionPersonalComponent implements OnInit {
   buscarJustificaciones() {
     this.justificaciones = [];
     this.subscriptions.push(this.service.buscarJustificaciones()
+      .map(justificaciones => justificaciones.filter(j => !j.general ? !j.general : false))
       .subscribe(justificaciones => {
         this.justificaciones = justificaciones;
       }));
@@ -98,7 +99,7 @@ export class JustificacionPersonalComponent implements OnInit {
 
     this.subscriptions.push(this.service.justificar(fj)
       .subscribe(r => {
-        console.log(r);
+        this.volver();
       }));
 
   }

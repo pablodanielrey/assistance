@@ -9,6 +9,12 @@ import { AssistanceService } from '../../assistance.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { MatDialog, MatDialogRef } from '@angular/material';
+
+import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+
+
+
 @Component({
   selector: 'app-reporte',
   templateUrl: './reporte.component.html',
@@ -20,8 +26,11 @@ export class ReporteComponent implements OnInit {
               private service: AssistanceService,
               private http: HttpClient,
               private route: ActivatedRoute,
+              public dialog: MatDialog,
               private location: Location) { }
 
+
+  eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
 
   info: any = null;
   fecha_inicial: Date = null;
@@ -114,11 +123,16 @@ export class ReporteComponent implements OnInit {
     return this.reporte.reportes;
   }
 
-  eliminarJustificacion(jid:string) {
-    this.subscriptions.push(this.service.eliminarFechaJustificada(this.usuario_id, jid)
-    .subscribe(r => {
-      this.clearJustificaciones(r);
-    }));
+  eliminarJustificacion(justificacion:any) {
+    this.eliminarJustificacionDialogRef = this.dialog.open(DialogoEliminarFechaJustificadaComponent, {data: justificacion});
+    this.eliminarJustificacionDialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.push(this.service.eliminarFechaJustificada(this.usuario_id, justificacion.id)
+        .subscribe(r => {
+          this.clearJustificaciones(r);
+        }));
+      }
+    });
   }
 
   clearJustificaciones(jid: string) {
