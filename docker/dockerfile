@@ -35,7 +35,7 @@ WORKDIR /src
 #RUN cd /src && npm i -g npm
 #RUN cd /src && npm install --global --save --ensure --unsafe @angular/cli
 RUN cd /src/assistance && npm install
-RUN cd /src/assistance && ng build --prod --build-optimizer
+RUN cd /src/assistance && ng build --prod --build-optimizer --aot --locale es
 
 EXPOSE 80
 
