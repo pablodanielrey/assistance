@@ -62,6 +62,7 @@ export class JustificacionPersonalComponent implements OnInit {
   buscarJustificaciones() {
     this.justificaciones = [];
     this.subscriptions.push(this.service.buscarJustificaciones()
+      .map(justificaciones => justificaciones.filter(j => !j.general ? !j.general : false))
       .subscribe(justificaciones => {
         this.justificaciones = justificaciones;
       }));
