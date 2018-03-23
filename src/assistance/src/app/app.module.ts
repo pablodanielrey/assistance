@@ -45,6 +45,7 @@ import { JustificacionPersonalComponent } from './justificacion/justificacion-pe
 import { SeleccionarJustificacionComponent } from './seleccionar-justificacion/seleccionar-justificacion.component';
 import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.component';
 import { JustificacionGeneralComponent } from './justificacion/justificacion-general/justificacion-general.component';
+import { DialogoEliminarFechaJustificadaComponent } from './reporte/dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { JustificacionGeneralComponent } from './justificacion/justificacion-gen
     JustificacionModificarComponent,
     JustificacionPersonalInicioComponent,
     ListadoUsuariosComponent,
-    JustificacionGeneralComponent
+    JustificacionGeneralComponent,
+    DialogoEliminarFechaJustificadaComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +87,7 @@ import { JustificacionGeneralComponent } from './justificacion/justificacion-gen
     AppRoutingModule,
     OAuthModule.forRoot()
   ],
+  entryComponents: [DialogoEliminarFechaJustificadaComponent],
   providers: [
       AssistanceService,
       { provide: LOCALE_ID, useValue: "en" },
