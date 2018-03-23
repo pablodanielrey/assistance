@@ -90,7 +90,7 @@ import { DialogoEliminarFechaJustificadaComponent } from './reporte/dialogo-elim
   entryComponents: [DialogoEliminarFechaJustificadaComponent],
   providers: [
       AssistanceService,
-      { provide: LOCALE_ID, useValue: "en" },
+      { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
   bootstrap: [AppComponent]
