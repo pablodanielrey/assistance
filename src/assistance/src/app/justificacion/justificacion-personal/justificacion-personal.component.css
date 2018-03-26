@@ -2,6 +2,7 @@
 
 
 .justificacionPersonal {
+
 }
 
 .justificacionPersonal .seccionSistema {
@@ -14,6 +15,99 @@
 }
 
 .justificacionPersonal .contenidoPantalla {
+  display: flex;
+  flex-direction: row;
   padding: 20px;
-  max-width: 450px;
+  width: 100%;
+}
+
+.contenedorDerecho {
+  margin-left: 40px;
+  width: 350px;
+}
+
+.mat-list, .mat-nav-list, .mat-selection-list {
+ padding-top: 0px;
+  }
+
+
+
+
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-bottom: 20px;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.contenedorSeleccionDeFechas {
+
+}
+
+.textoFecha {
+  margin-right: 10px;
+}
+
+.contenedorSeleccionDeFechaSimple {
+  /*background-color: blue;*/
+  margin-top: 20px;
+}
+
+.contenedorSeleccionDeFechaDoble {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.seleccionFechaInicio {
+  width: 48%;
+
+}
+
+.btnClasico {
+   background-color: #4186e1;
+    color: #fff;
+    width: 48%;
+}
+
+
+
+
+.mat-radio-outer-circle {
+  background-color: blue !important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: blue !important;
+}
+
+@media screen and (max-width: 769px) {
+  .justificacionPersonal .contenidoPantalla {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+    width: 100%;
+  }
+  .contenedorDerecho {
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .btnClasico{
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+
+  }
+
+
+
+  .listado {
+    height: 200px;
+  }
 }

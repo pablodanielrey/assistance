@@ -1,7 +1,16 @@
+.seleccionarJustificacion {
+  width: 400px;
+}
+
+.contenedorBuscar {
+  width: 100%;
+
+}
+
 .itemLista {
   background-color: white;
   border: solid 1px #E0E0E0;
-  margin-top: 5px;
+  margin-bottom: 5px;
 
 }
 
@@ -34,4 +43,13 @@
 
 .texto {
   margin-left: 60px !important;
+}
+
+
+
+@media screen and (max-width: 769px) {
+  .seleccionarJustificacion {
+    width: 100%;
+  }
+
 }

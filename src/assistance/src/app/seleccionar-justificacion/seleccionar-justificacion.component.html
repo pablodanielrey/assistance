@@ -1,6 +1,11 @@
 <div class="seleccionarJustificacion">
 
-  <input matInput type='search'  [(ngModel)]='busqueda' class="inputSearch" placeholder="Buscar Justificación"/>
+  <mat-form-field class="contenedorBuscar">
+    <input matInput type='search'  [(ngModel)]='busqueda' class="inputSearch"  placeholder="Buscar Justificación"/>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+
 
 
 
