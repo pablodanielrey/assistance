@@ -46,7 +46,9 @@ import { SeleccionarJustificacionComponent } from './seleccionar-justificacion/s
 import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.component';
 import { JustificacionGeneralComponent } from './justificacion/justificacion-general/justificacion-general.component';
 import { DialogoEliminarFechaJustificadaComponent } from './reporte/dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
-
+import { ReporteGeneralInicialComponent } from './reporte/reporte-general-inicial/reporte-general-inicial.component';
+import { ListadoLugaresComponent } from './listado-lugares/listado-lugares.component';
+import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-general.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,10 @@ import { DialogoEliminarFechaJustificadaComponent } from './reporte/dialogo-elim
     JustificacionPersonalInicioComponent,
     ListadoUsuariosComponent,
     JustificacionGeneralComponent,
-    DialogoEliminarFechaJustificadaComponent
+    DialogoEliminarFechaJustificadaComponent,
+    ReporteGeneralInicialComponent,
+    ListadoLugaresComponent,
+    ReporteGeneralComponent
   ],
   imports: [
     BrowserModule,

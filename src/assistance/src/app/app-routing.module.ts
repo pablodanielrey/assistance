@@ -12,6 +12,8 @@ import { DetalleUsuarioRelojComponent } from './relojes/detalle-usuario-reloj/de
 import { ReporteInicialComponent } from './reporte/reporte-inicial/reporte-inicial.component';
 import { GenerarReportePersonalComponent } from './reporte/generar-reporte-personal/generar-reporte-personal.component';
 import { ReporteComponent } from './reporte/reporte/reporte.component';
+import { ReporteGeneralInicialComponent } from './reporte/reporte-general-inicial/reporte-general-inicial.component';
+import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-general.component';
 
 import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
@@ -30,6 +32,14 @@ const routes: Routes = [
   { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent },
   { path: 'reporte/:uid', component: ReporteComponent },
   { path: 'reporte', component: ReporteComponent },
+
+  {
+    path: 'reportes',
+    children: [
+      {path: 'general', component: ReporteGeneralInicialComponent},
+      {path: 'general/generar', component: ReporteGeneralComponent}
+    ]
+  },
 
   { path: 'justificaciones', component: JustificacionInicialComponent },
   { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent},

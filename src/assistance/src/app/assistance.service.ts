@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion, FechaJustificada } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion, FechaJustificada, Lugar } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -32,6 +32,19 @@ export class AssistanceService {
     .filter(datos => datos.filter(d => { d.asistencia != null }))
     .map(datos => datos.map(d => new DatosAsistencia(d)));
     */
+  }
+
+  buscarLugares(texto:string): Observable<Lugar[]> {
+    let apiUrl = `${ASSISTANCE_API_URL}/lugares`;
+    if (texto == null) {
+      return this.http.get<Lugar[]>(apiUrl);
+    } else {
+      const options = { params: new HttpParams()
+                .set('q', texto ? texto : null)
+            };
+      return this.http.get<Lugar[]>(apiUrl, options);
+    }
+
   }
 
   buscarUsuario(uid:string): Observable<DatosAsistencia> {

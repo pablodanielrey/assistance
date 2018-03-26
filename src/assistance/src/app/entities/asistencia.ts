@@ -120,6 +120,20 @@ export class Detalle {
 
 }
 
+export class Lugar {
+
+  nombre: string;
+  id: string;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
 export class RenglonReporte {
 
   fecha: Date;
