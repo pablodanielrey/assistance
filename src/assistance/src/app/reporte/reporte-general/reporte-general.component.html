@@ -1,1 +1,12 @@
+<div>
 {{ fecha | date: 'dd/MM/yyyy'}}
+</div>
+  <div  *ngFor="let rep of reportes">
+    {{rep.lugar.nombre}}
+    <div  *ngFor="let r of rep.reportes">
+      {{r.usuario.nombre}} {{r.usuario.apellido}}
+      <div *ngFor="let re of r.reportes">
+        <span *ngIf="re.entrada">{{re.entrada.marcacion}}</span>
+      </div>
+    </div>
+  </div>

@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion, FechaJustificada, Lugar } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Reporte, ReporteGeneral, DatosHorario, Horario, Justificacion, FechaJustificada, Lugar } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -144,9 +144,15 @@ export class AssistanceService {
               .set('inicio', fecha_inicio.toDateString())
               .set('fin', fecha_fin.toDateString())
           };
-    console.log(options);
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/reporte/`;
     return this.http.get<[Reporte]>(apiUrl, options).map(datos => new Reporte(datos));
+  }
+
+  generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<any[]> {
+
+    const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
+    let apiUrl = `${ASSISTANCE_API_URL}/reportes/`;
+    return this.http.post<any[]>(apiUrl, options);
   }
 
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {

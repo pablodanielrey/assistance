@@ -183,6 +183,22 @@ export class Reporte {
   }
 }
 
+export class ReporteGeneral {
+  lugar: Lugar;
+  reportes: Array<Reporte>;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.lugar = (this.lugar == null ? null : new Lugar(this.lugar));
+      this.reportes = (this.reportes == null) ? [] : this.reportes.map(r => new Reporte(r));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+}
+
 export class Asistencia {
   actualizado: string;
   creado: string;
