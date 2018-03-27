@@ -2,33 +2,43 @@
 
     <div class="seccionSistema">
       <button mat-button class="btnVolverSeccion" routerLink="/justificacion_admin"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
-       | Justificaciones
+       | Detalle Justificación
     </div>
 
     <mat-divider></mat-divider>
 
     <div class="contenidoPantalla" *ngIf="justificacion">
-      <form (ngSubmit)=guardar() #justificacionForm="ngForm">
 
-        <mat-form-field class="itemFormularioFull">
-          <input matInput placeholder="Nombre"  [(ngModel)]="justificacion.nombre" required name="nombre">
-        </mat-form-field>
+      <div class="contenedorIzquierdo">
 
-        <mat-form-field class="itemFormularioFull">
-          <input matInput placeholder="Descripcion" [(ngModel)]="justificacion.descripcion"  name="descripcion">
-        </mat-form-field>
+          <form (ngSubmit)=guardar() #justificacionForm="ngForm" class="contenidoFormulario">
 
-        <mat-form-field class="itemFormularioFull">
-          <input matInput placeholder="Código" [(ngModel)]="justificacion.codigo" required name="codigo">
-        </mat-form-field>
+              <mat-form-field class="item">
+                <input matInput placeholder="Nombre"  [(ngModel)]="justificacion.nombre" required name="nombre">
+              </mat-form-field>
 
-        <mat-checkbox [(ngModel)]="justificacion.general" name="general">Justificación General</mat-checkbox>
+              <mat-form-field class="item">
+                <input matInput placeholder="Descripción" [(ngModel)]="justificacion.descripcion"  name="descripcion">
+              </mat-form-field>
 
+              <mat-form-field class="item">
+                <input matInput placeholder="Código" [(ngModel)]="justificacion.codigo" required name="codigo">
+              </mat-form-field>
+
+              <mat-checkbox [(ngModel)]="justificacion.general" name="general" class="textJustificacionGeneral">Marcar como Justificación General</mat-checkbox>
+
+          </form>
+
+      </div>
+
+      <div class="contenedorDerecho">
+
+        <button mat-button (click)="eliminar()" *ngIf="!nuevo" class="btnAcciones"><mat-icon class="icoMenu">delete</mat-icon> ELIMINAR JUSTIFICACIÓN</button>
+        <button mat-button (click)="cancelar()" *ngIf="nuevo" class="btnAcciones"> <mat-icon class="icoMenu">highlight_off</mat-icon> CANCELAR</button>
         <button mat-button class="btnClasico" type="submit" [disabled]="!justificacionForm.form.valid"> GUARDAR</button>
-        <button (click)="eliminar()" *ngIf="!nuevo">Eliminar</button>
-        <button (click)="cancelar()" *ngIf="nuevo">Cancelar</button>
 
-      </form>
+      </div>
+
     </div>
 
 </div>

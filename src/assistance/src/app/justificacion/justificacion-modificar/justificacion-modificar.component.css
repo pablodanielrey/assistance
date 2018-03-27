@@ -1,0 +1,87 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+
+.justificaciones {
+}
+
+.justificaciones .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.justificaciones .btnVolverSeccion {
+  color: grey;
+}
+
+.justificaciones .contenidoPantalla {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* ---- ------------------------- ----*/
+
+
+.contenedorIzquierdo {
+  max-width: 400px;
+}
+
+.contenedorDerecho {
+  width: 300px;
+  margin-left: 40px;
+}
+
+.contenidoFormulario {
+  width: 100%;
+}
+
+.item {
+  width: 100%;
+}
+
+.textJustificacionGeneral {
+  font-size: 14px;
+}
+
+.btnClasico {
+   background-color: #4186e1;
+    color: #fff;
+    width: 48%;
+    margin-bottom: 20px;
+    padding: 5px 10px 5px 15px;
+
+}
+
+.btnAcciones {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+  padding: 5px 10px 5px 15px;
+  background-color: white;
+  border: solid 1px #E0E0E0;
+}
+
+.icoMenu {
+  color: rgba(0,0,0,.54);
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 769px) {
+  .justificaciones .contenidoPantalla {
+    flex-direction: column;
+  }
+  .contenedorIzquierdo {
+    width: 100%;
+  }
+  .contenedorDerecho {
+    margin-top: 30px;
+    width: 100%;
+    margin-left: 0px;
+  }
+  .btnClasico {
+    width: 100%;
+    padding: 10px;
+  }
+}
