@@ -37,6 +37,7 @@
           </p> -->
           <div class="fechas">
 
+
             <mat-radio-group [(ngModel)]="seleccionFecha" class="contenedorSeleccionDeFechas">
 
               <mat-radio-button value="simple" class="textoFecha">
@@ -71,9 +72,12 @@
                 <input matInput [matDatepicker]="datePickerFin" [(ngModel)]="fechaFin">
                 <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
                 <mat-datepicker #datePickerFin></mat-datepicker>
-              </mat-form-field>
+              </mat-form-field><br>
+
             </div>
           </div>
+
+          <div *ngIf="seleccionFecha == 'rango'" class="textDiasSeleccionados">20 días seleccionados</div>
 
           <button mat-button (click)="justificar()" [disabled]="!justificacion" class="btnClasico">JUSTIFICAR</button>
 
