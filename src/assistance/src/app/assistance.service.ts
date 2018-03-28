@@ -148,11 +148,11 @@ export class AssistanceService {
     return this.http.get<[Reporte]>(apiUrl, options).map(datos => new Reporte(datos));
   }
 
-  generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<any[]> {
+  generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<ReporteGeneral[]> {
 
     const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
     let apiUrl = `${ASSISTANCE_API_URL}/reportes/`;
-    return this.http.post<any[]>(apiUrl, options);
+    return this.http.post<ReporteGeneral[]>(apiUrl, options).map(datos => datos.map(d => new ReporteGeneral(d)));
   }
 
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {
