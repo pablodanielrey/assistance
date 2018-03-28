@@ -33,7 +33,7 @@ export class ReporteGeneralInicialComponent implements OnInit {
     this.lugares = [];
     this.seleccionados = [];
     this.subscriptions.push(this.service.buscarLugares(null)
-      .map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado' && l.tipo != 'lugar'))
+      .map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado'))
       .map(lugares => lugares.sort((a,b) => {return a.tipo.localeCompare(b.tipo)}))
       .subscribe(lugares => {
         console.log(lugares);
