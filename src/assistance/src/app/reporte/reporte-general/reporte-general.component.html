@@ -2,16 +2,24 @@
 
     <div class="seccionSistema">
       <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
-       | Reporte Personal
+       | Reporte General
     </div>
 
     <mat-divider></mat-divider>
 
     <div class="contenidoPantalla">
       <div>
-      {{ fecha | date: 'dd/MM/yyyy'}}
+        Oficinas Seleccionadas:
+        <span *ngFor="let rep of reportes; let i=index"><span *ngIf="i > 0"> | </span>{{rep.lugar.nombre}}</span>
       </div>
+      <mat-form-field class="seleccionFecha">
+          <mat-placeholder>Fecha</mat-placeholder>
+        <input matInput [matDatepicker]="datePicker" [(ngModel)]="fecha">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
 
+      <button mat-button class="btnGenerar" (click)='generarReporte()'>GENERAR REPORTE</button>
 
       <div *ngIf='reportes'>
         <mat-tab-group *ngFor="let rep of reportes">
