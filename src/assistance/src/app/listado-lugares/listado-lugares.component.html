@@ -1,0 +1,14 @@
+<input matInput type='search'  [(ngModel)]='busqueda' class="inputSearch" placeholder="Buscar Lugares"/>
+<mat-selection-list #listaLugares>
+  <mat-list-option class="itemLista" *ngFor="let l of lugares | searchfilter:'nombre': busqueda"  (click) = "seleccionarLugar(l)" checkboxPosition='before' [value]="l">
+    <div *ngIf='l.materia'>
+      <span class="textoLinea3"> <b>{{l.tipo}}</b> | </span>
+      <span> {{l.materia.nombre }} </span>
+      <span class="textoLinea3"> | cátedra {{l.nombre }}  </span>
+    </div>
+    <div *ngIf='!l.materia'>
+      <span class="textoLinea3"> <b>{{l.tipo }}</b> </span>
+      <span> | {{l.nombre }} </span>
+    </div>
+  </mat-list-option>
+</mat-selection-list>

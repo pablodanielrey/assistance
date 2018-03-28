@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Reporte, DatosHorario, Horario, Justificacion, FechaJustificada } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Reporte, ReporteGeneral, DatosHorario, Horario, Justificacion, FechaJustificada, Lugar } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -32,6 +32,19 @@ export class AssistanceService {
     .filter(datos => datos.filter(d => { d.asistencia != null }))
     .map(datos => datos.map(d => new DatosAsistencia(d)));
     */
+  }
+
+  buscarLugares(texto:string): Observable<Lugar[]> {
+    let apiUrl = `${ASSISTANCE_API_URL}/lugares`;
+    if (texto == null) {
+      return this.http.get<Lugar[]>(apiUrl);
+    } else {
+      const options = { params: new HttpParams()
+                .set('q', texto ? texto : null)
+            };
+      return this.http.get<Lugar[]>(apiUrl, options);
+    }
+
   }
 
   buscarUsuario(uid:string): Observable<DatosAsistencia> {
@@ -71,6 +84,11 @@ export class AssistanceService {
 
   eliminarJustificacion(jid:string): Observable<any> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${jid}`;
+    return this.http.delete<any>(apiUrl);
+  }
+
+  eliminarFechaJustificada(uid:string, jid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/justificaciones/${jid}`;
     return this.http.delete<any>(apiUrl);
   }
 
@@ -126,9 +144,15 @@ export class AssistanceService {
               .set('inicio', fecha_inicio.toDateString())
               .set('fin', fecha_fin.toDateString())
           };
-    console.log(options);
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/reporte/`;
     return this.http.get<[Reporte]>(apiUrl, options).map(datos => new Reporte(datos));
+  }
+
+  generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<any[]> {
+
+    const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
+    let apiUrl = `${ASSISTANCE_API_URL}/reportes/`;
+    return this.http.post<any[]>(apiUrl, options);
   }
 
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {

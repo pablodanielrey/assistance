@@ -1,0 +1,20 @@
+<div>
+{{ fecha | date: 'dd/MM/yyyy'}}
+</div>
+
+<div *ngIf='reportes'>
+  <mat-tab-group *ngFor="let rep of reportes">
+    <mat-tab label="{{rep.lugar.nombre}}" class="Tabs">
+      <mat-table [dataSource]='rep.reportes' matSort>
+
+        <ng-container matColumnDef='Nombre'>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+          <mat-cell *matCellDef='let renglon'> {{renglon.usuario.nombre}} {{renglon.usuario.apellido}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['Nombre']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['Nombre']"></mat-row>
+      </mat-table>
+    </mat-tab>
+  </mat-tab-group>
+</div>

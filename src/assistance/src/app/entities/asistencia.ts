@@ -42,8 +42,8 @@ export class Justificacion {
 }
 
 export class FechaJustificada {
-  fechaInicio: Date;
-  fechaFin: Date;
+  fecha_inicio: Date;
+  fecha_fin: Date;
   usuario_id: string;
   justificacion: Justificacion;
   id: string;
@@ -51,8 +51,8 @@ export class FechaJustificada {
   constructor(o:Object) {
     try {
       Object.assign(this, o);
-      this.fechaInicio = (this.fechaInicio == null ? null : new Date(this.fechaInicio));
-      this.fechaFin = (this.fechaFin == null ? null : new Date(this.fechaFin));
+      this.fecha_inicio = (this.fecha_inicio == null ? null : new Date(this.fecha_inicio));
+      this.fecha_fin = (this.fecha_fin == null ? null : new Date(this.fecha_fin));
     } catch(e) {
       console.log(e);
     }
@@ -120,6 +120,20 @@ export class Detalle {
 
 }
 
+export class Lugar {
+
+  nombre: string;
+  id: string;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
 export class RenglonReporte {
 
   fecha: Date;
@@ -128,7 +142,7 @@ export class RenglonReporte {
   entrada: Marcacion;
   salida: Marcacion;
   cantidad_horas_trabajadas: number;
-  justifcacion: FechaJustificada;
+  justificaciones: Array<FechaJustificada>;
 
   constructor(o:Object) {
     try {
@@ -167,6 +181,22 @@ export class Reporte {
       console.log(e);
     }
   }
+}
+
+export class ReporteGeneral {
+  lugar: Lugar;
+  reportes: Array<Reporte>;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.lugar = (this.lugar == null ? null : new Lugar(this.lugar));
+      this.reportes = (this.reportes == null) ? [] : this.reportes.map(r => new Reporte(r));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
 }
 
 export class Asistencia {

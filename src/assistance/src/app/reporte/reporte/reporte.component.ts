@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
-import { Reporte, RenglonReporte, Marcacion } from '../../entities/asistencia';
+import { Reporte, RenglonReporte, Marcacion, FechaJustificada } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
+import { MatDialog, MatDialogRef } from '@angular/material';
+
+import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+
+
 
 @Component({
   selector: 'app-reporte',
@@ -20,8 +26,11 @@ export class ReporteComponent implements OnInit {
               private service: AssistanceService,
               private http: HttpClient,
               private route: ActivatedRoute,
+              public dialog: MatDialog,
               private location: Location) { }
 
+
+  eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
 
   info: any = null;
   fecha_inicial: Date = null;
@@ -52,7 +61,7 @@ export class ReporteComponent implements OnInit {
 
   volver() {
     this.location.back();
-  }  
+  }
 
   generarReporte():void {
     console.log(this.fecha_inicial);
@@ -112,6 +121,27 @@ export class ReporteComponent implements OnInit {
       return []
     }
     return this.reporte.reportes;
+  }
+
+  eliminarJustificacion(justificacion:any) {
+    this.eliminarJustificacionDialogRef = this.dialog.open(DialogoEliminarFechaJustificadaComponent, {data: justificacion});
+    this.eliminarJustificacionDialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.push(this.service.eliminarFechaJustificada(this.usuario_id, justificacion.id)
+        .subscribe(r => {
+          this.clearJustificaciones(r);
+        }));
+      }
+    });
+  }
+
+  clearJustificaciones(jid: string) {
+    this.reporte.reportes.forEach(r => r.justificaciones = this.eliminarJustificacionDeRenglon(r.justificaciones, jid));
+    console.log(this.reporte.reportes);
+  }
+
+  eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
+    return justificaciones.filter(j => j.id != jid);;
   }
 
 }
