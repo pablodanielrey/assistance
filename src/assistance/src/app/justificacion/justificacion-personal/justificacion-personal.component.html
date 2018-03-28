@@ -35,52 +35,56 @@
           <!-- <p *ngIf="usuario" >
             Usuario: {{ usuario.apellido }}, {{ usuario.nombre }} ({{ usuario.dni }})
           </p> -->
-          <div class="fechas">
 
+          <form (ngSubmit)=justificar()>
 
-            <mat-radio-group [(ngModel)]="seleccionFecha" class="contenedorSeleccionDeFechas">
+            <div class="fechas">
 
-              <mat-radio-button value="simple" class="textoFecha">
-                <div matLine> Fecha </div>
-              </mat-radio-button>
+              <mat-radio-group name='seleccion_fecha' [(ngModel)]="seleccionFecha" class="contenedorSeleccionDeFechas">
 
-              <mat-radio-button value="rango">
-                <div matLine> Rango de Fechas</div>
-              </mat-radio-button>
+                <mat-radio-button value="simple" class="textoFecha">
+                  <div matLine> Fecha </div>
+                </mat-radio-button>
 
-            </mat-radio-group>
+                <mat-radio-button value="rango">
+                  <div matLine> Rango de Fechas</div>
+                </mat-radio-button>
 
-            <div *ngIf="seleccionFecha == 'simple'" class="contenedorSeleccionDeFechaSimple">
-              <mat-form-field class="seleccionFechaInicio">
-                <mat-placeholder>Fecha</mat-placeholder>
-                <input matInput [matDatepicker]="datePickerFecha" [(ngModel)]="fecha">
-                <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
-                <mat-datepicker #datePickerFecha></mat-datepicker>
-              </mat-form-field>
+              </mat-radio-group>
+
+              <div *ngIf="seleccionFecha == 'simple'" class="contenedorSeleccionDeFechaSimple">
+                <mat-form-field class="seleccionFechaInicio">
+                  <mat-placeholder>Fecha</mat-placeholder>
+                  <input matInput name='fecha' [matDatepicker]="datePickerFecha" [(ngModel)]="fecha">
+                  <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
+                  <mat-datepicker #datePickerFecha></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div *ngIf="seleccionFecha == 'rango'" class="contenedorSeleccionDeFechaDoble">
+                <mat-form-field class="seleccionFechaInicio">
+                  <mat-placeholder>Fecha Inicio</mat-placeholder>
+                  <input matInput name='fecha_inicio' [matDatepicker]="datePickerInicio" [(ngModel)]="fechaInicio">
+                  <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+                  <mat-datepicker #datePickerInicio></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="seleccionFechaInicio">
+                  <mat-placeholder>Fecha Fin</mat-placeholder>
+                  <input matInput name='fecha_fin' [matDatepicker]="datePickerFin" [(ngModel)]="fechaFin">
+                  <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+                  <mat-datepicker #datePickerFin></mat-datepicker>
+                </mat-form-field><br>
+
+              </div>
             </div>
 
-            <div *ngIf="seleccionFecha == 'rango'" class="contenedorSeleccionDeFechaDoble">
-              <mat-form-field class="seleccionFechaInicio">
-                <mat-placeholder>Fecha Inicio</mat-placeholder>
-                <input matInput [matDatepicker]="datePickerInicio" [(ngModel)]="fechaInicio">
-                <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
-                <mat-datepicker #datePickerInicio></mat-datepicker>
-              </mat-form-field>
 
-              <mat-form-field class="seleccionFechaInicio">
-                <mat-placeholder>Fecha Fin</mat-placeholder>
-                <input matInput [matDatepicker]="datePickerFin" [(ngModel)]="fechaFin">
-                <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
-                <mat-datepicker #datePickerFin></mat-datepicker>
-              </mat-form-field><br>
+            <div *ngIf="seleccionFecha == 'rango'" class="textDiasSeleccionados">{{obtenerDias()}} días seleccionados</div>
 
-            </div>
-          </div>
+            <button mat-button type='submit' [disabled]="!justificacion" class="btnClasico">JUSTIFICAR</button>
 
-          <div *ngIf="seleccionFecha == 'rango'" class="textDiasSeleccionados">20 días seleccionados</div>
-
-          <button mat-button (click)="justificar()" [disabled]="!justificacion" class="btnClasico">JUSTIFICAR</button>
-
+        </form>
 
         </div>
 
