@@ -55,10 +55,10 @@ export class AppComponent {
         console.debug('oauth/oidc event', e);
     })
     console.log('tratando de loguearme');
-    //  this.oauthService.tryLogin();
-    //  if (this.oauthService.getAccessToken() == null) {
-    //    console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
-    //    this.oauthService.initImplicitFlow();
+     this.oauthService.tryLogin();
+     if (this.oauthService.getAccessToken() == null) {
+       console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
+       this.oauthService.initImplicitFlow();
     }
   }
 

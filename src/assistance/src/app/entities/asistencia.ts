@@ -185,13 +185,13 @@ export class Reporte {
 
 export class ReporteGeneral {
   lugar: Lugar;
-  reportes: Array<Reporte>;
+  reportes: Array<RenglonReporte>;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
       this.lugar = (this.lugar == null ? null : new Lugar(this.lugar));
-      this.reportes = (this.reportes == null) ? [] : this.reportes.map(r => new Reporte(r));
+      this.reportes = (this.reportes == null) ? [] : this.reportes.map(r => new RenglonReporte(r));
     } catch(e) {
       console.log(e);
     }
