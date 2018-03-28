@@ -92,7 +92,7 @@
                         </mat-chip>
                       </mat-chip-list>
                     </div>
-                    <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/justificacion_personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>                    
+                    <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/justificacion_personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
                   </mat-cell>
                 </ng-container>
 
@@ -147,49 +147,12 @@
                         <div class="itemDetalles">
                           <div>Horas a trabajar:</div><div>{{obtenerHorasString(reporte.detalle.minutos_laborables)}}</div>
                         </div>
-
-                        <!-- <div class="itemDetalles">
-                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_trabajados)}}</div>
-                        </div> -->
-
                         <div class="itemDetalles">
                           <div>Horas justificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_justificados)}}</div>
                         </div>
                         <div class="itemDetalles">
                           <div>Horas injustificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_injustificados)}}</div>
                         </div>
-
-                        <!-- <div class="itemDetalles">
-                          <div>Config Mmhel:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_lab)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Config Mbhel:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_lab)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas extra l:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_en_dias_laborables)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas extra lp:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_en_dias_laborables)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Config MmheNl:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_no_lab)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Config MbheNl:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_no_lab)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas extra nl:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas extra nlp:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas extra totales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_totales)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas extra p totales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_totales)}}</div>
-                        </div> -->
-
                         <div class="itemDetalles">
                           <div>Horas totales trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
                         </div>
@@ -203,27 +166,15 @@
                         <div class="itemDetalles">
                           <div>Llegadas tarde:</div><div>{{reporte.detalle.entradas_tardes}}</div>
                         </div>
-                        <!-- <div class="itemDetalles">
-                          <div>Horas llegadas tardes:</div><div>{{obtenerHorasString(reporte.detalle.minutos_entradas_tardes)}}</div>
-                        </div> -->
                         <div class="itemDetalles">
                           <div>Llegadas tempranas:</div><div>{{reporte.detalle.entradas_tempranas}}</div>
                         </div>
-                        <!-- <div class="itemDetalles">
-                          <div>Horas llegadas tempranas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_entradas_tempranas)}}</div>
-                        </div> -->
                         <div class="itemDetalles">
                           <div>Salidas tarde:</div><div>{{reporte.detalle.salidas_tardes}}</div>
                         </div>
-                        <!-- <div class="itemDetalles">
-                          <div>Horas salidas tardes:</div><div>{{obtenerHorasString(reporte.detalle.minutos_salidas_tardes)}}</div>
-                        </div> -->
                         <div class="itemDetalles">
                           <div>Salidas tempranas:</div><div>{{reporte.detalle.salidas_tempranas}}</div>
                         </div>
-                        <!-- <div class="itemDetalles">
-                          <div>Horas salidas tempranas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_salidas_tempranas)}}</div>
-                        </div> -->
                       </div>
                   </div>
                   <div class="columna">
@@ -250,29 +201,6 @@
                   <div class="columna">
                     <div class="titulo">Stock</div>
                     <mat-divider></mat-divider>
-                    <div class="contenedorItemDetalles">
-                      <div class="itemDetalles">
-                        <div>Vacaciones:</div><div>0</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Ausente con aviso:</div><div>1</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Articulo 102:</div><div>2</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Boletas de salida (HS):</div><div>36</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Pre-Exámen:</div><div>16</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Compensatorio:</div><div>7</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Cumpleaños:</div><div>1</div>
-                      </div>
-                    </div>
                   </div>
               </div>
           </mat-tab>
@@ -304,49 +232,56 @@
                   <div class="columna">
                       <div class="titulo">Horas Extra Laborales</div>
                       <mat-divider></mat-divider>
-                      <div class="itemDetalles">
-                        <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_en_dias_laborables)}}</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_en_dias_laborables)}}</div>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_en_dias_laborables)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_en_dias_laborables)}}</div>
+                        </div>
                       </div>
                   </div>
                   <div class="columna">
                       <div class="titulo">Horas Extras</div>
                       <mat-divider></mat-divider>
-                      <div class="itemDetalles">
-                        <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra)}}</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados)}}</div>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados)}}</div>
+                        </div>
                       </div>
                   </div>
                   <div class="columna">
                       <div class="titulo">Total</div>
                       <mat-divider></mat-divider>
-                      <div class="itemDetalles">
-                        <div>Horas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_totales)}}</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_totales)}}</div>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_totales)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_totales)}}</div>
+                        </div>
                       </div>
                   </div>
                   <div class="columna">
                       <div class="titulo">Configuración</div>
                       <mat-divider></mat-divider>
-                      <div class="itemDetalles">
-                        <div>MMR laborales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_lab)}}</div>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>MMR laborales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_lab)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>BM laborales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_lab)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>MMR extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_no_lab)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>BM extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_no_lab)}}</div>
+                        </div>
                       </div>
-                      <div class="itemDetalles">
-                        <div>BM laborales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_lab)}}</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>MMR extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_no_lab)}}</div>
-                      </div>
-                      <div class="itemDetalles">
-                        <div>BM extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_no_lab)}}</div>
-                      </div>
-
                   </div>
 
                 </div>

@@ -6,7 +6,6 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router'
 
 
-
 @Component({
   selector: 'app-reporte-general-inicial',
   templateUrl: './reporte-general-inicial.component.html',
@@ -34,6 +33,8 @@ export class ReporteGeneralInicialComponent implements OnInit {
     this.lugares = [];
     this.seleccionados = [];
     this.subscriptions.push(this.service.buscarLugares(null)
+      .map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado' && l.tipo != 'lugar'))
+      .map(lugares => lugares.sort((a,b) => {return a.tipo.localeCompare(b.tipo)}))
       .subscribe(lugares => {
         console.log(lugares);
         this.lugares = lugares;

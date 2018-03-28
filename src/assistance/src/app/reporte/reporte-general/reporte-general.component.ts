@@ -81,7 +81,16 @@ export class ReporteGeneralComponent implements OnInit {
     let segundos = r.cantidad_horas_trabajadas;
     let min = Math.trunc((segundos / 60) % 60);
     let hs = Math.trunc((segundos / 60) / 60);
-    return String(hs) + ":" + String(min);
+    let a = '';
+    let b = '';
+    if (min < 10) {
+      b = '0';
+    }
+    if (hs < 10) {
+      a = '0';
+    }
+    return a + String(hs) + ":" + b + String(min);
+
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {

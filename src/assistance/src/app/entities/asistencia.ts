@@ -124,6 +124,7 @@ export class Lugar {
 
   nombre: string;
   id: string;
+  tipo: string;
 
   constructor(o:Object) {
     try {
