@@ -20,12 +20,9 @@ export class ReporteGeneralComponent implements OnInit {
               private service: AssistanceService) { }
 
   ngOnInit() {
-    this.subscriptions.push(this.route
-      .queryParams
-      .subscribe(params => {
-        this.ids = params['ids'] || [];
-        this.fecha = new Date(params['fecha']) || null;
-      }));
+    let params = this.route.snapshot.queryParamMap.params;
+    this.ids = params["ids"];
+    this.fecha = new Date(params['fecha']) || null;
     this.generarReporte();
   }
 

@@ -2,6 +2,7 @@
 {{ fecha | date: 'dd/MM/yyyy'}}
 </div>
 
+
 <div *ngIf='reportes'>
   <mat-tab-group *ngFor="let rep of reportes">
     <mat-tab label="{{rep.lugar.nombre}}" class="Tabs">
