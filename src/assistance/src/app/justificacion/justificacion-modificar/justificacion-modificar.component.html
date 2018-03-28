@@ -9,9 +9,10 @@
 
     <div class="contenidoPantalla" *ngIf="justificacion">
 
-      <div class="contenedorIzquierdo">
 
-          <form (ngSubmit)=guardar() #justificacionForm="ngForm" class="contenidoFormulario">
+          <div class="contenedorIzquierdo">
+
+            <form id="ngForm" (ngSubmit)=guardar() #justificacionForm="ngForm" class="contenidoFormulario">
 
               <mat-form-field class="item">
                 <input matInput placeholder="Nombre"  [(ngModel)]="justificacion.nombre" required name="nombre">
@@ -27,17 +28,18 @@
 
               <mat-checkbox [(ngModel)]="justificacion.general" name="general" class="textJustificacionGeneral">Marcar como Justificación General</mat-checkbox>
 
-          </form>
+            </form>
 
-      </div>
+          </div>
 
-      <div class="contenedorDerecho">
+          <div class="contenedorDerecho">
 
-        <button mat-button (click)="eliminar()" *ngIf="!nuevo" class="btnAcciones"><mat-icon class="icoMenu">delete</mat-icon> ELIMINAR JUSTIFICACIÓN</button>
-        <button mat-button (click)="cancelar()" *ngIf="nuevo" class="btnAcciones"> <mat-icon class="icoMenu">highlight_off</mat-icon> CANCELAR</button>
-        <button mat-button class="btnClasico" type="submit" [disabled]="!justificacionForm.form.valid"> GUARDAR</button>
+            <button mat-button (click)="eliminar()" *ngIf="!nuevo" class="btnAcciones"><mat-icon class="icoMenu">delete</mat-icon> ELIMINAR JUSTIFICACIÓN</button>
+            <button mat-button (click)="cancelar()" *ngIf="nuevo" class="btnAcciones"> <mat-icon class="icoMenu">highlight_off</mat-icon> CANCELAR</button>
+            <button mat-button class="btnClasico" form="ngForm" type="submit" [disabled]="!justificacionForm.form.valid"> GUARDAR</button>
 
-      </div>
+          </div>
+
 
     </div>
 
