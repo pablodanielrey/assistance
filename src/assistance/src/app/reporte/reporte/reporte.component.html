@@ -181,20 +181,8 @@
                       <div class="titulo">Justficaciones</div>
                       <mat-divider></mat-divider>
                       <div class="contenedorItemDetalles">
-                        <div class="itemDetalles">
-                          <div>Vacaciones:</div><div>28</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Ausentes con aviso:</div><div>5</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Articulo 102:</div><div>4</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Pre-exámen:</div><div>7</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Licencias medicas:</div><div>4</div>
+                        <div class="itemDetalles" *ngFor='let j of reporte.detalle.justificaciones'>
+                          <div>{{j.nombre}}:</div><div>{{j.cantidad}}</div>
                         </div>
                       </div>
                   </div>
