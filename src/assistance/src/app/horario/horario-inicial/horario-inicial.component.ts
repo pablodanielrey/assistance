@@ -27,6 +27,7 @@ export class HorarioInicialComponent implements OnInit {
 
   buscarUsuarios(): void {
     this.usuarios = [];
+    this.busqueda = this.busqueda.replace('\.','');
     this.subscriptions.push(this.service.buscarUsuarios(this.busqueda)
       .subscribe(usuarios => {
         console.log(usuarios);

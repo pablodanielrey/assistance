@@ -10,11 +10,11 @@
     <div class="contenidoPantalla" *ngIf="info">
 
       <mat-list>
-        <mat-list-item class="itemLista">
+        <mat-list-item *ngIf="info.usuario" class="itemLista">
           <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
-          <h3 matLine> {{info.usuario["nombre"]}} {{info.usuario["apellido"]}} </h3>
+          <h3 matLine> {{info.usuario.nombre}} {{info.usuario.apellido}} </h3>
           <p matLine>
-            <span class="itemTextoSubtitulo">{{info.usuario["dni"]}}</span>
+            <span class="itemTextoSubtitulo">{{info.usuario.dni}}</span>
           </p>
         </mat-list-item>
       </mat-list>
