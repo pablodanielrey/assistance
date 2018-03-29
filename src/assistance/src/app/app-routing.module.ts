@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { OidpGuard } from './oidp.guard';
+
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 
@@ -28,43 +30,46 @@ import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detal
 import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
 
 const routes: Routes = [
-  { path: 'reporte_inicial', component: ReporteInicialComponent },
-  { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent },
-  { path: 'reporte/:uid', component: ReporteComponent },
-  { path: 'reporte', component: ReporteComponent },
+  { path: 'reporte_inicial', component: ReporteInicialComponent, canActivate: [OidpGuard] },
+  { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
+  { path: 'reporte/:uid', component: ReporteComponent, canActivate: [OidpGuard] },
+  { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
 
   {
     path: 'reportes',
+    canActivate: [OidpGuard],
     children: [
-      {path: 'general', component: ReporteGeneralInicialComponent},
-      {path: 'general/generar', component: ReporteGeneralComponent}
+      {path: 'general', component: ReporteGeneralInicialComponent, canActivate: [OidpGuard]},
+      {path: 'general/generar', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
     ]
   },
 
-  { path: 'justificaciones', component: JustificacionInicialComponent },
-  { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent},
-  { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent },
-  { path: 'justificacion_admin', component: JustificacionAdminComponent },
-  { path: 'crear_justificacion', component: JustificacionModificarComponent},
-  { path: 'modificar_justificacion/:jid', component: JustificacionModificarComponent},
+  { path: 'justificaciones', component: JustificacionInicialComponent, canActivate: [OidpGuard] },
+  { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent, canActivate: [OidpGuard]},
+  { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent, canActivate: [OidpGuard] },
+  { path: 'justificacion_admin', component: JustificacionAdminComponent, canActivate: [OidpGuard] },
+  { path: 'crear_justificacion', component: JustificacionModificarComponent, canActivate: [OidpGuard]},
+  { path: 'modificar_justificacion/:jid', component: JustificacionModificarComponent, canActivate: [OidpGuard]},
   {
     path: 'justificaciones2',
+    canActivate: [OidpGuard],
     children: [
-      {path:'general', component: JustificacionGeneralComponent}
+      {path:'general', component: JustificacionGeneralComponent, canActivate: [OidpGuard]}
     ]
   },
 
-  { path: 'horarios', component: HorarioInicialComponent },
-  { path: 'horario_detalle/:uid', component: HorarioDetalleComponent },
-  { path: 'horario_modificar/:uid', component: HorarioModificarComponent },
+  { path: 'horarios', component: HorarioInicialComponent, canActivate: [OidpGuard] },
+  { path: 'horario_detalle/:uid', component: HorarioDetalleComponent, canActivate: [OidpGuard] },
+  { path: 'horario_modificar/:uid', component: HorarioModificarComponent, canActivate: [OidpGuard] },
 
   {
     path: 'relojes',
+    canActivate: [OidpGuard],
     children: [
-      { path: 'buscar', component: SeleccionarRelojComponent },
-      { path: 'reloj/:rid/detalle', component: DetalleRelojComponent },
-      { path: 'reloj/:rid/usuarios', component: UsuariosRelojComponent },
-      { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent }
+      { path: 'buscar', component: SeleccionarRelojComponent, canActivate: [OidpGuard]},
+      { path: 'reloj/:rid/detalle', component: DetalleRelojComponent, canActivate: [OidpGuard]},
+      { path: 'reloj/:rid/usuarios', component: UsuariosRelojComponent, canActivate: [OidpGuard]},
+      { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent, canActivate: [OidpGuard]}
     ]
   },
 

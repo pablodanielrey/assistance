@@ -50,6 +50,8 @@ import { ReporteGeneralInicialComponent } from './reporte/reporte-general-inicia
 import { ListadoLugaresComponent } from './listado-lugares/listado-lugares.component';
 import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-general.component';
 
+import { OidpGuard } from './oidp.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +98,8 @@ import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-gener
   providers: [
       AssistanceService,
       { provide: LOCALE_ID, useValue: "es" },
-      { provide: ErrorHandler, useClass: GlobalErrorHandler }
+      { provide: ErrorHandler, useClass: GlobalErrorHandler },
+      OidpGuard
   ],
   bootstrap: [AppComponent]
 })
