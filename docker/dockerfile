@@ -25,7 +25,8 @@ COPY docker/entrypoint.sh /
 #ENV PATH=/home/node/.npm-global/bin:$PATH
 #ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 #RUN npm install -g --unsafe @angular/cli
-RUN yarn add @angular/cli
+RUN yarn global add @angular/cli
+RUN ng set --global packageManager=yarn
 
 COPY src /src
 WORKDIR /src
