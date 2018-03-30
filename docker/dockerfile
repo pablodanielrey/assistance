@@ -21,20 +21,16 @@ COPY docker/entrypoint.sh /
 
 #para evitar problemas con la instalacion del angular
 #USER node
-RUN mkdir -p /home/node/.npm-global
-ENV PATH=/home/node/.npm-global/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-RUN npm install -g --unsafe @angular/cli
-
+#RUN mkdir -p /home/node/.npm-global
+#ENV PATH=/home/node/.npm-global/bin:$PATH
+#ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+#RUN npm install -g --unsafe @angular/cli
+RUN yarn add @angular/cli
 
 COPY src /src
 WORKDIR /src
 
-#RUN mkdir -p /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp && chmod -R a+wrX /usr/local/lib/node_modules/@angular/cli/node_modules/node-sass/.node-gyp
-#RUN cd /src && npm install @angular/cli
-#RUN cd /src && npm i -g npm
-#RUN cd /src && npm install --global --save --ensure --unsafe @angular/cli
-RUN cd /src/assistance && npm install
+RUN cd /src/assistance && yarn install
 RUN cd /src/assistance && ng build --prod --build-optimizer --aot --locale es
 
 EXPOSE 80

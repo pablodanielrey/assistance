@@ -18,11 +18,6 @@ export class GenerarReportePersonalComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.fin = new Date(Date.now());
-    // this.inicio = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
-    // console.log('Inicio:' + this.inicio);
-    // console.log('Fin:' + this.fin);
-
     this.route.params.subscribe(params => {
       if (params['q']) {
         this.busqueda = params['q'];
@@ -30,9 +25,9 @@ export class GenerarReportePersonalComponent implements OnInit {
     });
   }
 
-  usuarioSeleccionado(usuario: any): void {
+  usuarioSeleccionado(usuario: Usuario): void {
     console.log(usuario);
-    // this.router.navigate(['reporte', usuario.id, {fecha_inicial:this.inicio, fecha_final:this.fin}]);
+    // this.router.navigate(['reporte', usuario.id, {fecha_inicial:this.inicio.toISOString(), fecha_final:this.fin.toISOString()}]);
     this.router.navigate(['reporte', usuario.id]);
   }
 
