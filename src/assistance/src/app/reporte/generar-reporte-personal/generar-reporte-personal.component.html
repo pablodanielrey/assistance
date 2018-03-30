@@ -9,7 +9,7 @@
 
     <div class="contenidoPantalla">
 
-      <app-seleccionar-usuario>
+      <app-seleccionar-usuario [busqueda]='busqueda' (seleccionado)='usuarioSeleccionado($event)'>
       </app-seleccionar-usuario>
 
     </div>

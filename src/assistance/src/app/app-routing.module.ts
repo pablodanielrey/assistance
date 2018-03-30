@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'reporte_inicial', component: ReporteInicialComponent, canActivate: [OidpGuard] },
   { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
   { path: 'reporte/:uid', component: ReporteComponent, canActivate: [OidpGuard] },
-  { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
+  // { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
 
   {
     path: 'reportes',

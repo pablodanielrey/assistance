@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
 import { Usuario } from '../entities/usuario';
@@ -13,20 +13,15 @@ import { AssistanceService } from '../assistance.service';
 export class SeleccionarUsuarioComponent implements OnInit {
 
   usuarios: any[] = [];
-  busqueda:string = "";
+  @Input() busqueda:string;
   busquedaActivada: boolean = false;
   subscriptions: any[] = [];
-  inicio: Date;
-  fin: Date;
+  @Output() seleccionado: EventEmitter<Usuario> = new EventEmitter();
 
   constructor(public service: AssistanceService) {
   }
 
   ngOnInit() {
-    this.fin = new Date(Date.now());
-    this.inicio = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
-    console.log('Inicio:' + this.inicio);
-    console.log('Fin:' + this.fin);
   }
 
   ngOnDestroy() {
@@ -45,6 +40,10 @@ export class SeleccionarUsuarioComponent implements OnInit {
         console.log(usuarios);
         this.usuarios = usuarios;
       }));
+  }
+
+  onSelected(usuario: Usuario): void {
+    this.seleccionado.emit(usuario);
   }
 
 }

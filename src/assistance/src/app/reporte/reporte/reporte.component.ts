@@ -6,7 +6,7 @@ import { Reporte, RenglonReporte, Marcacion, FechaJustificada } from '../../enti
 import { AssistanceService } from '../../assistance.service';
 
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -26,32 +26,34 @@ export class ReporteComponent implements OnInit {
               private service: AssistanceService,
               private http: HttpClient,
               private route: ActivatedRoute,
+              private router: Router,
               public dialog: MatDialog,
               private location: Location) { }
 
 
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
 
+  reporte: Reporte = null;
   info: any = null;
   fecha_inicial: Date = null;
   fecha_final: Date = null;
   usuario_id: string = null;
   subscriptions: any[] = [];
 
-  reporte: Reporte = null;
-
   ngOnInit() {
-    let params = this.route.snapshot.paramMap;
-    let paramsQ = this.route.snapshot.queryParamMap;
-
-    this.fecha_inicial = new Date(paramsQ.get('fecha_inicial'));
-    this.fecha_final = new Date(paramsQ.get('fecha_final'));
-
-    // this.fecha_inicial = new Date(params.get('fecha_ini'));
-    // this.fecha_final = new Date(params.get('fecha_fin'));
-    this.usuario_id = params.get('uid');
-
-    this.generarReporte();
+    this.route.params.subscribe(params => {
+      console.log('parametros cambiaron');
+      console.log(params);
+      this.usuario_id = params['uid'];
+      if (params['fecha_inicial'] && params['fecha_final']) {
+        this.fecha_inicial = new Date(params['fecha_inicial']);
+        this.fecha_final = new Date(params['fecha_final']);
+      } else {
+         this.fecha_final = new Date(Date.now());
+         this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+      }
+      this._generarReporte();
+    });
   }
 
   ngOnDestroy() {
@@ -63,13 +65,16 @@ export class ReporteComponent implements OnInit {
     this.location.back();
   }
 
-  generarReporte():void {
-    console.log(this.fecha_inicial);
+  _generarReporte(): void {
     this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha_inicial, this.fecha_final)
     .subscribe(r => {
       console.log(r);
       this.reporte = r;
     }));
+  }
+
+  generarReporte():void {
+    this.router.navigate(['reporte', this.usuario_id, {fecha_inicial:this.fecha_inicial, fecha_final:this.fecha_final}]);
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {
