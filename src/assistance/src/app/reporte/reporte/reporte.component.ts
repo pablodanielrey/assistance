@@ -48,11 +48,12 @@ export class ReporteComponent implements OnInit {
       if (params['fecha_inicial'] && params['fecha_final']) {
         this.fecha_inicial = new Date(params['fecha_inicial']);
         this.fecha_final = new Date(params['fecha_final']);
+        this._generarReporte();
       } else {
          this.fecha_final = new Date(Date.now());
          this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+         this.generarReporte();
       }
-      this._generarReporte();
     });
   }
 
@@ -74,7 +75,7 @@ export class ReporteComponent implements OnInit {
   }
 
   generarReporte():void {
-    this.router.navigate(['reporte', this.usuario_id, {fecha_inicial:this.fecha_inicial, fecha_final:this.fecha_final}]);
+    this.router.navigate(['reporte', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString()}]);
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {
