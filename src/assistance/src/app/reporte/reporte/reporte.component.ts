@@ -63,7 +63,7 @@ export class ReporteComponent implements OnInit {
   }
 
   volver() {
-    this.location.back();
+    this.router.navigate(['generar_reporte_personal']);
   }
 
   _generarReporte(): void {

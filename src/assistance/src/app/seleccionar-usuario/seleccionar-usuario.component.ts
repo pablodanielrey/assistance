@@ -13,7 +13,7 @@ import { AssistanceService } from '../assistance.service';
 export class SeleccionarUsuarioComponent implements OnInit {
 
   usuarios: any[] = [];
-  @Input() busqueda:string;
+  busqueda:string;
   busquedaActivada: boolean = false;
   subscriptions: any[] = [];
   @Output() seleccionado: EventEmitter<Usuario> = new EventEmitter();
@@ -43,6 +43,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
   }
 
   onSelected(usuario: Usuario): void {
+    console.log('evento');
     this.seleccionado.emit(usuario);
   }
 

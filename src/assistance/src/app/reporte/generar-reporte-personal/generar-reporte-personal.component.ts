@@ -31,6 +31,7 @@ export class GenerarReportePersonalComponent implements OnInit {
   }
 
   usuarioSeleccionado(usuario: any): void {
+    console.log(usuario);
     // this.router.navigate(['reporte', usuario.id, {fecha_inicial:this.inicio, fecha_final:this.fin}]);
     this.router.navigate(['reporte', usuario.id]);
   }
