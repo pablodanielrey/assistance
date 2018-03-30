@@ -35,6 +35,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
 
   buscarUsuarios(): void {
     this.usuarios = [];
+    this.busqueda = this.busqueda.replace('\.', '').trim();
     this.subscriptions.push(this.service.buscarUsuariosAsistencia(this.busqueda)
       .subscribe(usuarios => {
         console.log(usuarios);
