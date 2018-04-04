@@ -2,27 +2,33 @@
 
     <div class="seccionSistema">
       <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
-       | Justificaciones
+       | Justificación General
     </div>
 
     <mat-divider></mat-divider>
 
     <div class="contenidoPantalla">
 
-      <div class="fechas">
+      <div class="contenedorIzquierdo">
+          <div class="listado">
+              <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
+          </div>
+      </div>
 
-        <mat-radio-group [(ngModel)]="seleccionFecha">
+      <div class="contenedorDerecho">
+        <mat-radio-group [(ngModel)]="seleccionFecha" class="contenedorSeleccionDeFechas">
 
-          <mat-radio-button value="simple">
-            <h3 matLine> Fecha</h3>
+          <mat-radio-button value="simple" class="textoFecha">
+            <div matLine> Fecha</div>
           </mat-radio-button>
 
           <mat-radio-button value="rango">
-            <h3 matLine> Rango de Fechas</h3>
+            <div matLine> Rango de Fechas</div>
           </mat-radio-button>
 
         </mat-radio-group>
-        <div *ngIf="seleccionFecha == 'simple'">
+
+        <div *ngIf="seleccionFecha == 'simple'" class="contenedorSeleccionDeFechaSimple">
           <mat-form-field class="seleccionFechaInicio">
             <mat-placeholder>Fecha</mat-placeholder>
             <input matInput [matDatepicker]="datePickerFecha" [(ngModel)]="fecha">
@@ -31,7 +37,7 @@
           </mat-form-field>
         </div>
 
-        <div *ngIf="seleccionFecha == 'rango'">
+        <div *ngIf="seleccionFecha == 'rango'" class="contenedorSeleccionDeFechaDoble">
           <mat-form-field class="seleccionFechaInicio">
             <mat-placeholder>Fecha Inicio</mat-placeholder>
             <input matInput [matDatepicker]="datePickerInicio" [(ngModel)]="fechaInicio">
@@ -46,14 +52,13 @@
             <mat-datepicker #datePickerFin></mat-datepicker>
           </mat-form-field>
         </div>
+
+        <div *ngIf="seleccionFecha == 'rango'" class="textDiasSeleccionados">{{obtenerDias()}} días seleccionados</div>
+
+        <button mat-button (click)="justificar()" [disabled]="!justificacion || !fecha" class="btnClasico">JUSTIFICAR</button>
+
       </div>
 
-      <div class="listado">
-        Seleccione justificación
-        <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
-      </div>
-
-      <button (click)="justificar()" [disabled]="!justificacion || !fecha">Aceptar</button>
     </div>
 
 </div>

@@ -1,0 +1,91 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+.justificacionGeneral {
+}
+
+.justificacionGeneral .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.justificacionGeneral .btnVolverSeccion {
+  color: grey;
+}
+
+.justificacionGeneral .contenidoPantalla {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+/*------------------------------------------*/
+
+.contenedorIzquierdo {
+  width: 400px;
+}
+
+.contenedorDerecho {
+  margin-left: 40px;
+  width: 350px;
+}
+
+.textoFecha {
+  margin-right: 10px;
+}
+
+.contenedorSeleccionDeFechaSimple {
+  margin-top: 20px;
+}
+
+.contenedorSeleccionDeFechaDoble {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.seleccionFechaInicio {
+  width: 48%;
+}
+
+.btnClasico {
+   background-color: #4186e1;
+    color: #fff;
+    width: 48%;
+    margin-bottom: 20px;
+    padding: 5px 10px 5px 15px;
+}
+
+.textDiasSeleccionados {
+  font-size: 14px;
+  color: grey;
+  margin-top: -15px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 769px) {
+  .justificacionGeneral .contenidoPantalla {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+    width: 100%;
+  }
+  .contenedorDerecho {
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .btnClasico{
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+
+  }
+
+
+
+  .listado {
+    height: 200px;
+  }
+}
