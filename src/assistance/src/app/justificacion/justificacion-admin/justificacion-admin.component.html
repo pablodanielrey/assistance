@@ -9,9 +9,12 @@
 
     <div class="contenidoPantalla">
 
-      <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
-
-      <button routerLink="/crear_justificacion"> Crear nueva </button>
+        <div class="contenedorPrincipal">
+            <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
+        </div>
+        <div class="contenedorSecundario">
+          <button mat-button class="btnClasico" routerLink="/crear_justificacion"> CREAR JUSTIFICACION </button>
+        </div>
     </div>
 
 </div>
