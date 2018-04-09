@@ -1,4 +1,4 @@
-<div class="reporte">
+<div class="reporteGeneralInicio">
 
     <div class="seccionSistema">
       <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
@@ -7,15 +7,22 @@
 
     <mat-divider></mat-divider>
 
-    <mat-form-field class="seleccionFechaInicio">
-      <mat-placeholder>Fecha</mat-placeholder>
-      <input matInput [matDatepicker]="datePickerFecha" [(ngModel)]="fecha">
-      <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
-      <mat-datepicker #datePickerFecha></mat-datepicker>
-    </mat-form-field>
+    <div class="contenidoPantalla">
 
-    <app-listado-lugares [lugares]="lugares" (selected)="seleccionarLugar($event)"></app-listado-lugares>
+        <div class="contnedorIzquierdo">
+          <app-listado-lugares [lugares]="lugares" (selected)="seleccionarLugar($event)"></app-listado-lugares>
+        </div>
 
+        <div class="contenedorDerecho">
+          <mat-form-field class="seleccionFechaInicio">
+            <mat-placeholder>Fecha</mat-placeholder>
+            <input matInput [matDatepicker]="datePickerFecha" [(ngModel)]="fecha">
+            <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
+            <mat-datepicker #datePickerFecha></mat-datepicker>
+          </mat-form-field>
 
-    <button mat-button (click)="generarReporte()">Generar Reporte</button>
+          <button mat-button (click)="generarReporte()">Generar Reporte</button>
+        </div>
+
+    </div>
 </div>

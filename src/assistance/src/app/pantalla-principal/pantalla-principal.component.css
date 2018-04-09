@@ -11,7 +11,13 @@
 }
 
 
+@media screen and (max-width: 769px) {
 
+.imgTocaMenu {
+  display: none;
+}
+
+}
 
 
 

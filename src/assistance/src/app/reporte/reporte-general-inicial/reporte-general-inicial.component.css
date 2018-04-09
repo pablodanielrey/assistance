@@ -1,0 +1,33 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+.reporteGeneralInicio {
+}
+
+.reporteGeneralInicio .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+
+}
+
+.reporteGeneralInicio .btnVolverSeccion {
+  color: grey;
+}
+
+.reporteGeneralInicio .contenidoPantalla {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+/* ---------------------------------------*/
+
+
+.contnedorIzquierdo {
+  max-width: 500px;
+}
+
+.contenedorDeercho {
+  max-width: 300px;
+}
