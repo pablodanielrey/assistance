@@ -28,6 +28,50 @@
   max-width: 500px;
 }
 
-.contenedorDeercho {
-  max-width: 300px;
+.contenedorDerecho {
+  margin-left: 40px;
+    width: 350px;
+}
+
+
+.seleccionFechaInicio {
+  width: 50%;
+}
+
+.btnClasico {
+   background-color: #4186e1;
+    color: #fff;
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 5px 10px 5px 15px;
+}
+
+@media screen and (max-width: 769px) {
+  .reporteGeneralInicio .contenidoPantalla {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+    width: 100%;
+  }
+  .contenedorDerecho {
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .seleccionFechaInicio {
+    width: 100%;
+  }
+
+  .btnClasico{
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+
+  }
+
+
+
+  .listado {
+    height: 200px;
+  }
 }
