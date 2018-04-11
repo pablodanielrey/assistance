@@ -37,7 +37,7 @@
 }
 
 .contenedorLugaresSeleccionados {
-  max-width: 700px;
+  width: 500px;
 }
 
 .btnAcciones {
@@ -53,6 +53,7 @@ background-color: white;
 .btnGenerar {
   background-color: #4186e1;
   color: #fff;
+  margin-left: 15px;
 }
 
 
@@ -66,6 +67,79 @@ background-color: white;
   display:none;
 }
 
+.contenedorFecha {
+  margin-top: 20px;
+}
+
 .contenedorBtnAcciones {
-    margin-top: 10px;
+    margin-top: 30px;
+}
+
+.separador {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.contenedorReporteLugar {
+  margin-bottom: 10px;
+}
+
+.btnJustificar {
+  color: grey;
+}
+
+.mat-column-Nombre{
+  padding-right:  20px;
+}
+
+.mat-column-Justificacion{
+    flex: 0 0 200px;
+}
+
+
+/*.mat-column-Dia{
+    flex: 0 0 100px;
+}
+
+.mat-column-Horario{
+    flex: 0 0 150px;
+}
+
+.mat-column-Justificacion{
+    flex: 0 0 300px;
+}*/
+
+
+@media screen and (max-width: 769px) {
+  .contenedorLugaresSeleccionados {
+    width: 100%;
+  }
+  .seleccionFecha {
+    width: 100%;
+  }
+  .btnGenerar {
+    padding: 10px;
+    width: 100%;
+    margin-left: 0px;
+
+  }
+
+  .contenedorBtnAcciones {
+      display: none;
+  }
+  .mat-column-Justificacion{
+      flex: 0;
+  }
+
+  .mat-column-Fecha,
+    .mat-column-Nombre,
+  .mat-column-Entrada,
+  .mat-column-Salida,
+  .mat-column-Horas,
+  .mat-column-Horas_trabajadas,
+  .mat-column-Justificacion {
+      font-size: 10px;
+  }
+
+
 }
