@@ -22,7 +22,7 @@
           </mat-form-field>
 
           <div>
-            <button mat-button (click)="generarReporte()" class="btnClasico">GENERAR REPORTE</button>
+            <button mat-button (click)="generarReporte()" [disabled]="seleccionados.length <= 0" class="btnClasico">GENERAR REPORTE</button>
           </div>
         </div>
 

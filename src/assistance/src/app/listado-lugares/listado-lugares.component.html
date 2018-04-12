@@ -9,9 +9,8 @@
   <mat-selection-list #listaLugares>
     <mat-list-option class="itemLista" *ngFor="let l of lugares | searchfilter:'nombre': busqueda"  (click) = "seleccionarLugar(l)"  [value]="l">
 
-        <div matListAvatar class="avatar">D</div>
-        <h3 *ngIf='l.materia' class="texto" matLine> {{l.materia.nombre }}</h3>
-        <h3 *ngIf='!l.materia' class="texto" matLine> {{l.nombre }}</h3>
+        <div matListAvatar class="avatar">{{ (l.materia) ? l.materia.nombre[0].toUpperCase() : l.nombre[0].toUpperCase() }}</div>
+        <h3 class="texto" matLine>{{ (l.materia) ? l.materia.nombre : l.nombre }}</h3>
         <p class="texto" matLine>
           <span *ngIf='l.materia' class="itemTextoSubtitulo"><b>{{l.tipo}}</b> | {{l.nombre }}</span>
           <span *ngIf='!l.materia' class="itemTextoSubtitulo">{{l.tipo}}</span>

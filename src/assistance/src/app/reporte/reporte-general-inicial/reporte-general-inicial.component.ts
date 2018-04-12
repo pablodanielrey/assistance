@@ -36,7 +36,15 @@ export class ReporteGeneralInicialComponent implements OnInit {
       .map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado'))
       .map(lugares => lugares.sort((a,b) => {return a.tipo.localeCompare(b.tipo)}))
       .subscribe(lugares => {
-        console.log(lugares);
+        lugares.sort((a,b):number => {
+          if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
+            return 1;
+          }
+          if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
         this.lugares = lugares;
       }));
   }
