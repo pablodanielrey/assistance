@@ -67,6 +67,7 @@ export class ReporteComponent implements OnInit {
   }
 
   _generarReporte(): void {
+    this.reporte = [];
     this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha_inicial, this.fecha_final)
     .subscribe(r => {
       console.log(r);
