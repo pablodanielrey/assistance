@@ -29,7 +29,17 @@ export class JustificacionPersonalInicioComponent implements OnInit {
     this.usuarios = [];
     this.subscriptions.push(this.service.buscarUsuariosAsistencia(event)
       .subscribe(usuarios => {
-        console.log(usuarios);
+        usuarios.sort((a,b) => {
+          var aFull = (a.usuario.nombre + a.usuario.apellido).toLowerCase()
+          var bFull = (b.usuario.nombre + b.usuario.apellido).toLowerCase()
+          if (aFull > bFull) {
+            return 1
+          }
+          if (aFull < bFull) {
+            return -1
+          }
+          return 0
+        });        
         this.usuarios = usuarios;
       }));
   }

@@ -64,6 +64,15 @@ export class JustificacionPersonalComponent implements OnInit {
     this.subscriptions.push(this.service.buscarJustificaciones()
       .map(justificaciones => justificaciones.filter(j => !j.general ? !j.general : false))
       .subscribe(justificaciones => {
+        justificaciones.sort((a,b):number => {
+          if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
+            return 1;
+          }
+          if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
+            return -1;
+          }
+          return 0
+        });
         this.justificaciones = justificaciones;
       }));
   }
