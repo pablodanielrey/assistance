@@ -12,7 +12,7 @@
   <!-- Lista -->
   <mat-selection-list #listaJustificaciones>
     <mat-list-option class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  (click) = "seleccionarJustificacion(j)">
-      <div matListAvatar class="avatar">D</div>
+      <div matListAvatar class="avatar">{{ j.nombre[0].toUpperCase()}}</div>
       <h3 class="texto" matLine> {{ j.nombre }}</h3>
       <p class="texto" matLine>
         <span class="itemTextoSubtitulo">Código {{ j.codigo }}</span>
