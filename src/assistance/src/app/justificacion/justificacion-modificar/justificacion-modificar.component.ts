@@ -3,7 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Justificacion } from '../../entities/asistencia';
 
 import { AssistanceService } from '../../assistance.service';
+import { NotificacionesService } from '../../notificaciones.service';
 import {Location} from '@angular/common';
+
+import { DialogoEliminarJustificacionComponent } from '../dialogo-eliminar-justificacion/dialogo-eliminar-justificacion.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
+
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,8 +24,12 @@ export class JustificacionModificarComponent implements OnInit {
   justificacion_id: string = null;
   nuevo: boolean = true;
 
+  eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarJustificacionComponent>;
+
   constructor(private service: AssistanceService,
+              private notificaciones: NotificacionesService,
               private location: Location,
+              public dialog: MatDialog,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -52,11 +61,13 @@ export class JustificacionModificarComponent implements OnInit {
     if (this.nuevo) {
       this.subscriptions.push(this.service.crearJustificacion(this.justificacion)
         .subscribe(r => {
+          this.notificaciones.show("Se ha creado la justificacion " + this.justificacion.nombre);
           this.volver();
         }));
     } else {
       this.subscriptions.push(this.service.modificarJustificacion(this.justificacion)
         .subscribe(r => {
+          this.notificaciones.show("Se ha modificado la justificacion " + this.justificacion.nombre);
           this.volver();
         }));
     }
@@ -75,10 +86,17 @@ export class JustificacionModificarComponent implements OnInit {
       return
     }
 
-    this.subscriptions.push(this.service.eliminarJustificacion(this.justificacion_id)
-      .subscribe(r => {
-        console.log(r);
-      }));
+    this.eliminarJustificacionDialogRef = this.dialog.open(DialogoEliminarJustificacionComponent, {data: this.justificacion});
+    this.eliminarJustificacionDialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subscriptions.push(this.service.eliminarJustificacion(this.justificacion_id)
+          .subscribe(r => {
+            this.notificaciones.show("Se ha eliminado la justificacion " + this.justificacion.nombre);
+            this.volver();
+          }));
+      }
+    });
+
   }
 
 

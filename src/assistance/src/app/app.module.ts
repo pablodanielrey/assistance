@@ -19,6 +19,7 @@ import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-princi
 
 
 import { AssistanceService } from './assistance.service';
+import { NotificacionesService } from './notificaciones.service';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { SeleccionarRelojComponent } from './relojes/seleccionar-reloj/seleccionar-reloj.component';
 import { UsuariosRelojComponent } from './relojes/usuarios-reloj/usuarios-reloj.component';
@@ -51,6 +52,7 @@ import { ListadoLugaresComponent } from './listado-lugares/listado-lugares.compo
 import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-general.component';
 
 import { OidpGuard } from './oidp.guard';
+import { DialogoEliminarJustificacionComponent } from './justificacion/dialogo-eliminar-justificacion/dialogo-eliminar-justificacion.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,8 @@ import { OidpGuard } from './oidp.guard';
     DialogoEliminarFechaJustificadaComponent,
     ReporteGeneralInicialComponent,
     ListadoLugaresComponent,
-    ReporteGeneralComponent
+    ReporteGeneralComponent,
+    DialogoEliminarJustificacionComponent
   ],
   imports: [
     BrowserModule,
@@ -94,9 +97,10 @@ import { OidpGuard } from './oidp.guard';
     AppRoutingModule,
     OAuthModule.forRoot()
   ],
-  entryComponents: [DialogoEliminarFechaJustificadaComponent],
+  entryComponents: [DialogoEliminarFechaJustificadaComponent, DialogoEliminarJustificacionComponent],
   providers: [
       AssistanceService,
+      NotificacionesService,
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
       OidpGuard

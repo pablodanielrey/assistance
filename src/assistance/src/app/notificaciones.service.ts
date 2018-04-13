@@ -1,18 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, NgZone } from '@angular/core';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material';
 
 @Injectable()
 export class NotificacionesService {
 
-  constructor() {
-    /*
-    if (window.webkitNotifications) {
-      console.log("Notifications are supported!");
-    }
-    else {
-      console.log("Notifications are not supported for this Browser/OS version yet.");
-    }
-    */
+  constructor(public snack: MatSnackBar) {
+
   }
 
+
+  show(msg:string):void {
+    alert(msg);
+  }
 
 }
