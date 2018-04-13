@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [OidpGuard],
     children: [
       {path: 'general', component: ReporteGeneralInicialComponent, canActivate: [OidpGuard]},
-      {path: 'general/generar', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
+      {path: 'general/generar/:fecha', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
     ]
   },
 

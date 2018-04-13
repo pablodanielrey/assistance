@@ -59,7 +59,8 @@ export class ReporteGeneralInicialComponent implements OnInit {
 
   generarReporte() {
     let ids = this.seleccionados.map(item => item.id);
-    this.router.navigate(['reportes/general/generar'], { queryParams: {ids: ids, fecha: this.fecha} });
+    // this.router.navigate(['reportes/general/generar'], { queryParams: {ids: ids, fecha: this.fecha} });
+    this.router.navigate(['reportes/general/generar', this.fecha.toISOString(), {ids: ids}]);
   }
 
 }

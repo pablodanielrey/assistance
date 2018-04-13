@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada } from '../../entities/asistencia';
 import { Location } from '@angular/common';
 
@@ -24,16 +24,17 @@ export class ReporteGeneralComponent implements OnInit {
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private service: AssistanceService,
               public dialog: MatDialog,
               private location: Location) { }
 
   ngOnInit() {
-    let params = this.route.snapshot.queryParams;
-    this.ids = params["ids"];
-    this.ids = (typeof this.ids === "string") ? [this.ids] : this.ids;
-    this.fecha = new Date(params['fecha']) || null;
-    this.generarReporte();
+    this.route.params.subscribe(params => {
+      this.ids = params['ids'].split(",");
+      this.fecha = new Date(params['fecha']) || new Date(Date.now());
+      this._generarReporte();
+    });
 
   }
 
@@ -45,13 +46,17 @@ export class ReporteGeneralComponent implements OnInit {
   volver() {
     this.location.back();
   }
-  generarReporte() {
+
+  _generarReporte():void {
     this.reportes = [];
     this.subscriptions.push(this.service.generarReporteGeneral(this.ids, this.fecha)
     .subscribe(r => {
       this.reportes = r;
-      console.log(r);
     }));
+  }
+
+  generarReporte():void {
+    this.router.navigate(['reportes/general/generar', this.fecha.toISOString(), {ids: this.ids}]);
   }
 
   obtenerHoraEntrada(r: RenglonReporte) {
