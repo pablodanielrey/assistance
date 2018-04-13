@@ -53,6 +53,8 @@
 
       </div>
 
+      <mat-spinner *ngIf="buscando"></mat-spinner>
+
       <div *ngIf='reportes'>
         <mat-tab-group *ngFor="let rep of reportes" class="contenedorReporteLugar">
           <mat-tab label="{{rep.lugar.nombre}}" class="Tabs">
