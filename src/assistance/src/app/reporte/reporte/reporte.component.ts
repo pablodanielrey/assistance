@@ -39,8 +39,10 @@ export class ReporteComponent implements OnInit {
   fecha_final: Date = null;
   usuario_id: string = null;
   subscriptions: any[] = [];
+  buscando: boolean = false;
 
   ngOnInit() {
+    this.buscando = false;
     this.route.params.subscribe(params => {
       console.log('parametros cambiaron');
       console.log(params);
@@ -68,8 +70,10 @@ export class ReporteComponent implements OnInit {
 
   _generarReporte(): void {
     this.reporte = null;
+    this.buscando = true;
     this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha_inicial, this.fecha_final)
     .subscribe(r => {
+      this.buscando = false;
       this.reporte = r;
     }));
   }

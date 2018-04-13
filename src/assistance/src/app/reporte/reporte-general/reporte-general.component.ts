@@ -22,6 +22,7 @@ export class ReporteGeneralComponent implements OnInit {
   ids: string[];
   reportes: Array<ReporteGeneral> = [];
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
+  buscando: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -30,6 +31,7 @@ export class ReporteGeneralComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit() {
+    this.buscando = false;
     this.route.params.subscribe(params => {
       this.ids = params['ids'].split(",");
       this.fecha = new Date(params['fecha']) || new Date(Date.now());
@@ -49,9 +51,11 @@ export class ReporteGeneralComponent implements OnInit {
 
   _generarReporte():void {
     this.reportes = [];
+    this.buscando = true;
     this.subscriptions.push(this.service.generarReporteGeneral(this.ids, this.fecha)
     .subscribe(r => {
       this.reportes = r;
+      this.buscando = false;
     }));
   }
 

@@ -34,13 +34,15 @@
           </div>
 
           <div class="contenedorFecha">
+            <form (ngSubmit)='generarReporte()'>
               <mat-form-field class="seleccionFecha">
                   <mat-placeholder>Fecha</mat-placeholder>
-                <input matInput [matDatepicker]="datePicker" [(ngModel)]="fecha">
+                <input matInput [matDatepicker]="datePicker" [(ngModel)]="fecha" name="fecha" required>
                 <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
                 <mat-datepicker #datePicker></mat-datepicker>
               </mat-form-field>
-              <button mat-button class="btnGenerar" (click)='generarReporte()'>GENERAR REPORTE</button>
+              <button mat-button class="btnGenerar" name="generar" [disabled]="buscando" type='submit' >GENERAR REPORTE</button>
+            </form>
           </div>
 
           <div class="contenedorBtnAcciones">
