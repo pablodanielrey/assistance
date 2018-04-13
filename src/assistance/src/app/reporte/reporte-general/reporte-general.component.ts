@@ -44,7 +44,7 @@ export class ReporteGeneralComponent implements OnInit {
   }
 
   volver() {
-    this.location.back();
+    this.router.navigate(['reportes/general']);
   }
 
   _generarReporte():void {
