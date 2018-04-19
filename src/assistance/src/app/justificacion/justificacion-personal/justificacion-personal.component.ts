@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Justificacion, FechaJustificada } from '../../entities/asistencia';
 import { Usuario } from '../../entities/usuario';
 import { AssistanceService } from '../../assistance.service';
+import { NotificacionesService } from '../../notificaciones.service';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class JustificacionPersonalComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private location: Location,
+              private notificaciones: NotificacionesService,
               private service: AssistanceService) { }
 
   ngOnInit() {
@@ -114,6 +116,8 @@ export class JustificacionPersonalComponent implements OnInit {
 
     this.subscriptions.push(this.service.justificar(fj)
       .subscribe(r => {
+        let fechaStr = (this.seleccionFecha == 'simple') ? this.fecha.toLocaleDateString() : this.fechaInicio.toLocaleDateString() + " - " + this.fechaFin.toLocaleDateString();
+        this.notificaciones.show("Justificacion generada: " + this.justificacion.nombre + ", para la fecha: " + fechaStr);
         this.volver();
       }));
 

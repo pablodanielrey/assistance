@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
+import { NotificacionesService } from '../../notificaciones.service';
 import { AssistanceService } from '../../assistance.service';
 
 import { DatosHorario, Horario } from '../../entities/asistencia';
@@ -21,6 +22,7 @@ export class HorarioModificarComponent implements OnInit {
 
   constructor(private service: AssistanceService,
               private location: Location,
+              private notificaciones: NotificacionesService,
               private route: ActivatedRoute,) { }
 
   ngOnInit() {
@@ -88,7 +90,8 @@ export class HorarioModificarComponent implements OnInit {
     }
     this.subscriptions.push(this.service.crearHorario(this.info.horarios)
     .subscribe(r => {
-      console.log(r);
+      this.notificaciones.show("El horario se ha creado correctamente");
+      this.volver();
     }));
   }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Justificacion, FechaJustificada } from '../../entities/asistencia';
+import { NotificacionesService } from '../../notificaciones.service';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class JustificacionGeneralComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private location: Location,
+              private notificaciones: NotificacionesService,
               private service: AssistanceService) { }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class JustificacionGeneralComponent implements OnInit {
           if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
             return -1;
           }
-          return 0          
+          return 0
         });
         this.justificaciones = justificaciones;
       }));
@@ -97,6 +99,8 @@ export class JustificacionGeneralComponent implements OnInit {
 
     this.subscriptions.push(this.service.justificar(fj)
       .subscribe(r => {
+        let fechaStr = (this.seleccionFecha == 'simple') ? this.fecha.toLocaleDateString() : this.fechaInicio.toLocaleDateString() + " - " + this.fechaFin.toLocaleDateString();
+        this.notificaciones.show("Justificacion generada: " + this.justificacion.nombre + ", para la fecha: " + fechaStr);
         this.volver();
       }));
 
