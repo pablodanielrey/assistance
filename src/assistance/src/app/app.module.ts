@@ -3,8 +3,10 @@ import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GlobalErrorHandler } from './error.handler';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { TokenInterceptor } from './auth.service';
 
 import { MyMaterialModule } from './material.module';
 
@@ -103,7 +105,8 @@ import { DialogoEliminarJustificacionComponent } from './justificacion/dialogo-e
       NotificacionesService,
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
-      OidpGuard
+      OidpGuard,
+      { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }      
   ],
   bootstrap: [AppComponent]
 })

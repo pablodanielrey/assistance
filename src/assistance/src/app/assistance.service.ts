@@ -24,7 +24,7 @@ export class AssistanceService {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/`;
     return this.http.get<DatosAsistencia[]>(apiUrl, options)
     //.map(datos => datos.map(d => d));
     /*
@@ -57,7 +57,7 @@ export class AssistanceService {
               .set('q', texto ? texto : 'algoquenoexiste')
               .set('assistance', 'true')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/`;
     return this.http.get<DatosAsistencia[]>(apiUrl, options);
                     //.map(datos => datos.filter(d => d.asistencia != null));
   }
