@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/src/temporales/angular-oauth2-oidc"
 		}
 	],
 	"settings": {}
