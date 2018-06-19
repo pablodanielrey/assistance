@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "/src/temporales/angular-oauth2-oidc"
+		},
+		{
+			"path": "/src/github/assistance-api"
 		}
 	],
 	"settings": {}

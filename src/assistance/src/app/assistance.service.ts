@@ -24,7 +24,7 @@ export class AssistanceService {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/`;
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
     return this.http.get<DatosAsistencia[]>(apiUrl, options)
     //.map(datos => datos.map(d => d));
     /*
@@ -57,7 +57,7 @@ export class AssistanceService {
               .set('q', texto ? texto : 'algoquenoexiste')
               .set('assistance', 'true')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/`;
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
     return this.http.get<DatosAsistencia[]>(apiUrl, options);
                     //.map(datos => datos.filter(d => d.asistencia != null));
   }
@@ -124,13 +124,13 @@ export class AssistanceService {
   }
 
   eliminarHuellas(rid:string): Observable<any> {
-    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/eliminar_huellas`;
-    return this.http.get<any>(apiUrl);
+    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/huellas`;
+    return this.http.delete<any>(apiUrl);
   }
 
   eliminarUsuarios(rid:string): Observable<any> {
-    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/eliminar_usuarios`;
-    return this.http.get<any>(apiUrl);
+    let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}/usuarios`;
+    return this.http.delete<any>(apiUrl);
   }
 
   sincronizarLogs(rid:string): Observable<HttpResponse<any>> {
@@ -144,14 +144,14 @@ export class AssistanceService {
               .set('inicio', fecha_inicio.toDateString())
               .set('fin', fecha_fin.toDateString())
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/reporte/`;
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/reporte`;
     return this.http.get<[Reporte]>(apiUrl, options).map(datos => new Reporte(datos));
   }
 
   generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<ReporteGeneral[]> {
 
     const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
-    let apiUrl = `${ASSISTANCE_API_URL}/reportes/`;
+    let apiUrl = `${ASSISTANCE_API_URL}/reportes`;
     return this.http.post<ReporteGeneral[]>(apiUrl, options).map(datos => datos.map(d => new ReporteGeneral(d)));
   }
 
@@ -160,12 +160,12 @@ export class AssistanceService {
     const options = { params: new HttpParams()
               .set('fecha', fecha.toDateString())
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/horario/`;
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/horario`;
     return this.http.get<[DatosHorario]>(apiUrl, options).map(datos => new DatosHorario(datos));
   }
 
   crearHorario(horarios: Horario[]):Observable<any> {
-    let apiUrl = `${ASSISTANCE_API_URL}/horario/`;
+    let apiUrl = `${ASSISTANCE_API_URL}/horario`;
     return this.http.put<any>(apiUrl, horarios);
   }
 
