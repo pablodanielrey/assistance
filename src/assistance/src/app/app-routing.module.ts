@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { OidpGuard } from './oidp.guard';
 
+import { LoaderComponent } from './loader/loader.component';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 
@@ -73,9 +74,10 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'inicial', component: PantallaPrincipalComponent, canActivate: [OidpGuard] },
   { path: 'galeria', component: GaleriaComponent },
-  { path: 'inicial', component: PantallaPrincipalComponent },
-  { path: '', redirectTo: '/inicial', pathMatch: 'full' }
+  { path: 'loader', component: LoaderComponent },
+  { path: '', redirectTo: '/loader', pathMatch: 'full' }
 ];
 
 

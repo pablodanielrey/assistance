@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 // configuro la autentificacion
 import { AuthConfig } from 'angular-oauth2-oidc';
@@ -31,7 +32,7 @@ export class AppComponent {
 
   menu_abierto: boolean = false;
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService, private router: Router) {
     this.configureWithNewConfigApi();
   }
 
@@ -58,7 +59,9 @@ export class AppComponent {
      this.oauthService.tryLogin();
      if (this.oauthService.getAccessToken() == null) {
        console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
-       this.oauthService.initImplicitFlow();
+       //this.oauthService.initImplicitFlow();
+    } else {
+      this.router.navigateByUrl('inicial');
     }
   }
 
