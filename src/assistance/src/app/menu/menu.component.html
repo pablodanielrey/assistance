@@ -2,10 +2,18 @@
 
   <mat-sidenav #sidenav mode="over" (openedChange)='onOpenedChange($event)' [disableClose]='false' [(opened)]="menu_abierto">
 
-    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/inicial"><mat-icon class="icoMenu">bookmark_border</mat-icon> Inicio</button><br>
-    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/reporte_inicial"><mat-icon class="icoMenu">list</mat-icon> Reportes</button><br>
-    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/justificaciones"><mat-icon class="icoMenu">star_border</mat-icon> Justificaciones</button><br>
-    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/horarios"><mat-icon class="icoMenu">alarm_on</mat-icon> Horarios</button><br>
+    <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['inicial']}}]">
+      <mat-icon class="icoMenu">bookmark_border</mat-icon> Inicio
+    </button><br>
+    <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['reportes/inicial']}}]">
+      <mat-icon class="icoMenu">list</mat-icon> Reportes
+    </button><br>
+    <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['justificaciones']}}]">
+      <mat-icon class="icoMenu">star_border</mat-icon> Justificaciones
+    </button><br>
+    <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['horarios']}}]">
+      <mat-icon class="icoMenu">alarm_on</mat-icon> Horarios
+    </button><br>
     <!-- <button class="btn" mat-button (click)='onInternalItem()' routerLink="/relojes/buscar"><mat-icon class="icoMenu">query_builder</mat-icon> Administrar Relojes &nbsp;</button><br> -->
   </mat-sidenav>
 

@@ -40,23 +40,24 @@ const routes: Routes = [
     path: 'sistema',
     component: SistemaComponent,
     children: [
-      { path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent }
+      { path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
+      {
+        path: 'reportes',
+        children: [
+          { path: 'inicial', outlet: 'pantalla', component: ReporteInicialComponent},
+          { path: 'general', outlet: 'pantalla', component: ReporteGeneralInicialComponent},
+          { path: 'general/generar/:fecha', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
+        ]
+      }
+ 
     ]
-  },
+  }
 
   // { path: 'reporte_inicial', component: ReporteInicialComponent, canActivate: [OidpGuard] },
   // { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
   // { path: 'reporte/:uid', component: ReporteComponent, canActivate: [OidpGuard] },
   // // { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
 
-  // {
-  //   path: 'reportes',
-  //   canActivate: [OidpGuard],
-  //   children: [
-  //     {path: 'general', outlet: 'pantalla', component: ReporteGeneralInicialComponent},
-  //     {path: 'general/generar/:fecha', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
-  //   ]
-  // },
 
   // { path: 'justificaciones', component: JustificacionInicialComponent, canActivate: [OidpGuard] },
   // { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent, canActivate: [OidpGuard]},

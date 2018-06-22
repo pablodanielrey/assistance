@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { MatSidenav } from '@angular/material/sidenav';
 import { OAuthService } from 'angular-oauth2-oidc';
 
@@ -13,7 +15,7 @@ export class MenuComponent implements OnInit {
   //@Output() openedChange = new EventEmitter<boolean>();
   @Output() onItem = new EventEmitter<boolean>();
 
-  constructor(private oauthService: OAuthService) { }
+  constructor(private oauthService: OAuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,6 +23,12 @@ export class MenuComponent implements OnInit {
   onInternalItem():void {
     this.onItem.emit(false);
   }
+
+  inicial():void {
+    this.onInternalItem();
+    this.router.navigate(['/sistema', {outlets: {'pantalla': ['inicial']}}]);
+  }
+
 
   onOpenedChange(event: boolean):void {
     this.onItem.emit(event);
