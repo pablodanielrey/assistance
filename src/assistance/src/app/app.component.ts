@@ -57,12 +57,13 @@ export class AppComponent {
     })
     console.log('tratando de loguearme');
     this.oauthService.tryLogin();
-    //if (this.oauthService.getAccessToken() == null) {
+    if (this.oauthService.getAccessToken() == null) {
     //    console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
     //    //this.oauthService.initImplicitFlow();
-    // } else {
-    //this.router.navigateByUrl('/sistema/inicial');
-    // }
+      this.router.navigate(['/loader']);
+    } else {
+      this.router.navigate(['/sistema', {outlets: {'pantalla': ['inicial']}}]);
+    }
   }
 
 }

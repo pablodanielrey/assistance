@@ -35,6 +35,7 @@ import { HorarioModificarComponent } from './horario/horario-modificar/horario-m
 
 const routes: Routes = [
 
+  { path: 'loader', component: LoaderComponent },
   {
     path: 'sistema',
     component: SistemaComponent,
@@ -86,7 +87,7 @@ const routes: Routes = [
   //   ]
   // },
 
-  { path: 'loader', component: LoaderComponent }
+
   // { path: '', redirectTo: 'loader', pathMatch: 'full' }
 ];
 
