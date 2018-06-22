@@ -56,6 +56,7 @@ import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-gener
 import { OidpGuard } from './oidp.guard';
 import { DialogoEliminarJustificacionComponent } from './justificacion/dialogo-eliminar-justificacion/dialogo-eliminar-justificacion.component';
 import { LoaderComponent } from './loader/loader.component';
+import { SistemaComponent } from './sistema/sistema.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { LoaderComponent } from './loader/loader.component';
     ListadoLugaresComponent,
     ReporteGeneralComponent,
     DialogoEliminarJustificacionComponent,
-    LoaderComponent
+    LoaderComponent,
+    SistemaComponent
   ],
   imports: [
     BrowserModule,

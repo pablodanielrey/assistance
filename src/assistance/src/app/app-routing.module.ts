@@ -77,7 +77,7 @@ const routes: Routes = [
   { path: 'inicial', component: PantallaPrincipalComponent, canActivate: [OidpGuard] },
   { path: 'galeria', component: GaleriaComponent },
   { path: 'loader', component: LoaderComponent },
-  { path: '', redirectTo: '/loader', pathMatch: 'full' }
+  { path: '', redirectTo: 'loader', pathMatch: 'full' }
 ];
 
 
