@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { OidpGuard } from './oidp.guard';
 
+
 import { LoaderComponent } from './loader/loader.component';
+
+import { SistemaComponent } from './sistema/sistema.component';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 
@@ -31,53 +34,60 @@ import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detal
 import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
 
 const routes: Routes = [
-  { path: 'reporte_inicial', component: ReporteInicialComponent, canActivate: [OidpGuard] },
-  { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
-  { path: 'reporte/:uid', component: ReporteComponent, canActivate: [OidpGuard] },
-  // { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
 
   {
-    path: 'reportes',
-    canActivate: [OidpGuard],
+    path: 'sistema',
+    component: SistemaComponent,
     children: [
-      {path: 'general', component: ReporteGeneralInicialComponent, canActivate: [OidpGuard]},
-      {path: 'general/generar/:fecha', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
+      { path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent }
     ]
   },
 
-  { path: 'justificaciones', component: JustificacionInicialComponent, canActivate: [OidpGuard] },
-  { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent, canActivate: [OidpGuard]},
-  { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent, canActivate: [OidpGuard] },
-  { path: 'justificacion_admin', component: JustificacionAdminComponent, canActivate: [OidpGuard] },
-  { path: 'crear_justificacion', component: JustificacionModificarComponent, canActivate: [OidpGuard]},
-  { path: 'modificar_justificacion/:jid', component: JustificacionModificarComponent, canActivate: [OidpGuard]},
-  {
-    path: 'justificaciones2',
-    canActivate: [OidpGuard],
-    children: [
-      {path:'general', component: JustificacionGeneralComponent, canActivate: [OidpGuard]}
-    ]
-  },
+  // { path: 'reporte_inicial', component: ReporteInicialComponent, canActivate: [OidpGuard] },
+  // { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
+  // { path: 'reporte/:uid', component: ReporteComponent, canActivate: [OidpGuard] },
+  // // { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
 
-  { path: 'horarios', component: HorarioInicialComponent, canActivate: [OidpGuard] },
-  { path: 'horario_detalle/:uid', component: HorarioDetalleComponent, canActivate: [OidpGuard] },
-  { path: 'horario_modificar/:uid', component: HorarioModificarComponent, canActivate: [OidpGuard] },
+  // {
+  //   path: 'reportes',
+  //   canActivate: [OidpGuard],
+  //   children: [
+  //     {path: 'general', outlet: 'pantalla', component: ReporteGeneralInicialComponent},
+  //     {path: 'general/generar/:fecha', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
+  //   ]
+  // },
 
-  {
-    path: 'relojes',
-    canActivate: [OidpGuard],
-    children: [
-      { path: 'buscar', component: SeleccionarRelojComponent, canActivate: [OidpGuard]},
-      { path: 'reloj/:rid/detalle', component: DetalleRelojComponent, canActivate: [OidpGuard]},
-      { path: 'reloj/:rid/usuarios', component: UsuariosRelojComponent, canActivate: [OidpGuard]},
-      { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent, canActivate: [OidpGuard]}
-    ]
-  },
+  // { path: 'justificaciones', component: JustificacionInicialComponent, canActivate: [OidpGuard] },
+  // { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent, canActivate: [OidpGuard]},
+  // { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent, canActivate: [OidpGuard] },
+  // { path: 'justificacion_admin', component: JustificacionAdminComponent, canActivate: [OidpGuard] },
+  // { path: 'crear_justificacion', component: JustificacionModificarComponent, canActivate: [OidpGuard]},
+  // { path: 'modificar_justificacion/:jid', component: JustificacionModificarComponent, canActivate: [OidpGuard]},
+  // {
+  //   path: 'justificaciones2',
+  //   canActivate: [OidpGuard],
+  //   children: [
+  //     {path:'general', component: JustificacionGeneralComponent, canActivate: [OidpGuard]}
+  //   ]
+  // },
 
-  { path: 'inicial', component: PantallaPrincipalComponent, canActivate: [OidpGuard] },
-  { path: 'galeria', component: GaleriaComponent },
-  { path: 'loader', component: LoaderComponent },
-  { path: '', redirectTo: 'loader', pathMatch: 'full' }
+  // { path: 'horarios', component: HorarioInicialComponent, canActivate: [OidpGuard] },
+  // { path: 'horario_detalle/:uid', component: HorarioDetalleComponent, canActivate: [OidpGuard] },
+  // { path: 'horario_modificar/:uid', component: HorarioModificarComponent, canActivate: [OidpGuard] },
+
+  // {
+  //   path: 'relojes',
+  //   canActivate: [OidpGuard],
+  //   children: [
+  //     { path: 'buscar', outlet: 'pantalla', component: SeleccionarRelojComponent },
+  //     { path: 'reloj/:rid/detalle', outlet: 'pantalla', component: DetalleRelojComponent, canActivate: [OidpGuard]},
+  //     { path: 'reloj/:rid/usuarios', outlet: 'pantalla', component: UsuariosRelojComponent, canActivate: [OidpGuard]},
+  //     { path: 'reloj/:rid/usuarios/:ruid', outlet: 'pantalla', component: DetalleUsuarioRelojComponent, canActivate: [OidpGuard]}
+  //   ]
+  // },
+
+  { path: 'loader', component: LoaderComponent }
+  // { path: '', redirectTo: 'loader', pathMatch: 'full' }
 ];
 
 
