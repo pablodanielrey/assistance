@@ -1,7 +1,7 @@
 <div class="justificacionAdmin">
 
     <div class="seccionSistema">
-      <button mat-button class="btnVolverSeccion" routerLink="/justificaciones"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+      <button mat-button class="btnVolverSeccion" routerLink="/sistema/justificaciones/seleccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
        | Administrar Justificaciones
     </div>
 
@@ -13,7 +13,7 @@
             <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
         </div>
         <div class="contenedorSecundario">
-          <button mat-button class="btnClasico" routerLink="/crear_justificacion"> CREAR JUSTIFICACION </button>
+          <button mat-button class="btnClasico" routerLink="/sistema/justificaciones/admin/crear"> CREAR JUSTIFICACION </button>
         </div>
     </div>
 

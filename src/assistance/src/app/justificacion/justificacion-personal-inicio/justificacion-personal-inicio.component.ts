@@ -22,7 +22,7 @@ export class JustificacionPersonalInicioComponent implements OnInit {
   }
 
   seleccionarUsuario(event) {
-    this.router.navigate(['justificacion_personal/' + event.id])
+    this.router.navigate(['/sistema/justificaciones/personal/' + event.id])
   }
 
   buscar(event) {

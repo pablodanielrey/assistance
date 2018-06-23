@@ -53,21 +53,34 @@ const routes: Routes = [
               {path: 'generar/:fecha', component: ReporteGeneralComponent}
             ]
           },
-          
           { path: 'personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
           { path: 'personal/:uid', component: ReporteComponent, canActivate: [OidpGuard] }
+
+        ]
+      },
+      { 
+        path: 'justificaciones',
+        children: [
+          { path: 'seleccion', component: JustificacionInicialComponent },
+          { path: 'personal', component: JustificacionPersonalInicioComponent },
+          { path: 'personal/:uid', component: JustificacionPersonalComponent },
+          { path: 'general', component: JustificacionGeneralComponent },
+          { 
+            path: 'admin',
+            children: [
+              { path: 'seleccion', component: JustificacionAdminComponent },
+              { path: 'crear', component: JustificacionModificarComponent },
+              { path: 'modificar/:jid', component: JustificacionModificarComponent },
+            ]
+          }
         ]
       }
  
     ]
-  }
+  },
+  { path: '**', redirectTo: 'sistema', pathMatch: 'full' }
 
-  // 
   // ,
-  // // { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
-
-
-  // { path: 'justificaciones', component: JustificacionInicialComponent, canActivate: [OidpGuard] },
   // { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent, canActivate: [OidpGuard]},
   // { path: 'justificacion_personal/:uid', component: JustificacionPersonalComponent, canActivate: [OidpGuard] },
   // { path: 'justificacion_admin', component: JustificacionAdminComponent, canActivate: [OidpGuard] },
@@ -77,7 +90,7 @@ const routes: Routes = [
   //   path: 'justificaciones2',
   //   canActivate: [OidpGuard],
   //   children: [
-  //     {path:'general', component: JustificacionGeneralComponent, canActivate: [OidpGuard]}
+  //     { path:'general', component: JustificacionGeneralComponent }
   //   ]
   // },
 

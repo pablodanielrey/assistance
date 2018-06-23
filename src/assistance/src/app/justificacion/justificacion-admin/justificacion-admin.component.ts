@@ -45,7 +45,7 @@ export class JustificacionAdminComponent implements OnInit {
   }
 
   seleccionarJustificacion(j: Justificacion) {
-    this.router.navigate(['modificar_justificacion/' + j.id]);
+    this.router.navigate(['/sistema/justificaciones/admin/modificar/' + j.id]);
   }
 
 }
