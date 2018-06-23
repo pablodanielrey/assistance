@@ -46,7 +46,7 @@ export class ReporteGeneralComponent implements OnInit {
   }
 
   volver() {
-    this.router.navigate(['reportes/general']);
+    this.router.navigate(['/sistema/reportes/general']);
   }
 
   _generarReporte():void {
@@ -60,7 +60,7 @@ export class ReporteGeneralComponent implements OnInit {
   }
 
   generarReporte():void {
-    this.router.navigate(['reportes/general/generar', this.fecha.toISOString(), {ids: this.ids}]);
+    this.router.navigate(['/sistema/reportes/general/generar', this.fecha.toISOString(), {ids: this.ids}]);
   }
 
   obtenerHoraEntrada(r: RenglonReporte) {

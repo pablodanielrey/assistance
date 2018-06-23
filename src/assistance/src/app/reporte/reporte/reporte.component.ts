@@ -65,7 +65,7 @@ export class ReporteComponent implements OnInit {
   }
 
   volver() {
-    this.router.navigate(['generar_reporte_personal']);
+    this.router.navigate(['/sistema/reportes/personal']);
   }
 
   _generarReporte(): void {
@@ -79,7 +79,7 @@ export class ReporteComponent implements OnInit {
   }
 
   generarReporte():void {
-    this.router.navigate(['reporte', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString()}]);
+    this.router.navigate(['/sistema/reportes/personal', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString()}]);
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {

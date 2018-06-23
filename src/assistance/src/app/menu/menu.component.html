@@ -2,13 +2,16 @@
 
   <mat-sidenav #sidenav mode="over" (openedChange)='onOpenedChange($event)' [disableClose]='false' [(opened)]="menu_abierto">
 
-    <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['inicial']}}]">
+    <!-- 
+      creo que este botón no debería existir
+    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/inicial">
       <mat-icon class="icoMenu">bookmark_border</mat-icon> Inicio
-    </button><br>
-    <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['reportes/inicial']}}]">
+    </button><br> 
+    -->
+    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/reportes/inicial">
       <mat-icon class="icoMenu">list</mat-icon> Reportes
     </button><br>
-    <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['justificaciones']}}]">
+    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema', {outlets: {'pantalla': ['justificaciones']}}]">
       <mat-icon class="icoMenu">star_border</mat-icon> Justificaciones
     </button><br>
     <button class="btn" mat-button (click)='onInternalItem()' [routerLink]="['/sistema', {outlets: {'pantalla': ['horarios']}}]">
@@ -18,7 +21,8 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <router-outlet name="pantalla" class="pantalla"></router-outlet>
+    <!-- <router-outlet name="pantalla" class="pantalla"></router-outlet> -->
+    <router-outlet class="pantalla"></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

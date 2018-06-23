@@ -28,7 +28,7 @@ export class GenerarReportePersonalComponent implements OnInit {
   usuarioSeleccionado(usuario: Usuario): void {
     console.log(usuario);
     // this.router.navigate(['reporte', usuario.id, {fecha_inicial:this.inicio.toISOString(), fecha_final:this.fin.toISOString()}]);
-    this.router.navigate(['reporte', usuario.id]);
+    this.router.navigate(['/sistema/reportes/personal', usuario.id]);
   }
 
 }

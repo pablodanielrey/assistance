@@ -39,23 +39,31 @@ const routes: Routes = [
   {
     path: 'sistema',
     component: SistemaComponent,
+    canActivate: [OidpGuard],
     children: [
-      { path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
+      //{ path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
+      { path: 'inicial', component: PantallaPrincipalComponent },
       {
         path: 'reportes',
         children: [
-          { path: 'inicial', outlet: 'pantalla', component: ReporteInicialComponent},
-          { path: 'general', outlet: 'pantalla', component: ReporteGeneralInicialComponent},
-          { path: 'general/generar/:fecha', component: ReporteGeneralComponent, canActivate: [OidpGuard]}
+          { path: 'inicial', component: ReporteInicialComponent},
+          { path: 'general', 
+            component: ReporteGeneralInicialComponent,
+            children: [
+              {path: 'generar/:fecha', component: ReporteGeneralComponent}
+            ]
+          },
+          
+          { path: 'personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
+          { path: 'personal/:uid', component: ReporteComponent, canActivate: [OidpGuard] }
         ]
       }
  
     ]
   }
 
-  // { path: 'reporte_inicial', component: ReporteInicialComponent, canActivate: [OidpGuard] },
-  // { path: 'generar_reporte_personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
-  // { path: 'reporte/:uid', component: ReporteComponent, canActivate: [OidpGuard] },
+  // 
+  // ,
   // // { path: 'reporte', component: ReporteComponent, canActivate: [OidpGuard] },
 
 
