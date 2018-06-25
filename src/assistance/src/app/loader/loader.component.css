@@ -247,6 +247,12 @@
     justify-content: space-around;
     -moz-justify-content: space-around;
     -webkit-justify-content: space-around;
+    padding: 0px 40px 0px 40px;
+  }
+  .logoFce {
+    margin-left: 5px;
+    max-width: 150px;
+    opacity: 0.7;
   }
 }
 
