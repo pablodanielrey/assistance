@@ -48,9 +48,9 @@ const routes: Routes = [
         children: [
           { path: 'inicial', component: ReporteInicialComponent},
           { path: 'general', 
-            component: ReporteGeneralInicialComponent,
             children: [
-              {path: 'generar/:fecha', component: ReporteGeneralComponent}
+              { path: 'seleccion', component: ReporteGeneralInicialComponent },
+              { path: 'generar/:fecha', component: ReporteGeneralComponent }
             ]
           },
           { path: 'personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
@@ -74,11 +74,18 @@ const routes: Routes = [
             ]
           }
         ]
-      }
- 
+      },      
+      { 
+        path: 'horarios',
+        children: [
+            { path: 'seleccion', component: HorarioInicialComponent },
+            { path: 'detalle/:uid', component: HorarioDetalleComponent },
+            { path: 'modificar/:uid', component: HorarioModificarComponent }
+        ]
+      } 
     ]
-  },
-  { path: '**', redirectTo: 'sistema', pathMatch: 'full' }
+  }
+  //{ path: '**', redirectTo: 'sistema/inicial', pathMatch: 'full' }
 
   // ,
   // { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent, canActivate: [OidpGuard]},
