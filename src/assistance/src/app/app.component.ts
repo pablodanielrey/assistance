@@ -61,8 +61,8 @@ export class AppComponent {
     //    console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
     //    //this.oauthService.initImplicitFlow();
       this.router.navigate(['/loader']);
-//    } else {
-//      this.router.navigate(['/sistema', {outlets: {'pantalla': ['inicial']}}]);
+    } else {
+      this.router.navigate(['/sistema/inicial']);
     }
   }
 
