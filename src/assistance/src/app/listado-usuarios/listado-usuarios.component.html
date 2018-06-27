@@ -1,5 +1,5 @@
 <div class="seleccionarUsuario">
-  
+
   <form (ngSubmit)="buscarUsuarios()" #usuarioForm="ngForm">
     <mat-form-field class="inputSearch">
       <mat-placeholder>Buscar Usuario</mat-placeholder>
@@ -8,6 +8,7 @@
       <button mat-button matSuffix type="submit" class="btnBuscar" [disabled]="!usuarioForm.form.valid" title="Buscar usuario"><mat-icon>search</mat-icon>Buscar</button>
     </mat-form-field>
   </form>
+
 
   <!-- Lista -->
   <mat-list>

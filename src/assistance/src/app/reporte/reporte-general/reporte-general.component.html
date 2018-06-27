@@ -53,7 +53,10 @@
 
       </div>
 
-      <mat-spinner *ngIf="buscando"></mat-spinner>
+
+      <mat-progress-bar *ngIf="buscando" mode="indeterminate" value="10"></mat-progress-bar>
+
+
 
       <div *ngIf='reportes'>
         <mat-tab-group *ngFor="let rep of reportes" class="contenedorReporteLugar">

@@ -45,8 +45,9 @@
           </div>
       </div>
 
-      <mat-spinner *ngIf="buscando"></mat-spinner>
-      
+      <mat-progress-bar *ngIf="buscando" mode="indeterminate" value="10"></mat-progress-bar>
+
+    
       <mat-tab-group *ngIf='reporte'>
           <mat-tab label="Reporte" class="Tabs">
 
