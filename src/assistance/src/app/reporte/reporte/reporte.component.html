@@ -96,7 +96,7 @@
                         </mat-chip>
                       </mat-chip-list>
                     </div>
-                    <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/justificacion_personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                    <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
                   </mat-cell>
                 </ng-container>
 
