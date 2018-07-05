@@ -31,8 +31,8 @@ RUN ng set --global packageManager=yarn
 COPY src /src
 WORKDIR /src
 
-#RUN cd /src/assistance && yarn install
-#RUN cd /src/assistance && ng build --prod --build-optimizer --aot --locale es
+RUN cd /src/assistance && yarn install
+RUN cd /src/assistance && ng build --prod --build-optimizer --aot --i18n-file src/messages.xlf --i18n-format xlf --i18n-locale es
 
 EXPOSE 80
 
