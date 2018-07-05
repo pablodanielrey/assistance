@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 
 import { Lugar } from '../../entities/asistencia';
@@ -32,9 +34,9 @@ export class ReporteGeneralInicialComponent implements OnInit {
   buscarLugares() {
     this.lugares = [];
     this.seleccionados = [];
-    this.subscriptions.push(this.service.buscarLugares(null)
-      .map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado'))
-      .map(lugares => lugares.sort((a,b) => {return a.tipo.localeCompare(b.tipo)}))
+    this.subscriptions.push(this.service.buscarLugares(null).pipe(
+      map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado')),
+      map(lugares => lugares.sort((a,b) => {return a.tipo.localeCompare(b.tipo)})),)
       .subscribe(lugares => {
         lugares.sort((a,b):number => {
           if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
