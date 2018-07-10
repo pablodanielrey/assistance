@@ -47,7 +47,7 @@ const routes: Routes = [
         path: 'reportes',
         children: [
           { path: 'inicial', component: ReporteInicialComponent},
-          { path: 'general', 
+          { path: 'general',
             children: [
               { path: 'seleccion', component: ReporteGeneralInicialComponent },
               { path: 'generar/:fecha', component: ReporteGeneralComponent }
@@ -58,14 +58,14 @@ const routes: Routes = [
 
         ]
       },
-      { 
+      {
         path: 'justificaciones',
         children: [
           { path: 'seleccion', component: JustificacionInicialComponent },
           { path: 'personal', component: JustificacionPersonalInicioComponent },
           { path: 'personal/:uid', component: JustificacionPersonalComponent },
           { path: 'general', component: JustificacionGeneralComponent },
-          { 
+          {
             path: 'admin',
             children: [
               { path: 'seleccion', component: JustificacionAdminComponent },
@@ -74,15 +74,15 @@ const routes: Routes = [
             ]
           }
         ]
-      },      
-      { 
+      },
+      {
         path: 'horarios',
         children: [
             { path: 'seleccion', component: HorarioInicialComponent },
             { path: 'detalle/:uid', component: HorarioDetalleComponent },
             { path: 'modificar/:uid', component: HorarioModificarComponent }
         ]
-      } 
+      }
     ]
   }
   //{ path: '**', redirectTo: 'sistema/inicial', pathMatch: 'full' }
