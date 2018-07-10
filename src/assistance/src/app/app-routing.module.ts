@@ -33,6 +33,9 @@ import { HorarioInicialComponent } from './horario/horario-inicial/horario-inici
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
 import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
 
+import { MiperfilComponent } from './miperfil/miperfil.component';
+
+
 const routes: Routes = [
 
   { path: 'loader', component: LoaderComponent },
@@ -43,6 +46,7 @@ const routes: Routes = [
     children: [
       //{ path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
       { path: 'inicial', component: PantallaPrincipalComponent },
+      { path: 'miperfil', component: MiperfilComponent },
       {
         path: 'reportes',
         children: [

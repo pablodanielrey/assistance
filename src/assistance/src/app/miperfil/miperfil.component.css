@@ -1,0 +1,13 @@
+.miPerfil {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.perfil {
+  width: 30%;
+}
+
+.horario {
+  width: 70%;
+}

@@ -62,7 +62,7 @@ export class AppComponent {
     //    //this.oauthService.initImplicitFlow();
       this.router.navigate(['/loader']);
     } else {
-      this.router.navigate(['/sistema/inicial']);
+      // this.router.navigate(['/sistema/inicial']);
     }
   }
 
