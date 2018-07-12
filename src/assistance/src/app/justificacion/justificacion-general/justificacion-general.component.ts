@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
@@ -47,8 +49,8 @@ export class JustificacionGeneralComponent implements OnInit {
 
   buscarJustificaciones() {
     this.justificaciones = [];
-    this.subscriptions.push(this.service.buscarJustificaciones()
-      .map(justificaciones => justificaciones.filter(j => j.general ? j.general : false))
+    this.subscriptions.push(this.service.buscarJustificaciones().pipe(
+      map(justificaciones => justificaciones.filter(j => j.general ? j.general : false)))
       .subscribe(justificaciones => {
         justificaciones.sort((a,b) => {
           if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {

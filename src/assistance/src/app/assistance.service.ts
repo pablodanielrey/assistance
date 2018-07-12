@@ -1,14 +1,16 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/toPromise';
+
+
+
+
 
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
@@ -49,7 +51,7 @@ export class AssistanceService {
 
   buscarUsuario(uid:string): Observable<DatosAsistencia> {
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
-    return this.http.get<DatosAsistencia>(apiUrl).map(info => new DatosAsistencia(info));
+    return this.http.get<DatosAsistencia>(apiUrl).pipe(map(info => new DatosAsistencia(info)));
   }
 
   buscarUsuariosAsistencia(texto:string): Observable<DatosAsistencia[]> {
@@ -64,12 +66,12 @@ export class AssistanceService {
 
   buscarJustificaciones(): Observable<Justificacion[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificaciones`;
-    return this.http.get<Justificacion[]>(apiUrl).map(datos => datos.map(j => new Justificacion(j)));
+    return this.http.get<Justificacion[]>(apiUrl).pipe(map(datos => datos.map(j => new Justificacion(j))));
   }
 
   obtenerJustificacion(jid:string): Observable<Justificacion> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${jid}`;
-    return this.http.get<[Justificacion]>(apiUrl).map(datos => new Justificacion(datos));
+    return this.http.get<[Justificacion]>(apiUrl).pipe(map(datos => new Justificacion(datos)));
   }
 
   crearJustificacion(justificacion: Justificacion):Observable<Justificacion> {
@@ -99,18 +101,18 @@ export class AssistanceService {
 
   obtenerUsuario(uid:string): Observable<DatosAsistencia> {
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
-    return this.http.get<DatosAsistencia>(apiUrl).map(datos => new DatosAsistencia(datos));
+    return this.http.get<DatosAsistencia>(apiUrl).pipe(map(datos => new DatosAsistencia(datos)));
   }
 
 
   obtenerRelojes(): Observable<Reloj[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/relojes`;
-    return this.http.get<[Reloj[]]>(apiUrl).map(datos => datos.map(d => new Reloj(d)));
+    return this.http.get<[Reloj[]]>(apiUrl).pipe(map(datos => datos.map(d => new Reloj(d))));
   }
 
   obtenerReloj(rid:string): Observable<Reloj> {
     let apiUrl = `${ASSISTANCE_API_URL}/relojes/${rid}`;
-    return this.http.get<[Reloj]>(apiUrl).map(datos => new Reloj(datos));
+    return this.http.get<[Reloj]>(apiUrl).pipe(map(datos => new Reloj(datos)));
   }
 
   obtenerUsuariosReloj(rid:string): Observable<any[]> {
@@ -145,14 +147,14 @@ export class AssistanceService {
               .set('fin', fecha_fin.toDateString())
           };
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/reporte`;
-    return this.http.get<[Reporte]>(apiUrl, options).map(datos => new Reporte(datos));
+    return this.http.get<[Reporte]>(apiUrl, options).pipe(map(datos => new Reporte(datos)));
   }
 
   generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<ReporteGeneral[]> {
 
     const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
     let apiUrl = `${ASSISTANCE_API_URL}/reportes`;
-    return this.http.post<ReporteGeneral[]>(apiUrl, options).map(datos => datos.map(d => new ReporteGeneral(d)));
+    return this.http.post<ReporteGeneral[]>(apiUrl, options).pipe(map(datos => datos.map(d => new ReporteGeneral(d))));
   }
 
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {
@@ -161,7 +163,7 @@ export class AssistanceService {
               .set('fecha', fecha.toDateString())
           };
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/horario`;
-    return this.http.get<[DatosHorario]>(apiUrl, options).map(datos => new DatosHorario(datos));
+    return this.http.get<[DatosHorario]>(apiUrl, options).pipe(map(datos => new DatosHorario(datos)));
   }
 
   crearHorario(horarios: Horario[]):Observable<any> {

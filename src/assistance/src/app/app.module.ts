@@ -57,6 +57,7 @@ import { OidpGuard } from './oidp.guard';
 import { DialogoEliminarJustificacionComponent } from './justificacion/dialogo-eliminar-justificacion/dialogo-eliminar-justificacion.component';
 import { LoaderComponent } from './loader/loader.component';
 import { SistemaComponent } from './sistema/sistema.component';
+import { MiperfilComponent } from './miperfil/miperfil.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { SistemaComponent } from './sistema/sistema.component';
     ReporteGeneralComponent,
     DialogoEliminarJustificacionComponent,
     LoaderComponent,
-    SistemaComponent
+    SistemaComponent,
+    MiperfilComponent
   ],
   imports: [
     BrowserModule,
