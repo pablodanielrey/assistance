@@ -1,4 +1,27 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
 .miPerfil {
+}
+
+.miPerfil .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+
+}
+
+.miPerfil .btnVolverSeccion {
+  color: grey;
+}
+
+.miPerfil .contenidoPantalla {
+  padding: 20px;
+}
+
+
+/* ---------------------------------------*/
+
+
+.contenidoPantalla {
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -9,5 +32,131 @@
 }
 
 .horario {
+  padding: 10px 0 0 40px;
   width: 70%;
+}
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.bloque {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.titulo {
+  color: #4186e1;
+
+}
+.subText {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+
+.btnAcciones {
+  margin-top: 20px;
+  padding: 5px 20px 5px 15px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+
+}
+
+.btnAcciones:hover {
+background-color: white;
+}
+
+.icoMenu {
+    color: rgba(0,0,0,.54);
+    margin-right: 10px;
+}
+
+.textoInfo {
+  font-size: 14px;
+
+}
+
+.mensaje {
+  background-color: #EA363F;
+  color: white;
+  padding: 20px;
+}
+
+.contenedorMarcaciones {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.contenedorHora {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-right: 20px;
+  width: 150px;
+  margin-top: 5px;
+  font-size: 40px;
+  color: #4186e1;
+  text-align: center;
+  padding: 10px;
+}
+
+.textHora {
+
+}
+
+.tituloHora {
+  /* background-color: #4186e1; */
+  /* color: white; */
+  font-size: 14px;
+}
+
+.hora {
+  padding: 5px;
+}
+
+.textSubHora {
+  /* color: grey; */
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.btnGenerar {
+  background-color: #4186e1;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.contenedorJustificaciones {
+  margin-top: 20px;
+}
+
+.bloqueJustificaciones {
+  margin-top: 10px;
+  margin-right: 40px;
+}
+
+.justificacion {
+  display: flex;
+  flex-direction: row;
+}
+
+.textoCantidad {
+  margin-left: 5px;
+  color: #4186e1;
+
+}
+
+.textJustificacion {
+    width: 150px;
+}
+
+.justificaciones {
+  display: flex;
+  flex-direction: row;
 }

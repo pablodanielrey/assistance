@@ -1,8 +1,134 @@
 <div class="miPerfil">
-    <div class="perfil">
-      1
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" routerLink="/sistema/inicial"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Mis Marcaciones
     </div>
-    <div class="horario">
-      2
-    </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="contenidoPantalla">
+
+      <div class="perfil">
+          <div>
+            <mat-list>
+              <mat-list-item class="itemLista">
+                <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
+                <h3 matLine> Walter Blanco </h3>
+                <p matLine>
+                  <span class="itemTextoSubtitulo">30001823</span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="bloque">
+            <div class="titulo">Oficina</div>
+            <div class="subText">Dirección de Tecnologia y Servicios Informaticos</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="bloque">
+            <div class="titulo">Cargo</div>
+            <div class="subText">E7</div>
+          </div>
+          <mat-divider></mat-divider>
+
+
+          <!-- <button mat-button class="btnAcciones" title="Editar Perfil"><mat-icon class="icoMenu">launch</mat-icon>EDITAR PERFIL</button> -->
+
+
+      </div>
+
+      <div class="horario">
+
+          <div class="titulo">Marcaciones</div>
+
+          <div>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Seleccione Fecha">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="contenedorMarcaciones">
+              <div>
+                <div class="tituloHora"><b>Hora de Entrada</b></div>
+                <div class="contenedorHora"> 08:15</div>
+                <div class="textSubHora">Hora declarada: 08:00</div>
+              </div>
+              <div>
+                <div class="tituloHora"><b>Hora de Salida</b></div>
+                <div class="contenedorHora"> 15:05</div>
+                <div class="textSubHora">Hora declarada: 15:00</div>
+              </div>
+              <div>
+                <div class="tituloHora"><b>Horas Trabajadas</b></div>
+                <div class="contenedorHora"> 06:50</div>
+                <div class="textSubHora">Horas declaradas: 07:00</div>
+              </div>
+
+          </div>
+
+          <button mat-button class="btnGenerar"> VER REPORTE DE MARCACIONES</button>
+
+          <mat-divider></mat-divider>
+
+
+          <div class="contenedorJustificaciones">
+            <div class="titulo">Justificaciones</div>
+
+              <div class="justificaciones">
+
+                <div class="bloqueJustificaciones">
+                    <div class="justificacion">
+                        <div class="textJustificacion">Ausente con Aviso:</div>
+                        <div class="textoCantidad"><b>2</b></div>
+                    </div>
+                    <div class="justificacion">
+                        <div class="textJustificacion">Boleta de Salida:</div>
+                        <div class="textoCantidad"><b>3</b></div>
+                    </div>
+                    <div class="justificacion">
+                        <div class="textJustificacion">Art. 102:</div>
+                        <div class="textoCantidad"><b>1</b></div>
+                    </div>
+                    <div class="justificacion">
+                        <div class="textJustificacion">Pre-Exámen:</div>
+                        <div class="textoCantidad"><b>5</b></div>
+                    </div>
+                    <div class="justificacion">
+                        <div class="textJustificacion">Cumpleaños:</div>
+                        <div class="textoCantidad"><b>1</b></div>
+                    </div>
+                </div>
+
+                <div class="bloqueJustificaciones">
+                    <div class="justificacion">
+                        <div class="textJustificacion">Compensatorio:</div>
+                        <div class="textoCantidad"><b>4</b></div>
+                    </div>
+                    <div class="justificacion">
+                        <div class="textJustificacion">Lic. Medica:</div>
+                        <div class="textoCantidad"><b>5</b></div>
+                    </div>
+                    <div class="justificacion">
+                        <div class="textJustificacion">Vacaciones:</div>
+                        <div class="textoCantidad"><b>7</b></div>
+                    </div>
+                </div>
+
+              </div>
+
+          </div>
+
+
+
+          <!-- <div class="mensaje">
+              <div class="textoInfo"><B>AVISO IMPORTANTE</B><br>
+              Por el momento NO se podrá solicitar pedidos de forma online, para solicitar ausentes con aviso, boletas de salida, etc.<br>
+              Debera solicitarlo de forma presencial o telefonicamente en el Departamento de Personal.<br>
+              Se esta desarrolando una nueva interfaz para las solicitudes de personal, serán notificados cuando la misma se encuentre disponible nuevamente.</div>
+          </div> -->
+      </div>
+
+  </div>
 </div>
