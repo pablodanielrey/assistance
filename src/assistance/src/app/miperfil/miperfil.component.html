@@ -20,17 +20,39 @@
               </mat-list-item>
             </mat-list>
           </div>
-          <div class="bloque">
-            <div class="titulo">Oficina</div>
-            <div class="subText">Dirección de Tecnologia y Servicios Informaticos</div>
-          </div>
-          <mat-divider></mat-divider>
-          <div class="bloque">
-            <div class="titulo">Cargo</div>
-            <div class="subText">E7</div>
-          </div>
-          <mat-divider></mat-divider>
 
+
+          <div class="tituloOficina">Oficina | Cargo</div>
+
+
+          <div class="bloque" *ngFor='let o of oficinas'>
+            <div><b>Oficina</b></div>
+            <div class="subText">{{o.nombre}}</div>
+            <div><b>Cargo</b></div>
+            <div class="subText">{{o.cargo}}</div>
+            <mat-divider></mat-divider>
+          </div>
+
+
+          <div class="aviso">
+              <mat-accordion>
+                  <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <div class="tituloAviso">
+                                <div><mat-icon class="icoAviso">error</mat-icon> </div>
+                                <div> AVISO IMPORTANTE</div>
+                              </div>
+                          </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>
+                          Se está desarrollando una nueva interfaz para las solicitudes de personal. y por el momento <b>no se podrá</b> realizar pedidos de forma online.<br>
+                          Para solicitar ausentes con aviso, boletas de salida, etc. Debera solicitarlo de forma presencial o telefónicamente en el Departamento de Personal.<br>
+                          Serán notificados cuando la misma se encuentre disponible nuevamente.
+                      </p>
+                  </mat-expansion-panel>
+              </mat-accordion>
+          </div>
 
           <!-- <button mat-button class="btnAcciones" title="Editar Perfil"><mat-icon class="icoMenu">launch</mat-icon>EDITAR PERFIL</button> -->
 
@@ -74,47 +96,17 @@
 
 
           <div class="contenedorJustificaciones">
-            <div class="titulo">Justificaciones</div>
+            <div class="titulo">Justificaciones tomadas</div>
 
               <div class="justificaciones">
 
                 <div class="bloqueJustificaciones">
-                    <div class="justificacion">
-                        <div class="textJustificacion">Ausente con Aviso:</div>
-                        <div class="textoCantidad"><b>2</b></div>
-                    </div>
-                    <div class="justificacion">
-                        <div class="textJustificacion">Boleta de Salida:</div>
-                        <div class="textoCantidad"><b>3</b></div>
-                    </div>
-                    <div class="justificacion">
-                        <div class="textJustificacion">Art. 102:</div>
-                        <div class="textoCantidad"><b>1</b></div>
-                    </div>
-                    <div class="justificacion">
-                        <div class="textJustificacion">Pre-Exámen:</div>
-                        <div class="textoCantidad"><b>5</b></div>
-                    </div>
-                    <div class="justificacion">
-                        <div class="textJustificacion">Cumpleaños:</div>
-                        <div class="textoCantidad"><b>1</b></div>
+                    <div class="justificacion" *ngFor='let j of justificaciones'>
+                        <div class="textJustificacion">{{j.nombre}}</div>
+                        <div class="textoCantidad"><b>{{j.cantidad}}</b></div>
                     </div>
                 </div>
 
-                <div class="bloqueJustificaciones">
-                    <div class="justificacion">
-                        <div class="textJustificacion">Compensatorio:</div>
-                        <div class="textoCantidad"><b>4</b></div>
-                    </div>
-                    <div class="justificacion">
-                        <div class="textJustificacion">Lic. Medica:</div>
-                        <div class="textoCantidad"><b>5</b></div>
-                    </div>
-                    <div class="justificacion">
-                        <div class="textJustificacion">Vacaciones:</div>
-                        <div class="textoCantidad"><b>7</b></div>
-                    </div>
-                </div>
 
               </div>
 
@@ -122,12 +114,7 @@
 
 
 
-          <!-- <div class="mensaje">
-              <div class="textoInfo"><B>AVISO IMPORTANTE</B><br>
-              Por el momento NO se podrá solicitar pedidos de forma online, para solicitar ausentes con aviso, boletas de salida, etc.<br>
-              Debera solicitarlo de forma presencial o telefonicamente en el Departamento de Personal.<br>
-              Se esta desarrolando una nueva interfaz para las solicitudes de personal, serán notificados cuando la misma se encuentre disponible nuevamente.</div>
-          </div> -->
+
       </div>
 
   </div>

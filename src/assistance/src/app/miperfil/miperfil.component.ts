@@ -7,6 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiperfilComponent implements OnInit {
 
+  oficinas=[
+    {
+      'nombre':'DiTeSI',
+      'cargo':'E7'
+    }
+  ]
+
+  justificaciones=[
+    {
+      'nombre':'Ausente con Aviso',
+      'cantidad':'1'
+    },
+    {
+      'nombre':'Boleta de Salida',
+      'cantidad':'01:00'
+    }
+  ]
+
+
   constructor() { }
 
   ngOnInit() {

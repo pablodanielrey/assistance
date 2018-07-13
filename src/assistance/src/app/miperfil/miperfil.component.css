@@ -46,14 +46,24 @@
 }
 
 .bloque {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 10px;
 }
 
 .titulo {
   color: #4186e1;
+  font-size: 18px;
+
 
 }
+
+.tituloOficina {
+  color: #4186e1;
+  margin-left: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
 .subText {
   font-size: 14px;
   margin-bottom: 5px;
@@ -83,9 +93,10 @@ background-color: white;
 }
 
 .mensaje {
-  background-color: #EA363F;
-  color: white;
+  background-color: white;
+  /* color: white; */
   padding: 20px;
+  border: 1px solid #EA363F;
 }
 
 .contenedorMarcaciones {
@@ -105,6 +116,50 @@ background-color: white;
   text-align: center;
   padding: 10px;
 }
+
+.aviso {
+  margin-top: 20px;
+}
+
+.tituloAviso {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icoAviso {
+  margin-right: 10px;
+  color:#EA363F;
+  animation-name: parpadeo;
+ animation-duration: 1s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+
+ -webkit-animation-name:parpadeo;
+ -webkit-animation-duration: 1s;
+ -webkit-animation-timing-function: linear;
+ -webkit-animation-iteration-count:
+}
+
+@-moz-keyframes parpadeo{
+  0% { opacity: 1.0; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.7; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {
+  0% { opacity: 1.0; }
+   50% { opacity: 0.7; }
+  100% { opacity: 1.0; }
+}
+
+
 
 .textHora {
 
