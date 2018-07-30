@@ -6,4 +6,7 @@ export const environment = {
   loginUrl: 'https://oidp.asistencia.presi.unlp.edu.ar/oauth2/auth',
   logoutUrl: 'https://consent.asistencia.presi.unlp.edu.ar/logout'
   // tokenEndpoint: 'https://oidp.econo.unlp.edu.ar/oauth2/auth'
+
+  
+
 };
