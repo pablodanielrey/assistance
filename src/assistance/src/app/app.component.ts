@@ -5,12 +5,16 @@ import { Router } from '@angular/router';
 import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
-  issuer: 'https://oidp.econo.unlp.edu.ar',
+  issuer: 'https://oidp.asistencia.presi.unlp.edu.ar',
+  // issuer: 'https://oidp.econo.unlp.edu.ar',
   redirectUri: window.location.origin,
   // tokenEndpoint: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
-  userinfoEndpoint: 'https://oidp.econo.unlp.edu.ar/userinfo',
-  loginUrl: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
-  logoutUrl: 'https://consent.econo.unlp.edu.ar/logout',
+  userinfoEndpoint: 'https://oidp.asistencia.presi.unlp.edu.ar/userinfo',
+  // userinfoEndpoint: 'https://oidp.econo.unlp.edu.ar/userinfo',
+  // loginUrl: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
+  loginUrl: 'https://oidp.asistencia.presi.unlp.edu.ar/oauth2/auth',
+  logoutUrl: 'https://consent.asistencia.presi.unlp.edu.ar/logout',
+  // logoutUrl: 'https://consent.econo.unlp.edu.ar/logout',
   oidc: true,
   requireHttps: false,
   clientId: 'assistance-ui',
