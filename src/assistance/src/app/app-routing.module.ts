@@ -88,7 +88,7 @@ const routes: Routes = [
         ]
       }
     ]
-  }
+  },
   { path: '**', redirectTo: 'sistema/inicial', pathMatch: 'full' }
 
   // ,
