@@ -163,6 +163,10 @@ background-color: white;
   margin-bottom: 10px;
 }
 
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
 
 
 @media screen and (max-width: 769px) {
