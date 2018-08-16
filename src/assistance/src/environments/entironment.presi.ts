@@ -1,9 +1,5 @@
 export const environment = {
   production: true,
-<<<<<<< HEAD
-  assistanceApiUrl: 'https://api.asistencia.presi.unlp.edu.ar/assistance/api/v1.0'
-  // assistanceApiUrl: 'https://api.econo.unlp.edu.ar/assistance/api/v1.0'
-=======
   assistanceApiUrl: 'https://api.asistencia.presi.unlp.edu.ar/assistance/api/v1.0',
   oidp_issuer: 'https://oidp.asistencia.presi.unlp.edu.ar',
   userinfoEndpoint: 'https://oidp.asistencia.presi.unlp.edu.ar/userinfo',
@@ -13,5 +9,4 @@ export const environment = {
 
   
 
->>>>>>> origin/dev
 };
