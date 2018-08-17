@@ -215,3 +215,32 @@ background-color: white;
   display: flex;
   flex-direction: row;
 }
+
+@media screen and (max-width: 769px) {
+  .contenidoPantalla {
+    flex-direction: column;
+  }
+  .perfil {
+    width:100%;
+  }
+  .contenedorMarcaciones {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .horario {
+     width: 100%;
+     padding: 0px;
+     margin-top: 20px;
+
+  }
+  .contenedorHora {
+    width: 100%;
+ 
+  }
+
+  .textSubHora {
+    margin-bottom: 20px;
+  }
+  
+}
