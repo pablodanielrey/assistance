@@ -13,7 +13,7 @@
             <mat-list>
               <mat-list-item class="itemLista">
                 <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
-                <h3 matLine> Walter Blanco </h3>
+                <h3 matLine> {{usuario.nombre}} </h3>
                 <p matLine>
                   <span class="itemTextoSubtitulo">30001823</span>
                 </p>
@@ -65,7 +65,7 @@
 
           <div>
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Seleccione Fecha">
+                <input matInput [matDatepicker]="picker" placeholder="Seleccione Fecha" [(ngModel)]="fecha">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -90,7 +90,7 @@
 
           </div>
 
-          <button mat-button class="btnGenerar"> VER REPORTE DE MARCACIONES</button>
+          <button mat-button (click)='ver_reporte()' class="btnGenerar"> VER REPORTE DE MARCACIONES</button>
 
           <mat-divider></mat-divider>
 

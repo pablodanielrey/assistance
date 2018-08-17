@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HostListener } from "@angular/core";
+
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,13 +24,26 @@ import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fe
 })
 export class ReporteComponent implements OnInit {
 
+  height;
+  width;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    this.height = window.innerHeight;
+    this.width = window.innerWidth;
+  }
+
   constructor(private oauthService: OAuthService,
               private service: AssistanceService,
               private http: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
-              private location: Location) { }
+              private location: Location) { 
+              
+                this.onResize();
+
+              }
 
 
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
@@ -160,6 +175,10 @@ export class ReporteComponent implements OnInit {
 
   eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
     return justificaciones.filter(j => j.id != jid);;
+  }
+
+  is_desktop() {
+    return this.width >= 769;
   }
 
 }
