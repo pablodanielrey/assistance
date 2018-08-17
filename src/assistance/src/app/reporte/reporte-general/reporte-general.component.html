@@ -60,7 +60,8 @@
 
       <div *ngIf='reportes'>
         <mat-tab-group *ngFor="let rep of reportes" class="contenedorReporteLugar">
-          <mat-tab label="{{rep.lugar.nombre}}" class="Tabs">
+
+          <mat-tab *ngIf='is_desktop()' label="{{rep.lugar.nombre}}" class="Tabs">
             <mat-table [dataSource]='rep.reportes' matSort>
 
               <ng-container matColumnDef='Dia'>
@@ -116,14 +117,73 @@
               <!-- VISTA PARA PC -->
               <mat-header-row *matHeaderRowDef="['Dia', 'Fecha','Nombre', 'Horario', 'Entrada', 'Salida', 'Horas_trabajadas', 'Justificacion']"></mat-header-row>
               <mat-row *matRowDef="let row; columns: ['Dia', 'Fecha','Nombre', 'Horario', 'Entrada', 'Salida', 'Horas_trabajadas', 'Justificacion']"></mat-row>
-              <!-- VISTA PARA CEL -->
-              <!-- <mat-header-row *matHeaderRowDef="['Fecha','Nombre', 'Entrada', 'Salida', 'Horas_trabajadas', 'Justificacion']"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: ['Fecha','Nombre', 'Entrada', 'Salida', 'Horas_trabajadas', 'Justificacion']"></mat-row> -->
-
-
 
             </mat-table>
           </mat-tab>
+
+          <mat-tab *ngIf='!is_desktop()' label="{{rep.lugar.nombre}}" class="Tabs">
+              <mat-table [dataSource]='rep.reportes' matSort>
+  
+                <ng-container matColumnDef='Dia'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEE'}} </mat-cell>
+                </ng-container>
+  
+                <ng-container matColumnDef='Fecha'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon' class="textFecha"> {{renglon.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
+                </ng-container>
+  
+                <ng-container matColumnDef='Nombre'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.usuario.nombre}} {{renglon.usuario.apellido}} </mat-cell>
+                </ng-container>
+  
+                <ng-container matColumnDef='Horario'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horario </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerHoraEntrada(renglon) | date: 'HH:mm'}} - {{obtenerHoraSalida(renglon) | date: 'HH:mm'}} </mat-cell>
+                </ng-container>
+  
+                <ng-container matColumnDef='Entrada'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
+  
+                <ng-container matColumnDef='Salida'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
+  
+                <ng-container matColumnDef='Horas_trabajadas'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                </ng-container>
+  
+                <ng-container matColumnDef='Justificacion'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'>
+                    <div *ngIf='renglon.justificaciones.length > 0'>
+                      <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let j of renglon.justificaciones">
+                          {{j.nombre }}
+                          <mat-icon matChipRemove *ngIf="j.esPrimerDia" (click)="eliminarJustificacion(j, renglon.usuario.id)">cancel</mat-icon>
+                        </mat-chip>
+                      </mat-chip-list>
+                    </div>
+                    <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/sistema/justificaciones/personal/{{renglon.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                  </mat-cell>
+                </ng-container>
+  
+                <!-- VISTA PARA CEL -->
+                <mat-header-row *matHeaderRowDef="['Fecha','Nombre', 'Entrada', 'Salida', 'Horas_trabajadas', 'Justificacion']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['Fecha','Nombre', 'Entrada', 'Salida', 'Horas_trabajadas', 'Justificacion']"></mat-row>
+  
+              </mat-table>
+            </mat-tab>
+ 
+
+
+
         </mat-tab-group>
       </div>
 

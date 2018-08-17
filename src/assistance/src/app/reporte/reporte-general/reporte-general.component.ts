@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HostListener } from "@angular/core";
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada } from '../../entities/asistencia';
 import { Location } from '@angular/common';
@@ -17,6 +19,15 @@ import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fe
 })
 export class ReporteGeneralComponent implements OnInit {
 
+  height;
+  width;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    this.height = window.innerHeight;
+    this.width = window.innerWidth;
+  }
+
   subscriptions: any[] = [];
   fecha: Date;
   ids: string[];
@@ -28,7 +39,9 @@ export class ReporteGeneralComponent implements OnInit {
               private router: Router,
               private service: AssistanceService,
               public dialog: MatDialog,
-              private location: Location) { }
+              private location: Location) { 
+                this.onResize();
+              }
 
   ngOnInit() {
     this.buscando = false;
@@ -126,6 +139,10 @@ export class ReporteGeneralComponent implements OnInit {
 
   eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
     return justificaciones.filter(j => j.id != jid);;
+  }
+
+  is_desktop() {
+    return this.width >= 769;
   }
 
 }
