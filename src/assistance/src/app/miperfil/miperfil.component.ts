@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AssistanceService } from '../assistance.service';
 
 import { Usuario } from '../entities/usuario';
 
@@ -16,6 +17,7 @@ export class MiperfilComponent implements OnInit {
   fecha: Date = new Date();
   usuario: Usuario;
   info: any;
+  subscriptions: any[] = [];
 
   oficinas=[
     {
@@ -36,17 +38,28 @@ export class MiperfilComponent implements OnInit {
   ]
 
 
-  constructor(private router: Router, private oauthService: OAuthService) { }
+  constructor(private router: Router,
+              private oauthService: OAuthService,
+              private service: AssistanceService) { }
 
   ngOnInit() {
     this.info = this.oauthService.getIdentityClaims();
     // TODO: consultar la entidad usuario correcta.
     this.usuario = new Usuario(
       {
-        id: this.info.sub, 
+        id: this.info.sub,
         nombre: this.info.name
       }
     );
+    this.subscriptions.push(this.service.miPerfil(this.usuario.id, this.fecha)
+    .subscribe(r => {
+      console.log(r);
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
   }
 
   obtener_fecha_final() {
@@ -59,9 +72,9 @@ export class MiperfilComponent implements OnInit {
   }
 
   ver_reporte() {
-    this.router.navigate(['/sistema/reportes/personal/' + this.usuario.id, 
+    this.router.navigate(['/sistema/reportes/personal/' + this.usuario.id,
       {
-        fecha_inicial:this.obtener_fecha_inicial(), 
+        fecha_inicial:this.obtener_fecha_inicial(),
         fecha_final:this.obtener_fecha_final()
       }
     ]);

@@ -169,6 +169,16 @@ export class AssistanceService {
   crearHorario(horarios: Horario[]):Observable<any> {
     let apiUrl = `${ASSISTANCE_API_URL}/horario`;
     return this.http.put<any>(apiUrl, horarios);
+
+  }
+
+  miPerfil(uid: string, fecha: Date):Observable<any> {
+    const options = { params: new HttpParams()
+              .set('fecha', fecha.toDateString())
+          };
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/perfil`;
+    return Observable.of({'reporte':'reporte1'});
+    // return this.http.get<any>(apiUrl, options);
   }
 
 }
