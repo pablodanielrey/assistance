@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { OAuthService } from 'angular-oauth2-oidc';
 
+import { AssistanceService } from '../assistance.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -15,9 +17,21 @@ export class MenuComponent implements OnInit {
   //@Output() openedChange = new EventEmitter<boolean>();
   @Output() onItem = new EventEmitter<boolean>();
 
-  constructor(private oauthService: OAuthService, private router: Router) { }
+  modulos: string[] = [];
+  subscriptions: any[] = [];
+
+  constructor(private oauthService: OAuthService, private router: Router, private service: AssistanceService) { }
 
   ngOnInit() {
+    this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
+      this.modulos = modulos;
+      console.log(this.modulos);
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
   }
 
   onInternalItem():void {
@@ -29,9 +43,17 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/sistema', {outlets: {'pantalla': ['inicial']}}]);
   }
 
-
   onOpenedChange(event: boolean):void {
     this.onItem.emit(event);
+  }
+
+  chequearPeril(profiles: string[]): boolean {
+    profiles.forEach(p => {
+      if (this.modulos.includes(p)) {
+        return true;
+      }
+    });
+    return false;
   }
 
 }

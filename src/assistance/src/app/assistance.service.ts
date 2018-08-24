@@ -22,6 +22,11 @@ export class AssistanceService {
 
   constructor(private http: HttpClient) { }
 
+  obtenerAccesoModulos(): Observable<string[]> {
+    let apiUrl = `${ASSISTANCE_API_URL}/acceso_modulos`;
+    return this.http.get<string[]>(apiUrl);    
+  }
+
   buscarUsuarios(texto:string): Observable<DatosAsistencia[]> {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')

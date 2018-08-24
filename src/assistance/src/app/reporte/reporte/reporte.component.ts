@@ -104,13 +104,16 @@ export class ReporteComponent implements OnInit {
   }
 
   obtenerHorario(r: RenglonReporte): string {
-    if (r.horario) {
+    if (r.horario && (r.horario.hora_salida - r.horario.hora_entrada > 0)) {
       let e = new Date(r.fecha.getTime()); e.setSeconds(0); e.setMinutes(0); e.setHours(0);
       let s = new Date(e.getTime());
       e.setSeconds(r.horario.hora_entrada);
       s.setSeconds(r.horario.hora_salida);
       return e.toLocaleTimeString() + "-" + s.toLocaleTimeString();
+    } else {
+      return "";
     }
+
   }
 
   obtenerMarcacion(m: Marcacion): Date {
