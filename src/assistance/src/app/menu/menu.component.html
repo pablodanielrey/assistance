@@ -8,7 +8,7 @@
       <mat-icon class="icoMenu">bookmark_border</mat-icon> Inicio
     </button><br>
     -->
-    <button *ngIf="chequearPerfil(['incial'])" class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/miperfil">
+    <button *ngIf="chequearPerfil(['incio_personal'])" class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/miperfil">
       <mat-icon class="icoMenu">perm_identity</mat-icon> Inicio
     </button><br>
     <button *ngIf="chequearPerfil(['reporte_personal','reporte_general'])" class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/reportes/inicial">
