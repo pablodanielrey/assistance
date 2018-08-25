@@ -47,7 +47,7 @@ export class MenuComponent implements OnInit {
     this.onItem.emit(event);
   }
 
-  chequearPeril(profiles: string[]): boolean {
+  chequearPerfil(profiles: string[]): boolean {
     profiles.forEach(p => {
       if (this.modulos.includes(p)) {
         return true;
