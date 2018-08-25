@@ -48,12 +48,13 @@ export class MenuComponent implements OnInit {
   }
 
   chequearPerfil(profiles: string[]): boolean {
+    let r = false;
     profiles.forEach(p => {
       if (this.modulos.includes(p)) {
-        return true;
+        r = true;
       }
     });
-    return false;
+    return r
   }
 
 }
