@@ -59,9 +59,9 @@ export class MiperfilComponent implements OnInit {
 
   _obtener_horario(d:Date) {
     if (d) {
-      return this.perfil.fecha2hora(d);
+      return this.perfil._fecha_a_hora(d);
     } else {
-      return "";
+      return " - ";
     }
   }
 
@@ -73,12 +73,11 @@ export class MiperfilComponent implements OnInit {
     return this._obtener_horario(this.perfil.salida);
   }
 
-  obtener_horas_trabajadas() {
-    if (this.perfil.segundos_trabajados) {
-      let n = this.perfil.segundos_trabajados;
-      return (n / 60 / 60) + ":" + (n / 60 % 60);
+   obtener_horas_trabajadas() {
+    if (this.perfil.segundos_trabajados && this.perfil.segundos_trabajados > 0) {
+      return this.perfil.horas_trabajadas();
     } else {
-      return "00:00";
+      return " - ";
     }
   }
 
@@ -91,11 +90,10 @@ export class MiperfilComponent implements OnInit {
   }
 
   obtener_horario_horas() {
-    if (this.perfil.segundos_trabajados) {
-      let n = this.perfil.segundos_trabajados;
-      return (n / 60 / 60) + ":" + (n / 60 % 60);
+    if (this.perfil.horario_segundos && this.perfil.horario_segundos > 0) {
+      return this.perfil._segundos_a_hora(this.perfil.horario_segundos);
     } else {
-      return "00:00";
+      return " - ";
     }
   }
 

@@ -10,10 +10,30 @@ export class Perfil {
   segundos_trabajados: number;
   hora_entrada: Date;
   hora_salida: Date;
+  horario_segundos: number;
   justificaciones: any[];
 
-  fecha2hora(d:Date) {
-    return d.toISOString().substring(11,16);
+  _fecha_a_hora(d:Date) {
+    let f = d.toLocaleTimeString();
+    return f.substring(0,5);
+  }
+
+  _segundos_a_hora(segundos:number) {
+    let min = Math.trunc((segundos / 60) % 60);
+    let hs = Math.trunc((segundos / 60) / 60);
+    let a = '';
+    let b = '';
+    if (min < 10) {
+      b = '0';
+    }
+    if (hs < 10) {
+      a = '0';
+    }
+    return a + String(hs) + ":" + b + String(min);
+  };
+
+  horas_trabajadas() {
+    return this._segundos_a_hora(this.segundos_trabajados);
   }
 
   constructor(o:Object) {
