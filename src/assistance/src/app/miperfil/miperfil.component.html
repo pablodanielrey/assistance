@@ -95,12 +95,12 @@
 
 
           <div class="contenedorJustificaciones">
-            <div class="titulo">Justificación</div>
+            <div class="titulo">Justificaciones</div>
 
               <div class="justificaciones">
 
-                <div class="bloqueJustificaciones">
-                    <div class="justificacion" *ngFor='let j of justificaciones'>
+                <div *ngIf='perfil.justificaciones' class="bloqueJustificaciones">
+                    <div class="justificacion" *ngFor='let j of perfil.justificaciones'>
                         <div class="textJustificacion">{{j.nombre}}</div>
                         <div class="textoCantidad">{{j.cantidad}}</div>
                     </div>

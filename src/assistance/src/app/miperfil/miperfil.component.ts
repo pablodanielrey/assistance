@@ -29,18 +29,6 @@ export class MiperfilComponent implements OnInit {
     }
   ]
 
-  justificaciones=[
-    {
-      'nombre':'Ausente con Aviso',
-      'cantidad':'1'
-    },
-    {
-      'nombre':'Boleta de Salida',
-      'cantidad':'01:00'
-    }
-  ]
-
-
   constructor(private router: Router,
               private oauthService: OAuthService,
               private service: AssistanceService) { 
