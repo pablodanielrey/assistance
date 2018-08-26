@@ -10,7 +10,7 @@
 			"path": "/src/github/assistance-api"
 		},
 		{
-			"path": "/src/github/warden"
+			"path": "/src/github/warden-api"
 		}
 	],
 	"settings": {}

@@ -86,7 +86,16 @@ const routes: Routes = [
             { path: 'detalle/:uid', component: HorarioDetalleComponent },
             { path: 'modificar/:uid', component: HorarioModificarComponent }
         ]
-      }
+      },
+      {
+        path: 'relojes',
+        children: [
+          { path: 'seleccion', component: SeleccionarRelojComponent },
+          { path: 'reloj/:rid/detalle', component: DetalleRelojComponent },
+          { path: 'reloj/:rid/usuarios', component: UsuariosRelojComponent },
+          { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent }
+        ]
+      },      
     ]
   },
   { path: '**', redirectTo: '/sistema/inicial', pathMatch: 'full' }
@@ -109,16 +118,7 @@ const routes: Routes = [
   // { path: 'horario_detalle/:uid', component: HorarioDetalleComponent, canActivate: [OidpGuard] },
   // { path: 'horario_modificar/:uid', component: HorarioModificarComponent, canActivate: [OidpGuard] },
 
-  // {
-  //   path: 'relojes',
-  //   canActivate: [OidpGuard],
-  //   children: [
-  //     { path: 'buscar', outlet: 'pantalla', component: SeleccionarRelojComponent },
-  //     { path: 'reloj/:rid/detalle', outlet: 'pantalla', component: DetalleRelojComponent, canActivate: [OidpGuard]},
-  //     { path: 'reloj/:rid/usuarios', outlet: 'pantalla', component: UsuariosRelojComponent, canActivate: [OidpGuard]},
-  //     { path: 'reloj/:rid/usuarios/:ruid', outlet: 'pantalla', component: DetalleUsuarioRelojComponent, canActivate: [OidpGuard]}
-  //   ]
-  // },
+  
 
 
   // { path: '', redirectTo: 'loader', pathMatch: 'full' }

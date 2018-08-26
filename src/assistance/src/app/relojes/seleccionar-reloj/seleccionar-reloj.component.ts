@@ -11,6 +11,7 @@ import { AssistanceService } from '../../assistance.service';
 export class SeleccionarRelojComponent implements OnInit {
 
   relojes: Reloj[] = [];
+  
   constructor(public service: AssistanceService) { }
 
   ngOnInit() {
