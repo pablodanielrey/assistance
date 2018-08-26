@@ -1,6 +1,30 @@
 import { Usuario } from './usuario';
 
 
+export class OficinaCargo {
+  id_oficina: string;
+  oficina: string;
+  cargo: string;
+  tipo_cargo: string;
+  desde: Date;
+  hasta: Date;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      if (this.desde) {
+        this.desde = new Date(this.desde);
+      }
+      if (this.hasta) {
+        this.hasta = new Date(this.hasta);
+      }
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+
 export class Perfil {
 
   usuario: Usuario;
@@ -12,6 +36,7 @@ export class Perfil {
   hora_salida: Date;
   horario_segundos: number;
   justificaciones: any[];
+  oficinas: OficinaCargo[];
 
   _fecha_a_hora(d:Date) {
     let f = d.toLocaleTimeString();
