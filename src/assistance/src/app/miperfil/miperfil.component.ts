@@ -43,7 +43,9 @@ export class MiperfilComponent implements OnInit {
 
   constructor(private router: Router,
               private oauthService: OAuthService,
-              private service: AssistanceService) { }
+              private service: AssistanceService) { 
+
+              }
 
   ngOnInit() {
     this.info = this.oauthService.getIdentityClaims();
@@ -54,12 +56,18 @@ export class MiperfilComponent implements OnInit {
         nombre: this.info.name
       }
     );
+    this.actualizarPerfil(null);
+  }
+
+  actualizarPerfil(event) {
+    console.log(event);
     this.subscriptions.push(this.service.miPerfil(this.usuario.id, this.fecha)
     .subscribe(r => {
       this.perfil = r;
       console.log(r);
     }));
   }
+
 
   _obtener_horario(d:Date) {
     if (d) {

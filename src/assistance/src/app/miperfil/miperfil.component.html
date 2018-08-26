@@ -56,7 +56,6 @@
 
           <!-- <button mat-button class="btnAcciones" title="Editar Perfil"><mat-icon class="icoMenu">launch</mat-icon>EDITAR PERFIL</button> -->
 
-
       </div>
 
       <div class="horario">
@@ -65,7 +64,7 @@
 
           <div>
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Seleccione Fecha" [(ngModel)]="fecha">
+                <input matInput [matDatepicker]="picker" placeholder="Seleccione Fecha" [(ngModel)]="fecha" (ngModelChange)="actualizarPerfil($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
