@@ -61,15 +61,7 @@ export class AppComponent {
     console.log('tratando de loguearme');
     this.oauthService.tryLogin().then(() => {
       if (this.oauthService.getAccessToken() == null) {
-        //    console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
-        //    //this.oauthService.initImplicitFlow();
           this.router.navigate(['/loader']);
-    //    } else {
-    //      console.log(this.route.url);
-    //      console.log(this.router.url);
-    //      if (this.router.url == '/') {
-    //        this.router.navigate(['/sistema/inicial']);
-    //      }
         }
     });
   }
