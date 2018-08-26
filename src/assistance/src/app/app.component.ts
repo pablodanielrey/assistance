@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // configuro la autentificacion
 import { AuthConfig } from 'angular-oauth2-oidc';
@@ -35,7 +35,7 @@ export class AppComponent {
 
   menu_abierto: boolean = false;
 
-  constructor(private oauthService: OAuthService, private router: Router) {
+  constructor(private oauthService: OAuthService, private router: Router, private route: ActivatedRoute) {
     this.configureWithNewConfigApi();
   }
 
@@ -59,14 +59,19 @@ export class AppComponent {
         console.debug('oauth/oidc event', e);
     })
     console.log('tratando de loguearme');
-    this.oauthService.tryLogin();
-    if (this.oauthService.getAccessToken() == null) {
-    //    console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
-    //    //this.oauthService.initImplicitFlow();
-      this.router.navigate(['/loader']);
-    } else {
-      // this.router.navigate(['/sistema/inicial']);
-    }
+    this.oauthService.tryLogin().then(() => {
+      if (this.oauthService.getAccessToken() == null) {
+        //    console.log('No se obtuvo ningun access token asi que inicio el flujo de auth');
+        //    //this.oauthService.initImplicitFlow();
+          this.router.navigate(['/loader']);
+    //    } else {
+    //      console.log(this.route.url);
+    //      console.log(this.router.url);
+    //      if (this.router.url == '/') {
+    //        this.router.navigate(['/sistema/inicial']);
+    //      }
+        }
+    });
   }
 
 }

@@ -88,8 +88,8 @@ const routes: Routes = [
         ]
       }
     ]
-  }
-  //{ path: '**', redirectTo: 'sistema/inicial', pathMatch: 'full' }
+  },
+  { path: '**', redirectTo: '/sistema/inicial', pathMatch: 'full' }
 
   // ,
   // { path: 'justificacion_personal', component: JustificacionPersonalInicioComponent, canActivate: [OidpGuard]},
