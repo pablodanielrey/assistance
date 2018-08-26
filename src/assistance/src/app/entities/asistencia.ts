@@ -3,6 +3,7 @@ import { Usuario } from './usuario';
 
 export class Perfil {
 
+  usuario: Usuario;
   fecha: Date;
   entrada: Date;
   salida: Date;

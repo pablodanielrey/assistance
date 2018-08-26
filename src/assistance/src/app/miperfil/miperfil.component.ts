@@ -64,10 +64,10 @@ export class MiperfilComponent implements OnInit {
     this.subscriptions.push(this.service.miPerfil(this.usuario.id, this.fecha)
     .subscribe(r => {
       this.perfil = r;
+      this.usuario = this.perfil.usuario;
       console.log(r);
     }));
   }
-
 
   _obtener_horario(d:Date) {
     if (d) {

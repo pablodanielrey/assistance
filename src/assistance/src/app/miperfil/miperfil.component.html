@@ -10,12 +10,12 @@
 
       <div class="perfil">
           <div>
-            <mat-list>
+            <mat-list *ngIf="usuario && usuario.nombre && usuario.apellido">
               <mat-list-item class="itemLista">
                 <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
-                <h3 matLine> {{usuario.nombre}} </h3>
+                <h3 matLine> {{usuario.nombre}} {{usuario.apellido}} </h3>
                 <p matLine>
-                  <span class="itemTextoSubtitulo">30001823</span>
+                  <span class="itemTextoSubtitulo">{{usuario.dni}}</span>
                 </p>
               </mat-list-item>
             </mat-list>
