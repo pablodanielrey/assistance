@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AssistanceService } from '../assistance.service';
 
 import { Usuario } from '../entities/usuario';
+import { Perfil } from '../entities/asistencia';
 
 @Component({
   selector: 'app-miperfil',
@@ -18,6 +19,8 @@ export class MiperfilComponent implements OnInit {
   usuario: Usuario;
   info: any;
   subscriptions: any[] = [];
+
+  perfil: Perfil;
 
   oficinas=[
     {
@@ -53,14 +56,60 @@ export class MiperfilComponent implements OnInit {
     );
     this.subscriptions.push(this.service.miPerfil(this.usuario.id, this.fecha)
     .subscribe(r => {
+      this.perfil = r;
       console.log(r);
     }));
   }
+
+  _obtener_horario(d:Date) {
+    if (d) {
+      return this.perfil.fecha2hora(d);
+    } else {
+      return "";
+    }
+  }
+
+  obtener_hora_entrada() {
+    return this._obtener_horario(this.perfil.entrada);
+  }
+
+  obtener_hora_salida() {
+    return this._obtener_horario(this.perfil.salida);
+  }
+
+  obtener_horas_trabajadas() {
+    if (this.perfil.segundos_trabajados) {
+      let n = this.perfil.segundos_trabajados;
+      return (n / 60 / 60) + ":" + (n / 60 % 60);
+    } else {
+      return "00:00";
+    }
+  }
+
+  obtener_horario_entrada() {
+    return this._obtener_horario(this.perfil.hora_entrada);
+  }
+
+  obtener_horario_salida() {
+    return this._obtener_horario(this.perfil.hora_salida);
+  }
+
+  obtener_horario_horas() {
+    if (this.perfil.segundos_trabajados) {
+      let n = this.perfil.segundos_trabajados;
+      return (n / 60 / 60) + ":" + (n / 60 % 60);
+    } else {
+      return "00:00";
+    }
+  }
+
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
     this.subscriptions = [];
   }
+
+
 
   obtener_fecha_final() {
     return this.fecha.toISOString();

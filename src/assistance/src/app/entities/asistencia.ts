@@ -1,6 +1,41 @@
 import { Usuario } from './usuario';
 
 
+export class Perfil {
+
+  fecha: Date;
+  entrada: Date;
+  salida: Date;
+  segundos_trabajados: number;
+  hora_entrada: Date;
+  hora_salida: Date;
+  justificaciones: any[];
+
+  fecha2hora(d:Date) {
+    return d.toISOString().substring(11,16);
+  }
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      if (this.entrada) {
+        this.entrada = new Date(this.entrada);
+      }
+      if (this.salida) {
+        this.salida = new Date(this.salida);
+      }
+      if (this.hora_entrada) {
+        this.hora_entrada = new Date(this.hora_entrada);  
+      }
+      if (this.hora_salida) {
+        this.hora_salida = new Date(this.hora_salida);
+      }
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
 export class Reloj {
   id: string;
   nombre: string;

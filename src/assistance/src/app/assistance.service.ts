@@ -15,7 +15,7 @@ import 'rxjs/Rx';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Reporte, ReporteGeneral, DatosHorario, Horario, Justificacion, FechaJustificada, Lugar } from './entities/asistencia';
+import { Reloj, DatosAsistencia, Perfil, Reporte, ReporteGeneral, DatosHorario, Horario, Justificacion, FechaJustificada, Lugar } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -182,8 +182,8 @@ export class AssistanceService {
               .set('fecha', fecha.toDateString())
           };
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/perfil`;
-    return Observable.of({'reporte':'reporte1'});
-    // return this.http.get<any>(apiUrl, options);
+    //return this.http.get<any>(apiUrl, options).pipe(map(datos => new Reporte(datos)));    
+    return this.http.get<Perfil>(apiUrl, options).pipe(map(d => new Perfil(d)));    
   }
 
 }

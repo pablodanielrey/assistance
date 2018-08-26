@@ -6,7 +6,7 @@
 
   <mat-divider></mat-divider>
 
-  <div class="contenidoPantalla">
+  <div *ngIf='perfil' class="contenidoPantalla">
 
       <div class="perfil">
           <div>
@@ -74,18 +74,18 @@
           <div class="contenedorMarcaciones">
               <div>
                 <div class="tituloHora"><b>Hora de Entrada</b></div>
-                <div class="contenedorHora"> 08:15</div>
-                <div class="textSubHora">Hora declarada: 08:00</div>
+                <div class="contenedorHora"> {{obtener_hora_entrada()}}</div>
+                <div class="textSubHora">Hora declarada: {{obtener_horario_entrada()}}</div>
               </div>
               <div>
                 <div class="tituloHora"><b>Hora de Salida</b></div>
-                <div class="contenedorHora"> 15:05</div>
-                <div class="textSubHora">Hora declarada: 15:00</div>
+                <div class="contenedorHora"> {{obtener_hora_salida()}}</div>
+                <div class="textSubHora">Hora declarada: {{obtener_horario_salida()}}</div>
               </div>
               <div>
                 <div class="tituloHora"><b>Horas Trabajadas</b></div>
-                <div class="contenedorHora"> 06:50</div>
-                <div class="textSubHora">Horas declaradas: 07:00</div>
+                <div class="contenedorHora"> {{obtener_horas_trabajadas()}}</div>
+                <div class="textSubHora">Horas declaradas: {{obtener_horario_horas()}}</div>
               </div>
 
           </div>
