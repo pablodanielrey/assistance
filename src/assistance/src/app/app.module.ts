@@ -35,6 +35,7 @@ import { GenerarReportePersonalComponent } from './reporte/generar-reporte-perso
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
 import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
+import { HorarioHistoricoComponent } from './horario/horario-historico/horario-historico.component';
 
 import { ToogleFullscreenDirective } from './toogle-fullscreen.directive';
 
@@ -95,7 +96,8 @@ import { MiperfilComponent } from './miperfil/miperfil.component';
     DialogoEliminarJustificacionComponent,
     LoaderComponent,
     SistemaComponent,
-    MiperfilComponent
+    MiperfilComponent,
+    HorarioHistoricoComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +114,7 @@ import { MiperfilComponent } from './miperfil/miperfil.component';
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
       OidpGuard,
-      { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }      
+      { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

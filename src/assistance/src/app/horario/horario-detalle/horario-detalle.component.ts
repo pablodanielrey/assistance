@@ -21,7 +21,7 @@ export class HorarioDetalleComponent implements OnInit {
 
   constructor(private service: AssistanceService,
               private location: Location,
-              private route: ActivatedRoute,) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     let params = this.route.snapshot.paramMap;

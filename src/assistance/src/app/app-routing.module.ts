@@ -32,6 +32,7 @@ import { JustificacionGeneralComponent } from './justificacion/justificacion-gen
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
 import { HorarioModificarComponent } from './horario/horario-modificar/horario-modificar.component';
+import { HorarioHistoricoComponent } from './horario/horario-historico/horario-historico.component';
 
 import { MiperfilComponent } from './miperfil/miperfil.component';
 
@@ -84,7 +85,8 @@ const routes: Routes = [
         children: [
             { path: 'seleccion', component: HorarioInicialComponent },
             { path: 'detalle/:uid', component: HorarioDetalleComponent },
-            { path: 'modificar/:uid', component: HorarioModificarComponent }
+            { path: 'modificar/:uid', component: HorarioModificarComponent },
+            { path: 'historico/:uid', component: HorarioHistoricoComponent }
         ]
       },
       {
@@ -95,7 +97,7 @@ const routes: Routes = [
           { path: 'reloj/:rid/usuarios', component: UsuariosRelojComponent },
           { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent }
         ]
-      },      
+      },
     ]
   },
   { path: '**', redirectTo: '/sistema/inicial', pathMatch: 'full' }
@@ -118,7 +120,7 @@ const routes: Routes = [
   // { path: 'horario_detalle/:uid', component: HorarioDetalleComponent, canActivate: [OidpGuard] },
   // { path: 'horario_modificar/:uid', component: HorarioModificarComponent, canActivate: [OidpGuard] },
 
-  
+
 
 
   // { path: '', redirectTo: 'loader', pathMatch: 'full' }
