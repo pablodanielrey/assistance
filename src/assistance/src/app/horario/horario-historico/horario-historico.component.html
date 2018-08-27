@@ -1,3 +1,59 @@
-<p>
-  horario-historico works!
-</p>
+<div  class="reporteGeneral">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Horario Histórico
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+
+      <div *ngIf='horarios'>
+        <table mat-table [dataSource]="horarios" class="mat-elevation-z8">
+          <ng-container matColumnDef="valido">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha_valido | date: 'dd/MM/yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dia">
+            <th mat-header-cell *matHeaderCellDef> Dia </th>
+            <td mat-cell *matCellDef="let h"> {{ h.obtenerDiaSemanal() }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="entrada">
+            <th mat-header-cell *matHeaderCellDef> Entrada </th>
+            <td mat-cell *matCellDef="let element"> {{ element.entrada | date: 'HH:mm' }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="salida">
+            <th mat-header-cell *matHeaderCellDef> Salida </th>
+            <td mat-cell *matCellDef="let element"> {{ element.salida | date: 'HH:mm' }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element">
+               <div *ngIf="element.eliminado"><span  > Eliminado el {{element.eliminado | date: 'dd/MM/yyyy'}}</span>
+                 <!-- <button mat-icon-button class="btnModificar" (click)="restaurar(element)" title="Restaurar"> <mat-icon aria-label="Example icon-button with a heart icon">restore</mat-icon>  </button> -->
+               </div>
+               <div *ngIf="!element.eliminado">Vigente <button mat-button class="btnModificar"  (click)="eliminar(element)"> ELIMINAR  </button></div>
+
+             </td>
+          </ng-container>
+
+          <ng-container matColumnDef="creador">
+            <th mat-header-cell *matHeaderCellDef> Modificado por </th>
+            <td mat-cell *matCellDef="let element"> Pablo Danie Rey </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+    </div>
+
+  </div>

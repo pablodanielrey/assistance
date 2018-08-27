@@ -14,6 +14,7 @@ export class HorarioHistoricoComponent implements OnInit {
   usuario_id: string = null;
   horarios: Horario[] = [];
   subscriptions: any[] = [];
+  displayedColumns: string[] = ['valido', 'dia', 'entrada', 'salida', 'eliminado', 'creador'];
 
   constructor(private service: AssistanceService,
               private location: Location,
@@ -32,6 +33,14 @@ export class HorarioHistoricoComponent implements OnInit {
 
   volver() {
     this.location.back();
+  }
+
+  eliminar(h: Horario) {
+    h.eliminado = new Date()
+  }
+
+  restaurar(h: Horario) {
+    h.eliminado = null;
   }
 
   obtenerHorarios() {
