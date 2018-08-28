@@ -15,6 +15,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
   usuarios: any[] = [];
   busqueda:string;
   busquedaActivada: boolean = false;
+  cargando: boolean = false;
   subscriptions: any[] = [];
   @Output() seleccionado: EventEmitter<Usuario> = new EventEmitter();
 
@@ -22,6 +23,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cargando = false;
   }
 
   ngOnDestroy() {
@@ -36,6 +38,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
   buscarUsuarios(): void {
     this.usuarios = [];
     this.busqueda = this.busqueda.replace('\.', '').trim();
+    this.cargando = true;
     this.subscriptions.push(this.service.buscarUsuariosAsistencia(this.busqueda)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
@@ -49,7 +52,8 @@ export class SeleccionarUsuarioComponent implements OnInit {
           }
           return 0
         });
-        this.usuarios = usuarios;
+        this.usuarios = usuarios
+        this.cargando = false;;
       }));
   }
 

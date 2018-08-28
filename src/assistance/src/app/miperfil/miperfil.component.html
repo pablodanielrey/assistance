@@ -5,6 +5,7 @@
     </div>
 
   <mat-divider></mat-divider>
+  <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
 
   <div *ngIf='perfil' class="contenidoPantalla">
 
@@ -31,7 +32,7 @@
             <div><b>Cargo</b></div>
             <div class="subText">{{o.cargo}}</div>
             <div><b>Tipo de Cargo</b></div>
-            <div class="subText">{{o.tipo_cargo}}</div>            
+            <div class="subText">{{o.tipo_cargo}}</div>
             <div><b>Desde</b></div>
             <div *ngIf='o.desde' class="subText">{{o.desde}}</div>
             <mat-divider></mat-divider>

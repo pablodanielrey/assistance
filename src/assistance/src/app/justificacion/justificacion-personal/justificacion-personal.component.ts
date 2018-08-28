@@ -28,6 +28,9 @@ export class JustificacionPersonalComponent implements OnInit {
   seleccionFecha: string = 'simple';
   justificacion: Justificacion = null;
   usuario: Usuario;
+  cargando: boolean = false;
+  cargandoJustificaciones: boolean = false
+  cargandoUsuario: boolean = false;
 
 
   constructor(private route: ActivatedRoute,
@@ -40,12 +43,14 @@ export class JustificacionPersonalComponent implements OnInit {
     let paramsQ = this.route.snapshot.queryParamMap;
 
     this.usuario_id = params.get('uid');
+    this.cargando = true;
+    this.cargandoUsuario = true;
+    this.cargandoJustificaciones = true;
 
     let fecha_str = paramsQ.get('fecha');
     this.fecha = (fecha_str == null)? new Date() : new Date(fecha_str);
     this.fechaInicio = new Date(this.fecha);
     this.fechaFin = new Date(this.fecha);
-
     this.buscarUsuario()
 
     this.buscarJustificaciones();
@@ -60,6 +65,8 @@ export class JustificacionPersonalComponent implements OnInit {
     this.subscriptions.push(this.service.buscarUsuario(this.usuario_id)
       .subscribe(info => {
         this.usuario = info.usuario;
+        this.cargandoUsuario = false;
+        this.cargando = this.cargandoUsuario || this.cargandoJustificaciones;
       }));
   }
 
@@ -78,6 +85,8 @@ export class JustificacionPersonalComponent implements OnInit {
           return 0
         });
         this.justificaciones = justificaciones;
+        this.cargandoJustificaciones = false;
+        this.cargando = this.cargandoUsuario || this.cargandoJustificaciones;
       }));
   }
 

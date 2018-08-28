@@ -19,6 +19,7 @@ export class MiperfilComponent implements OnInit {
   usuario: Usuario;
   info: any;
   subscriptions: any[] = [];
+  cargango: boolean = false;
 
   perfil: Perfil;
 
@@ -31,12 +32,13 @@ export class MiperfilComponent implements OnInit {
 
   constructor(private router: Router,
               private oauthService: OAuthService,
-              private service: AssistanceService) { 
+              private service: AssistanceService) {
 
               }
 
   ngOnInit() {
     this.info = this.oauthService.getIdentityClaims();
+    this.cargando = false;
     // TODO: consultar la entidad usuario correcta.
     this.usuario = new Usuario(
       {
@@ -49,11 +51,13 @@ export class MiperfilComponent implements OnInit {
 
   actualizarPerfil(event) {
     console.log(event);
+    this.cargando = true;
     this.subscriptions.push(this.service.miPerfil(this.usuario.id, this.fecha)
     .subscribe(r => {
       this.perfil = r;
       this.usuario = this.perfil.usuario;
       console.log(r);
+      this.cargando = false;
     }));
   }
 

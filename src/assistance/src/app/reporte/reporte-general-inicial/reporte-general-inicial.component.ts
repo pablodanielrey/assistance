@@ -20,6 +20,7 @@ export class ReporteGeneralInicialComponent implements OnInit {
   subscriptions: any[] = [];
   seleccionados: Lugar[] = [];
   fecha: Date;
+  cargando: boolean = false;
 
 
   constructor(private location: Location,
@@ -34,6 +35,7 @@ export class ReporteGeneralInicialComponent implements OnInit {
   buscarLugares() {
     this.lugares = [];
     this.seleccionados = [];
+    this.cargando = true;
     this.subscriptions.push(this.service.buscarLugares(null).pipe(
       map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado')),
       map(lugares => lugares.sort((a,b) => {return a.tipo.localeCompare(b.tipo)})),)
@@ -48,6 +50,7 @@ export class ReporteGeneralInicialComponent implements OnInit {
           return 0;
         });
         this.lugares = lugares;
+        this.cargando = false;
       }));
   }
 
