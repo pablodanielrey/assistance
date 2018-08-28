@@ -113,6 +113,14 @@
                 }
               ]
             },
+            "api-vs-econo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vs.econo.ts"
+                }
+              ]
+            },            
             "api-test-econo": {
               "fileReplacements": [
                 {
