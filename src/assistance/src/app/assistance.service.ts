@@ -177,6 +177,11 @@ export class AssistanceService {
     return this.http.get<[DatosHorario]>(apiUrl, options).pipe(map(datos => new DatosHorario(datos)));
   }
 
+  eliminarHorario(uid: string, hid: string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/horario/${hid}`;
+    return this.http.delete<any>(apiUrl);
+  }
+
   crearHorario(horarios: Horario[]):Observable<any> {
     let apiUrl = `${ASSISTANCE_API_URL}/horario`;
     return this.http.put<any>(apiUrl, horarios);

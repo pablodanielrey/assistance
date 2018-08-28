@@ -7,20 +7,20 @@
 
     <mat-divider></mat-divider>
 
-    <div class="contenidoPantalla">
+    <div *ngIf='historial' class="contenidoPantalla">
 
       <div class="headerHistorico">
           <mat-list>
-            <mat-list-item class="itemLista">
+            <mat-list-item *ngIf='historial.usuario' class="itemLista">
               <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
-              <h3 matLine> Walter blanco </h3>
+              <h3 matLine> {{historial.usuario.nombre}} {{historial.usuario.apellido}} </h3>
               <p matLine>
-                <span class="itemTextoSubtitulo">30001823</span>
+                <span class="itemTextoSubtitulo"> {{historial.usuario.dni}} </span>
               </p>
             </mat-list-item>
           </mat-list>
 
-          <form class="formularioFechas" (ngSubmit)='generarReporte()'>
+          <form class="formularioFechas" (ngSubmit)='obtenerHorarios()'>
             <div class="contenedorSeleccionDeFechas">
               <mat-form-field class="seleccionFechaInicio">
                   <mat-placeholder>Fecha Inicio</mat-placeholder>

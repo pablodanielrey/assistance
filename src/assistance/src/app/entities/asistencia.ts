@@ -188,6 +188,7 @@ export class HistorialHorario {
 
 
 export class Horario {
+  id: string;
   fecha_valido: Date = null;
   dia_semanal: number;
   hora_entrada: number;

@@ -11,6 +11,9 @@ import { AssistanceService } from '../../assistance.service';
 })
 export class HorarioHistoricoComponent implements OnInit {
 
+  buscando: boolean = false;
+  fecha_inicial: Date = null;
+  fecha_final: Date = null;
   usuario_id: string = null;
   historial: HistorialHorario;
   horarios: DetalleHistorialHorario[] = [];
@@ -38,6 +41,15 @@ export class HorarioHistoricoComponent implements OnInit {
 
   eliminar(h: Horario) {
     h.eliminado = new Date()
+    this.subscriptions.push(this.service.eliminarHorario(this.usuario_id, h.id)
+    .subscribe(r => {
+      if (r.status == 'ok') {
+        h.eliminado = new Date();
+      }
+      console.log(h);
+    }, e => {
+      console.log(e);
+    }));
   }
 
   restaurar(h: Horario) {
