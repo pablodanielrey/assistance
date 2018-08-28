@@ -7,6 +7,8 @@
 
     <mat-divider></mat-divider>
 
+    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+
     <div *ngIf='historial' class="contenidoPantalla">
 
       <div class="headerHistorico">

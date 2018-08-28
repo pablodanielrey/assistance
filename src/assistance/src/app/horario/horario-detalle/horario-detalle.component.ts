@@ -18,6 +18,7 @@ export class HorarioDetalleComponent implements OnInit {
   fecha: Date = new Date();
   subscriptions: any[] = [];
   info: DatosHorario = null;
+  cargando: boolean = false
 
   constructor(private service: AssistanceService,
               private location: Location,
@@ -39,6 +40,7 @@ export class HorarioDetalleComponent implements OnInit {
   }
 
   obtenerHorario() {
+    this.cargando = true;
     this.subscriptions.push(this.service.obtenerHorario(this.usuario_id, this.fecha)
     .subscribe(r => {
       this.info = r;
@@ -47,6 +49,7 @@ export class HorarioDetalleComponent implements OnInit {
         if (h2.dia_semanal == null) return 1;
         return h1.dia_semanal - h2.dia_semanal
       });
+      this.cargando = false;
     }));
 
   }

@@ -6,6 +6,7 @@
     </div>
 
     <mat-divider></mat-divider>
+    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
 
     <div class="contenidoPantalla" *ngIf="info">
 

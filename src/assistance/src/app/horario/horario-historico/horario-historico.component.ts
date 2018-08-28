@@ -19,6 +19,7 @@ export class HorarioHistoricoComponent implements OnInit {
   horarios: DetalleHistorialHorario[] = [];
   subscriptions: any[] = [];
   displayedColumns: string[] = ['valido', 'dia', 'entrada', 'salida', 'eliminado', 'creador'];
+  cargando: boolean = false;
 
   constructor(private service: AssistanceService,
               private location: Location,
@@ -57,11 +58,13 @@ export class HorarioHistoricoComponent implements OnInit {
   }
 
   obtenerHorarios() {
+    this.cargando = true;
     this.subscriptions.push(this.service.obtenerHorariosHistorico(this.usuario_id)
     .subscribe(h => {
       this.historial = h;
       this.horarios = h.historial;
       console.log(h);
+      this.cargando = false;
     }));
   }
 

@@ -14,6 +14,7 @@ export class HorarioInicialComponent implements OnInit {
   usuarios: any = [];
   busqueda:string = "";
   subscriptions: any[] = [];
+  cargando: boolean = false;
 
   constructor(public service: AssistanceService) { }
 
@@ -28,6 +29,7 @@ export class HorarioInicialComponent implements OnInit {
   buscarUsuarios(): void {
     this.usuarios = [];
     this.busqueda = this.busqueda.replace('\.','');
+    this.cargando = true;
     this.subscriptions.push(this.service.buscarUsuarios(this.busqueda)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
@@ -40,8 +42,9 @@ export class HorarioInicialComponent implements OnInit {
             return -1
           }
           return 0
-        });        
+        });
         this.usuarios = usuarios;
+        this.cargando = false;
       }));
   }
 
