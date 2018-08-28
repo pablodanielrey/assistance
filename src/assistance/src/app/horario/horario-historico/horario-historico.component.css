@@ -2,6 +2,7 @@
 
 
 .reporteGeneral {
+
 }
 
 .reporteGeneral .seccionSistema {
@@ -19,6 +20,66 @@
 
 /* ---------------------------------------*/
 
+
+.headerHistorico {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.itemLista {
+  width: 350px;
+  background-color: white;
+  border: solid 1px #E0E0E0;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.contenedorSeleccionDeFechas {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+
+.seleccionFechaInicio {
+  width: 98%;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.seleccionFechaFin {
+  width: 98%;
+  margin-top: 10px;
+  margin-right: 20px;
+
+}
+
+.contenedorBtnGenerar {
+  width: 100%;
+}
+
+.btnGenerar {
+  width: 100%;
+  background-color: #4186e1;
+  color: #fff;
+}
+
+.contenedorBtnAcciones {
+  display: flex;
+  align-items:  center;
+  font-size: 14px;
+}
+
 table {
   width: 100%;
 }
@@ -29,4 +90,14 @@ table {
   color: black;
   font-size: 12PX;
   margin-left: 10px;
+}
+
+@media screen and (max-width: 769px) {
+
+  .formularioFechas {
+      display: none;
+  }
+  .contenedorBtnAcciones {
+    display: none;
+  }
 }

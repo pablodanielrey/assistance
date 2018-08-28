@@ -81,8 +81,17 @@
   -webkit-align-items: center;
 }
 
+.contenedorBotones {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
 .btnModificar {
-  width: 50%;
+  width: 48%;
   background-color: #4186e1;
   color: #fff;
   margin-top: 20px;
@@ -92,6 +101,14 @@
   .horario .contenidoPantalla {
     width: 100%;
   }
+
+  .contenedorBotones {
+  flex-direction: column;
+  -moz-flex-direction: column;
+  -webkit-flex-direction: column;
+
+  }
+
   .btnModificar {
     width: 100%;
     padding: 10px;
