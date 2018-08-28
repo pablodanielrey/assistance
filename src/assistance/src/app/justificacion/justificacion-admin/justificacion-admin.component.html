@@ -11,6 +11,7 @@
 
         <div class="contenedorPrincipal">
             <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
+            <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
         </div>
         <div class="contenedorSecundario">
           <button mat-button class="btnClasico" routerLink="/sistema/justificaciones/admin/crear"> CREAR JUSTIFICACION </button>

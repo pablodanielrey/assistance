@@ -15,6 +15,7 @@ export class JustificacionPersonalInicioComponent implements OnInit {
 
   usuarios: Array<DatosAsistencia> = new Array<DatosAsistencia>();
   subscriptions: any[] = [];
+  cargando: boolean = false;
 
   constructor(public service: AssistanceService, private router: Router) { }
 
@@ -27,6 +28,7 @@ export class JustificacionPersonalInicioComponent implements OnInit {
 
   buscar(event) {
     this.usuarios = [];
+    this.cargando = true;
     this.subscriptions.push(this.service.buscarUsuariosAsistencia(event)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
@@ -39,8 +41,9 @@ export class JustificacionPersonalInicioComponent implements OnInit {
             return -1
           }
           return 0
-        });        
+        });
         this.usuarios = usuarios;
+        this.cargando = false;
       }));
   }
 

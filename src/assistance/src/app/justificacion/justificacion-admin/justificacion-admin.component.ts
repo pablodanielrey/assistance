@@ -15,6 +15,7 @@ export class JustificacionAdminComponent implements OnInit {
 
   subscriptions: any[] = [];
   justificaciones: Justificacion[];
+  cargando: boolean = false;
 
   constructor(public service: AssistanceService, private router: Router) { }
 
@@ -29,6 +30,7 @@ export class JustificacionAdminComponent implements OnInit {
 
   buscarJustificaciones() {
     this.justificaciones = [];
+    this.cargando = true;
     this.subscriptions.push(this.service.buscarJustificaciones()
       .subscribe(justificaciones => {
         this.justificaciones = justificaciones;
@@ -40,7 +42,8 @@ export class JustificacionAdminComponent implements OnInit {
             return -1;
           }
           return 0
-        });        
+        });
+        this.cargando = false;
       }));
   }
 
