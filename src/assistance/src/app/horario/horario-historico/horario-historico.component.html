@@ -9,6 +9,41 @@
 
     <div class="contenidoPantalla">
 
+      <div class="headerHistorico">
+          <mat-list>
+            <mat-list-item class="itemLista">
+              <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
+              <h3 matLine> Walter blanco </h3>
+              <p matLine>
+                <span class="itemTextoSubtitulo">30001823</span>
+              </p>
+            </mat-list-item>
+          </mat-list>
+
+          <form class="formularioFechas" (ngSubmit)='generarReporte()'>
+            <div class="contenedorSeleccionDeFechas">
+              <mat-form-field class="seleccionFechaInicio">
+                  <mat-placeholder>Fecha Inicio</mat-placeholder>
+                <input matInput [matDatepicker]="datePickerInicio" name='fecha_inicial' [(ngModel)]="fecha_inicial" required>
+                <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+                <mat-datepicker #datePickerInicio></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="seleccionFechaFin">
+                <mat-placeholder>Fecha Fin</mat-placeholder>
+                <input matInput [matDatepicker]="datePickerFin" name='fecha_final' [(ngModel)]="fecha_final" required>
+                <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+                <mat-datepicker #datePickerFin></mat-datepicker>
+              </mat-form-field>
+              <div class="contenedorBtnGenerar"><button mat-button class="btnGenerar" [disabled]="buscando" type='submit'>BUSCAR</button></div>
+            </div>
+          </form>
+          <div class="contenedorBtnAcciones">
+            <mat-checkbox>Ocultar Eliminados</mat-checkbox>
+          </div>
+
+
+      </div>
+
       <div *ngIf='horarios'>
         <table mat-table [dataSource]="horarios" class="mat-elevation-z8">
           <ng-container matColumnDef="valido">
