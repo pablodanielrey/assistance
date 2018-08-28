@@ -37,7 +37,7 @@
                <div *ngIf="h.horario.eliminado"><span  > Eliminado el {{h.horario.eliminado | date: 'dd/MM/yyyy'}}</span>
                  <!-- <button mat-icon-button class="btnModificar" (click)="restaurar(element)" title="Restaurar"> <mat-icon aria-label="Example icon-button with a heart icon">restore</mat-icon>  </button> -->
                </div>
-               <div *ngIf="!h.horario.eliminado">Vigente <button mat-button class="btnModificar"  (click)="eliminar(h)"> ELIMINAR  </button></div>
+               <div *ngIf="!h.horario.eliminado">Vigente <button mat-button class="btnModificar"  (click)="eliminar(h.horario)"> ELIMINAR  </button></div>
 
              </td>
           </ng-container>
