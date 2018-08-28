@@ -15,7 +15,13 @@ import 'rxjs/Rx';
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
 
 
-import { Reloj, DatosAsistencia, Perfil, Reporte, ReporteGeneral, DatosHorario, Horario, Justificacion, FechaJustificada, Lugar } from './entities/asistencia';
+import { Reloj, 
+         DatosAsistencia, 
+         Perfil, 
+         Reporte, ReporteGeneral, 
+         DatosHorario, Horario, HistorialHorario, 
+         Justificacion, FechaJustificada, 
+         Lugar } from './entities/asistencia';
 
 @Injectable()
 export class AssistanceService {
@@ -186,109 +192,15 @@ export class AssistanceService {
     return this.http.get<Perfil>(apiUrl, options).pipe(map(d => new Perfil(d)));
   }
 
-  obtenerHorariosHistorico(uid: string):Observable<Horario[]> {
-    let horarios = []
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':1, 'eliminado': new Date()}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    horarios.push(new Horario({'usuario_id': uid, 'fecha_valido': new Date(), 'hora_entrada': 25200, 'hora_salida':50400, 'dia_semanal':2}))
-    return Observable.of(horarios);
+  obtenerHorariosHistorico(uid: string):Observable<HistorialHorario> {
+    let fecha = new Date();
+    const options = { params: new HttpParams()
+//      .set('fecha_inicio', fecha.toDateString())
+//      .set('fecha_fin', fecha.toDateString())
+    };
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/historial_horarios`;
+    //return this.http.get<any>(apiUrl, options).pipe(map(datos => new Reporte(datos)));
+    return this.http.get<HistorialHorario>(apiUrl, options).pipe(map(d => new HistorialHorario(d)));    
   }
 
 }

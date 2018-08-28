@@ -158,6 +158,35 @@ export class Marcacion {
 const DIAS: Array<string> = ['Lunes', 'Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado', 'Domingo'];
 const DIA_INICIAL: Date = new Date(2018,1,1,0,0,0);
 
+export class DetalleHistorialHorario {
+  horario: Horario;
+  creador: any;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.horario = new Horario(this.horario);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class HistorialHorario {
+  usuario: any;  
+  historial: DetalleHistorialHorario[];
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.historial = this.historial.map(d => new DetalleHistorialHorario(d));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+
 export class Horario {
   fecha_valido: Date = null;
   dia_semanal: number;

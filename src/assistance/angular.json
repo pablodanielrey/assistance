@@ -157,6 +157,9 @@
             "local-econo": {
               "browserTarget": "assistance:build:local-econo"
             },
+            "api-vs-econo": {
+              "browserTarget": "assistance:build:api-vs-econo"
+            },
             "api-test-econo": {
               "browserTarget": "assistance:build:api-test-econo"
             },

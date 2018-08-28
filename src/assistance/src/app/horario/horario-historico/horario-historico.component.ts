@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Horario } from '../../entities/asistencia';
+import { Horario, HistorialHorario, DetalleHistorialHorario } from '../../entities/asistencia';
 import { ActivatedRoute } from '@angular/router';
 import { AssistanceService } from '../../assistance.service';
 
@@ -12,7 +12,8 @@ import { AssistanceService } from '../../assistance.service';
 export class HorarioHistoricoComponent implements OnInit {
 
   usuario_id: string = null;
-  horarios: Horario[] = [];
+  historial: HistorialHorario;
+  horarios: DetalleHistorialHorario[] = [];
   subscriptions: any[] = [];
   displayedColumns: string[] = ['valido', 'dia', 'entrada', 'salida', 'eliminado', 'creador'];
 
@@ -46,7 +47,8 @@ export class HorarioHistoricoComponent implements OnInit {
   obtenerHorarios() {
     this.subscriptions.push(this.service.obtenerHorariosHistorico(this.usuario_id)
     .subscribe(h => {
-      this.horarios = h;
+      this.historial = h;
+      this.horarios = h.historial;
       console.log(h);
     }));
   }
