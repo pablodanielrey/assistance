@@ -20,8 +20,12 @@ export class MiperfilComponent implements OnInit {
   info: any;
   subscriptions: any[] = [];
   cargando: boolean = false;
-
+  
   perfil: Perfil;
+
+  interval = null;
+  segundos_trabajando: number = 0;
+  fecha_trabajando: string = "";
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -75,6 +79,25 @@ export class MiperfilComponent implements OnInit {
       return " - ";
     }
   }
+
+
+  trabajando() {
+    /*
+      retorna true en el caso de detectar que se está trabajando. y setea el timer adecuado
+    */
+    let r = this.perfil.segundos_trabajados == 0 && this.perfil.entrada != null;
+    if (r && this.interval == null) {
+      this.interval = setInterval(() => {
+        this.fecha_trabajando = new Date(new Date().getTime() - this.perfil.entrada.getTime()).toLocaleTimeString();
+      },1000);
+    }
+    if (!r && this.interval != null) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+    return r;
+  }
+
 
   obtener_hora_entrada() {
     return this._obtener_horario(this.perfil.entrada);

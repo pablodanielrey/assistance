@@ -86,9 +86,14 @@
                 <div class="contenedorHora"> {{obtener_hora_salida()}}</div>
                 <div class="textSubHora">Hora declarada: {{obtener_horario_salida()}}</div>
               </div>
-              <div>
+              <div *ngIf="!trabajando()">
                 <div class="tituloHora"><b>Horas Trabajadas</b></div>
                 <div class="contenedorHora"> {{obtener_horas_trabajadas()}}</div>
+                <div class="textSubHora">Horas declaradas: {{obtener_horario_horas()}}</div>
+              </div>
+              <div *ngIf="trabajando()">
+                <div class="tituloHora"><b>Trabajando</b></div>
+                <div class="contenedorHora"> {{fecha_trabajando}}</div>
                 <div class="textSubHora">Horas declaradas: {{obtener_horario_horas()}}</div>
               </div>
 
@@ -99,12 +104,12 @@
           <mat-divider></mat-divider>
 
 
-          <div class="contenedorJustificaciones">
+          <div *ngIf='perfil.justificaciones.length > 0' class="contenedorJustificaciones">
             <div class="titulo">Justificaciones</div>
 
               <div class="justificaciones">
 
-                <div *ngIf='perfil.justificaciones' class="bloqueJustificaciones">
+                <div class="bloqueJustificaciones">
                     <div class="justificacion" *ngFor='let j of perfil.justificaciones'>
                         <div class="textJustificacion">{{j.nombre}}</div>
                         <div class="textoCantidad">{{j.cantidad}}</div>

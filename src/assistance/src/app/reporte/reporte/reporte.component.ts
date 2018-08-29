@@ -117,7 +117,7 @@ export class ReporteComponent implements OnInit {
       let s = new Date(e.getTime());
       e.setSeconds(r.horario.hora_entrada);
       s.setSeconds(r.horario.hora_salida);
-      return e.toLocaleTimeString() + "-" + s.toLocaleTimeString();
+      return e.toLocaleTimeString().substring(0,5) + " - " + s.toLocaleTimeString().substring(0,5);
     } else {
       return "";
     }
