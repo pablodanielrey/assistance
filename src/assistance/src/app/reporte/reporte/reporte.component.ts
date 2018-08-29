@@ -55,6 +55,7 @@ export class ReporteComponent implements OnInit {
   usuario_id: string = null;
   subscriptions: any[] = [];
   buscando: boolean = false;
+  back: string;
 
   ngOnInit() {
     this.buscando = false;
@@ -62,6 +63,7 @@ export class ReporteComponent implements OnInit {
       console.log('parametros cambiaron');
       console.log(params);
       this.usuario_id = params['uid'];
+      this.back = (params['back']) ? params['back'] : '/sistema/reportes/personal';
       if (params['fecha_inicial'] && params['fecha_final']) {
         this.fecha_inicial = new Date(params['fecha_inicial']);
         this.fecha_final = new Date(params['fecha_final']);
@@ -80,7 +82,7 @@ export class ReporteComponent implements OnInit {
   }
 
   volver() {
-    this.router.navigate(['/sistema/reportes/personal']);
+    this.router.navigate([this.back, {fecha: this.fecha_final}]);
   }
 
   _generarReporte(): void {
@@ -94,7 +96,7 @@ export class ReporteComponent implements OnInit {
   }
 
   generarReporte():void {
-    this.router.navigate(['/sistema/reportes/personal', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString()}]);
+    this.router.navigate(['/sistema/reportes/personal', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString(), back: this.back}]);
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {

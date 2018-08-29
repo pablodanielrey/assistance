@@ -31,6 +31,7 @@ export class MiperfilComponent implements OnInit {
   ]
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private oauthService: OAuthService,
               private service: AssistanceService) {
 
@@ -46,11 +47,24 @@ export class MiperfilComponent implements OnInit {
         nombre: this.info.name
       }
     );
-    this.actualizarPerfil(null);
+    this.route.params.subscribe(params => {
+      console.log(params);
+      if (params['fecha']) {
+        this.fecha = new Date(params['fecha']);
+        this._actualizarPerfil();
+      } else {
+         this.fecha = new Date(Date.now());
+         this.actualizarPerfil(null);
+      }
+    });
   }
 
-  actualizarPerfil(event) {
-    console.log(event);
+
+  actualizarPerfil(event):void {
+    this.router.navigate(['/sistema/miperfil', {fecha:this.fecha.toISOString()}]);
+  }
+
+  _actualizarPerfil() {
     this.cargando = true;
     this.subscriptions.push(this.service.miPerfil(this.usuario.id, this.fecha)
     .subscribe(r => {
@@ -122,7 +136,8 @@ export class MiperfilComponent implements OnInit {
     this.router.navigate(['/sistema/reportes/personal/' + this.usuario.id,
       {
         fecha_inicial:this.obtener_fecha_inicial(),
-        fecha_final:this.obtener_fecha_final()
+        fecha_final:this.obtener_fecha_final(),
+        back: '/sistema/miperfil'
       }
     ]);
   }
