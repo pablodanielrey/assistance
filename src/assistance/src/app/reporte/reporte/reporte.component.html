@@ -92,11 +92,11 @@
                       <mat-chip-list #chipList>
                         <mat-chip *ngFor="let j of renglon.justificaciones">
                           {{j.nombre }}
-                          <mat-icon matChipRemove *ngIf="j.esPrimerDia" (click)=eliminarJustificacion(j)>cancel</mat-icon>
+                          <mat-icon matChipRemove *ngIf="j.esPrimerDia && !chequearPerfil(['super-admin','justificacion_personal','justificacion_general'])" (click)=eliminarJustificacion(j)>cancel</mat-icon>
                         </mat-chip>
                       </mat-chip-list>
                     </div>
-                    <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && chequearPerfil(['super-admin','justificacion_personal','justificacion_general'])" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
                   </mat-cell>
                 </ng-container>
 

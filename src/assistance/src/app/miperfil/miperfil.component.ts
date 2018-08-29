@@ -23,13 +23,6 @@ export class MiperfilComponent implements OnInit {
 
   perfil: Perfil;
 
-  oficinas=[
-    {
-      'nombre':'DiTeSI',
-      'cargo':'E7'
-    }
-  ]
-
   constructor(private router: Router,
               private route: ActivatedRoute,
               private oauthService: OAuthService,

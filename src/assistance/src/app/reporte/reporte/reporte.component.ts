@@ -56,6 +56,7 @@ export class ReporteComponent implements OnInit {
   subscriptions: any[] = [];
   buscando: boolean = false;
   back: string;
+  modulos: string[] = [];
 
   ngOnInit() {
     this.buscando = false;
@@ -74,6 +75,11 @@ export class ReporteComponent implements OnInit {
          this.generarReporte();
       }
     });
+    this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
+      this.modulos = modulos;
+      console.log(this.modulos);
+    }));
+ 
   }
 
   ngOnDestroy() {
@@ -184,6 +190,16 @@ export class ReporteComponent implements OnInit {
 
   is_desktop() {
     return this.width >= 769;
+  }
+
+  chequearPerfil(profiles: string[]): boolean {
+    let r = false;
+    profiles.forEach(p => {
+      if (this.modulos.includes(p)) {
+        r = true;
+      }
+    });
+    return r
   }
 
 }
