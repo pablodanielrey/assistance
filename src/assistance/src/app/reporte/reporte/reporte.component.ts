@@ -39,8 +39,8 @@ export class ReporteComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
-              private location: Location) { 
-              
+              private location: Location) {
+
                 this.onResize();
 
               }
