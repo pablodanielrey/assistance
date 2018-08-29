@@ -19,7 +19,7 @@ export class MiperfilComponent implements OnInit {
   usuario: Usuario;
   info: any;
   subscriptions: any[] = [];
-  cargango: boolean = false;
+  cargando: boolean = false;
 
   perfil: Perfil;
 
