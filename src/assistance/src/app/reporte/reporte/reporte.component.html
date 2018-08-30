@@ -200,10 +200,16 @@
                       <mat-divider></mat-divider>
                       <div class="contenedorItemDetalles">
                         <div class="itemDetalles">
-                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
+                          <div>Horas a trabajar:</div><div>{{obtenerHorasString(reporte.detalle.minutos_laborables - reporte.detalle.minutos_justificados)}}</div>
+                        </div>                        
+                        <div class="itemDetalles">
+                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados - reporte.detalle.minutos_extra_en_dias_laborables - reporte.detalle.minutos_extra)}}</div>
                         </div>
                         <div class="itemDetalles">
                           <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_en_dias_laborables + reporte.detalle.minutos_extra)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                            <div>Horas totales trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
                         </div>
                       </div>
                   </div>
