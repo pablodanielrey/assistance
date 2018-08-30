@@ -10,7 +10,9 @@ export const environment = {
   footer: 'Dirección General de Personal | Presidencia | UNLP | Calle 7 Nº 776',
 
   loaderHeader: 'Asistencia | Presidencia',
-  loaderLogo: '/assets/img/logofce2018.png',
+  loaderLogo: '/assets/img/logounlp.png',
   loaderFooter1: 'Dirección General de Personal | Presidencia | UNLP | Calle 7 Nº 776',
   loaderFooter2: 'Dirección General de Personal | Presidencia | UNLP',
+
+  pantallaPrincipalLogo: '/assets/img/logo_asistencia_unlp.png',
 };
