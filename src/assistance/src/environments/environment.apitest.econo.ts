@@ -15,4 +15,6 @@ export const environment = {
   loaderFooter1: 'DiTESI | Dirección de tecnologías y Sistemas Informáticos | Facultad de Ciencias Económicas | UNLP | Calle 6 Nº 777',
   loaderFooter2: 'DiTESI | Dirección de tecnologías y Sistemas Informáticos | FCE',
 
+  pantallaPrincipalLogo: '/assets/img/logo_asistencia_fce.png',
+
 };
