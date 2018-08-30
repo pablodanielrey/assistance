@@ -115,6 +115,20 @@ background-color: white;
   color: #4186e1;
   text-align: center;
   padding: 10px;
+  height: 65px;
+}
+
+.contenedorHora2 {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-right: 20px;
+  width: 200px;
+  margin-top: 5px;
+  font-size: 40px;
+  color: #4186e1;
+  text-align: center;
+  padding: 10px;
+  height: 65px;
 }
 
 .aviso {
@@ -236,11 +250,30 @@ background-color: white;
   }
   .contenedorHora {
     width: 100%;
- 
+
+  }
+
+  .contenedorHora2 {
+    width: 100%;
+
   }
 
   .textSubHora {
     margin-bottom: 20px;
   }
-  
+
+  .btnGenerar {
+    width: 100%;
+    background-color: #4186e1;
+    color: #fff;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .inputFecha{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
 }

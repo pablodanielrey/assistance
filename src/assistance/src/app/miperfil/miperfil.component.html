@@ -27,10 +27,8 @@
 
 
           <div class="bloque" *ngFor='let o of perfil.oficinas'>
-            <div><b>Oficina</b></div>
-            <div class="subText">{{o.oficina}}</div>
-            <div><b>Cargo</b></div>
-            <div class="subText">{{o.cargo}}</div>
+            <div class="subText"><b>{{o.oficina}}</b></div>
+            <div class="subText">Cargo: {{o.cargo}}</div>
             <!--
             <div><b>Tipo de Cargo</b></div>
             <div class="subText">{{o.tipo_cargo}}</div>
@@ -70,8 +68,8 @@
           <div class="titulo">Marcaciones</div>
 
           <div>
-            <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Seleccione Fecha" [(ngModel)]="fecha" (ngModelChange)="_actualizarPerfil($event)">
+            <mat-form-field class="inputFecha">
+                <input matInput [matDatepicker]="picker" class="inputFecha" placeholder="Seleccione Fecha" [(ngModel)]="fecha" (ngModelChange)="_actualizarPerfil($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -95,7 +93,7 @@
               </div>
               <div *ngIf="trabajando()">
                 <div class="tituloHora"><b>Trabajando</b></div>
-                <div class="contenedorHora"> {{fecha_trabajando}}</div>
+                <div class="contenedorHora2"> {{fecha_trabajando}}</div>
                 <div class="textSubHora">Horas declaradas: {{obtener_horario_horas()}}</div>
               </div>
 
@@ -117,15 +115,8 @@
                         <div class="textoCantidad">{{j.cantidad}}</div>
                     </div>
                 </div>
-
-
               </div>
-
           </div>
-
-
-
-
       </div>
 
   </div>
