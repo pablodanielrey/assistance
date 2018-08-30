@@ -24,7 +24,7 @@ export class MiperfilComponent implements OnInit {
   perfil: Perfil;
 
   interval = null;
-  segundos_trabajando: number = 0;
+  segundos_trabajando: number = -1;
   fecha_trabajando: string = "";
 
   constructor(private router: Router,
@@ -84,16 +84,35 @@ export class MiperfilComponent implements OnInit {
   trabajando() {
     /*
       retorna true en el caso de detectar que se está trabajando. y setea el timer adecuado
+
+      vi un muy buen ejemplo en stackoverflow.
+      app.filter('secondsToDateTime', function() {
+        return function(seconds) {
+          var d = new Date(0,0,0,0,0,0,0);
+          d.setSeconds(seconds);
+          return d;
+        };
+      });
+
+      para tenerlo en cuenta para definir filtros de este tipo y mostrar usando:
+
+      <b>{{seconds | secondsToDateTime | date:'HH:mm:ss'}}</b>
+
     */
     let r = this.perfil.segundos_trabajados == 0 && this.perfil.entrada != null;
     if (r && this.interval == null) {
       this.interval = setInterval(() => {
-        this.fecha_trabajando = new Date(new Date().getTime() - this.perfil.entrada.getTime()).toLocaleTimeString();
+        let entrada = this.perfil.entrada.getTime();
+        let ahora = new Date().getTime();
+        let trabajado = new Date(0,0,0,0,0,0,0);
+        trabajado.setMilliseconds(ahora - entrada);
+        this.fecha_trabajando = trabajado.toTimeString().substring(0,8);
       },1000);
     }
     if (!r && this.interval != null) {
       clearInterval(this.interval);
       this.interval = null;
+      this.segundos_trabajando = -1;
     }
     return r;
   }

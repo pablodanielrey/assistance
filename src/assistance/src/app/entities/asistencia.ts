@@ -57,6 +57,25 @@ export class Perfil {
     return a + String(hs) + ":" + b + String(min);
   };
 
+  _segundos_a_hora_minutos_segundos(segundos:number) {
+    let seg = Math.trunc(((segundos / 60) / 60) % 60);
+    let min = Math.trunc((segundos / 60) % 60);
+    let hs = Math.trunc((segundos / 60) / 60);
+    let a = '';
+    let b = '';
+    let c = '';
+    if (seg < 10) {
+      c = '0';
+    }
+    if (min < 10) {
+      b = '0';
+    }
+    if (hs < 10) {
+      a = '0';
+    }
+    return a + String(hs) + ":" + b + String(min) + ":" + c + String(seg);
+  }
+
   horas_trabajadas() {
     return this._segundos_a_hora(this.segundos_trabajados);
   }
