@@ -19,6 +19,11 @@
 }
 
 /* ---------------------------------------*/
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
+
 
 .mat-list, .mat-nav-list, .mat-selection-list {
     padding-top: 0px !important;

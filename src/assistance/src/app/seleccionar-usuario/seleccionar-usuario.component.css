@@ -22,6 +22,10 @@
 
 /* ---------------------------------------*/
 
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
 
 .itemLista {
   background-color: white;

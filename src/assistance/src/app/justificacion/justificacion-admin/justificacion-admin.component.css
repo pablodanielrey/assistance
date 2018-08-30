@@ -21,6 +21,10 @@
 }
 
 /*------------------------------------------*/
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
 
 .contenedorPrincipal {
   width: 400px;

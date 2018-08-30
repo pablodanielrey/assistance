@@ -20,6 +20,11 @@
 
 /* ---------------------------------------*/
 
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
+
 
 .headerHistorico {
   display: flex;

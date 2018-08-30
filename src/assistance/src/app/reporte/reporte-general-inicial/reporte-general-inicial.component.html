@@ -7,12 +7,12 @@
 
     <mat-divider></mat-divider>
 
-    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
 
     <div class="contenidoPantalla">
 
         <div class="contnedorIzquierdo">
           <app-listado-lugares [lugares]="lugares" (selected)="seleccionarLugar($event)"></app-listado-lugares>
+          <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
         </div>
 
         <div class="contenedorDerecho">

@@ -7,7 +7,6 @@
 
     <mat-divider></mat-divider>
 
-    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
 
     <div class="contenidoPantalla">
 
@@ -16,6 +15,8 @@
 
           <div class="listado">
             <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
+            <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+
           </div>
 
 
