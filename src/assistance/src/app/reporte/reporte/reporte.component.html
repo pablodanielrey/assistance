@@ -169,8 +169,58 @@
 
         </mat-tab>
 
+            <mat-tab *ngIf='reporte && reporte.detalle' label="Detalle" class="Tabs">
+              <div clasS="detalleReporte">
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre días</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Días laborables:</div><div>{{reporte.detalle.dias_laborables}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días trabajados:</div><div>{{reporte.detalle.dias_totales_trabajados}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                    <div class="titulo">Detalle sobre faltas</div>
+                    <mat-divider></mat-divider>
+                    <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                        <div>Faltas injustificadas:</div><div>{{reporte.detalle.faltas_injustificadas}}</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Faltas totales:</div><div>{{reporte.detalle.faltas_justificadas + reporte.detalle.faltas_injustificadas}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre horas</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_en_dias_laborables + reporte.detalle.minutos_extra)}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Justficaciones</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles" *ngFor='let j of reporte.detalle.justificaciones'>
+                          <div>{{j.nombre}}:</div><div>{{j.cantidad}}</div>
+                        </div>
+                      </div>
+                  </div>
 
-          <mat-tab *ngIf='reporte && reporte.detalle' label="Detalle" class="Tabs">
+              </div>
+          </mat-tab>
+
+          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Detalle sobre días</div>
@@ -252,7 +302,7 @@
               </div>
           </mat-tab>
 
-          <mat-tab *ngIf='reporte && reporte.detalle' label="Detalle Horas" class="Tabs">
+          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Trabajadas</div>
@@ -334,7 +384,7 @@
                 </div>
           </mat-tab>
 
-          <mat-tab *ngIf='reporte && reporte.detalle' label="Entradas/Salidas" class="Tabs">
+          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
             <div clasS="detalleReporte">
                 <div class="columna">
                   <div class="titulo">Entradas</div>
