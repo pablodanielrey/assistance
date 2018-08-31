@@ -13,7 +13,7 @@
           <div class="contenedorListaDeUsuario">
               <mat-list class="listaUsuario">
                 <mat-list-item class="itemLista">
-                  <img matListAvatar src="https://i.pinimg.com/originals/1d/52/88/1d528825423bbfc1fe82dde5c871962d.jpg">
+                  <img matListAvatar src="/assets/img/icono_usuario.jpg">
                   <h3 matLine *ngIf="reporte && reporte.usuario"> {{reporte.usuario.nombre}} {{reporte.usuario.apellido}}</h3>
                   <p matLine>
                     <span class="itemTextoSubtitulo" *ngIf="reporte && reporte.usuario  ">{{reporte.usuario.dni}}</span>
@@ -47,6 +47,9 @@
 
       <mat-progress-bar *ngIf="buscando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
 
+      <mat-divider></mat-divider>
+
+
       <!-- el reporte esta duplicado con distintas vistas- la del celular y la de la pc -->
       <mat-tab-group *ngIf='reporte'>
           <mat-tab *ngIf='is_desktop()' label="Reporte" class="Tabs">
@@ -57,7 +60,7 @@
 
                 <ng-container matColumnDef='Dia'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEE'}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEEE'}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Fecha'>
@@ -103,7 +106,7 @@
                 <!-- VISTA PC -->
                 <mat-header-row *matHeaderRowDef="['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-row>
-                
+
               </mat-table>
               </div>
 
@@ -201,7 +204,7 @@
                       <div class="contenedorItemDetalles">
                         <div class="itemDetalles">
                           <div>Horas a trabajar:</div><div>{{obtenerHorasString(reporte.detalle.minutos_laborables - reporte.detalle.minutos_justificados)}}</div>
-                        </div>                        
+                        </div>
                         <div class="itemDetalles">
                           <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados - reporte.detalle.minutos_extra_en_dias_laborables - reporte.detalle.minutos_extra)}}</div>
                         </div>
