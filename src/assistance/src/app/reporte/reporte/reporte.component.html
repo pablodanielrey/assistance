@@ -175,18 +175,6 @@
             <mat-tab *ngIf='reporte && reporte.detalle' label="Detalle" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
-                      <div class="titulo">Detalle sobre días</div>
-                      <mat-divider></mat-divider>
-                      <div class="contenedorItemDetalles">
-                        <div class="itemDetalles">
-                          <div>Días laborables:</div><div>{{reporte.detalle.dias_laborables}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Días trabajados:</div><div>{{reporte.detalle.dias_totales_trabajados}}</div>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="columna">
                     <div class="titulo">Detalle sobre faltas</div>
                     <mat-divider></mat-divider>
                     <div class="contenedorItemDetalles">
@@ -203,16 +191,7 @@
                       <mat-divider></mat-divider>
                       <div class="contenedorItemDetalles">
                         <div class="itemDetalles">
-                          <div>Horas a trabajar:</div><div>{{obtenerHorasString(reporte.detalle.minutos_laborables - reporte.detalle.minutos_justificados)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados - reporte.detalle.minutos_extra_en_dias_laborables - reporte.detalle.minutos_extra)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_en_dias_laborables + reporte.detalle.minutos_extra)}}</div>
-                        </div>
-                        <div class="itemDetalles">
-                          <div>Horas totales trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
+                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
                         </div>
                       </div>
                   </div>
