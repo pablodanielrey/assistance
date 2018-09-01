@@ -57,4 +57,14 @@ export class MenuComponent implements OnInit {
     return r
   }
 
+  telegram() {
+    this.onInternalItem();
+    this.subscriptions.push(this.service.obtenerTelegramToken().subscribe(t => {
+      window.open("https://telegram.me/AsistenciaFCEBot?start=" + t.token, "_blank");
+    },
+    e => {
+      console.log(e);
+    }));
+  }
+
 }

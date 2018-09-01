@@ -8,12 +8,7 @@ import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 
-
-
-
-
 const ASSISTANCE_API_URL = environment.assistanceApiUrl;
-
 
 import { Reloj, 
          DatosAsistencia, 
@@ -23,6 +18,8 @@ import { Reloj,
          Justificacion, FechaJustificada, 
          Lugar } from './entities/asistencia';
 
+import { TelegramToken } from './entities/telegram';
+
 @Injectable()
 export class AssistanceService {
 
@@ -31,6 +28,11 @@ export class AssistanceService {
   obtenerAccesoModulos(): Observable<string[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/acceso_modulos`;
     return this.http.get<string[]>(apiUrl);
+  }
+
+  obtenerTelegramToken(): Observable<TelegramToken> {
+    let apiUrl = `${ASSISTANCE_API_URL}/telegram_token`;
+    return this.http.get<TelegramToken>(apiUrl).pipe(map(t => new TelegramToken(t)));
   }
 
   buscarUsuarios(texto:string): Observable<DatosAsistencia[]> {

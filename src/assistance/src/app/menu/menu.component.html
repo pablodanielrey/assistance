@@ -23,6 +23,9 @@
     <button *ngIf="chequearPerfil(['super-admin'])" class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/relojes/seleccion">
       <mat-icon class="icoMenu">alarm_on</mat-icon> Relojes
     </button><br>    
+    <button *ngIf="chequearPerfil(['super-admin'])" class="btn" mat-button (click)='telegram()'>
+      <mat-icon class="icoMenu">alarm_on</mat-icon> Telegram
+    </button><br>    
     <!-- <button class="btn" mat-button (click)='onInternalItem()' routerLink="/relojes/buscar"><mat-icon class="icoMenu">query_builder</mat-icon> Administrar Relojes &nbsp;</button><br> -->
   </mat-sidenav>
 
