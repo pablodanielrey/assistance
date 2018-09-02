@@ -35,6 +35,11 @@ export class AssistanceService {
     return this.http.get<TelegramToken>(apiUrl).pipe(map(t => new TelegramToken(t)));
   }
 
+  activarCuentaTelegram(code): Observable<string> {
+    let apiUrl = `${ASSISTANCE_API_URL}/telegram_activate/` + code;
+    return this.http.get<string>(apiUrl);
+  }
+
   buscarUsuarios(texto:string): Observable<DatosAsistencia[]> {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')

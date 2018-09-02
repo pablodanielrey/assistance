@@ -36,10 +36,13 @@ import { HorarioHistoricoComponent } from './horario/horario-historico/horario-h
 
 import { MiperfilComponent } from './miperfil/miperfil.component';
 
+import { TelegramComponent } from './notificaciones/telegram/telegram.component';
+
 
 const routes: Routes = [
 
   { path: 'loader', component: LoaderComponent },
+  { path: 'telegram/:code', component: TelegramComponent },
   {
     path: 'sistema',
     component: SistemaComponent,

@@ -66,5 +66,5 @@ export class MenuComponent implements OnInit {
       console.log(e);
     }));
   }
-
+  
 }

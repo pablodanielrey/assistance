@@ -59,6 +59,7 @@ import { DialogoEliminarJustificacionComponent } from './justificacion/dialogo-e
 import { LoaderComponent } from './loader/loader.component';
 import { SistemaComponent } from './sistema/sistema.component';
 import { MiperfilComponent } from './miperfil/miperfil.component';
+import { TelegramComponent } from './notificaciones/telegram/telegram.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { MiperfilComponent } from './miperfil/miperfil.component';
     LoaderComponent,
     SistemaComponent,
     MiperfilComponent,
-    HorarioHistoricoComponent
+    HorarioHistoricoComponent,
+    TelegramComponent
   ],
   imports: [
     BrowserModule,
