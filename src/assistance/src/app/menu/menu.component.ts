@@ -5,6 +5,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 import { AssistanceService } from '../assistance.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -60,11 +61,11 @@ export class MenuComponent implements OnInit {
   telegram() {
     this.onInternalItem();
     this.subscriptions.push(this.service.obtenerTelegramToken().subscribe(t => {
-      window.open("https://telegram.me/AsistenciaFCEBot?start=" + t.token, "_blank");
+      window.open(environment.telegramURL + t.token, "_blank");
     },
     e => {
       console.log(e);
     }));
   }
-  
+
 }

@@ -5,6 +5,7 @@ export const environment = {
   userinfoEndpoint: 'https://oidp.econo.unlp.edu.ar/userinfo',
   loginUrl: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
   logoutUrl: 'https://consent.econo.unlp.edu.ar/logout',
+  telegramURL: 'https://telegram.me/AsistenciaFCEBot?start=',
   // tokenEndpoint: 'https://oidp.econo.unlp.edu.ar/oauth2/auth'
 
   footer: 'DiTeSI | Dirección de Tecnologías y Sistemas Informáticos | FCE',
