@@ -1,7 +1,5 @@
-<p>
-  Bienvenido.
-  Estamos realizando la activación de su cuenta para las notificaciones por telegram.
-  Cuenta activada exitósamente.
-  Recibirá una notificación por telegram para continuar con el proceso de configuración.
-  Esta ventana se autodestruirá en 10 segundos.
-</p>
+<div>
+  Ingrese el código indicado por la aplicación de asistencia en Telegram.
+  Código: <input matInput [(ngModel)]='codigo'/>
+  <button type='submit' (click)='enviar_codigo()'>Enviar</button>
+</div>

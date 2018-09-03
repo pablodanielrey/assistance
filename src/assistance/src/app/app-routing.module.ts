@@ -42,7 +42,7 @@ import { TelegramComponent } from './notificaciones/telegram/telegram.component'
 const routes: Routes = [
 
   { path: 'loader', component: LoaderComponent },
-  { path: 'telegram/:code', component: TelegramComponent },
+  //{ path: 'telegram/:code', component: TelegramComponent },
   {
     path: 'sistema',
     component: SistemaComponent,
@@ -51,6 +51,12 @@ const routes: Routes = [
       //{ path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
       { path: 'inicial', component: PantallaPrincipalComponent },
       { path: 'miperfil', component: MiperfilComponent },
+      {
+        path: 'notificaciones',
+        children: [
+          { path: 'telegram', component: TelegramComponent}
+        ]
+      },
       {
         path: 'reportes',
         children: [

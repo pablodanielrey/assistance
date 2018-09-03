@@ -17,6 +17,7 @@ export class TelegramComponent implements OnInit {
   
   ngOnInit() {
     
+    /*
     this.route.params.subscribe(p => {
       console.log(p['code']);
       this.codigo = p['code'];
@@ -30,7 +31,21 @@ export class TelegramComponent implements OnInit {
         this.router.navigate(['/']);
       });
     });
+    */
 
+    
+  }
+
+  enviar_codigo() {
+    this.service.activarCuentaTelegram(this.codigo).subscribe(s => {
+      console.log('cuenta activada correctamente');
+      this.router.navigate(['/']);
+    },
+    e => {
+      console.log(e);
+      console.log('error activando cuenta');
+      this.router.navigate(['/']);
+    });
   }
 
 }
