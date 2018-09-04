@@ -13,6 +13,7 @@ export class TelegramComponent implements OnInit {
 
   codigo: string = '';
   error: string = '';
+  mensaje: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private service: AssistanceService) { }
   
@@ -40,7 +41,8 @@ export class TelegramComponent implements OnInit {
   enviar_codigo() {
     this.service.activarCuentaTelegram(this.codigo).subscribe(s => {
       console.log('cuenta activada correctamente');
-      this.router.navigate(['/']);
+      this.mensaje = 'Cuenta activada correctamente. Va a recibir un mensaje por telegram';
+      //this.router.navigate(['/']);
     },
     e => {
       console.log(e);
