@@ -12,6 +12,7 @@ import { AssistanceService } from '../../assistance.service';
 export class TelegramComponent implements OnInit {
 
   codigo: string = '';
+  error: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private service: AssistanceService) { }
   
@@ -43,8 +44,7 @@ export class TelegramComponent implements OnInit {
     },
     e => {
       console.log(e);
-      console.log('error activando cuenta');
-      this.router.navigate(['/']);
+      this.error = 'Error activando cuenta. Reintente nuevamente';
     });
   }
 
