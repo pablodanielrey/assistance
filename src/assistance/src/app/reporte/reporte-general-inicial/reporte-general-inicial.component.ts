@@ -59,7 +59,7 @@ export class ReporteGeneralInicialComponent implements OnInit {
   }
 
   volver() {
-    this.location.back();
+    this.router.navigate(['../seleccion']);
   }
 
   generarReporte() {
