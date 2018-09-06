@@ -27,6 +27,7 @@
         <mat-datepicker #datePicker></mat-datepicker>
       </mat-form-field>
 
+      <div class="conenedorHoras"><p class="textoHorasSemanales"><p>{{fecha_inicio | date: 'EEE dd/MM'}} - {{fecha_fin | date: 'EEE dd/MM'}} </p></div>
 
       <div *ngIf='info.horasSemanales' class="conenedorHoras">
 
