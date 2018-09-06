@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="contenedorBotones">
+      <div class="contenedorBotones" *ngIf="chequearPerfil(['super-admin','horario_vista','horario_abm'])">
         <button mat-button class="btnModificar" routerLink="/sistema/horarios/modificar/{{usuario_id}}"  [queryParams]="{ fecha:fecha }">MODIFICAR HORARIO</button>
         <button mat-button class="btnModificar" routerLink="/sistema/horarios/historico/{{usuario_id}}"  [queryParams]="{ fecha:fecha }">HISTORIAL</button>
       </div>

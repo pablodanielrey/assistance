@@ -19,6 +19,7 @@ export class HorarioDetalleComponent implements OnInit {
   subscriptions: any[] = [];
   info: DatosHorario = null;
   cargando: boolean = false
+  modulos: string[] = [];
 
   constructor(private service: AssistanceService,
               private location: Location,
@@ -27,7 +28,10 @@ export class HorarioDetalleComponent implements OnInit {
   ngOnInit() {
     let params = this.route.snapshot.paramMap;
     this.usuario_id = params.get('uid');
-    this.obtenerHorario();
+    this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
+      this.modulos = modulos;
+      this.obtenerHorario();
+    }));
   }
 
   ngOnDestroy() {
@@ -38,6 +42,16 @@ export class HorarioDetalleComponent implements OnInit {
   volver() {
     this.location.back();
   }
+
+  chequearPerfil(profiles: string[]): boolean {
+    let r = false;
+    profiles.forEach(p => {
+      if (this.modulos.includes(p)) {
+        r = true;
+      }
+    });
+    return r
+  }  
 
   obtenerHorario() {
     this.cargando = true;

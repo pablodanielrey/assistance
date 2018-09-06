@@ -33,6 +33,11 @@
         <mat-icon class="icoMenu">alarm_on</mat-icon> Horarios
       </button><br>
     </span>
+    <span *ngIf="!chequearPerfil(['super-admin','horario_vista','horario_abm'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/horarios/detalle/{{ usuarioId }}">
+        <mat-icon class="icoMenu">alarm_on</mat-icon> Horarios
+      </button><br>
+    </span>
     <span  *ngIf="chequearPerfil(['super-admin'])">
       <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/relojes/seleccion">
         <mat-icon class="icoMenu">alarm_on</mat-icon> Relojes
