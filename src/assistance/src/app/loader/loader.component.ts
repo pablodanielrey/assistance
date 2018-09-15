@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -13,7 +13,7 @@ export class LoaderComponent implements OnInit {
   loaderFooter1: string;
   loaderFooter2: string;
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private router: Router) {
     this.loaderHeader= environment.loaderHeader;
     this.loaderLogo= environment.loaderLogo;
     this.loaderFooter1= environment.loaderFooter1;
@@ -25,7 +25,7 @@ export class LoaderComponent implements OnInit {
   }
 
   acceder() {
-    this.oauthService.initImplicitFlow();
+    this.router.navigate(['/oauth2']);
   }
 
 }

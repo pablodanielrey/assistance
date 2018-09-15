@@ -6,7 +6,7 @@ import { GlobalErrorHandler } from './error.handler';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { TokenInterceptor } from './auth.service';
+import { OidpGuard } from './oauth2/oidp.guard';
 
 import { MyMaterialModule } from './material.module';
 
@@ -54,12 +54,12 @@ import { ReporteGeneralInicialComponent } from './reporte/reporte-general-inicia
 import { ListadoLugaresComponent } from './listado-lugares/listado-lugares.component';
 import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-general.component';
 
-import { OidpGuard } from './oidp.guard';
 import { DialogoEliminarJustificacionComponent } from './justificacion/dialogo-eliminar-justificacion/dialogo-eliminar-justificacion.component';
 import { LoaderComponent } from './loader/loader.component';
 import { SistemaComponent } from './sistema/sistema.component';
 import { MiperfilComponent } from './miperfil/miperfil.component';
 import { TelegramComponent } from './notificaciones/telegram/telegram.component';
+import { Oauth2Component } from './oauth2/oauth2.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +99,8 @@ import { TelegramComponent } from './notificaciones/telegram/telegram.component'
     SistemaComponent,
     MiperfilComponent,
     HorarioHistoricoComponent,
-    TelegramComponent
+    TelegramComponent,
+    Oauth2Component
   ],
   imports: [
     BrowserModule,
@@ -107,7 +108,12 @@ import { TelegramComponent } from './notificaciones/telegram/telegram.component'
     MyMaterialModule,
     FormsModule,
     AppRoutingModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http'],
+        sendAccessToken: true
+      }
+    })
   ],
   entryComponents: [DialogoEliminarFechaJustificadaComponent, DialogoEliminarJustificacionComponent],
   providers: [
@@ -115,8 +121,7 @@ import { TelegramComponent } from './notificaciones/telegram/telegram.component'
       NotificacionesService,
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
-      OidpGuard,
-      { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+      OidpGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -29,23 +29,11 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "i18nFile": "src/messages.xlf",
-              "i18nLocale": "es",
-              "i18nFormat": "xlf",
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
+            "vs": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.vs.ts"
                 }
               ]
             },
@@ -86,54 +74,6 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.presi.ts"
-                }
-              ]
-            },
-            "local": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.local.ts"
-                }
-              ]
-            },
-            "local-econo": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.econo.ts"
-                }
-              ]
-            },
-            "local-presi": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.presi.ts"
-                }
-              ]
-            },
-            "api-vs-econo": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.vs.econo.ts"
-                }
-              ]
-            },            
-            "api-test-econo": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.apitest.econo.ts"
-                }
-              ]
-            },
-            "api-test-presi": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.apitest.presi.ts"
                 }
               ]
             }
@@ -145,32 +85,14 @@
             "browserTarget": "assistance:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "assistance:build:production"
-            },
-            "local": {
-              "browserTarget": "assistance:build:local"
+            "vs": {
+              "browserTarget": "assistance:build:vs"
             },
             "econo": {
               "browserTarget": "assistance:build:econo"
             },
-            "local-econo": {
-              "browserTarget": "assistance:build:local-econo"
-            },
-            "api-vs-econo": {
-              "browserTarget": "assistance:build:api-vs-econo"
-            },
-            "api-test-econo": {
-              "browserTarget": "assistance:build:api-test-econo"
-            },
             "presi": {
               "browserTarget": "assistance:build:presi"
-            },
-            "local-presi": {
-              "browserTarget": "assistance:build:local-presi"
-            },
-            "api-test-presi": {
-              "browserTarget": "assistance:build:api-test-presi"
             }
           }
         },

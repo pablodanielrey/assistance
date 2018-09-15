@@ -1,12 +1,10 @@
 export const environment = {
   production: false,
-  assistanceApiUrl: 'http://localhost:9006/assistance/api/v1.0',
-  oidp_issuer: 'https://oidp.econo.unlp.edu.ar',
-  userinfoEndpoint: 'https://oidp.econo.unlp.edu.ar/userinfo',
-  loginUrl: 'https://oidp.econo.unlp.edu.ar/oauth2/auth',
-  logoutUrl: 'https://consent.econo.unlp.edu.ar/logout',
+  assistanceApiUrl: 'http://localhost:9008/assistance/api/v1.0',
+  oidp_issuer: 'https://oidc.econo.unlp.edu.ar/',
+  logoutUrl: 'https://login.econo.unlp.edu.ar/logout',
   telegramURL: 'https://telegram.me/AsistenciaFCEBot?start=',
-  // tokenEndpoint: 'https://oidp.econo.unlp.edu.ar/oauth2/auth'
+
 
   footer: 'DiTeSI | Dirección de Tecnologías y Sistemas Informáticos | FCE',
 
