@@ -42,7 +42,7 @@ export class Oauth2Component implements OnInit {
     })
     console.log('tratando de loguearme');
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
-      if (this.oauthService.getAccessToken() == null) {
+      if (this.oauthService.getAccessToken() == null || !this.oauthService.hasValidAccessToken()) {
         this.oauthService.initImplicitFlow();
       } else {
         /*
