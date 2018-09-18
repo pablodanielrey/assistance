@@ -13,13 +13,18 @@
         <mat-icon class="icoMenu">perm_identity</mat-icon> Inicio
       </button><br>
     </span>
-    <span *ngIf="chequearPerfil(['super-admin','reporte_personal','reporte_general'])">
-      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/reportes/inicial">
-        <mat-icon class="icoMenu">list</mat-icon> Reportes
+    <span  *ngIf="chequearPerfil(['super-admin','inicio_personal'])">
+      <button class="btn" mat-button (click)='onInternalItem()' (click)='ver_reporte_personal()'>
+        <mat-icon class="icoMenu">list</mat-icon> Mi Reporte
       </button><br>
     </span>
-    <span  *ngIf="!chequearPerfil(['super-admin','reporte_personal','reporte_general'])">
-      <button class="btn" mat-button (click)='onInternalItem()' (click)='ver_reporte_personal()'>
+    <span *ngIf="chequearPerfil(['super-admin','inicio_personal'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/horarios/detalle/{{ usuarioId }}">
+        <mat-icon class="icoMenu">alarm_on</mat-icon> Mi Horario
+      </button><br>
+    </span>
+    <span *ngIf="chequearPerfil(['super-admin','reporte_personal','reporte_general'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/reportes/inicial">
         <mat-icon class="icoMenu">list</mat-icon> Reportes
       </button><br>
     </span>
@@ -30,11 +35,6 @@
     </span>
     <span *ngIf="chequearPerfil(['super-admin','horario_vista','horario_abm'])">
       <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/horarios/seleccion">
-        <mat-icon class="icoMenu">alarm_on</mat-icon> Horarios
-      </button><br>
-    </span>
-    <span *ngIf="!chequearPerfil(['super-admin','horario_vista','horario_abm'])">
-      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/horarios/detalle/{{ usuarioId }}">
         <mat-icon class="icoMenu">alarm_on</mat-icon> Horarios
       </button><br>
     </span>
