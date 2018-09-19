@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  assistanceApiUrl: 'http://localhost:9008/assistance/api/v1.0',
+  assistanceApiUrl: 'https://api.econo.unlp.edu.ar/assistance/api/v1.0',
   oidp_issuer: 'https://oidc.econo.unlp.edu.ar/',
   logoutUrl: 'https://login.econo.unlp.edu.ar/logout',
   telegramURL: 'https://telegram.me/AsistenciaFCEBot?start=',
