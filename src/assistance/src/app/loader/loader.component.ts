@@ -28,7 +28,7 @@ export class LoaderComponent implements OnInit {
   }
 
   acceder() {
-    this.oauthService.initImplicitFlow();
+    this.router.navigate(['/oauth2']);
   }
 
 }
