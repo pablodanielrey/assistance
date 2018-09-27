@@ -76,6 +76,22 @@
                   "with": "src/environments/environment.presi.ts"
                 }
               ]
+            },
+            "local-econo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.econo.ts"
+                }
+              ]
+            },
+            "local-presi": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.presi.ts"
+                }
+              ]
             }
           }
         },
@@ -93,6 +109,12 @@
             },
             "presi": {
               "browserTarget": "assistance:build:presi"
+            },
+            "local-econo": {
+              "browserTarget": "assistance:build:local-econo"
+            },
+            "local-presi": {
+              "browserTarget": "assistance:build:local-presi"
             }
           }
         },
