@@ -37,6 +37,14 @@
                 }
               ]
             },
+            "vs-presi": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vs.presi.ts"
+                }
+              ]
+            },            
             "econo": {
               "optimization": true,
               "outputHashing": "all",
@@ -104,6 +112,9 @@
             "vs": {
               "browserTarget": "assistance:build:vs"
             },
+            "vs-presi": {
+              "browserTarget": "assistance:build:vs-presi"
+            },            
             "econo": {
               "browserTarget": "assistance:build:econo"
             },
