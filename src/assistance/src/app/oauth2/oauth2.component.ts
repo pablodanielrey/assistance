@@ -49,7 +49,7 @@ export class Oauth2Component implements OnInit {
         this.access_token = this.oauthService.getAccessToken();
         this.id_token = this.oauthService.getIdToken();
         */
-        this.router.navigate(['/sistema']);
+        this.router.navigate(['/sistema/inicial']);
       }
     });
   }
