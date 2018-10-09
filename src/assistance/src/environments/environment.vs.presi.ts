@@ -6,13 +6,12 @@ export const environment = {
   telegramURL: 'https://telegram.me/AsistenciaFCEBot?start=',
 
 
-  footer: 'DiTeSI | Dirección de Tecnologías y Sistemas Informáticos | FCE',
+  footer: 'Dirección General de Personal | Presidencia | UNLP | Calle 7 Nº 776',
 
-  loaderHeader: 'Asistencia | FCE',
-  loaderLogo: '/assets/img/logofce2018.png',
-  loaderFooter1: 'DiTESI | Dirección de tecnologías y Sistemas Informáticos | Facultad de Ciencias Económicas | UNLP | Calle 6 Nº 777',
-  loaderFooter2: 'DiTESI | Dirección de tecnologías y Sistemas Informáticos | FCE',
+  loaderHeader: 'Asistencia | Presidencia',
+  loaderLogo: '/assets/img/logounlp.png',
+  loaderFooter1: 'Dirección General de Personal | Presidencia | UNLP | Calle 7 Nº 776',
+  loaderFooter2: 'Dirección General de Personal | Presidencia | UNLP',
 
-  pantallaPrincipalLogo: '/assets/img/logo_asistencia_fce.png',
-
+  pantallaPrincipalLogo: '/assets/img/logo_asistencia_unlp.png',
 };
