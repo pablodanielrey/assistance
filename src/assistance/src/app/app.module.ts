@@ -6,7 +6,7 @@ import { GlobalErrorHandler } from './error.handler';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { OidpGuard } from './oauth2/oidp.guard';
 import { Oauth2Component } from './oauth2/oauth2.component';
 import { Oauth2Service } from './oauth2/oauth2.service';
@@ -129,7 +129,8 @@ import { environment } from '../environments/environment';
       NotificacionesService,
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
-      OidpGuard
+      OidpGuard,
+      { provide: OAuthStorage, useValue: localStorage }
   ],
   bootstrap: [AppComponent]
 })

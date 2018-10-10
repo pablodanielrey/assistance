@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   assistanceApiUrl: 'https://api.asistencia.presi.unlp.edu.ar/assistance/api/v1.0',
   oidp_issuer: 'https://oidp.asistencia.presi.unlp.edu.ar/',
-  logoutUrl:'https://login.econo.unlp.edu.ar/logout/{{id_token}}/{{client_id}}',
+  loginApiUrl: 'https://api.econo.unlp.edu.ar/login/api/v1.0',
   telegramURL: 'https://telegram.me/AsistenciaPresiBot?start=',
   client_id: 'assistance-ui',
 
