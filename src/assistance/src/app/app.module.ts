@@ -5,8 +5,11 @@ import { GlobalErrorHandler } from './error.handler';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { OidpGuard } from './oauth2/oidp.guard';
+import { Oauth2Component } from './oauth2/oauth2.component';
+import { Oauth2Service } from './oauth2/oauth2.service';
 
 import { MyMaterialModule } from './material.module';
 
@@ -59,7 +62,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { SistemaComponent } from './sistema/sistema.component';
 import { MiperfilComponent } from './miperfil/miperfil.component';
 import { TelegramComponent } from './notificaciones/telegram/telegram.component';
-import { Oauth2Component } from './oauth2/oauth2.component';
+import { ErrorComponent } from './error/error.component';
+
 
 @NgModule({
   declarations: [
@@ -100,7 +104,8 @@ import { Oauth2Component } from './oauth2/oauth2.component';
     MiperfilComponent,
     HorarioHistoricoComponent,
     TelegramComponent,
-    Oauth2Component
+    Oauth2Component,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

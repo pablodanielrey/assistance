@@ -4,6 +4,7 @@ export const environment = {
   oidp_issuer: 'https://oidp.asistencia.presi.unlp.edu.ar/',
   logoutUrl: 'https://login.asistencia.presi.unlp.edu.ar/logout',
   telegramURL: 'https://telegram.me/AsistenciaFCEBot?start=',
+  client_id: 'assistance-ui',
 
 
   footer: 'Dirección General de Personal | Presidencia | UNLP | Calle 7 Nº 776',

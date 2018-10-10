@@ -4,6 +4,7 @@ export const environment = {
   oidp_issuer: 'https://oidc.econo.unlp.edu.ar/',
   logoutUrl: 'https://login.econo.unlp.edu.ar/logout',
   telegramURL: 'https://telegram.me/AsistenciaFCEBot?start=',
+  client_id: 'assistance-ui',
 
   footer: 'DiTeSI | Dirección de Tecnologías y Sistemas Informáticos | FCE',
 

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Oauth2Component } from './oauth2/oauth2.component';
 import { OidpGuard } from './oauth2/oidp.guard';
 
+import { ErrorComponent } from './error/error.component';
 
 import { LoaderComponent } from './loader/loader.component';
 
@@ -42,6 +43,7 @@ import { TelegramComponent } from './notificaciones/telegram/telegram.component'
 
 const routes: Routes = [
 
+  { path: 'error/:error', component: ErrorComponent },
   { path: 'oauth2', component: Oauth2Component },
   { path: 'loader', component: LoaderComponent },
   //{ path: 'telegram/:code', component: TelegramComponent },
