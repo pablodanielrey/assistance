@@ -63,6 +63,8 @@ import { SistemaComponent } from './sistema/sistema.component';
 import { MiperfilComponent } from './miperfil/miperfil.component';
 import { TelegramComponent } from './notificaciones/telegram/telegram.component';
 import { ErrorComponent } from './error/error.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -118,7 +120,8 @@ import { ErrorComponent } from './error/error.component';
         allowedUrls: ['http'],
         sendAccessToken: true
       }
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [DialogoEliminarFechaJustificadaComponent, DialogoEliminarJustificacionComponent],
   providers: [

@@ -21,12 +21,14 @@
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true
           },
           "configurations": {
             "vs": {
@@ -44,7 +46,7 @@
                   "with": "src/environments/environment.vs.presi.ts"
                 }
               ]
-            },            
+            },
             "econo": {
               "optimization": true,
               "outputHashing": "all",
@@ -114,7 +116,7 @@
             },
             "vs-presi": {
               "browserTarget": "assistance:build:vs-presi"
-            },            
+            },
             "econo": {
               "browserTarget": "assistance:build:econo"
             },
@@ -148,7 +150,8 @@
             ],
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/manifest.json"
             ]
           }
         },
