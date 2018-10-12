@@ -67,6 +67,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReporteHorasSemanalComponent } from './reporte/reporte-horas-semanal/reporte-horas-semanal.component';
 import { ReporteJustificacionesComponent } from './reporte/reporte-justificaciones/reporte-justificaciones.component';
+import { UpdateService } from './update.service';
 
 
 @NgModule({
@@ -129,6 +130,7 @@ import { ReporteJustificacionesComponent } from './reporte/reporte-justificacion
   ],
   entryComponents: [DialogoEliminarFechaJustificadaComponent, DialogoEliminarJustificacionComponent],
   providers: [
+      UpdateService,
       AssistanceService,
       NotificacionesService,
       { provide: LOCALE_ID, useValue: "es" },

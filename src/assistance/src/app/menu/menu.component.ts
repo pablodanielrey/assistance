@@ -6,6 +6,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Usuario } from '../entities/usuario';
 
+import { UpdateService } from '../update.service';
 import { AssistanceService } from '../assistance.service';
 import { environment } from '../../environments/environment';
 
@@ -24,7 +25,11 @@ export class MenuComponent implements OnInit {
   subscriptions: any[] = [];
   usuarioId: string;
 
-  constructor(private oauthService: OAuthService, private router: Router, private service: AssistanceService, private location: Location) { }
+  constructor(private oauthService: OAuthService, 
+              private router: Router, 
+              private service: AssistanceService, 
+              private location: Location,
+              private update: UpdateService) { }
 
   ngOnInit() {
     let info: any = this.oauthService.getIdentityClaims();
