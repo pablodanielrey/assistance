@@ -22,6 +22,8 @@ import { GenerarReportePersonalComponent } from './reporte/generar-reporte-perso
 import { ReporteComponent } from './reporte/reporte/reporte.component';
 import { ReporteGeneralInicialComponent } from './reporte/reporte-general-inicial/reporte-general-inicial.component';
 import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-general.component';
+import { ReporteHorasSemanalComponent } from './reporte/reporte-horas-semanal/reporte-horas-semanal.component';
+import { ReporteJustificacionesComponent } from './reporte/reporte-justificaciones/reporte-justificaciones.component';
 
 import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
@@ -71,9 +73,10 @@ const routes: Routes = [
               { path: 'generar/:fecha', component: ReporteGeneralComponent }
             ]
           },
-          { path: 'personal', component: GenerarReportePersonalComponent, canActivate: [OidpGuard] },
-          { path: 'personal/:uid', component: ReporteComponent, canActivate: [OidpGuard] }
-
+          { path: 'personal', component: GenerarReportePersonalComponent },
+          { path: 'personal/:uid', component: ReporteComponent },
+          { path: 'horas_semanales/:uid', component: ReporteHorasSemanalComponent },
+          { path: 'justificaciones/:uid', component: ReporteJustificacionesComponent }
         ]
       },
       {

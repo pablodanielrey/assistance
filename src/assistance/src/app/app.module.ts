@@ -65,6 +65,8 @@ import { TelegramComponent } from './notificaciones/telegram/telegram.component'
 import { ErrorComponent } from './error/error.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ReporteHorasSemanalComponent } from './reporte/reporte-horas-semanal/reporte-horas-semanal.component';
+import { ReporteJustificacionesComponent } from './reporte/reporte-justificaciones/reporte-justificaciones.component';
 
 
 @NgModule({
@@ -107,7 +109,9 @@ import { environment } from '../environments/environment';
     HorarioHistoricoComponent,
     TelegramComponent,
     Oauth2Component,
-    ErrorComponent
+    ErrorComponent,
+    ReporteHorasSemanalComponent,
+    ReporteJustificacionesComponent
   ],
   imports: [
     BrowserModule,
