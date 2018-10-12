@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common'; 
 import { Router } from '@angular/router';
 import { MenuComponent } from '../menu/menu.component';
 import { Oauth2Service } from '../oauth2/oauth2.service';
 import { ToogleFullscreenDirective } from '../toogle-fullscreen.directive';
+import { UpdateService } from '../update.service';
 
 
 @Component({
@@ -15,8 +17,10 @@ export class HeaderComponent implements OnInit {
   @Output() menu = new EventEmitter<boolean>();
   info: any;
 
-  constructor(private router: Router, 
-              private oauthService: Oauth2Service) { }
+  constructor(@Inject('window') private window: any, 
+              private router: Router, 
+              private oauthService: Oauth2Service,
+              private update: UpdateService) { }
 
   ngOnInit() {
     /*
@@ -43,6 +47,18 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/']);
       }
     );
+  }
+
+  actualizar() {
+    this.update.checkForUpdate();
+  }
+
+  mi_perfil() {
+     this.window.open('https://usuarios.econo.unlp.edu.ar','_new');
+  }
+
+  cambiar_clave() {
+    this.window.open('https://usuarios.econo.unlp.edu.ar','_new');
   }
 
 }

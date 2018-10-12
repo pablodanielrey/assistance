@@ -70,6 +70,10 @@ import { ReporteJustificacionesComponent } from './reporte/reporte-justificacion
 import { UpdateService } from './update.service';
 
 
+export function windowFactory() {
+  return window;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +137,7 @@ import { UpdateService } from './update.service';
       UpdateService,
       AssistanceService,
       NotificacionesService,
+      { provide: 'window', useFactory: windowFactory },
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
       OidpGuard,

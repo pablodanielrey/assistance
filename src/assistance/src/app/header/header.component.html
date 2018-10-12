@@ -12,9 +12,10 @@
                 <mat-icon>arrow_drop_down</mat-icon>
             </button>
             <mat-menu #menu='matMenu'>
-              <button mat-menu-item><mat-icon>portrait</mat-icon> Mi Perfil</button>
-              <button mat-menu-item><mat-icon>lock_outline</mat-icon> Cambiar Clave</button>
-              <button mat-menu-item (click)='salir()'><mat-icon>exit_to_app</mat-icon> Salir</button>
+                <button mat-menu-item (click)='actualizar()'><mat-icon>portrait</mat-icon> Chequear Actualizaciones</button>
+                <button mat-menu-item (click)='mi_perfil()'><mat-icon>portrait</mat-icon> Mi Perfil</button>
+                <button mat-menu-item (click)='cambiar_clave()'><mat-icon>lock_outline</mat-icon> Cambiar Clave</button>
+                <button mat-menu-item (click)='salir()'><mat-icon>exit_to_app</mat-icon> Salir</button>
             </mat-menu>
         </div>
     </mat-toolbar>
