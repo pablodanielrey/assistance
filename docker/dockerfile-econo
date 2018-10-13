@@ -32,7 +32,7 @@ RUN ng set --global packageManager=yarn
 COPY src /src
 WORKDIR /src
 
-RUN cd /src/assistance && yarn install
+RUN cd /src/assistance && yarn install && yarn add @angular/cli
 RUN cd /src/assistance && ng build --configuration=econo --build-optimizer --aot --i18n-file src/messages.xlf --i18n-format xlf --i18n-locale es
 
 EXPOSE 80
