@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    Notification.requestPermission().then(() => { new Notification('Notificaciones Activadas') });
     this.update.checkForUpdate();
   }
 

@@ -3,22 +3,18 @@ import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material';
 //import { LoggingService } from '../services';
 //import * as StackTrace from 'stacktrace-js';
+import { NotificacionesService } from './notificaciones.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
 
-    constructor(private injector: Injector) { }
+    constructor(private injector: Injector,
+                private notification: NotificacionesService) { }
 
     handleError(error) {
-      let zone = <NgZone>this.injector.get(NgZone);
-      const snack = this.injector.get(MatSnackBar);
-      let ref = snack.open(error.message,'Cerrar');
-      ref.onAction().subscribe(() => {
-        zone.run(() => {
-          ref.dismiss();
-        });
-      });
-      throw error;
+      console.log(error);
+      //this.notification.show('Asistencia', error);
+      return;
   }
 
 }
