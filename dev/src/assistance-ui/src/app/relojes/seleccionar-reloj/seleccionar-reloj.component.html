@@ -1,0 +1,31 @@
+<div class="seleccionarReloj">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" routerLink='/'><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Administrar Relojes
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+
+        <div class="subtitulo">
+            <div class="fdr"><mat-icon class="icoMenu">query_builder</mat-icon> <span>Relojes</span></div>
+            <button mat-button class="btnClasico">AGREGAR RELOJ</button>
+        </div>
+
+        <mat-list>
+            <mat-list-item class="itemLista" *ngFor="let reloj of relojes" routerLink='/sistema/relojes/reloj/{{reloj.id}}/detalle'>
+              <img matListAvatar src="https://www.gokeyless.com/wp-content/uploads/2016/01/2680.jpg">
+              <h3 matLine> {{reloj.nombre }} | {{reloj.descripcion }} </h3>
+              <p matLine>
+                <span *ngIf='reloj.activo' class="textoIP"><mat-icon class="iconoEstado parpadea colorActivo">fiber_manual_record</mat-icon>{{reloj.ip }}</span>
+                <span *ngIf='!reloj.activo' class="textoIP"><mat-icon class="iconoEstado parpadea colorInactivo">fiber_manual_record</mat-icon>{{reloj.ip }}</span>
+              </p>
+            </mat-list-item>
+        </mat-list>
+
+
+    </div>
+
+</div>

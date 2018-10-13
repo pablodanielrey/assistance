@@ -4,13 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "/src/temporales/angular-oauth2-oidc"
-		},
-		{
 			"path": "/src/github/assistance-api"
 		},
 		{
-			"path": "/src/github/warden"
+			"path": "/src/github/warden-api"
 		}
 	],
 	"settings": {}

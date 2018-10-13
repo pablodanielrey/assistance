@@ -1,0 +1,242 @@
+.pantallaInicio {
+  padding: 20px;
+  height: 100%;
+  /*background-image: url("/assets/img/logo_asistencia_fce.png");*/
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.imgTocaMenu {
+  margin-left: 20px;
+}
+
+
+@media screen and (max-width: 769px) {
+
+.imgTocaMenu {
+  display: none;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+
+.inicio {
+}
+
+.inicio .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.inicio .btnVolverSeccion {
+  color: grey;
+}
+
+.inicio .contenidoPantalla {
+  padding: 20px;
+  width: 70%;
+}
+
+/* ---------------------------------------*/
+
+
+
+
+.cabeceraInicio {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  margin-bottom: 5px;
+  /*padding: 20px;*/
+}
+
+.hora {
+  font-size: 30px;
+  color:#5e5e5e;
+}
+
+.fecha {
+  color: #5e5e5e;
+  font-size: 18px;
+}
+
+
+.contenedorItem {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+
+}
+
+.contenedorcantidadP {
+  font-size: 40px;
+  padding-left: 10px;
+  margin-right: 10px;
+  border-left: 5px solid #00897B;
+  color:#5e5e5e;
+}
+
+.contenedorcantidadR {
+  font-size: 40px;
+  padding-left: 10px;
+  margin-right: 10px;
+  border-left: 5px solid #D24231;
+  color:#5e5e5e;
+}
+
+.contenedorcantidadA {
+  font-size: 40px;
+  padding-left: 10px;
+  margin-right: 10px;
+  border-left: 5px solid grey;
+  color:#5e5e5e;
+}
+
+
+
+.textSubCantidad {
+  color: grey;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.buscadorUsuarios {
+  width: 100%;
+}
+
+.formularioBuscar {
+  width: 100%;
+}
+
+.inputBuscar {
+  width: 100%;
+}
+
+
+
+.listasDeUsuarios {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+
+.tituloLista {
+  margin-top: 10px;
+  font-size: 16px;
+
+}
+
+
+.listaEyS {
+  width: 47%;
+}
+
+.listaAusentes {
+  width: 47%;
+
+}
+
+.mat-list, .mat-nav-list, .mat-selection-list {
+    padding-top: 0px !important;
+}
+
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-top: 5px;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.colorEntrada {
+  border-left: 5px solid #00897B;
+}
+
+.colorSalida {
+  border-left: 5px solid #D24231;
+}
+
+.colorAUsente {
+  border-left: 5px solid grey;
+}
+
+@media screen and (max-width: 769px) {
+
+  .inicio .contenidoPantalla {
+    padding: 20px;
+    width: 100%;
+  }
+  .cabeceraInicio {
+    display: flex;
+    -moz-display: flex;
+    -webkit-display: flex;
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    justify-content: space-between;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    margin-bottom: 5px;
+    /*padding: 20px;*/
+  }
+
+  .contenedorItem {
+    margin-top: 10px;
+  }
+
+  .listasDeUsuarios {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+
+  }
+
+  .listaEyS {
+    width: 100%;
+  }
+
+  .listaAusentes {
+    width: 100%;
+
+  }
+
+
+
+
+}

@@ -1,0 +1,420 @@
+<div  class="reporte">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Reporte Personal
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+
+      <div class="cabeceraReporte">
+          <div class="contenedorListaDeUsuario">
+              <mat-list class="listaUsuario">
+                <mat-list-item class="itemLista">
+                  <img matListAvatar src="/assets/img/icono_usuario.jpg">
+                  <h3 matLine *ngIf="reporte && reporte.usuario"> {{reporte.usuario.nombre}} {{reporte.usuario.apellido}}</h3>
+                  <p matLine>
+                    <span class="itemTextoSubtitulo" *ngIf="reporte && reporte.usuario  ">{{reporte.usuario.dni}}</span>
+                  </p>
+                </mat-list-item>
+              </mat-list>
+          </div>
+          <form (ngSubmit)='generarReporte()'>
+            <div class="contenedorSeleccionDeFechas">
+              <mat-form-field class="seleccionFechaInicio">
+                  <mat-placeholder>Fecha Inicio</mat-placeholder>
+                <input matInput [matDatepicker]="datePickerInicio" name='fecha_inicial' [(ngModel)]="fecha_inicial" required>
+                <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+                <mat-datepicker #datePickerInicio></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="seleccionFechaFin">
+                <mat-placeholder>Fecha Fin</mat-placeholder>
+                <input matInput [matDatepicker]="datePickerFin" name='fecha_final' [(ngModel)]="fecha_final" required>
+                <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+                <mat-datepicker #datePickerFin></mat-datepicker>
+              </mat-form-field>
+              <div class="contenedorBtnGenerar"><button mat-button class="btnGenerar" [disabled]="buscando" type='submit'>GENERAR REPORTE</button></div>
+            </div>
+          </form>
+          <div class="contenedorBtnAcciones">
+            <!-- <button mat-button class="btnAcciones" title="Imprimir"><i class="material-icons">print</i></button>
+            <button mat-button class="btnAcciones" title="Descargar"><i class="material-icons">cloud_download</i></button>
+            <button mat-button class="btnAcciones" title="Compartir"><i class="material-icons">share</i></button> -->
+          </div>
+      </div>
+
+      <mat-progress-bar *ngIf="buscando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+
+      <mat-divider></mat-divider>
+
+
+      <!-- el reporte esta duplicado con distintas vistas- la del celular y la de la pc -->
+      <mat-tab-group *ngIf='reporte'>
+          <mat-tab *ngIf='is_desktop()' label="Reporte" class="Tabs">
+
+
+              <div *ngIf='reporte'>
+              <mat-table [dataSource]='reporte.reportes' matSort>
+
+                <ng-container matColumnDef='Dia'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEEE'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Fecha'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon' class="textFecha"> {{renglon.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Horario'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horario </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerHorario(renglon)}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Entrada'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Salida'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Horas_trabajadas'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='Justificacion'>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+                  <mat-cell *matCellDef='let renglon'>
+                    <div *ngIf='renglon.justificaciones.length > 0'>
+                      <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let j of renglon.justificaciones">
+                          {{j.nombre }}
+                          <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal','justificacion_general'])" (click)=eliminarJustificacion(j)>cancel</mat-icon>
+                        </mat-chip>
+                      </mat-chip-list>
+                    </div>
+                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && chequearPerfil(['super-admin','justificacion_personal','justificacion_general'])" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                  </mat-cell>
+                </ng-container>
+
+                <!-- VISTA PC -->
+                <mat-header-row *matHeaderRowDef="['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Horario','Entrada','Salida','Horas_trabajadas','Justificacion']"></mat-row>
+
+              </mat-table>
+              </div>
+
+          </mat-tab>
+
+          <mat-tab *ngIf='!is_desktop()' label="Reporte" class="Tabs">
+
+            <div *ngIf='reporte'>
+            <mat-table [dataSource]='reporte.reportes' matSort>
+
+              <ng-container matColumnDef='Dia'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+                <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEE'}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef='Fecha'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                <mat-cell *matCellDef='let renglon' class="textFecha"> {{renglon.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef='Horario'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Horario </mat-header-cell>
+                <mat-cell *matCellDef='let renglon'> {{obtenerHorario(renglon)}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef='Entrada'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
+                <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef='Salida'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
+                <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef='Horas_trabajadas'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
+                <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef='Justificacion'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+                <mat-cell *matCellDef='let renglon'>
+                  <div *ngIf='renglon.justificaciones.length > 0'>
+                    <mat-chip-list #chipList>
+                      <mat-chip *ngFor="let j of renglon.justificaciones">
+                        {{j.nombre }}
+                        <mat-icon matChipRemove *ngIf="j.esPrimerDia" (click)=eliminarJustificacion(j)>cancel</mat-icon>
+                      </mat-chip>
+                    </mat-chip-list>
+                  </div>
+                  <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                </mat-cell>
+              </ng-container>
+
+              <!-- VISTA CELULAR -->
+              <mat-header-row *matHeaderRowDef="['Fecha','Entrada','Salida','Horas_trabajadas']"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: ['Fecha','Entrada','Salida','Horas_trabajadas']"></mat-row>
+
+
+            </mat-table>
+            </div>
+
+        </mat-tab>
+
+            <mat-tab *ngIf='reporte && reporte.detalle' label="Detalle" class="Tabs">
+              <div clasS="detalleReporte">
+                  <div class="columna">
+                    <div class="titulo">Detalle sobre faltas</div>
+                    <mat-divider></mat-divider>
+                    <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                        <div>Faltas injustificadas:</div><div>{{reporte.detalle.faltas_injustificadas}}</div>
+                      </div>
+                      <div class="itemDetalles">
+                        <div>Faltas totales:</div><div>{{reporte.detalle.faltas_justificadas + reporte.detalle.faltas_injustificadas}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre horas</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Justficaciones</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles" *ngFor='let j of reporte.detalle.justificaciones'>
+                          <div>{{j.nombre}}:</div><div>{{j.cantidad}}</div>
+                        </div>
+                      </div>
+                  </div>
+
+              </div>
+          </mat-tab>
+
+          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
+              <div clasS="detalleReporte">
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre días</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Días seleccionados:</div><div>{{reporte.detalle.dias_seleccionados}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días laborables:</div><div>{{reporte.detalle.dias_laborables}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días trabajados:</div><div>{{reporte.detalle.dias_trabajados}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Faltas justificadas:</div><div>{{reporte.detalle.faltas_justificadas}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Faltas injustificadas:</div><div>{{reporte.detalle.faltas_injustificadas}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días extra trabajados:</div><div>{{reporte.detalle.dias_extra_trabajados}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Días totales trabajados:</div><div>{{reporte.detalle.dias_totales_trabajados}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre horas</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas a trabajar:</div><div>{{obtenerHorasString(reporte.detalle.minutos_laborables)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas justificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_justificados)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas injustificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_injustificados)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas totales trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
+                        </div>
+
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Detalle sobre entrada/salida</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Llegadas tarde:</div><div>{{reporte.detalle.entradas_tardes}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Llegadas tempranas:</div><div>{{reporte.detalle.entradas_tempranas}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Salidas tarde:</div><div>{{reporte.detalle.salidas_tardes}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Salidas tempranas:</div><div>{{reporte.detalle.salidas_tempranas}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Justficaciones</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles" *ngFor='let j of reporte.detalle.justificaciones'>
+                          <div>{{j.nombre}}:</div><div>{{j.cantidad}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                    <div class="titulo">Stock</div>
+                    <mat-divider></mat-divider>
+                  </div>
+              </div>
+          </mat-tab>
+
+          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
+              <div clasS="detalleReporte">
+                  <div class="columna">
+                      <div class="titulo">Trabajadas</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas a trabajar:</div><div>{{obtenerHorasString(reporte.detalle.minutos_laborables)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_trabajados)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas justificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_justificados)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas injustificadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_injustificados)}}</div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="itemDetalles">
+                          <div>Horas totales trabajadas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_totales_trabajados)}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Horas Extra Laborales</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_en_dias_laborables)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_en_dias_laborables)}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Horas Extras</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas Extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados)}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Total</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>Horas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_totales)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>Horas Perdidas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_extra_descartados_totales)}}</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="columna">
+                      <div class="titulo">Configuración</div>
+                      <mat-divider></mat-divider>
+                      <div class="contenedorItemDetalles">
+                        <div class="itemDetalles">
+                          <div>MMR laborales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_lab)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>BM laborales:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_lab)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>MMR extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_minimos_hora_extra_no_lab)}}</div>
+                        </div>
+                        <div class="itemDetalles">
+                          <div>BM extra:</div><div>{{obtenerHorasString(reporte.detalle.minutos_bloque_hora_extra_no_lab)}}</div>
+                        </div>
+                      </div>
+                  </div>
+
+                </div>
+          </mat-tab>
+
+          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
+            <div clasS="detalleReporte">
+                <div class="columna">
+                  <div class="titulo">Entradas</div>
+                  <mat-divider></mat-divider>
+                  <div class="contenedorItemDetalles">
+                    <div class="itemDetalles">
+                      <div>Llegadas tarde:</div><div>{{reporte.detalle.entradas_tardes}}</div>
+                    </div>
+                    <div class="itemDetalles">
+                      <div>Horas llegadas tardes:</div><div>{{obtenerHorasString(reporte.detalle.minutos_entradas_tardes)}}</div>
+                    </div>
+                    <div class="itemDetalles">
+                      <div>Llegadas tempranas:</div><div>{{reporte.detalle.entradas_tempranas}}</div>
+                    </div>
+                    <div class="itemDetalles">
+                      <div>Horas llegadas tempranas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_entradas_tempranas)}}</div>
+                    </div>
+                  </div>
+              </div>
+              <div class="columna">
+                <div class="titulo">Salidas</div>
+                <mat-divider></mat-divider>
+                <div class="contenedorItemDetalles">
+                  <div class="itemDetalles">
+                    <div>Salidas tarde:</div><div>{{reporte.detalle.salidas_tardes}}</div>
+                  </div>
+                  <div class="itemDetalles">
+                    <div>Horas salidas tardes:</div><div>{{obtenerHorasString(reporte.detalle.minutos_salidas_tardes)}}</div>
+                  </div>
+                  <div class="itemDetalles">
+                    <div>Salidas tempranas:</div><div>{{reporte.detalle.salidas_tempranas}}</div>
+                  </div>
+                  <div class="itemDetalles">
+                    <div>Horas salidas tempranas:</div><div>{{obtenerHorasString(reporte.detalle.minutos_salidas_tempranas)}}</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </div>
+
+</div>

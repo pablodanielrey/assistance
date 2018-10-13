@@ -1,0 +1,24 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+
+.justificacionPersonal {
+}
+
+.justificacionPersonal .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.justificacionPersonal .btnVolverSeccion {
+  color: grey;
+}
+
+.justificacionPersonal .contenidoPantalla {
+  padding: 20px;
+  max-width: 400px;
+}
+
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}

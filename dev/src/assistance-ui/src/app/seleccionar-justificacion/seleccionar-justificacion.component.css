@@ -1,0 +1,57 @@
+.seleccionarJustificacion {
+  width: 400px;
+}
+
+.contenedorBuscar {
+  width: 100%;
+
+}
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-bottom: 5px;
+
+}
+
+.itemLista:hover {
+    background-color: #E0E0E0;
+    cursor: pointer;
+}
+
+.inputSearch {
+  width: 100%;
+  color:#4186e1;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.avatar {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content:center;
+  background-color: #4186e1;
+  font-size: 1.5em;
+  color: white;
+  border: solid 1px #E0E0E0;
+  margin-top: -4px !important;
+}
+
+.texto {
+  margin-left: 60px !important;
+}
+
+
+
+
+
+@media screen and (max-width: 769px) {
+  .seleccionarJustificacion {
+    width: 100%;
+  }
+
+}

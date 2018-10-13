@@ -1,0 +1,11 @@
+<div>
+  Ingrese el código indicado por la aplicación de asistencia en Telegram.
+  Código: <input matInput [(ngModel)]='codigo'/>
+  <button type='submit' (click)='enviar_codigo()'>Enviar</button>
+  <div *ngIf="error != ''">
+    <b>{{error}}</b>
+  </div>
+  <div *ngIf="mensaje != ''">
+    <b>{{mensaje}}</b>
+  </div>
+</div>

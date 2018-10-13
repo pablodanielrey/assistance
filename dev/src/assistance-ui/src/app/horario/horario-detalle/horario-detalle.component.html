@@ -1,0 +1,53 @@
+<div  class="horario">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Horario
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+
+    <div class="contenidoPantalla" *ngIf="info">
+
+      <mat-list>
+        <mat-list-item *ngIf="info.usuario" class="itemLista">
+          <img matListAvatar src="/assets/img/icono_usuario.jpg">
+          <h3 matLine> {{info.usuario.nombre}} {{info.usuario.apellido}} </h3>
+          <p matLine>
+            <span class="itemTextoSubtitulo">{{info.usuario.dni}}</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-form-field class="inputFecha">
+        <input  matInput [matDatepicker]="datePicker" [(ngModel)]="fecha" placeholder="Fecha" (dateChange)="obtenerHorario()">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="conenedorHoras"><p class="textoHorasSemanales"><p>{{fecha_inicio | date: 'EEE dd/MM'}} - {{fecha_fin | date: 'EEE dd/MM'}} </p></div>
+
+      <div *ngIf='info.horasSemanales' class="conenedorHoras">
+
+        <div class="textoHorasSemanales">Horas Semanales: {{info.horasSemanales.horas}}</div>
+
+        <mat-divider></mat-divider>
+
+        <div class="horas" *ngFor="let h of info.horarios">
+            <div class="columnaDias">{{h.obtenerDiaSemanal()}}</div>
+            <div class="columnaEntrada">Entrada</div>
+            <div>{{ h.entrada | date: 'HH:mm' }}</div>
+            <div class="columnaSalida">Salida</div>
+            <div>{{h.salida | date: 'HH:mm'}}</div>
+        </div>
+      </div>
+
+      <div class="contenedorBotones" *ngIf="chequearPerfil(['super-admin','horario_vista','horario_abm'])">
+        <button mat-button class="btnModificar" routerLink="/sistema/horarios/modificar/{{usuario_id}}"  [queryParams]="{ fecha:fecha }">MODIFICAR HORARIO</button>
+        <button mat-button class="btnModificar" routerLink="/sistema/horarios/historico/{{usuario_id}}"  [queryParams]="{ fecha:fecha }">HISTORIAL</button>
+      </div>
+      <!-- <button routerLink="/horario_modificar/{{usuario_id}}"  [queryParams]="{ fecha:fecha }" >Modificar</button> -->
+    </div>
+</div>

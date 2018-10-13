@@ -1,0 +1,59 @@
+<mat-sidenav-container  class="menu">
+
+  <mat-sidenav #sidenav mode="over" (openedChange)='onOpenedChange($event)' [disableClose]='false' [(opened)]="menu_abierto">
+
+    <!--
+      creo que este botón no debería existir
+    <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/inicial">
+      <mat-icon class="icoMenu">bookmark_border</mat-icon> Inicio
+    </button><br>
+    -->
+    <span *ngIf="chequearPerfil(['super-admin','inicio_personal'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/miperfil">
+        <mat-icon class="icoMenu">perm_identity</mat-icon> Inicio
+      </button><br>
+    </span>
+    <span  *ngIf="chequearPerfil(['super-admin','inicio_personal'])">
+      <button class="btn" mat-button (click)='onInternalItem()' (click)='ver_reporte_personal()'>
+        <mat-icon class="icoMenu">list</mat-icon> Mi Reporte
+      </button><br>
+    </span>
+    <span *ngIf="chequearPerfil(['super-admin','inicio_personal'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/horarios/detalle/{{ usuarioId }}">
+        <mat-icon class="icoMenu">alarm_on</mat-icon> Mi Horario
+      </button><br>
+    </span>
+    <span *ngIf="chequearPerfil(['super-admin','reporte_personal','reporte_general'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/reportes/inicial">
+        <mat-icon class="icoMenu">list</mat-icon> Reportes
+      </button><br>
+    </span>
+    <span *ngIf="chequearPerfil(['super-admin','justificacion_personal','justificacion_general','justificacion_tipo_abm'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/justificaciones/seleccion">
+        <mat-icon class="icoMenu">star_border</mat-icon> Justificaciones
+      </button><br>
+    </span>
+    <span *ngIf="chequearPerfil(['super-admin','horario_vista','horario_abm'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/horarios/seleccion">
+        <mat-icon class="icoMenu">alarm_on</mat-icon> Horarios
+      </button><br>
+    </span>
+    <span  *ngIf="chequearPerfil(['super-admin'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/relojes/seleccion">
+        <mat-icon class="icoMenu">alarm_on</mat-icon> Relojes
+      </button><br>
+    </span>
+    <span  *ngIf="chequearPerfil(['super-admin'])">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/notificaciones/telegram">
+        <mat-icon class="icoMenu">alarm_on</mat-icon> Telegram
+      </button><br>
+    </span>
+    <!-- <button class="btn" mat-button (click)='onInternalItem()' routerLink="/relojes/buscar"><mat-icon class="icoMenu">query_builder</mat-icon> Administrar Relojes &nbsp;</button><br> -->
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- <router-outlet name="pantalla" class="pantalla"></router-outlet> -->
+    <router-outlet class="pantalla"></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

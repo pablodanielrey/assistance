@@ -1,0 +1,78 @@
+<div  class="modificarHorario">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Modificar Horario
+    </div>
+
+    <mat-divider></mat-divider>
+    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+
+    <div class="contenidoPantalla" *ngIf="info">
+
+      <mat-list>
+        <mat-list-item *ngIf="info.usuario" class="itemLista">
+          <img matListAvatar src="/assets/img/icono_usuario.jpg">
+          <h3 matLine> {{info.usuario.nombre}} {{info.usuario.apellido}} </h3>
+          <p matLine>
+            <span class="itemTextoSubtitulo">{{info.usuario.dni}}</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-form-field class="inputFecha">
+        <input  matInput [matDatepicker]="datePicker" [(ngModel)]="fecha" placeholder="A partir de la fecha">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="conenedorHoras">
+
+      <div class="textoHorasSemanales">Horas Semanales: {{obtenerHorasSemanales()}}</div>
+
+      <mat-divider></mat-divider>
+
+
+      <div *ngFor="let h of info.horarios" >
+
+            <form class=formularioHorario>
+
+                <mat-form-field class="inputDia">
+                  <input type="time" matInput placeholder="{{h.obtenerDiaSemanal()}} | Hora de entrada" value="{{h.entrada | date: 'HH:mm'}}" (change)="cambio($event, h)">
+                </mat-form-field>
+                <mat-form-field class="inputHoras">
+                  <input type="number" matInput placeholder="Horas" [(ngModel)]="h.cantidadHoras" name="cantidadHoras">
+
+                </mat-form-field>
+                <!-- <button mat-icon-button>
+                  <mat-icon class="icoCortar" title="Cortar Horario">add</mat-icon>
+                </button> -->
+            </form>
+
+
+      </div>
+    </div>
+
+      <button mat-button class="btnGuardar" (click)="guardar()">GUARDAR</button>
+
+
+
+
+    </div>
+</div>
+
+
+<!--
+<div>
+
+  <ul *ngIf="info">
+    <li *ngFor="let h of info.horarios" >
+      {{h.obtenerDiaSemanal()}}
+      <input type="time" value="{{h.entrada | date: 'HH:mm'}}" (change)="cambio($event, h)" >
+      Horas:
+      <input type="number" [(ngModel)]="h.cantidadHoras">
+    </li>
+  </ul>
+</div>
+
+<button (click)="guardar()">Guardar</button> -->

@@ -1,0 +1,122 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+
+.horario {
+}
+
+.horario .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.horario .btnVolverSeccion {
+  color: grey;
+}
+
+.horario .contenidoPantalla {
+  padding: 20px;
+  max-width: 400px;
+}
+
+/* ---------------------------------------*/
+
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
+
+
+.mat-list, .mat-nav-list, .mat-selection-list {
+    padding-top: 0px !important;
+}
+
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.inputFecha {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.conenedorHoras {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  padding: 20px;
+}
+
+.textoHorasSemanales {
+  margin-bottom: 10px;
+  font-size: 14px;
+
+}
+
+.horas {
+  margin-top: 5px;
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.columnaDias {
+  width: 25%;
+}
+
+.columnaEntrada,
+.columnaSalida {
+  color: grey;
+  font-size: 12px;
+  text-align: right;
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+
+.contenedorBotones {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.btnModificar {
+  width: 48%;
+  background-color: #4186e1;
+  color: #fff;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 769px) {
+  .horario .contenidoPantalla {
+    width: 100%;
+  }
+
+  .contenedorBotones {
+  flex-direction: column;
+  -moz-flex-direction: column;
+  -webkit-flex-direction: column;
+
+  }
+
+  .btnModificar {
+    width: 100%;
+    padding: 10px;
+  }
+}

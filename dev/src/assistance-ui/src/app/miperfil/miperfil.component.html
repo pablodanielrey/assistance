@@ -1,0 +1,123 @@
+<div class="miPerfil">
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" routerLink="/sistema/inicial"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Mis Marcaciones
+    </div>
+
+  <mat-divider></mat-divider>
+  <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+
+  <div *ngIf='perfil' class="contenidoPantalla">
+
+      <div class="perfil">
+          <div>
+            <mat-list *ngIf="usuario && usuario.nombre && usuario.apellido">
+              <mat-list-item class="itemLista">
+                <img matListAvatar src="/assets/img/icono_usuario.jpg">
+                <h3 matLine> {{usuario.nombre}} {{usuario.apellido}} </h3>
+                <p matLine>
+                  <span class="itemTextoSubtitulo">{{usuario.dni}}</span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+
+
+          <div class="tituloOficina">Oficina | Cargo</div>
+
+
+          <div class="bloque" *ngFor='let o of perfil.oficinas'>
+            <div class="subText"><b>{{o.oficina}}</b></div>
+            <div class="subText">Cargo: {{o.cargo}}</div>
+            <!--
+            <div><b>Tipo de Cargo</b></div>
+            <div class="subText">{{o.tipo_cargo}}</div>
+            <div><b>Desde</b></div>
+            <div *ngIf='o.desde' class="subText">{{o.desde}}</div>
+            -->
+            <mat-divider></mat-divider>
+          </div>
+
+
+          <div class="aviso">
+              <mat-accordion>
+                  <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <div class="tituloAviso">
+                                <div><mat-icon class="icoAviso">error</mat-icon> </div>
+                                <div> IMPORTANTE</div>
+                              </div>
+                          </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>
+                          Se está desarrollando una nueva interfaz para las solicitudes de personal. y por el momento <b>no se podrá</b> realizar pedidos de forma online.<br>
+                          Para solicitar ausentes con aviso, boletas de salida, etc. Debera solicitarlo de forma presencial o telefónicamente en el Departamento de Personal.<br>
+                          Serán notificados cuando la misma se encuentre disponible nuevamente.
+                      </p>
+                  </mat-expansion-panel>
+              </mat-accordion>
+          </div>
+
+          <!-- <button mat-button class="btnAcciones" title="Editar Perfil"><mat-icon class="icoMenu">launch</mat-icon>EDITAR PERFIL</button> -->
+
+      </div>
+
+      <div class="horario">
+
+          <div class="titulo">Marcaciones</div>
+
+          <div>
+            <mat-form-field class="inputFecha">
+                <input matInput [matDatepicker]="picker" class="inputFecha" placeholder="Seleccione Fecha" [(ngModel)]="fecha" (ngModelChange)="_actualizarPerfil($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="contenedorMarcaciones">
+              <div>
+                <div class="tituloHora"><b>Hora de Entrada</b></div>
+                <div class="contenedorHora"> {{obtener_hora_entrada()}}</div>
+                <div class="textSubHora">Hora declarada: {{obtener_horario_entrada()}}</div>
+              </div>
+              <div>
+                <div class="tituloHora"><b>Hora de Salida</b></div>
+                <div class="contenedorHora"> {{obtener_hora_salida()}}</div>
+                <div class="textSubHora">Hora declarada: {{obtener_horario_salida()}}</div>
+              </div>
+              <div *ngIf="!trabajando()">
+                <div class="tituloHora"><b>Horas Trabajadas</b></div>
+                <div class="contenedorHora"> {{obtener_horas_trabajadas()}}</div>
+                <div class="textSubHora">Horas declaradas: {{obtener_horario_horas()}}</div>
+              </div>
+              <div *ngIf="trabajando()">
+                <div class="tituloHora"><b>Trabajando</b></div>
+                <div class="contenedorHora2"> {{fecha_trabajando}}</div>
+                <div class="textSubHora">Horas declaradas: {{obtener_horario_horas()}}</div>
+              </div>
+
+          </div>
+
+          <button mat-button (click)='ver_reporte()' class="btnGenerar"> VER REPORTE DE MARCACIONES</button>
+
+          <mat-divider></mat-divider>
+
+
+          <div *ngIf='perfil.justificaciones.length > 0' class="contenedorJustificaciones">
+            <div class="titulo">Justificaciones</div>
+
+              <div class="justificaciones">
+
+                <div class="bloqueJustificaciones">
+                    <div class="justificacion" *ngFor='let j of perfil.justificaciones'>
+                        <div class="textJustificacion">{{j.nombre}}</div>
+                        <div class="textoCantidad">{{j.cantidad}}</div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>

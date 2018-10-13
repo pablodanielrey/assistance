@@ -1,0 +1,96 @@
+<div  class="reporteGeneral">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Horario Histórico
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+
+    <div *ngIf='historial' class="contenidoPantalla">
+
+      <div class="headerHistorico">
+          <mat-list>
+            <mat-list-item *ngIf='historial.usuario' class="itemLista">
+              <img matListAvatar src="/assets/img/icono_usuario.jpg">
+              <h3 matLine> {{historial.usuario.nombre}} {{historial.usuario.apellido}} </h3>
+              <p matLine>
+                <span class="itemTextoSubtitulo"> {{historial.usuario.dni}} </span>
+              </p>
+            </mat-list-item>
+          </mat-list>
+
+          <form class="formularioFechas" (ngSubmit)='obtenerHorarios()'>
+            <div class="contenedorSeleccionDeFechas">
+              <mat-form-field class="seleccionFechaInicio">
+                  <mat-placeholder>Fecha Inicio</mat-placeholder>
+                <input matInput [matDatepicker]="datePickerInicio" name='fecha_inicial' [(ngModel)]="fecha_inicial" required>
+                <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+                <mat-datepicker #datePickerInicio></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="seleccionFechaFin">
+                <mat-placeholder>Fecha Fin</mat-placeholder>
+                <input matInput [matDatepicker]="datePickerFin" name='fecha_final' [(ngModel)]="fecha_final" required>
+                <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+                <mat-datepicker #datePickerFin></mat-datepicker>
+              </mat-form-field>
+              <div class="contenedorBtnGenerar"><button mat-button class="btnGenerar" [disabled]="buscando" type='submit'>BUSCAR</button></div>
+            </div>
+          </form>
+          <div class="contenedorBtnAcciones">
+            <mat-checkbox>Ocultar Eliminados</mat-checkbox>
+          </div>
+
+
+      </div>
+
+      <div *ngIf='horarios'>
+        <table mat-table [dataSource]="horarios" class="mat-elevation-z8">
+          <ng-container matColumnDef="valido">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let h"> {{h.horario.fecha_valido | date: 'dd/MM/yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dia">
+            <th mat-header-cell *matHeaderCellDef> Dia </th>
+            <td mat-cell *matCellDef="let h"> {{ h.horario.obtenerDiaSemanal() }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="entrada">
+            <th mat-header-cell *matHeaderCellDef> Entrada </th>
+            <td mat-cell *matCellDef="let h"> {{ h.horario.entrada | date: 'HH:mm' }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="salida">
+            <th mat-header-cell *matHeaderCellDef> Salida </th>
+            <td mat-cell *matCellDef="let h"> {{ h.horario.salida | date: 'HH:mm' }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let h">
+               <div *ngIf="h.horario.eliminado"><span  > Eliminado el {{h.horario.eliminado | date: 'dd/MM/yyyy'}}</span>
+                 <!-- <button mat-icon-button class="btnModificar" (click)="restaurar(element)" title="Restaurar"> <mat-icon aria-label="Example icon-button with a heart icon">restore</mat-icon>  </button> -->
+               </div>
+               <div *ngIf="!h.horario.eliminado"><button mat-button class="btnModificar"  (click)="eliminar(h.horario)"> ELIMINAR  </button></div>
+
+             </td>
+          </ng-container>
+
+          <ng-container matColumnDef="creador">
+            <th mat-header-cell *matHeaderCellDef> Modificado por </th>
+            <td mat-cell *matCellDef="let h"> {{h.creador}} </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+    </div>
+
+  </div>

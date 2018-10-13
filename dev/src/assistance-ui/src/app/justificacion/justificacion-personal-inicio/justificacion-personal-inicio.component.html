@@ -1,0 +1,14 @@
+<div class="justificacionPersonal">
+
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" routerLink="/sistema/justificaciones/seleccion"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Justificaciones
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="contenidoPantalla">
+      <app-listado-usuarios [usuarios]="usuarios" (selected)="seleccionarUsuario($event)" (searchEvent)="buscar($event)"></app-listado-usuarios>
+      <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+    </div>
+</div>
