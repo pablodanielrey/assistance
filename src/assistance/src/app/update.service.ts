@@ -10,7 +10,7 @@ export class UpdateService {
 
   constructor(private update: SwUpdate, private notification: NotificacionesService) { 
     this.update.available.subscribe(event => {
-      this.notification.show('Asistencia', 'Actualizando');
+      this.notification.show('Asistencia', 'Nueva versión existente - Actualizando');
       this.update.activateUpdate().then(() => document.location.reload());
     });
   }
@@ -18,7 +18,7 @@ export class UpdateService {
   checkForUpdate() {
     //this.notification.show('Asistencia', 'Chequeando actualizaciones');
     this.update.checkForUpdate().then(() => {
-      this.notification.show('Asistencia', 'Nueva versión existente');
+      //this.notification.show('Asistencia', 'Nueva versión existente');
     });
   }
 
