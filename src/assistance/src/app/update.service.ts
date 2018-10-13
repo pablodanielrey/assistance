@@ -16,7 +16,7 @@ export class UpdateService {
   }
 
   checkForUpdate() {
-    this.notification.show('Asistencia', 'Chequeando actualizaciones');
+    //this.notification.show('Asistencia', 'Chequeando actualizaciones');
     this.update.checkForUpdate().then(() => {
       this.notification.show('Asistencia', 'Nueva versión existente');
     });

@@ -204,5 +204,8 @@
     "@schematics/angular:directive": {
       "prefix": "app"
     }
+  },
+  "cli": {
+    "packageManager": "yarn"
   }
 }
