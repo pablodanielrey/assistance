@@ -45,7 +45,30 @@
       "patterns": []
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+    {
+      "name": "api-econo",
+      "patterns": [
+        "https:\\/\\/api\\.econo\\.unlp\\.edu\\.ar\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 259200000,
+      "timeoutMs": 60000,
+      "version": 1
+    },
+    {
+      "name": "api-presi",
+      "patterns": [
+        "https:\\/\\/api\\.asistencia\\.presi\\.unlp\\.edu\\.ar\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 259200000,
+      "timeoutMs": 60000,
+      "version": 1
+    }
+  ],
   "hashTable": {
     "/assets/icons/icon-128x128.png": "83b5afcda92d9d3cca50f66384d2bc372bd9ea85",
     "/assets/icons/icon-144x144.png": "c274597c82b51dfc0f825c6e36e103c3cbc88d31",
