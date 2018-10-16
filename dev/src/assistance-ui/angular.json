@@ -42,6 +42,7 @@
                   "with": "src/environments/environment.econo.ts"
                 }
               ],
+              "outputPath": "dist/econo/assistance-ui",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -60,6 +61,7 @@
                   "with": "src/environments/environment.presi.ts"
                 }
               ],
+              "outputPath": "dist/presi/assistance-ui",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
