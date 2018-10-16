@@ -78,6 +78,22 @@
                   "with": "src/environments/environment.vs.ts"
                 }
               ]
+            },            
+            "vs-presi": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vs.presi.ts"
+                }
+              ]
+            },            
+            "dev-presi": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.presi.ts"
+                }
+              ]
             }
           }
         },
@@ -92,6 +108,12 @@
             },
             "vs": {
               "browserTarget": "assistance-ui:build:vs"
+            },
+            "vs-presi": {
+              "browserTarget": "assistance-ui:build:vs-presi"
+            },
+            "dev-presi": {
+              "browserTarget": "assistance-ui:build:dev-presi"
             }
           }
         },
