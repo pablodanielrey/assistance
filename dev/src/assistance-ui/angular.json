@@ -31,7 +31,7 @@
             ],
             "i18nFile": "src/messages.xlf",
             "i18nLocale": "es",
-            "i18nFormat": "xlf",            
+            "i18nFormat": "xlf",
             "scripts": []
           },
           "configurations": {
@@ -53,11 +53,53 @@
               "buildOptimizer": true,
               "serviceWorker": true
             },
+            "presi": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.presi.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true
+            },
             "vs": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.vs.ts"
+                }
+              ]
+            },
+            "vs-presi": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vs.presi.ts"
+                }
+              ]
+            },
+            "dev-econo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.econo.ts"
+                }
+              ]
+            },
+            "dev-presi": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.presi.ts"
                 }
               ]
             }
@@ -69,11 +111,20 @@
             "browserTarget": "assistance-ui:build"
           },
           "configurations": {
-            "production": {
+            "econo": {
               "browserTarget": "assistance-ui:build:econo"
             },
             "vs": {
               "browserTarget": "assistance-ui:build:vs"
+            },
+            "vs-presi": {
+              "browserTarget": "assistance-ui:build:vs-presi"
+            },
+            "dev-econo": {
+              "browserTarget": "assistance-ui:build:dev-econo"
+            },
+            "dev-presi": {
+              "browserTarget": "assistance-ui:build:dev-presi"
             }
           }
         },
