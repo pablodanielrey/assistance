@@ -17,18 +17,21 @@
   margin-bottom: 5px;
 }
 
+
+/deep/ mat-list-option > * {
+  justify-content: flex-end !important;
+}
+
 .itemLista:hover {
     background-color: #E0E0E0;
     cursor: pointer;
 }
 
-/deep/ .mat-list-item-content {
-  justify-content: flex-end;
-}
-
 .itemTextoSubtitulo {
   color: grey;
 }
+
+/* :host /deep/ */
 
 .avatar {
   position: absolute;
@@ -43,7 +46,7 @@
 }
 
 .texto {
-  margin-left: 60px !important;
+  margin-left: 40px !important;
 }
 
 @media screen and (max-width: 769px) {
