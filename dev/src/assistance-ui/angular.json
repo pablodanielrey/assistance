@@ -31,7 +31,7 @@
             ],
             "i18nFile": "src/messages.xlf",
             "i18nLocale": "es",
-            "i18nFormat": "xlf",            
+            "i18nFormat": "xlf",
             "scripts": []
           },
           "configurations": {
@@ -70,7 +70,7 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true
-            },            
+            },
             "vs": {
               "fileReplacements": [
                 {
@@ -78,7 +78,7 @@
                   "with": "src/environments/environment.vs.ts"
                 }
               ]
-            },            
+            },
             "vs-presi": {
               "fileReplacements": [
                 {
@@ -86,7 +86,7 @@
                   "with": "src/environments/environment.vs.presi.ts"
                 }
               ]
-            },            
+            },
             "dev-presi": {
               "fileReplacements": [
                 {
@@ -103,7 +103,7 @@
             "browserTarget": "assistance-ui:build"
           },
           "configurations": {
-            "production": {
+            "econo": {
               "browserTarget": "assistance-ui:build:econo"
             },
             "vs": {
