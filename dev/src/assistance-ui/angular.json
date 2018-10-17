@@ -87,6 +87,14 @@
                 }
               ]
             },
+            "dev-econo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.econo.ts"
+                }
+              ]
+            },
             "dev-presi": {
               "fileReplacements": [
                 {
@@ -111,6 +119,9 @@
             },
             "vs-presi": {
               "browserTarget": "assistance-ui:build:vs-presi"
+            },
+            "dev-econo": {
+              "browserTarget": "assistance-ui:build:dev-econo"
             },
             "dev-presi": {
               "browserTarget": "assistance-ui:build:dev-presi"

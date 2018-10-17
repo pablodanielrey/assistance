@@ -22,6 +22,9 @@
     cursor: pointer;
 }
 
+/deep/ .mat-list-item-content {
+  justify-content: flex-end;
+}
 
 .itemTextoSubtitulo {
   color: grey;
@@ -30,9 +33,8 @@
 .avatar {
   position: absolute;
   display: flex;
-  justify-content: center;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   background-color: #4186e1;
   font-size: 1.5em;
   color: white;
