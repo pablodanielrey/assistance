@@ -95,11 +95,11 @@
                       <mat-chip-list #chipList>
                         <mat-chip *ngFor="let j of renglon.justificaciones">
                           {{j.nombre }}
-                          <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal','justificacion_general'])" (click)=eliminarJustificacion(j)>cancel</mat-icon>
+                          <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm'])" (click)=eliminarJustificacion(j)>cancel</mat-icon>
                         </mat-chip>
                       </mat-chip-list>
                     </div>
-                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && chequearPerfil(['super-admin','justificacion_personal','justificacion_general'])" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && chequearPerfil(['super-admin','justificacion_personal_a','justificacion_general_a'])" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
                   </mat-cell>
                 </ng-container>
 
@@ -117,19 +117,9 @@
             <div *ngIf='reporte'>
             <mat-table [dataSource]='reporte.reportes' matSort>
 
-              <ng-container matColumnDef='Dia'>
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
-                <mat-cell *matCellDef='let renglon'> {{renglon.fecha | date: 'EEE'}} </mat-cell>
-              </ng-container>
-
               <ng-container matColumnDef='Fecha'>
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
                 <mat-cell *matCellDef='let renglon' class="textFecha"> {{renglon.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef='Horario'>
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Horario </mat-header-cell>
-                <mat-cell *matCellDef='let renglon'> {{obtenerHorario(renglon)}} </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef='Entrada'>
@@ -145,21 +135,6 @@
               <ng-container matColumnDef='Horas_trabajadas'>
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
                 <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef='Justificacion'>
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
-                <mat-cell *matCellDef='let renglon'>
-                  <div *ngIf='renglon.justificaciones.length > 0'>
-                    <mat-chip-list #chipList>
-                      <mat-chip *ngFor="let j of renglon.justificaciones">
-                        {{j.nombre }}
-                        <mat-icon matChipRemove *ngIf="j.esPrimerDia" (click)=eliminarJustificacion(j)>cancel</mat-icon>
-                      </mat-chip>
-                    </mat-chip-list>
-                  </div>
-                  <button mat-icon-button *ngIf='renglon.justificaciones <= 0' routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
-                </mat-cell>
               </ng-container>
 
               <!-- VISTA CELULAR -->

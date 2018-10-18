@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, switchMap, flatMap, share, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
@@ -22,11 +22,16 @@ import { TelegramToken } from './entities/telegram';
 @Injectable()
 export class AssistanceService {
 
-  constructor(private http: HttpClient) { }
+  modulos: string[] = null;
+
+  constructor(private http: HttpClient) { 
+    let s = this.obtenerAccesoModulos().subscribe(m => { this.modulos = m; s.unsubscribe(); });
+  }
 
   obtenerAccesoModulos(): Observable<string[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/acceso_modulos`;
-    return this.http.get<string[]>(apiUrl);
+    let o = this.http.get<string[]>(apiUrl);
+    return o.pipe(tap(m => this.modulos = m));
   }
 
   obtenerTelegramToken(): Observable<TelegramToken> {
@@ -38,6 +43,41 @@ export class AssistanceService {
     let apiUrl = `${ASSISTANCE_API_URL}/telegram_activate/` + code;
     return this.http.get<string>(apiUrl);
   }
+
+  chequearPerfil(profiles: string[]): Observable<boolean> {
+    if (this.modulos == null) {
+      return of(false);
+    }
+    let r = false;
+    profiles.forEach(p => {
+      if (this.modulos.includes(p)) {
+        r = true;
+      }
+    });
+    return of(r);
+  }
+
+    //   } else {
+    //     this.obtenerAccesoModulos().pipe(share()).pipe(switchMap(
+    //       (m) => {
+    //         this.modulos = m;
+    //         return this.chequearPerfil(profiles);
+    //       }
+    //     )).subscribe(b => {
+    //       obs.next(b);
+    //       obs.complete();
+    //     });
+    //   }
+    // });
+    // return o.pipe(share());
+
+
+    // let r = false;
+    // if (this.modulos != null) {
+    // }
+    // return r;
+  
+
 
   buscarUsuarios(texto:string): Observable<DatosAsistencia[]> {
     const options = { params: new HttpParams()

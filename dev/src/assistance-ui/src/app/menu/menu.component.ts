@@ -3,6 +3,9 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { MatSidenav } from '@angular/material/sidenav';
+
+import { Observable } from 'rxjs';
+
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Usuario } from '../entities/usuario';
 
@@ -21,7 +24,7 @@ export class MenuComponent implements OnInit {
   //@Output() openedChange = new EventEmitter<boolean>();
   @Output() onItem = new EventEmitter<boolean>();
 
-  modulos: string[] = [];
+  //modulos: string[] = [];
   subscriptions: any[] = [];
   usuarioId: string;
 
@@ -35,8 +38,7 @@ export class MenuComponent implements OnInit {
     let info: any = this.oauthService.getIdentityClaims();
     this.usuarioId = info.sub;
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
-      this.modulos = modulos;
-      console.log(this.modulos);
+      console.log('modulos cargados');
     }));
   }
 
@@ -79,14 +81,15 @@ export class MenuComponent implements OnInit {
     this.onItem.emit(event);
   }
 
-  chequearPerfil(profiles: string[]): boolean {
-    let r = false;
-    profiles.forEach(p => {
-      if (this.modulos.includes(p)) {
-        r = true;
-      }
-    });
-    return r
+  chequearPerfil(profiles: string[]): Observable<boolean> {
+    return this.service.chequearPerfil(profiles);
+    // let r = false;
+    // profiles.forEach(p => {
+    //   if (this.modulos.includes(p)) {
+    //     r = true;
+    //   }
+    // });
+    // return r
   }
 
   telegram() {
