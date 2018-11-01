@@ -6,6 +6,8 @@ export const environment = {
   telegramURL: 'https://telegram.me/AsistenciaFCEBot?start=',
   client_id: 'assistance-ui',
 
+  usersLink: 'https://usuarios.econo.unlp.edu.ar',
+
   footer: 'DiTeSI | Dirección de Tecnologías y Sistemas Informáticos | FCE',
 
   loaderHeader: 'Asistencia | FCE',

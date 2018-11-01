@@ -5,6 +5,7 @@ import { MenuComponent } from '../menu/menu.component';
 import { Oauth2Service } from '../oauth2/oauth2.service';
 import { ToogleFullscreenDirective } from '../toogle-fullscreen.directive';
 import { UpdateService } from '../update.service';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { UpdateService } from '../update.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
+  usersLink: string = environment.usersLink;
 
   @Output() menu = new EventEmitter<boolean>();
   info: any;
@@ -20,7 +23,8 @@ export class HeaderComponent implements OnInit {
   constructor(@Inject('window') private window: any, 
               private router: Router, 
               private oauthService: Oauth2Service,
-              private update: UpdateService) { }
+              private update: UpdateService) { 
+              }
 
   ngOnInit() {
     /*
@@ -54,11 +58,11 @@ export class HeaderComponent implements OnInit {
   }
 
   mi_perfil() {
-     this.window.open('https://usuarios.econo.unlp.edu.ar','_new');
+    this.window.open(this.usersLink,'_new');
   }
 
   cambiar_clave() {
-    this.window.open('https://usuarios.econo.unlp.edu.ar','_new');
+    this.window.open(this.usersLink,'_new');
   }
 
 }
