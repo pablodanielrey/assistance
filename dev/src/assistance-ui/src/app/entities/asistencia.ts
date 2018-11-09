@@ -225,7 +225,7 @@ export class Horario {
       this.setEntrada(this.hora_entrada);
       this.setSalida(this.hora_salida);
       this.cantidadHoras = this.hora_salida - this.hora_entrada;
-      this.cantidadHoras = (this.cantidadHoras == 0) ? 0 : this.cantidadHoras / 3600;
+      //this.cantidadHoras = (this.cantidadHoras == 0) ? 0 : this.cantidadHoras / 3600;
     } catch(e) {
       console.log(e);
     }
@@ -356,7 +356,10 @@ export class DatosHorario {
   horarios:  Array<Horario>;
   usuario: Usuario;
   horasSemanales: number;
-
+  // horasSemanales = {
+  //   minSem: number
+  //   horas: number
+  // }
   constructor(o:Object) {
     try {
       Object.assign(this, o);
