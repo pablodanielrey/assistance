@@ -216,26 +216,38 @@ export class AssistanceService {
   }
 
   generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
-    let reporte = {
-                  usuario: {
+    let result = [  
+                    {
+                      usuario: {
                         id: '1',
                         nombre: 'Miguel',
                         apellido: 'Macagno',
-                  },
-                  fecha_inicial: '2018-01-01 00:00',
-                  fecha_final: '2018-02-01 00:00',
-                  justificaciones: [
+                        dni: '34928857'
+                      },
+                      fecha_inicial: '2018-01-01 00:00',
+                      fecha_final: '2018-02-01 00:00',
+                      justificaciones: [
                         {id: '1',
                         nombre: 'Ausente con Aviso',
                         cantidad: 5 },
                         {id: '2',
                         nombre: 'Vacaciones',
-                        cantidad: 25 }
-                  ]}
-    return null;
+                        cantidad: 25 },
+                        {id: '3',
+                        nombre: 'WallyJustifications',
+                        cantidad: 15 },
+                        {id: '4',
+                        nombre: 'Ivanejadas',
+                        cantidad: 6 },
+                        {id: '5',
+                        nombre: 'Secretaria de Trabajos 3ros',
+                        cantidad: 3 },
+                      ]
+                    }                    
+                  ]
+    return from(result).pipe(map(datos => new ReporteJustificaciones(datos)));
   }
- 
-
+  
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {
 
     const options = { params: new HttpParams()

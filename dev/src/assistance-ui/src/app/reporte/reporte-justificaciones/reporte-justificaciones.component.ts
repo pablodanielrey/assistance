@@ -56,17 +56,17 @@ export class ReporteJustificacionesComponent implements OnInit {
       if (params['fecha_inicial'] && params['fecha_final']) {
         this.fecha_inicial = new Date(params['fecha_inicial']);
         this.fecha_final = new Date(params['fecha_final']);
-        this._generarReporte;
       } else {
          this.fecha_final = new Date(Date.now());
          this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
-         this.generarReporte;
       }
     });
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
       this.modulos = modulos;
       console.log(this.modulos);
     }));
+    this._generarReporte();
+    console.log(this.reporte);
   }
 
   ngOnDestroy() {
@@ -90,28 +90,6 @@ export class ReporteJustificacionesComponent implements OnInit {
 
   generarReporte():void {
     this.router.navigate(['/sistema/reportes/justificaciones', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString(), back: this.back}]);
-  }
-
-  obtenerUsuario():string {
-    if (this.reporte && this.reporte.usuario) {
-      return this.reporte.usuario.dni;
-    } else {
-      return "";
-    }
-  }
-
-  is_desktop() {
-    return this.width >= 769;
-  }
-
-  chequearPerfil(profiles: string[]): boolean {
-    let r = false;
-    profiles.forEach(p => {
-      if (this.modulos.includes(p)) {
-        r = true;
-      }
-    });
-    return r
   }
 
 }

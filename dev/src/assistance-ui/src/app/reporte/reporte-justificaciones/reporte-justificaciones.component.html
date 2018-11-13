@@ -42,6 +42,16 @@
     </div>
     <mat-progress-bar *ngIf="buscando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
     <mat-divider></mat-divider>
-    {{this.usuario_id}}
+    <div class="detalleReporte">
+      <div class="columna">
+        <div class="titulo">Justficaciones</div>
+        <mat-divider></mat-divider>
+        <div class="contenedorItemDetalles">
+          <div class="itemDetalles" *ngFor='let j of reporte.justificaciones'>
+            <div>{{j.nombre}}:</div><div>{{j.cantidad}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
