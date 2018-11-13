@@ -7,10 +7,10 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./reporte-justificaciones.component.css']
 })
 export class ReporteJustificacionesComponent implements OnInit {
-
   usuario_id: string = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, 
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(

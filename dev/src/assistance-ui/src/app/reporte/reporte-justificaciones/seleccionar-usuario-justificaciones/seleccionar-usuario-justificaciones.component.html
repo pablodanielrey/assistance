@@ -1,0 +1,12 @@
+<div class="reportePersonal">
+  <div class="seccionSistema">
+    <button mat-button class="btnVolverSeccion" routerLink="/sistema/reportes/inicial"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+     | Reporte Justificaciones
+  </div>
+  <mat-divider></mat-divider>
+  <div class="contenidoPantalla">
+    <!-- <app-seleccionar-usuario [busqueda]='busqueda' (seleccionado)='usuarioSeleccionado($event)'> -->
+    <app-seleccionar-usuario (seleccionado)='usuarioSeleccionado($event)'>
+    </app-seleccionar-usuario>
+  </div>
+</div>

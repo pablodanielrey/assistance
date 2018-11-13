@@ -67,6 +67,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReporteHorasSemanalComponent } from './reporte/reporte-horas-semanal/reporte-horas-semanal.component';
 import { ReporteJustificacionesComponent } from './reporte/reporte-justificaciones/reporte-justificaciones.component';
+import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-justificaciones/seleccionar-usuario-justificaciones/seleccionar-usuario-justificaciones.component';
+
 import { UpdateService } from './update.service';
 
 
@@ -116,7 +118,8 @@ export function windowFactory() {
     Oauth2Component,
     ErrorComponent,
     ReporteHorasSemanalComponent,
-    ReporteJustificacionesComponent
+    ReporteJustificacionesComponent,
+    SeleccionarUsuarioJustificacionesComponent
   ],
   imports: [
     BrowserModule,
