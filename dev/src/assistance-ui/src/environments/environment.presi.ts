@@ -6,6 +6,8 @@ export const environment = {
   telegramURL: 'https://telegram.me/AsistenciaPresiBot?start=',
   client_id: 'assistance-ui',
 
+  lugar: 'presi',
+
   usersLink: 'https://asistencia.presi.unlp.edu.ar',
 
   footer: 'Dirección General de Personal | Presidencia | UNLP | Calle 7 Nº 776',

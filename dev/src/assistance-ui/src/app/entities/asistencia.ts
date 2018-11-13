@@ -330,6 +330,40 @@ export class ReporteGeneral {
 
 }
 
+export class ReporteJustificaciones {
+
+  usuario: Usuario;
+  fecha_inicial: Date;
+  fecha_final: Date;
+  justificaciones: Array<JustificacionRenglon>;
+  detalle: Detalle;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.fecha_inicial = (this.fecha_inicial == null ? null : new Date(this.fecha_inicial));
+      this.fecha_final = (this.fecha_final == null ? null : new Date(this.fecha_final));
+      this.justificaciones = (this.justificaciones == null) ? [] : this.justificaciones.map(j => new JustificacionRenglon(j));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class JustificacionRenglon{
+  id: string;
+  nombre: string;
+  cantidad: number;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
 export class Asistencia {
   actualizado: string;
   creado: string;

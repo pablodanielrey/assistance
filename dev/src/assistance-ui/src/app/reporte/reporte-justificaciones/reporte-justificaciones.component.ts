@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
-import { Reporte, RenglonReporte, Marcacion, FechaJustificada } from '../../entities/asistencia';
+import { Reporte, RenglonReporte, Marcacion, FechaJustificada, ReporteJustificaciones } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -17,17 +17,17 @@ import { HostListener } from "@angular/core";
   styleUrls: ['./reporte-justificaciones.component.css']
 })
 export class ReporteJustificacionesComponent implements OnInit {
-  usuario_id: string = null;
-  reporte: Reporte = null;
-  info: any = null;
-  fecha_inicial: Date = null;
-  fecha_final: Date = null;
-  subscriptions: any[] = [];
   buscando: boolean = false;
   back: string;
   modulos: string[] = [];
+  usuario_id: string = null;
+  fecha_inicial: Date = null;
+  fecha_final: Date = null;
+  reporte: ReporteJustificaciones = null;
+  subscriptions: any[] = []; 
   height;
   width;
+  
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
@@ -56,9 +56,11 @@ export class ReporteJustificacionesComponent implements OnInit {
       if (params['fecha_inicial'] && params['fecha_final']) {
         this.fecha_inicial = new Date(params['fecha_inicial']);
         this.fecha_final = new Date(params['fecha_final']);
+        this._generarReporte;
       } else {
          this.fecha_final = new Date(Date.now());
          this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+         this.generarReporte;
       }
     });
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
@@ -76,6 +78,16 @@ export class ReporteJustificacionesComponent implements OnInit {
     this.router.navigate([this.back, {fecha: this.fecha_final}]);
   }
 
+  _generarReporte(): void {
+    this.reporte = null;
+    this.buscando = true;
+    this.subscriptions.push(this.service.generarReporteJustificaciones(this.usuario_id, this.fecha_inicial, this.fecha_final)
+    .subscribe(r => {
+      this.buscando = false;
+      this.reporte = r;
+    }));
+  }
+
   generarReporte():void {
     this.router.navigate(['/sistema/reportes/justificaciones', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString(), back: this.back}]);
   }
@@ -86,13 +98,6 @@ export class ReporteJustificacionesComponent implements OnInit {
     } else {
       return "";
     }
-  }
-
-  obtenerReportes() {
-    if (this.reporte ==  null) {
-      return []
-    }
-    return this.reporte.reportes;
   }
 
   is_desktop() {

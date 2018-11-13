@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { map, switchMap, flatMap, share, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
@@ -15,7 +15,8 @@ import { Reloj,
          Reporte, ReporteGeneral, 
          DatosHorario, Horario, HistorialHorario, 
          Justificacion, FechaJustificada, 
-         Lugar } from './entities/asistencia';
+         Lugar, 
+         ReporteJustificaciones} from './entities/asistencia';
 
 import { TelegramToken } from './entities/telegram';
 
@@ -213,6 +214,27 @@ export class AssistanceService {
     let apiUrl = `${ASSISTANCE_API_URL}/reportes`;
     return this.http.post<ReporteGeneral[]>(apiUrl, options).pipe(map(datos => datos.map(d => new ReporteGeneral(d))));
   }
+
+  generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
+    let reporte = {
+                  usuario: {
+                        id: '1',
+                        nombre: 'Miguel',
+                        apellido: 'Macagno',
+                  },
+                  fecha_inicial: '2018-01-01 00:00',
+                  fecha_final: '2018-02-01 00:00',
+                  justificaciones: [
+                        {id: '1',
+                        nombre: 'Ausente con Aviso',
+                        cantidad: 5 },
+                        {id: '2',
+                        nombre: 'Vacaciones',
+                        cantidad: 25 }
+                  ]}
+    return null;
+  }
+ 
 
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {
 
