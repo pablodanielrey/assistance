@@ -215,39 +215,48 @@ export class AssistanceService {
     return this.http.post<ReporteGeneral[]>(apiUrl, options).pipe(map(datos => datos.map(d => new ReporteGeneral(d))));
   }
 
-  generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
-    let result = [  
-                    {
-                      usuario: {
-                        id: '1',
-                        nombre: 'Miguel',
-                        apellido: 'Macagno',
-                        dni: '34928857'
-                      },
-                      fecha_inicial: '2018-01-01 00:00',
-                      fecha_final: '2018-02-01 00:00',
-                      justificaciones: [
-                        {id: '1',
-                        nombre: 'Ausente con Aviso',
-                        cantidad: 5 },
-                        {id: '2',
-                        nombre: 'Vacaciones',
-                        cantidad: 25 },
-                        {id: '3',
-                        nombre: 'WallyJustifications',
-                        cantidad: 15 },
-                        {id: '4',
-                        nombre: 'Ivanejadas',
-                        cantidad: 6 },
-                        {id: '5',
-                        nombre: 'Secretaria de Trabajos 3ros',
-                        cantidad: 3 },
-                      ]
-                    }                    
-                  ]
-    return from(result).pipe(map(datos => new ReporteJustificaciones(datos)));
-  }
+  //generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
+  //  let result = [  
+  //                  {
+  //                    usuario: {
+  //                      id: '1',
+  //                      nombre: 'Miguel',
+  //                      apellido: 'Macagno',
+  //                      dni: '34928857'
+  //                    },
+  //                    fecha_inicial: '2018-01-01 00:00',
+  //                    fecha_final: '2018-02-01 00:00',
+  //                    justificaciones: [
+  //                      {id: '1',
+  //                      nombre: 'Ausente con Aviso',
+  //                      cantidad: 5 },
+  //                      {id: '2',
+  //                      nombre: 'Vacaciones',
+  //                      cantidad: 25 },
+  //                      {id: '3',
+  //                      nombre: 'WallyJustifications',
+  //                      cantidad: 15 },
+  //                      {id: '4',
+  //                      nombre: 'Ivanejadas',
+  //                      cantidad: 6 },
+  //                      {id: '5',
+  //                      nombre: 'Secretaria de Trabajos 3ros',
+  //                      cantidad: 3 },
+  //                    ]
+  //                  }                    
+  //                ]
+  //  return from(result).pipe(map(datos => new ReporteJustificaciones(datos)));
+  //}
   
+  generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
+    const options = { params: new HttpParams()
+      .set('inicio', fecha_inicio.toDateString())
+      .set('fin', fecha_fin.toDateString())
+    };
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/justificaciones`;
+    return this.http.get<[ReporteJustificaciones]>(apiUrl, options).pipe(map(datos => new ReporteJustificaciones(datos)));
+  }
+
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {
 
     const options = { params: new HttpParams()

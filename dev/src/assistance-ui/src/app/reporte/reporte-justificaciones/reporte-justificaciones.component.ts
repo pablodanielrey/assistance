@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 
-import { Reporte, RenglonReporte, Marcacion, FechaJustificada, ReporteJustificaciones } from '../../entities/asistencia';
+import { ReporteJustificaciones } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -89,6 +89,7 @@ export class ReporteJustificacionesComponent implements OnInit {
   }
 
   generarReporte():void {
+    console.log('Llego');
     this.router.navigate(['/sistema/reportes/justificaciones', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString(), back: this.back}]);
   }
 
