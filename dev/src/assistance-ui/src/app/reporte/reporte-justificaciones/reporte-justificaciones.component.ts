@@ -16,7 +16,18 @@ export class ReporteJustificacionesComponent implements OnInit {
   fecha_inicial: Date = null;
   fecha_final: Date = null;
   reporte: ReporteJustificaciones = null;
-  subscriptions: any[] = []; 
+  subscriptions: any[] = [];
+  //stock: any[] = [
+  //                            {id: '1',
+  //                            nombre: 'Boleta de Salida',
+  //                            cantidad: 2 },
+  //                            {id: '2',
+  //                            nombre: 'Ausentes con Aviso',
+  //                            cantidad: 3 },
+  //                            {id: '3',
+  //                            nombre: 'Vacaciones',
+  //                            cantidad: 25 }
+  //                          ] Comentado para futura implementacion de Stock, EJEMPLO
   
   constructor(
               private service: AssistanceService,
@@ -26,7 +37,6 @@ export class ReporteJustificacionesComponent implements OnInit {
   ngOnInit() {
     this.buscando = false;
     this.route.params.subscribe(params => {
-      console.log('parametros cambiaron');
       console.log(params);
       this.usuario_id = params['uid'];
       this.back = (params['back']) ? params['back'] : '/sistema/reportes/justificaciones';
@@ -36,8 +46,6 @@ export class ReporteJustificacionesComponent implements OnInit {
       } else {
          this.fecha_final = new Date(Date.now());
          this.fecha_inicial = new Date(this.fecha_final.getFullYear(), 0, 1);
-         console.log(this.fecha_inicial);
-         console.log(this.fecha_final);
       }
     });
     this._generarReporte();

@@ -44,7 +44,7 @@
     <mat-divider></mat-divider>
     <div class="detalleReporte" *ngIf="!buscando">
       <div class="columna">
-        <div class="titulo">Justificaciones</div>
+        <div class="titulo">Justificaciones del {{reporte.fecha_inicial | date:'shortDate': '+0000'}} al {{reporte.fecha_final | date:'shortDate': '+0000'}}</div>
         <mat-divider></mat-divider>
         <div class="contenedorItemDetalles">
           <div class="itemDetalles" *ngFor='let j of reporte.justificaciones'>
@@ -52,6 +52,15 @@
           </div>
         </div>
       </div>
+      <div class="columna" *ngIf="stock">
+        <div class="titulo">Stock</div>
+        <mat-divider></mat-divider>
+        <div class="contenedorItemDetalles">
+          <div class="itemDetalles" *ngFor='let s of stock'>
+            <div>{{s.nombre}}:</div><div>{{s.cantidad}}</div>
+          </div>
+        </div>
+    </div>
     </div>
   </div>
 </div>

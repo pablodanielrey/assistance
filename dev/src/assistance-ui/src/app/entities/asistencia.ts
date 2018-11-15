@@ -336,7 +336,6 @@ export class ReporteJustificaciones {
   fecha_inicial: Date;
   fecha_final: Date;
   justificaciones: Array<JustificacionRenglon>;
-  detalle: Detalle;
 
   constructor(o:Object) {
     try {
@@ -351,7 +350,6 @@ export class ReporteJustificaciones {
 }
 
 export class JustificacionRenglon{
-  id: string;
   nombre: string;
   cantidad: number;
 

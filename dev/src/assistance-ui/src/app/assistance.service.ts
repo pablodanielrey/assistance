@@ -246,7 +246,7 @@ export class AssistanceService {
   //                  }                    
   //                ]
   //  return from(result).pipe(map(datos => new ReporteJustificaciones(datos)));
-  //}
+  //} Ejemplo de Observable de prueba sin necesidad de crear una api.
   
   generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
     const options = { params: new HttpParams()
