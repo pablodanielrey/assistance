@@ -336,6 +336,7 @@ export class ReporteJustificaciones {
   fecha_inicial: Date;
   fecha_final: Date;
   justificaciones: Array<JustificacionRenglon>;
+  justificaciones_generales: Array<JustificacionRenglon>;
 
   constructor(o:Object) {
     try {
@@ -343,6 +344,7 @@ export class ReporteJustificaciones {
       this.fecha_inicial = (this.fecha_inicial == null ? null : new Date(this.fecha_inicial));
       this.fecha_final = (this.fecha_final == null ? null : new Date(this.fecha_final));
       this.justificaciones = (this.justificaciones == null) ? [] : this.justificaciones.map(j => new JustificacionRenglon(j));
+      this.justificaciones_generales = (this.justificaciones_generales == null) ? [] : this.justificaciones_generales.map(j => new JustificacionRenglon(j));
     } catch(e) {
       console.log(e);
     }
@@ -351,6 +353,8 @@ export class ReporteJustificaciones {
 
 export class JustificacionRenglon{
   nombre: string;
+  codigo: string;
+  general: boolean;
   cantidad: number;
 
   constructor(o:Object) {

@@ -67,7 +67,6 @@ export class ReporteJustificacionesComponent implements OnInit {
     .subscribe(r => {
       this.buscando = false;
       this.reporte = r;
-      console.log(this.reporte);
     }));
   }
 
