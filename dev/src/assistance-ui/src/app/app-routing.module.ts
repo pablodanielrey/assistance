@@ -26,6 +26,8 @@ import { ReporteHorasSemanalComponent } from './reporte/reporte-horas-semanal/re
 import { ReporteJustificacionesComponent } from './reporte/reporte-justificaciones/reporte-justificaciones.component';
 import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-justificaciones/seleccionar-usuario-justificaciones/seleccionar-usuario-justificaciones.component';
 
+import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
+
 import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
 import { JustificacionModificarComponent } from './justificacion/justificacion-modificar/justificacion-modificar.component';
@@ -116,6 +118,12 @@ const routes: Routes = [
           { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent }
         ]
       },
+      {
+        path: 'marcaciones',
+        children: [
+            { path: 'por/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent }
+        ]
+      }
     ]
   },
   { path: '**', redirectTo: '/loader', pathMatch: 'full' }

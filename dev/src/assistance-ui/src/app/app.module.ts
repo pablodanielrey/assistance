@@ -70,6 +70,7 @@ import { ReporteJustificacionesComponent } from './reporte/reporte-justificacion
 import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-justificaciones/seleccionar-usuario-justificaciones/seleccionar-usuario-justificaciones.component';
 
 import { UpdateService } from './update.service';
+import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
 
 
 export function windowFactory() {
@@ -119,7 +120,8 @@ export function windowFactory() {
     ErrorComponent,
     ReporteHorasSemanalComponent,
     ReporteJustificacionesComponent,
-    SeleccionarUsuarioJustificacionesComponent
+    SeleccionarUsuarioJustificacionesComponent,
+    MarcacionesUsuarioPorFechaComponent
   ],
   imports: [
     BrowserModule,
