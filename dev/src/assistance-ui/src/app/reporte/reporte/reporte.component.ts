@@ -131,6 +131,21 @@ export class ReporteComponent implements OnInit {
     return m.marcacion
   }
 
+  obtenerIcono(m: Marcacion): String {
+    if (m == null) {
+      return null
+    }
+    if (m.tipo == 0) {
+      return 'dialpad';
+    }
+    if (m.tipo == 1) {
+      return 'fingerprint';
+    }
+    if (m.tipo == 3) {
+      return 'laptop';
+    }
+  }
+
   obtenerUsuario():string {
     if (this.reporte && this.reporte.usuario) {
       return this.reporte.usuario.dni;

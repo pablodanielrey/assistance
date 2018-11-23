@@ -75,17 +75,23 @@
 
                 <ng-container matColumnDef='Entrada'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon'> 
+                    <i class="material-icons icoMarcacion" matTooltip="Tipo de Marcación">{{obtenerIcono(renglon.entrada)}}</i> 
+                    {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}}
+                  </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Salida'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon'> 
+                    <i class="material-icons icoMarcacion" matTooltip="Tipo de Marcación">{{obtenerIcono(renglon.salida)}}</i>
+                    {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}}   
+                  </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Horas_trabajadas'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon' matTooltip="{{obtenerMarcacionesIndividuales(renglon)}}"> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Justificacion'>
