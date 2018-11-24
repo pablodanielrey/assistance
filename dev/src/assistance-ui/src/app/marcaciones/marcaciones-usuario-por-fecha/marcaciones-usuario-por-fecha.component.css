@@ -1,0 +1,217 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+
+.reporte {
+}
+
+.reporte .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+}
+
+.reporte .btnVolverSeccion {
+  color: grey;
+}
+
+.reporte .contenidoPantalla {
+  padding: 20px;
+}
+
+/* ---------------------------------------*/
+
+.cabeceraReporte {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  margin-bottom: 10px;
+
+}
+
+.contenedorListaDeUsuario {
+  width: 300px;
+}
+
+.contenedorDetallesDeReporte {
+  width: 350px;
+}
+
+.listaUsuario {
+  padding-top: 0px;
+}
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.contenedorSeleccionDeFechas {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+
+.seleccionFechaInicio {
+  width: 98%;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.seleccionFechaFin {
+  width: 98%;
+  margin-top: 10px;
+  margin-right: 20px;
+
+}
+
+.contenedorBtnGenerar {
+  width: 100%;
+}
+
+.btnGenerar {
+  width: 100%;
+  background-color: #4186e1;
+  color: #fff;
+}
+
+.contenedorBtnAcciones {
+}
+
+.btnAcciones {
+background-color: #D1D1D1;
+color: grey;
+}
+
+.btnAcciones:hover {
+background-color: white;
+}
+
+
+
+
+/*TABLA REPORTE*/
+
+/*.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}*/
+
+.Tabs {
+  background-color: white;
+}
+
+.btnJustificar {
+  color: grey;
+}
+
+
+.detalleReporte {
+  background-color: white;
+  padding: 40px;
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+
+}
+
+.columna {
+  width: 300px;
+  margin-right: 80px;
+  margin-bottom: 20px;
+}
+
+.titulo {
+  color: grey;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.contenedorItemDetalles {
+  margin-top: 15px;
+  font-size: 14px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+
+}
+
+.itemDetalles {
+  display: flex;
+  -moz-display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
+
+
+@media screen and (max-width: 769px) {
+  .contenedorSeleccionDeFechas {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .contenedorListaDeUsuario {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .seleccionFechaInicio {
+    width: 45%;
+    margin-right: 20px;
+  }
+  .seleccionFechaFin {
+    width: 45%;
+    margin-right:0px;
+  }
+  .btnGenerar {
+    padding: 5px
+  }
+
+  .contenedorBtnAcciones {
+    display: none;
+  }
+  .textFecha {
+    color: grey !important;
+    font-size: 0.5em !important;
+  }
+  .detalleReporte {
+    padding: 20px;
+    flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+  }
+
+  .columna {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+
+}

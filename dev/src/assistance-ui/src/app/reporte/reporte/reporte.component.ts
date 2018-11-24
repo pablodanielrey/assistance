@@ -111,6 +111,11 @@ export class ReporteComponent implements OnInit {
     return marcaciones;
   }
 
+  marcacionesIndividuales(r: RenglonReporte):void {
+    this.router.navigate(['/sistema/marcaciones/personal/'+this.usuario_id+'/'+r.fecha, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString()}]);
+  }
+
+
   obtenerHorario(r: RenglonReporte): string {
     if (r.horario && (r.horario.hora_salida - r.horario.hora_entrada > 0)) {
       let e = new Date(r.fecha.getTime()); e.setSeconds(0); e.setMinutes(0); e.setHours(0);

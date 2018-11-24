@@ -121,7 +121,7 @@ const routes: Routes = [
       {
         path: 'marcaciones',
         children: [
-            { path: 'por/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent }
+            { path: 'personal/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent }
         ]
       }
     ]

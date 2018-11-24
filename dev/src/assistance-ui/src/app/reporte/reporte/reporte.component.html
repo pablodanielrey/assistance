@@ -91,7 +91,11 @@
 
                 <ng-container matColumnDef='Horas_trabajadas'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon' matTooltip="{{obtenerMarcacionesIndividuales(renglon)}}"> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon'>
+                      <div (click)="marcacionesIndividuales(renglon)">
+                        {{obtenerHorasTrabajadas(renglon)}} 
+                      </div>
+                    </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Justificacion'>
