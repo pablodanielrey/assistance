@@ -34,6 +34,18 @@
     <mat-divider></mat-divider>
     <div *ngIf="!cargando">
       <mat-table [dataSource]='renglon_reporte.marcaciones' matSort>
+        <ng-container matColumnDef='Dia'>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+          <mat-cell *matCellDef='let marcacion'> 
+            {{obtenerMarcacion(marcacion) | date:'EEEE'}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef='Fecha'>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+          <mat-cell *matCellDef='let marcacion'> 
+            {{obtenerMarcacion(marcacion) | date:'dd/MM/yyyy'}}
+          </mat-cell>
+        </ng-container>
         <ng-container matColumnDef='Marcacion'>
           <mat-header-cell *matHeaderCellDef mat-sort-header> Marcacion </mat-header-cell>
           <mat-cell *matCellDef='let marcacion'> 
@@ -55,8 +67,8 @@
             {{marcacion.dispositivo_id}} 
           </mat-cell>
         </ng-container>
-        <mat-header-row *matHeaderRowDef="['Marcacion','Tipo','Reloj']"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: ['Marcacion','Tipo','Reloj']"></mat-row>
+        <mat-header-row *matHeaderRowDef="['Dia','Fecha','Marcacion','Tipo','Reloj']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Marcacion','Tipo','Reloj']"></mat-row>
       </mat-table>   
     </div>
   </div>
