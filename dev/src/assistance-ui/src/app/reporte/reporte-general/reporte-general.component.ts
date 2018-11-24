@@ -104,6 +104,21 @@ export class ReporteGeneralComponent implements OnInit {
     return m.marcacion
   }
 
+  obtenerIcono(m: Marcacion): String {
+    if (m == null) {
+      return null
+    }
+    if (m.tipo == 0) {
+      return 'dialpad';
+    }
+    if (m.tipo == 1) {
+      return 'fingerprint';
+    }
+    if (m.tipo == 3) {
+      return 'laptop';
+    }
+  }
+
   obtenerHorasTrabajadas(r:RenglonReporte) {
     let segundos = r.cantidad_horas_trabajadas;
     let min = Math.trunc((segundos / 60) % 60);
@@ -125,7 +140,7 @@ export class ReporteGeneralComponent implements OnInit {
     r.marcaciones.forEach(m => marcaciones = marcaciones + '<br>' + new Date(m.marcacion));
     return marcaciones;
   }
-
+  
   eliminarJustificacion(justificacion:any, uid: any) {
     this.eliminarJustificacionDialogRef = this.dialog.open(DialogoEliminarFechaJustificadaComponent, {data: justificacion});
     this.eliminarJustificacionDialogRef.afterClosed().subscribe(result => {
