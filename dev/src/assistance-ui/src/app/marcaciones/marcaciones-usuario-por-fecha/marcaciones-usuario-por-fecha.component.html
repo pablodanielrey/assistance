@@ -45,6 +45,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
           <mat-cell *matCellDef='let marcacion'> 
             <i class="material-icons icoMarcacion" matTooltip="Tipo de Marcación">{{obtenerIcono(marcacion)}}</i>  
+            {{obtenerDescripcionMarcacion(marcacion)}}
           </mat-cell>
         </ng-container>
         &nbsp;

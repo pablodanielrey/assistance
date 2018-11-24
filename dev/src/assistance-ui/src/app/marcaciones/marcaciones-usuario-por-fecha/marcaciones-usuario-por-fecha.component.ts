@@ -91,6 +91,21 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
     }
   }
 
+  obtenerDescripcionMarcacion(m: Marcacion): String{
+    if (m == null) {
+      return null
+    }
+    if (m.tipo == 0) {
+      return 'Teclado';
+    }
+    if (m.tipo == 1) {
+      return 'Huella';
+    }
+    if (m.tipo == 3) {
+      return 'Remoto';
+    }
+  }
+
   obtenerHorasTrabajadas(r:RenglonReporte) {
     let segundos = r.cantidad_horas_trabajadas;
     let min = Math.trunc((segundos / 60) % 60);

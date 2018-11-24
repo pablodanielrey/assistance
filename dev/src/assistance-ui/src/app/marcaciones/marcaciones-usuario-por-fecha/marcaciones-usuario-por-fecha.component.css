@@ -172,6 +172,11 @@ background-color: white;
   margin-top: 20px;
 }
 
+.icoMarcacion {
+  opacity: 0.7;
+  font-size: 20px;
+  margin-right: 5px;
+}
 
 @media screen and (max-width: 769px) {
   .contenedorSeleccionDeFechas {
