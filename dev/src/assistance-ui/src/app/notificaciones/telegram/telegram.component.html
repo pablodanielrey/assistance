@@ -1,11 +1,26 @@
-<div>
-  Ingrese el código indicado por la aplicación de asistencia en Telegram.
-  Código: <input matInput [(ngModel)]='codigo'/>
-  <button type='submit' (click)='enviar_codigo()'>Enviar</button>
-  <div *ngIf="error != ''">
-    <b>{{error}}</b>
-  </div>
-  <div *ngIf="mensaje != ''">
-    <b>{{mensaje}}</b>
-  </div>
+<div class="seleccionarReloj">
+    <div class="seccionSistema">
+      <button mat-button class="btnVolverSeccion" routerLink='/'><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+       | Configuracion de Telegram
+    </div>
+    <mat-divider></mat-divider>
+    <div class="contenidoPantalla">
+      <div class="contenedorListaDeUsuario">
+        1) Busque el bot Asistencia en Telegram.
+        <br>
+        2) Comience un chat con el bot. 
+        <br>
+        3) Ingrese el código indicado por el bot.
+        <br>
+        Código: 
+        <input matInput [(ngModel)]='codigo'/>
+        <button type='submit' (click)='enviar_codigo()'>Enviar</button>
+        <div *ngIf="error != ''">
+          <b>{{error}}</b>
+        </div>
+        <div *ngIf="mensaje != ''">
+          <b>{{mensaje}}</b>
+        </div>
+      </div>
+    </div>
 </div>
