@@ -34,6 +34,7 @@ export class ReporteGeneralComponent implements OnInit {
   reportes: Array<ReporteGeneral> = [];
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
   buscando: boolean = false;
+  modulos: string[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -50,6 +51,10 @@ export class ReporteGeneralComponent implements OnInit {
       this.fecha = new Date(params['fecha']) || new Date(Date.now());
       this._generarReporte();
     });
+    this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
+      this.modulos = modulos;
+      console.log(this.modulos);
+    }));
 
   }
 
@@ -143,6 +148,16 @@ export class ReporteGeneralComponent implements OnInit {
 
   is_desktop() {
     return this.width >= 769;
+  }
+
+  chequearPerfil(profiles: string[]): boolean {
+    let r = false;
+    profiles.forEach(p => {
+      if (this.modulos.includes(p)) {
+        r = true;
+      }
+    });
+    return r
   }
 
 }
