@@ -270,6 +270,7 @@ export class RenglonReporte {
   fecha: Date;
   horario: Horario;
   marcaciones: Marcacion[];
+  duplicadas: Marcacion[];
   entrada: Marcacion;
   salida: Marcacion;
   cantidad_horas_trabajadas: number;
@@ -286,6 +287,7 @@ export class RenglonReporte {
       }
       this.horario = (this.horario == null) ? null : new Horario(this.horario);
       this.marcaciones = (this.marcaciones == null) ? [] : this.marcaciones.map(m => new Marcacion(m));
+      this.duplicadas = (this.duplicadas == null) ? [] : this.duplicadas.map(m => new Marcacion(m));
       this.entrada = (this.entrada == null) ? null : new Marcacion(this.entrada);
       this.salida = (this.salida == null) ? null : new Marcacion(this.salida);
     } catch(e) {

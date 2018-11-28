@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Reporte, RenglonReporte, Marcacion } from '../../entities/asistencia';
+import { BehaviorSubject } from 'rxjs';
+
+import { RenglonReporte, Marcacion } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -11,35 +13,49 @@ import { AssistanceService } from '../../assistance.service';
 })
 export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   usuario_id: string = null;
-  fecha: Date = null;
   cargando: boolean = false;
-  reporte: Reporte = null;
-  renglon_reporte: RenglonReporte = null;
   subscriptions: any[] = [];
-  back: string = null;
+  back: any = null;
+  info: any = null;
   fecha_inicial: string = null;
   fecha_final: string = null;
+
+  marcaciones : BehaviorSubject<Marcacion[]>;
+  marcaciones_duplicadas : BehaviorSubject<Marcacion[]>;
   
 
   constructor(private route : ActivatedRoute,
               private router: Router,
               private service : AssistanceService) {
+    this.marcaciones = new BehaviorSubject<Marcacion[]>([]);
+    this.marcaciones_duplicadas = new BehaviorSubject<Marcacion[]>([]);
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(p => {
       this.usuario_id = p.get('uid');
-      this.fecha = new Date(p.get('fecha'));
-      this.back = p.get('back') ? p.get('back') : '/sistema/reportes/personal/';
-      this.fecha_inicial = p.get('fecha_inicial');
-      this.fecha_final = p.get('fecha_final');
+
+      this.back = {
+        url: p.get('back') ? p.get('back') : '/sistema/reportes/personal/',
+        fecha_inicial: p.get('fecha_inicial'),
+        fecha_final: p.get('fecha_final')
+      }
+
+      let fecha = new Date(p.get('fecha'));
       this.cargando = true;
-      this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha, this.fecha)
+      this.subscriptions.push(this.service.generarReporte(this.usuario_id, fecha, fecha)
       .subscribe(r => {
         this.cargando = false;
-        this.reporte = r;
-        this.renglon_reporte = r.reportes.pop();
-        console.log(this.reporte);
+        let renglon_reporte = r.reportes.pop();
+
+        this.info = {
+          usuario: r.usuario,
+          fecha: renglon_reporte.fecha,
+          horario: this.obtenerHorario(renglon_reporte),
+          horas_trabajadas: this.obtenerHorasTrabajadas(renglon_reporte)
+        }
+        this.marcaciones.next(renglon_reporte.marcaciones);
+        this.marcaciones_duplicadas.next(renglon_reporte.duplicadas);
       }));
     });    
   }
@@ -50,10 +66,10 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   }
 
   volver() {
-    if (this.fecha_inicial != null && this.fecha_final != null) {
-      this.router.navigate([this.back, this.usuario_id, {fecha_inicial: this.fecha_inicial, fecha_final: this.fecha_final}]);
+    if (this.back.fecha_inicial != null && this.back.fecha_final != null) {
+      this.router.navigate([this.back.url, this.usuario_id, {fecha_inicial: this.back.fecha_inicial, fecha_final: this.back.fecha_final}]);
     }else{
-      this.router.navigate([this.back, this.usuario_id]);
+      this.router.navigate([this.back.url, this.usuario_id]);
     }
   }
 
