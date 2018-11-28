@@ -111,8 +111,11 @@ export class ReporteComponent implements OnInit {
     return marcaciones;
   }
 
-  marcacionesIndividuales(r: RenglonReporte):void {
-    this.router.navigate(['/sistema/marcaciones/personal/'+this.usuario_id+'/'+r.fecha, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString()}]);
+  _obtenerParametrosMarcacionIndividual(r: RenglonReporte) {
+    return {
+      fecha_inicial:this.fecha_inicial.toISOString(), 
+      fecha_final:this.fecha_final.toISOString()
+    }
   }
 
 
