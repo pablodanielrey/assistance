@@ -71,6 +71,8 @@ import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-ju
 
 import { UpdateService } from './update.service';
 import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
+import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
+import { CompensatoriosModificarComponent } from './compensatorios/compensatorios-modificar/compensatorios-modificar.component';
 
 
 export function windowFactory() {
@@ -121,7 +123,9 @@ export function windowFactory() {
     ReporteHorasSemanalComponent,
     ReporteJustificacionesComponent,
     SeleccionarUsuarioJustificacionesComponent,
-    MarcacionesUsuarioPorFechaComponent
+    MarcacionesUsuarioPorFechaComponent,
+    CompensatoriosInicialComponent,
+    CompensatoriosModificarComponent
   ],
   imports: [
     BrowserModule,

@@ -35,6 +35,7 @@ import { JustificacionPersonalInicioComponent } from './justificacion/justificac
 import { JustificacionPersonalComponent } from './justificacion/justificacion-personal/justificacion-personal.component';
 import { JustificacionGeneralComponent } from './justificacion/justificacion-general/justificacion-general.component';
 
+import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
 
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
@@ -122,6 +123,12 @@ const routes: Routes = [
         path: 'marcaciones',
         children: [
             { path: 'personal/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent }
+        ]
+      },
+      {
+        path: 'compensatorios',
+        children: [
+            { path: 'inicial', component: CompensatoriosInicialComponent }
         ]
       }
     ]

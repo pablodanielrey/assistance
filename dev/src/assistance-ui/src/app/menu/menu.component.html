@@ -39,6 +39,11 @@
         <mat-icon class="icoMenu">alarm_on</mat-icon> Horarios
       </button><br>
     </span>
+    <span *ngIf="chequearPerfil(['super-admin']) | async">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/compensatorios/inicial">
+        <mat-icon class="icoMenu">local_play</mat-icon> Compensatorios
+      </button><br>
+    </span>
     <span  *ngIf="chequearPerfil(['super-admin']) | async">
       <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/relojes/seleccion">
         <mat-icon class="icoMenu">alarm_on</mat-icon> Relojes
@@ -46,7 +51,7 @@
     </span>
     <span  *ngIf="chequearPerfil(['super-admin','assistance-admin']) | async">
       <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/notificaciones/telegram">
-        <mat-icon class="icoMenu">alarm_on</mat-icon> Telegram
+        <mat-icon class="icoMenu">send</mat-icon> Telegram
       </button><br>
     </span>
     <!-- <button class="btn" mat-button (click)='onInternalItem()' routerLink="/relojes/buscar"><mat-icon class="icoMenu">query_builder</mat-icon> Administrar Relojes &nbsp;</button><br> -->
