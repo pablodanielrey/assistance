@@ -16,7 +16,8 @@ import { Reloj,
          DatosHorario, Horario, HistorialHorario, 
          Justificacion, FechaJustificada, 
          Lugar, 
-         ReporteJustificaciones} from './entities/asistencia';
+         ReporteJustificaciones,
+         DatosCompensatorio} from './entities/asistencia';
 
 import { TelegramToken } from './entities/telegram';
 
@@ -213,6 +214,53 @@ export class AssistanceService {
     const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
     let apiUrl = `${ASSISTANCE_API_URL}/reportes`;
     return this.http.post<ReporteGeneral[]>(apiUrl, options).pipe(map(datos => datos.map(d => new ReporteGeneral(d))));
+  }
+
+  obtenerCompensatorios(uid: string): Observable<DatosCompensatorio> {
+    //Observable de prueba
+    let result = [  
+                    {
+                      usuario: {
+                        id: '1',
+                        nombre: 'Miguel',
+                        apellido: 'Macagno',
+                        dni: '34928857'
+                      },
+                      cantidad: 33,
+                      compensatorios: [
+                        {registro_id: '1',
+                        fecha: '2018-05-04',
+                        notas: 'Por venir a trabajar en feriado',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 2,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'},
+                        {registro_id: '2',
+                        fecha: '2018-08-07',
+                        notas: 'Por computo de horas extra',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 23,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'},
+                        {registro_id: '3',
+                        fecha: '2018-09-04',
+                        notas: 'Por venir a trabajar en feriado',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 1,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'},
+                        {registro_id: '4',
+                        fecha: '2018-10-04',
+                        notas: 'Por que si',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 7,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'}
+                      ]
+                    }                    
+                  ]
+  
+    return from(result).pipe(map(datos => new DatosCompensatorio(datos)));
   }
 
   //generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {

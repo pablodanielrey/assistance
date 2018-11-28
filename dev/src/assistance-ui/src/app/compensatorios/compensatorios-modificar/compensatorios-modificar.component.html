@@ -1,3 +1,75 @@
-<p>
-  compensatorios-modificar works!
-</p>
+<div  class="reporte">
+  <div class="seccionSistema">
+    <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+     | Compensatorios
+  </div>
+  <mat-divider></mat-divider>
+  <div class="contenidoPantalla">
+    <div *ngIf='info' class='cabeceraReporte'>
+      <div class='contendeorListaUsuario'>
+        <mat-list class='listaUsuario'>
+          <mat-list-item class="itemLista">
+            <img matListAvatar src="/assets/img/icono_usuario.jpg">
+            <h3 matLine> {{info.usuario?.nombre}} {{info.usuario?.apellido}} </h3>
+            <p matLine>
+            <span class="itemTextoSubtitulo">{{info.usuario?.dni}}</span>
+          </p>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div class="contenedorDetallesDeReporte">
+        <mat-list class="listaUsuario">
+          <mat-list-item class="itemLista">
+            <h3 matLine>
+              Disponibles: {{info?.cantidad}}
+            </h3>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+    <mat-divider></mat-divider>
+    <div *ngIf="!cargando">
+      <mat-tab-group>
+        <mat-tab label='Compensatorios'>
+            <mat-table [dataSource]=' compensatorios | async' matSort>
+              <ng-container matColumnDef='Fecha'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                <mat-cell *matCellDef='let compensatorio'> 
+                  {{compensatorio.fecha | date:'dd/MM/yyyy'}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef='Cantidad'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+                <mat-cell *matCellDef='let compensatorio'> 
+                  {{compensatorio.cantidad}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef='Nota'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nota </mat-header-cell>
+                <mat-cell *matCellDef='let compensatorio'> 
+                  {{compensatorio.notas}}
+                </mat-cell>
+              </ng-container>
+              &nbsp;
+              <ng-container matColumnDef='Justificador'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Justificador </mat-header-cell>
+                <mat-cell *matCellDef='let compensatorio'>  
+                  {{compensatorio.autorizador_id}}
+                </mat-cell>
+              </ng-container>
+              &nbsp;
+              <ng-container matColumnDef='Asiento'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Asiento </mat-header-cell>
+                <mat-cell *matCellDef='let compensatorio'>
+                  {{compensatorio.asiento_id}} 
+                </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="['Fecha','Cantidad','Nota','Justificador','Asiento']"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: ['Fecha','Cantidad','Nota','Justificador','Asiento']"></mat-row>
+            </mat-table> 
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

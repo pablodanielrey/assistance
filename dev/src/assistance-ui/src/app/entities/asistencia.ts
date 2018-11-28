@@ -388,8 +388,6 @@ export class DatosAsistencia {
   }
 }
 
-
-
 export class DatosHorario {
   horarios:  Array<Horario>;
   usuario: Usuario;
@@ -402,6 +400,39 @@ export class DatosHorario {
     try {
       Object.assign(this, o);
       this.horarios = (this.horarios == null) ? [] : this.horarios.map(r => new Horario(r));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class DatosCompensatorio {
+  compensatorios:  Array<Compensatorio>;
+  cantidad: number;
+  usuario: Usuario;
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.compensatorios = (this.compensatorios == null) ? [] : this.compensatorios.map(r => new Compensatorio(r));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class Compensatorio {
+  registro_id: string;
+  fecha: Date = null;
+  notas: string = null;
+  autorizador_id: string;
+  cantidad: number;
+  cuenta_id: string;
+  asiento_id: string;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.fecha = (this.fecha == null ? null : new Date(this.fecha));
     } catch(e) {
       console.log(e);
     }
