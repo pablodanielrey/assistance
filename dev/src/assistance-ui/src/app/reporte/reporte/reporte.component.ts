@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
-
-import { OAuthService } from 'angular-oauth2-oidc';
-import { HttpClient } from '@angular/common/http';
-
-import { Reporte, RenglonReporte, Marcacion, FechaJustificada } from '../../entities/asistencia';
-import { AssistanceService } from '../../assistance.service';
-
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
 
-import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+import { OAuthService } from 'angular-oauth2-oidc';
 
+import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
+import { AssistanceService } from '../../assistance.service';
+
+
+
+import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
 
 
 @Component({
@@ -57,9 +56,17 @@ export class ReporteComponent implements OnInit {
   buscando: boolean = false;
   back: string;
   modulos: string[] = [];
+  config: Configuracion = null;
 
   ngOnInit() {
     this.buscando = false;
+
+    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
+      this.config = r;
+      console.log(this.config.mostrar_tipo_marcacion);
+    }));
+
+
     this.route.params.subscribe(params => {
       console.log('parametros cambiaron');
       console.log(params);
@@ -111,6 +118,14 @@ export class ReporteComponent implements OnInit {
     return marcaciones;
   }
 
+  _obtenerParametrosMarcacionIndividual(r: RenglonReporte) {
+    return {
+      fecha_inicial:this.fecha_inicial.toISOString(), 
+      fecha_final:this.fecha_final.toISOString()
+    }
+  }
+
+
   obtenerHorario(r: RenglonReporte): string {
     if (r.horario && (r.horario.hora_salida - r.horario.hora_entrada > 0)) {
       let e = new Date(r.fecha.getTime()); e.setSeconds(0); e.setMinutes(0); e.setHours(0);
@@ -129,6 +144,24 @@ export class ReporteComponent implements OnInit {
       return null
     }
     return m.marcacion
+  }
+
+  obtenerIcono(m: Marcacion): String {
+    if (this.config.mostrar_tipo_marcacion) {
+      return null;
+    }
+    if (m == null) {
+      return null
+    }
+    if (m.tipo == 0) {
+      return 'dialpad';
+    }
+    if (m.tipo == 1) {
+      return 'fingerprint';
+    }
+    if (m.tipo == 3) {
+      return 'laptop';
+    }
   }
 
   obtenerUsuario():string {

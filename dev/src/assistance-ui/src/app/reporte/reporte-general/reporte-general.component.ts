@@ -34,6 +34,7 @@ export class ReporteGeneralComponent implements OnInit {
   reportes: Array<ReporteGeneral> = [];
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
   buscando: boolean = false;
+  modulos: string[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -50,6 +51,10 @@ export class ReporteGeneralComponent implements OnInit {
       this.fecha = new Date(params['fecha']) || new Date(Date.now());
       this._generarReporte();
     });
+    this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
+      this.modulos = modulos;
+      console.log(this.modulos);
+    }));
 
   }
 
@@ -99,6 +104,21 @@ export class ReporteGeneralComponent implements OnInit {
     return m.marcacion
   }
 
+  obtenerIcono(m: Marcacion): String {
+    if (m == null) {
+      return null
+    }
+    if (m.tipo == 0) {
+      return 'dialpad';
+    }
+    if (m.tipo == 1) {
+      return 'fingerprint';
+    }
+    if (m.tipo == 3) {
+      return 'laptop';
+    }
+  }
+
   obtenerHorasTrabajadas(r:RenglonReporte) {
     let segundos = r.cantidad_horas_trabajadas;
     let min = Math.trunc((segundos / 60) % 60);
@@ -120,7 +140,7 @@ export class ReporteGeneralComponent implements OnInit {
     r.marcaciones.forEach(m => marcaciones = marcaciones + '<br>' + new Date(m.marcacion));
     return marcaciones;
   }
-
+  
   eliminarJustificacion(justificacion:any, uid: any) {
     this.eliminarJustificacionDialogRef = this.dialog.open(DialogoEliminarFechaJustificadaComponent, {data: justificacion});
     this.eliminarJustificacionDialogRef.afterClosed().subscribe(result => {
@@ -143,6 +163,16 @@ export class ReporteGeneralComponent implements OnInit {
 
   is_desktop() {
     return this.width >= 769;
+  }
+
+  chequearPerfil(profiles: string[]): boolean {
+    let r = false;
+    profiles.forEach(p => {
+      if (this.modulos.includes(p)) {
+        r = true;
+      }
+    });
+    return r
   }
 
 }

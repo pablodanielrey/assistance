@@ -225,7 +225,7 @@ export class Horario {
       this.setEntrada(this.hora_entrada);
       this.setSalida(this.hora_salida);
       this.cantidadHoras = this.hora_salida - this.hora_entrada;
-      this.cantidadHoras = (this.cantidadHoras == 0) ? 0 : this.cantidadHoras / 3600;
+      //this.cantidadHoras = (this.cantidadHoras == 0) ? 0 : this.cantidadHoras / 3600;
     } catch(e) {
       console.log(e);
     }
@@ -270,6 +270,7 @@ export class RenglonReporte {
   fecha: Date;
   horario: Horario;
   marcaciones: Marcacion[];
+  duplicadas: Marcacion[];
   entrada: Marcacion;
   salida: Marcacion;
   cantidad_horas_trabajadas: number;
@@ -286,6 +287,7 @@ export class RenglonReporte {
       }
       this.horario = (this.horario == null) ? null : new Horario(this.horario);
       this.marcaciones = (this.marcaciones == null) ? [] : this.marcaciones.map(m => new Marcacion(m));
+      this.duplicadas = (this.duplicadas == null) ? [] : this.duplicadas.map(m => new Marcacion(m));
       this.entrada = (this.entrada == null) ? null : new Marcacion(this.entrada);
       this.salida = (this.salida == null) ? null : new Marcacion(this.salida);
     } catch(e) {
@@ -330,6 +332,42 @@ export class ReporteGeneral {
 
 }
 
+export class ReporteJustificaciones {
+
+  usuario: Usuario;
+  fecha_inicial: Date;
+  fecha_final: Date;
+  justificaciones: Array<JustificacionRenglon>;
+  justificaciones_generales: Array<JustificacionRenglon>;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.fecha_inicial = (this.fecha_inicial == null ? null : new Date(this.fecha_inicial));
+      this.fecha_final = (this.fecha_final == null ? null : new Date(this.fecha_final));
+      this.justificaciones = (this.justificaciones == null) ? [] : this.justificaciones.map(j => new JustificacionRenglon(j));
+      this.justificaciones_generales = (this.justificaciones_generales == null) ? [] : this.justificaciones_generales.map(j => new JustificacionRenglon(j));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class JustificacionRenglon{
+  nombre: string;
+  codigo: string;
+  general: boolean;
+  cantidad: number;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
 export class Asistencia {
   actualizado: string;
   creado: string;
@@ -350,17 +388,68 @@ export class DatosAsistencia {
   }
 }
 
-
-
 export class DatosHorario {
   horarios:  Array<Horario>;
   usuario: Usuario;
   horasSemanales: number;
-
+  // horasSemanales = {
+  //   minSem: number
+  //   horas: number
+  // }
   constructor(o:Object) {
     try {
       Object.assign(this, o);
       this.horarios = (this.horarios == null) ? [] : this.horarios.map(r => new Horario(r));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class DatosCompensatorio {
+  compensatorios:  Array<Compensatorio>;
+  cantidad: number;
+  usuario: Usuario;
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.compensatorios = (this.compensatorios == null) ? [] : this.compensatorios.map(r => new Compensatorio(r));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class Compensatorio {
+  registro_id: string;
+  fecha: Date = null;
+  notas: string = null;
+  autorizador_id: string;
+  cantidad: number;
+  cuenta_id: string;
+  asiento_id: string;
+
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+      this.fecha = (this.fecha == null ? null : new Date(this.fecha));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}
+
+export class Configuracion {
+
+  mostrar_tipo_marcacion: boolean;
+	mostrar_detalle_reporte: boolean;
+	mostrar_detalle_avanzado_reporte: boolean;
+	mostrar_detalle_horas_reporte: boolean;
+	mostrar_detalle_entrada_salida_reporte: boolean;
+  
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
     } catch(e) {
       console.log(e);
     }

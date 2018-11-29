@@ -67,7 +67,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReporteHorasSemanalComponent } from './reporte/reporte-horas-semanal/reporte-horas-semanal.component';
 import { ReporteJustificacionesComponent } from './reporte/reporte-justificaciones/reporte-justificaciones.component';
+import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-justificaciones/seleccionar-usuario-justificaciones/seleccionar-usuario-justificaciones.component';
+
 import { UpdateService } from './update.service';
+import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
+import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
+import { CompensatoriosModificarComponent } from './compensatorios/compensatorios-modificar/compensatorios-modificar.component';
 
 
 export function windowFactory() {
@@ -116,7 +121,11 @@ export function windowFactory() {
     Oauth2Component,
     ErrorComponent,
     ReporteHorasSemanalComponent,
-    ReporteJustificacionesComponent
+    ReporteJustificacionesComponent,
+    SeleccionarUsuarioJustificacionesComponent,
+    MarcacionesUsuarioPorFechaComponent,
+    CompensatoriosInicialComponent,
+    CompensatoriosModificarComponent
   ],
   imports: [
     BrowserModule,

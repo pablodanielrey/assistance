@@ -75,17 +75,27 @@
 
                 <ng-container matColumnDef='Entrada'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Entrada </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon'> 
+                    <i class="material-icons icoMarcacion" matTooltip="Tipo de Marcación">{{obtenerIcono(renglon.entrada)}}</i> 
+                    {{obtenerMarcacion(renglon.entrada) | date:'HH:mm'}}
+                  </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Salida'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Salida </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon'> {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon'> 
+                    <i class="material-icons icoMarcacion" matTooltip="Tipo de Marcación">{{obtenerIcono(renglon.salida)}}</i>
+                    {{obtenerMarcacion(renglon.salida) | date:'HH:mm'}}   
+                  </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Horas_trabajadas'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
-                  <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                  <mat-cell *matCellDef='let renglon'>
+                    <a class='linkTexto' routerLink='/sistema/marcaciones/personal/{{usuario_id}}/{{renglon.fecha}}' queryParamMap='_obtenerParametrosMarcacionIndividual(renglon)'>
+                      {{obtenerHorasTrabajadas(renglon)}}
+                    </a>
+                    </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef='Justificacion'>
@@ -134,7 +144,12 @@
 
               <ng-container matColumnDef='Horas_trabajadas'>
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
-                <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                <mat-cell *matCellDef='let renglon'> 
+                  <div routerLink='/sistema/marcaciones/por/{{usuario_id}}/{{renglon.fecha}}'>
+
+                  </div>
+                  {{obtenerHorasTrabajadas(renglon)}}
+                </mat-cell>
               </ng-container>
 
               <!-- VISTA CELULAR -->
@@ -147,7 +162,7 @@
 
         </mat-tab>
 
-            <mat-tab *ngIf='reporte && reporte.detalle' label="Detalle" class="Tabs">
+            <mat-tab *ngIf='config?.mostrar_detalle_reporte && reporte && reporte.detalle' label="Detalle" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                     <div class="titulo">Detalle sobre faltas</div>
@@ -183,7 +198,7 @@
               </div>
           </mat-tab>
 
-          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_avanzado_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Detalle sobre días</div>
@@ -265,7 +280,7 @@
               </div>
           </mat-tab>
 
-          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_horas_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Trabajadas</div>
@@ -347,7 +362,7 @@
                 </div>
           </mat-tab>
 
-          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_entrada_salida_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
             <div clasS="detalleReporte">
                 <div class="columna">
                   <div class="titulo">Entradas</div>

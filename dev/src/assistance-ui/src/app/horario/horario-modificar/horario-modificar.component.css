@@ -62,7 +62,12 @@
 }
 
 .inputHoras {
-  width: 33%;
+  width: 20%;
+  margin-top: 5px;
+}
+
+.inputMinutos {
+  width: 20%;
   margin-top: 5px;
 }
 
@@ -93,14 +98,19 @@ mat-divider {
     width: 100%;
   }
 
-  .inputHoras {
-    width: 25%;
-    margin-top: 0px;
+  .inputDia {
+    width: 45%;
+    margin-right: 20px;
   }
 
-  .inputDia {
-    width: 50%;
-    margin-right: 20px;
+  .inputHoras {
+    width: 20%;
+    margin-top: 5px;
+  }
+
+  .inputMinutos {
+    width: 20%;
+    margin-top: 5px;
   }
 
   .btnGuardar {

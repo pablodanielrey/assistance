@@ -1,4 +1,4 @@
-.seleccionarJustificacion {
+itemLista.seleccionarJustificacion {
   width: 400px;
 }
 
@@ -17,6 +17,10 @@
 .itemLista:hover {
     background-color: #E0E0E0;
     cursor: pointer;
+}
+
+/deep/ mat-list-option > * {
+  justify-content: flex-end !important;
 }
 
 .inputSearch {

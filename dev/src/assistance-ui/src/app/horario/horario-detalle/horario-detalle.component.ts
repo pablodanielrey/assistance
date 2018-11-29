@@ -71,6 +71,10 @@ export class HorarioDetalleComponent implements OnInit {
     return r
   }
 
+  corregirSegundosSemanales(segundos: number){
+    return ('0' + segundos).slice(-2);
+  }
+
   obtenerHorario() {
     this._setearFechaInicio(this.fecha);
     this._setearFechaFin(this.fecha);

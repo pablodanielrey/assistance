@@ -24,6 +24,9 @@ import { ReporteGeneralInicialComponent } from './reporte/reporte-general-inicia
 import { ReporteGeneralComponent } from './reporte/reporte-general/reporte-general.component';
 import { ReporteHorasSemanalComponent } from './reporte/reporte-horas-semanal/reporte-horas-semanal.component';
 import { ReporteJustificacionesComponent } from './reporte/reporte-justificaciones/reporte-justificaciones.component';
+import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-justificaciones/seleccionar-usuario-justificaciones/seleccionar-usuario-justificaciones.component';
+
+import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
 
 import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
@@ -32,6 +35,8 @@ import { JustificacionPersonalInicioComponent } from './justificacion/justificac
 import { JustificacionPersonalComponent } from './justificacion/justificacion-personal/justificacion-personal.component';
 import { JustificacionGeneralComponent } from './justificacion/justificacion-general/justificacion-general.component';
 
+import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
+import { CompensatoriosModificarComponent } from './compensatorios/compensatorios-modificar/compensatorios-modificar.component';
 
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
@@ -76,6 +81,7 @@ const routes: Routes = [
           { path: 'personal', component: GenerarReportePersonalComponent },
           { path: 'personal/:uid', component: ReporteComponent },
           { path: 'horas_semanales/:uid', component: ReporteHorasSemanalComponent },
+          { path: 'justificaciones', component: SeleccionarUsuarioJustificacionesComponent },
           { path: 'justificaciones/:uid', component: ReporteJustificacionesComponent }
         ]
       },
@@ -114,6 +120,19 @@ const routes: Routes = [
           { path: 'reloj/:rid/usuarios/:ruid', component: DetalleUsuarioRelojComponent }
         ]
       },
+      {
+        path: 'marcaciones',
+        children: [
+            { path: 'personal/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent }
+        ]
+      },
+      {
+        path: 'compensatorios',
+        children: [
+            { path: 'inicial', component: CompensatoriosInicialComponent },
+            { path: 'modificar/:uid', component: CompensatoriosModificarComponent }
+        ]
+      }
     ]
   },
   { path: '**', redirectTo: '/loader', pathMatch: 'full' }

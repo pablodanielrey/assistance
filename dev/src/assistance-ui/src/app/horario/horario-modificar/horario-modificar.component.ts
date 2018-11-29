@@ -9,6 +9,24 @@ import { DatosHorario, Horario } from '../../entities/asistencia';
 
 import { ActivatedRoute } from '@angular/router';
 
+class HorarioMinutos {
+  horario: Horario;
+  horas: number;
+  minutos: number;
+
+  constructor(h: Horario) {
+    this.horario = h;
+    let minutos = h.cantidadHoras / 60;
+    this.horas = Math.trunc(minutos / 60);
+    this.minutos = Math.trunc(minutos % 60);
+  }
+
+  obtenerHoraSalida() {
+    return  this.horario.hora_entrada + (this.horas * 3600) + (this.minutos * 60);
+  }
+ 
+}
+
 @Component({
   selector: 'app-horario-modificar',
   templateUrl: './horario-modificar.component.html',
@@ -20,6 +38,7 @@ export class HorarioModificarComponent implements OnInit {
   subscriptions: any[] = [];
   info: DatosHorario = null;
   cargando: boolean = false;
+  horarios: Array<HorarioMinutos> = [];
 
   constructor(private service: AssistanceService,
               private location: Location,
@@ -59,14 +78,18 @@ export class HorarioModificarComponent implements OnInit {
   }
 
   obtenerHorasSemanales() {
-    let hs = 0;
-    if (this.info == null) {
+    let segundos = 0;
+    if (this.horarios == null) {
       return 0
     }
-    for (let i = 0; i < this.info.horarios.length; i++) {
-      hs = hs + this.info.horarios[i].cantidadHoras;
+    let minutosTotales = 0;
+    for (let i = 0; i < this.horarios.length; i++) {
+      let h = this.horarios[i];
+      minutosTotales += (h.horas * 60) + h.minutos;
     }
-    return hs
+    let hs = minutosTotales / 60;
+    let ms = minutosTotales % 60;
+    return Math.trunc(hs) + ':' + ('0' + ms).slice(-2);
   }
 
   obtenerHorario() {
@@ -79,19 +102,23 @@ export class HorarioModificarComponent implements OnInit {
         if (h2.dia_semanal == null) return 1;
         return h1.dia_semanal - h2.dia_semanal
       });
+      this.horarios = [];
+      this.info.horarios.forEach(h => this.horarios.push(new HorarioMinutos(h)))
+      console.log(this.horarios);
       this.cargando = false;
     }));
   }
 
   guardar() {
-    for (let i=0; i < this.info.horarios.length; i++) {
-      let h = this.info.horarios[i];
-      h.fecha_valido = this.fecha;
-      h.hora_salida = h.cantidadHoras * 3600 + h.hora_entrada;
-      h.usuario_id = this.usuario_id;
-      console.log(h);
+    let horarios_guardar = [];
+    for (let i=0; i < this.horarios.length; i++) {
+      let h = this.horarios[i];
+      h.horario.fecha_valido = this.fecha;
+      h.horario.hora_salida = h.obtenerHoraSalida();
+      h.horario.usuario_id = this.usuario_id;
+      horarios_guardar.push(h.horario);
     }
-    this.subscriptions.push(this.service.crearHorario(this.info.horarios)
+    this.subscriptions.push(this.service.crearHorario(horarios_guardar)
     .subscribe(r => {
       this.notificaciones.show("El horario se ha creado correctamente");
       this.volver();

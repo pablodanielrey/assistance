@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { map, switchMap, flatMap, share, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
@@ -15,7 +15,10 @@ import { Reloj,
          Reporte, ReporteGeneral, 
          DatosHorario, Horario, HistorialHorario, 
          Justificacion, FechaJustificada, 
-         Lugar } from './entities/asistencia';
+         Lugar, 
+         ReporteJustificaciones,
+         DatosCompensatorio,
+         Configuracion} from './entities/asistencia';
 
 import { TelegramToken } from './entities/telegram';
 
@@ -212,6 +215,100 @@ export class AssistanceService {
     const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
     let apiUrl = `${ASSISTANCE_API_URL}/reportes`;
     return this.http.post<ReporteGeneral[]>(apiUrl, options).pipe(map(datos => datos.map(d => new ReporteGeneral(d))));
+  }
+
+  obtenerCompensatorios(uid: string): Observable<DatosCompensatorio> {
+    //Observable de prueba
+    let result = [  
+                    {
+                      usuario: {
+                        id: '1',
+                        nombre: 'Miguel',
+                        apellido: 'Macagno',
+                        dni: '34928857'
+                      },
+                      cantidad: 33,
+                      compensatorios: [
+                        {registro_id: '1',
+                        fecha: '2018-05-04',
+                        notas: 'Por venir a trabajar en feriado',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 2,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'},
+                        {registro_id: '2',
+                        fecha: '2018-08-07',
+                        notas: 'Por computo de horas extra',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 23,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'},
+                        {registro_id: '3',
+                        fecha: '2018-09-04',
+                        notas: 'Por venir a trabajar en feriado',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 1,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'},
+                        {registro_id: '4',
+                        fecha: '2018-10-04',
+                        notas: 'Por que si',
+                        autorizador_id: '1234-65465-789',
+                        cantidad: 7,
+                        cuenta_id: '23131332',
+                        asiento_id: '2564879642'}
+                      ]
+                    }                    
+                  ]
+  
+    return from(result).pipe(map(datos => new DatosCompensatorio(datos)));
+  }
+
+  //generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
+  //  let result = [  
+  //                  {
+  //                    usuario: {
+  //                      id: '1',
+  //                      nombre: 'Miguel',
+  //                      apellido: 'Macagno',
+  //                      dni: '34928857'
+  //                    },
+  //                    fecha_inicial: '2018-01-01 00:00',
+  //                    fecha_final: '2018-02-01 00:00',
+  //                    justificaciones: [
+  //                      {id: '1',
+  //                      nombre: 'Ausente con Aviso',
+  //                      cantidad: 5 },
+  //                      {id: '2',
+  //                      nombre: 'Vacaciones',
+  //                      cantidad: 25 },
+  //                      {id: '3',
+  //                      nombre: 'WallyJustifications',
+  //                      cantidad: 15 },
+  //                      {id: '4',
+  //                      nombre: 'Ivanejadas',
+  //                      cantidad: 6 },
+  //                      {id: '5',
+  //                      nombre: 'Secretaria de Trabajos 3ros',
+  //                      cantidad: 3 },
+  //                    ]
+  //                  }                    
+  //                ]
+  //  return from(result).pipe(map(datos => new ReporteJustificaciones(datos)));
+  //} Ejemplo de Observable de prueba sin necesidad de crear una api.
+  
+  generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
+    const options = { params: new HttpParams()
+      .set('inicio', fecha_inicio.toDateString())
+      .set('fin', fecha_fin.toDateString())
+    };
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/justificaciones`;
+    return this.http.get<[ReporteJustificaciones]>(apiUrl, options).pipe(map(datos => new ReporteJustificaciones(datos)));
+  }
+
+  obtenerConfiguracion(): Observable<Configuracion> {
+    let apiUrl = `${ASSISTANCE_API_URL}/obtener_config`;
+    return this.http.get<[Configuracion]>(apiUrl).pipe(map(datos => new Configuracion(datos)));
   }
 
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {

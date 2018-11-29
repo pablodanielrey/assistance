@@ -1,0 +1,54 @@
+/* ---- CSS BASICO PARA CADA PANTALLA ----*/
+
+.compensatorioInicial {
+}
+
+.compensatorioInicial .seccionSistema {
+  color: #4186e1;
+  padding: 5px;
+
+}
+
+.compensatorioInicial .btnVolverSeccion {
+  color: grey;
+}
+
+.compensatorioInicial .contenidoPantalla {
+  padding: 20px;
+  max-width: 400px;
+
+}
+
+
+/* ---------------------------------------*/
+
+.preload {
+  opacity: 0.2;
+  margin-top: 20px;
+}
+
+
+.itemLista {
+  background-color: white;
+  border: solid 1px #E0E0E0;
+  margin-top: 5px;
+}
+
+.itemLista:hover {
+    background-color: #E0E0E0;
+    cursor: pointer;
+}
+
+.inputSearch {
+  width: 100%;
+  color:#4186e1;
+}
+
+.itemTextoSubtitulo {
+  color: grey;
+}
+
+.btnBuscar {
+  background-color: #4186e1;
+  color: white;
+}
