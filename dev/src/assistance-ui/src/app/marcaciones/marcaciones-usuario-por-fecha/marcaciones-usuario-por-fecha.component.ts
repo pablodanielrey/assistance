@@ -20,6 +20,7 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   fecha_inicial: string = null;
   fecha_final: string = null;
   config: Configuracion = null;
+  columnas: string[] = ['Dia','Fecha','Marcacion','Reloj'];
 
   marcaciones : BehaviorSubject<Marcacion[]>;
   marcaciones_duplicadas : BehaviorSubject<Marcacion[]>;
@@ -47,8 +48,13 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
       
       this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
         this.config = r;
-        console.log(this.config.tipo_marcacion);
+        if (this.config.mostrar_tipo_marcacion) {
+          this.columnas.push('Tipo');
+        }
+        console.log(this.config.mostrar_tipo_marcacion);
       }));
+
+
       this.subscriptions.push(this.service.generarReporte(this.usuario_id, fecha, fecha).subscribe(r => {
         this.cargando = false;
         let renglon_reporte = r.reportes.pop();

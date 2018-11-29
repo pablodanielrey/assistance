@@ -440,7 +440,13 @@ export class Compensatorio {
 }
 
 export class Configuracion {
-  tipo_marcacion: string;
+
+  mostrar_tipo_marcacion: boolean;
+	mostrar_detalle_reporte: boolean;
+	mostrar_detalle_avanzado_reporte: boolean;
+	mostrar_detalle_horas_reporte: boolean;
+	mostrar_detalle_entrada_salida_reporte: boolean;
+  
   constructor(o:Object) {
     try {
       Object.assign(this, o);

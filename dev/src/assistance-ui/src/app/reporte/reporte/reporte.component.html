@@ -162,7 +162,7 @@
 
         </mat-tab>
 
-            <mat-tab *ngIf='reporte && reporte.detalle' label="Detalle" class="Tabs">
+            <mat-tab *ngIf='config?.mostrar_detalle_reporte && reporte && reporte.detalle' label="Detalle" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                     <div class="titulo">Detalle sobre faltas</div>
@@ -198,7 +198,7 @@
               </div>
           </mat-tab>
 
-          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_avanzado_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Detalle sobre días</div>
@@ -280,7 +280,7 @@
               </div>
           </mat-tab>
 
-          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_horas_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Trabajadas</div>
@@ -362,7 +362,7 @@
                 </div>
           </mat-tab>
 
-          <mat-tab *ngIf="reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_entrada_salida_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
             <div clasS="detalleReporte">
                 <div class="columna">
                   <div class="titulo">Entradas</div>
