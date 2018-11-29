@@ -38,7 +38,18 @@ export class ReporteGeneralInicialComponent implements OnInit {
     this.cargando = true;
     this.subscriptions.push(this.service.buscarLugares(null).pipe(
       map(lugares => lugares.filter(l => l.tipo != 'catedra' && l.tipo != 'lugar dictado')),
-      map(lugares => lugares.sort((a,b) => {return a.tipo.localeCompare(b.tipo)})),)
+      map(lugares => lugares.sort((a,b) => { 
+        if (a == null) {
+          return -1;
+        }
+        if (b == null) {
+          return 1;
+        }
+        if (a.tipo != null) {
+          return a.tipo.localeCompare(b.tipo)
+        }
+        return 1;
+      })),)
       .subscribe(lugares => {
         lugares.sort((a,b):number => {
           if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
