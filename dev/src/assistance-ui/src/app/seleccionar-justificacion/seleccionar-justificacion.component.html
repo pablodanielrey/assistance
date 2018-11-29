@@ -1,14 +1,8 @@
 <div class="seleccionarJustificacion">
-
   <mat-form-field class="contenedorBuscar">
     <input matInput type='search'  [(ngModel)]='busqueda' class="inputSearch"  placeholder="Buscar Justificación"/>
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
-
-
-
-
-
   <!-- Lista -->
   <mat-selection-list #listaJustificaciones>
     <mat-list-option class="itemLista" *ngFor="let j of justificaciones | searchfilter:'nombre': busqueda"  (click) = "seleccionarJustificacion(j)">

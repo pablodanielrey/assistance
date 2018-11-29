@@ -35,7 +35,7 @@
 
 
     <div *ngIf="!cargando">
-        <mat-tab-group>
+        <mat-tab-group *ngIf='config.tipo_marcacion == "1"'>
           <mat-tab label='Marcaciones'>
 
               <mat-table [dataSource]='marcaciones | async' matSort>
@@ -120,6 +120,75 @@
         </mat-tab>
   
       </mat-tab-group>
+      <mat-tab-group *ngIf='config.tipo_marcacion == "0"'>
+        <mat-tab label='Marcaciones'>
+
+            <mat-table [dataSource]='marcaciones | async' matSort>
+              <ng-container matColumnDef='Dia'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'> 
+                  {{obtenerMarcacion(marcacion) | date:'EEEE'}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef='Fecha'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'> 
+                  {{obtenerMarcacion(marcacion) | date:'dd/MM/yyyy'}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef='Marcacion'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Marcacion </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'> 
+                  {{obtenerMarcacion(marcacion) | date:'HH:mm'}}
+                </mat-cell>
+              </ng-container>
+              &nbsp;
+              <ng-container matColumnDef='Reloj'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Reloj </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'>
+                  {{marcacion.dispositivo_id}} 
+                </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="['Dia','Fecha','Marcacion','Reloj']"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Marcacion','Reloj']"></mat-row>
+            </mat-table>   
+
+        </mat-tab>
+  
+    <!-- duplicadas -->
+      <mat-tab label='Duplicadas'>
+          <mat-table [dataSource]='marcaciones_duplicadas | async' matSort>
+              <ng-container matColumnDef='Dia'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'> 
+                  {{obtenerMarcacion(marcacion) | date:'EEEE'}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef='Fecha'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'> 
+                  {{obtenerMarcacion(marcacion) | date:'dd/MM/yyyy'}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef='Marcacion'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Marcacion </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'> 
+                  {{obtenerMarcacion(marcacion) | date:'HH:mm'}}
+                </mat-cell>
+              </ng-container>
+              &nbsp;
+              <ng-container matColumnDef='Reloj'>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Reloj </mat-header-cell>
+                <mat-cell *matCellDef='let marcacion'>
+                  {{marcacion.dispositivo_id}} 
+                </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="['Dia','Fecha','Marcacion','Reloj']"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: ['Dia','Fecha','Marcacion','Reloj']"></mat-row>
+            </mat-table>  
+      </mat-tab>
+
+    </mat-tab-group>
     </div>
   </div>
 </div>

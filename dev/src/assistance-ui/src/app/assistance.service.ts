@@ -17,7 +17,8 @@ import { Reloj,
          Justificacion, FechaJustificada, 
          Lugar, 
          ReporteJustificaciones,
-         DatosCompensatorio} from './entities/asistencia';
+         DatosCompensatorio,
+         Configuracion} from './entities/asistencia';
 
 import { TelegramToken } from './entities/telegram';
 
@@ -303,6 +304,11 @@ export class AssistanceService {
     };
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/justificaciones`;
     return this.http.get<[ReporteJustificaciones]>(apiUrl, options).pipe(map(datos => new ReporteJustificaciones(datos)));
+  }
+
+  obtenerConfiguracion(): Observable<Configuracion> {
+    let apiUrl = `${ASSISTANCE_API_URL}/obtener_config`;
+    return this.http.get<[Configuracion]>(apiUrl).pipe(map(datos => new Configuracion(datos)));
   }
 
   obtenerHorario(uid: string, fecha: Date): Observable<DatosHorario> {

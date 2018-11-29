@@ -68,6 +68,10 @@
   margin-bottom: 20px;
 }
 
+.listado {
+  height: 200px;
+}
+
 @media screen and (max-width: 769px) {
   .justificacionGeneral .contenidoPantalla {
     display: flex;

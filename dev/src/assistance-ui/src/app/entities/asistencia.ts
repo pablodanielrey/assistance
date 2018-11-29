@@ -438,3 +438,14 @@ export class Compensatorio {
     }
   }
 }
+
+export class Configuracion {
+  tipo_marcacion: string;
+  constructor(o:Object) {
+    try {
+      Object.assign(this, o);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+}

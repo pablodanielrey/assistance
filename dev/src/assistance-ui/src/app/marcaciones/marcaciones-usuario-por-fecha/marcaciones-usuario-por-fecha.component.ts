@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { RenglonReporte, Marcacion } from '../../entities/asistencia';
+import { RenglonReporte, Marcacion, Configuracion } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   info: any = null;
   fecha_inicial: string = null;
   fecha_final: string = null;
+  config: Configuracion = null;
 
   marcaciones : BehaviorSubject<Marcacion[]>;
   marcaciones_duplicadas : BehaviorSubject<Marcacion[]>;
@@ -43,8 +44,12 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
 
       let fecha = new Date(p.get('fecha'));
       this.cargando = true;
-      this.subscriptions.push(this.service.generarReporte(this.usuario_id, fecha, fecha)
-      .subscribe(r => {
+      
+      this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
+        this.config = r;
+        console.log(this.config.tipo_marcacion);
+      }));
+      this.subscriptions.push(this.service.generarReporte(this.usuario_id, fecha, fecha).subscribe(r => {
         this.cargando = false;
         let renglon_reporte = r.reportes.pop();
 
