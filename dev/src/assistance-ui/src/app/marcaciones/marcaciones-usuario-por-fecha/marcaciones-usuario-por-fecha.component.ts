@@ -51,7 +51,6 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
         if (this.config.mostrar_tipo_marcacion) {
           this.columnas.push('Tipo');
         }
-        console.log(this.config.mostrar_tipo_marcacion);
       }));
 
 

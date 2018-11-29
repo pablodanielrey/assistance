@@ -11,10 +11,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
-
-
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
-
 
 @Component({
   selector: 'app-reporte',
@@ -44,7 +41,6 @@ export class ReporteComponent implements OnInit {
 
               }
 
-
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
 
   reporte: Reporte = null;
@@ -63,7 +59,6 @@ export class ReporteComponent implements OnInit {
 
     this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
       this.config = r;
-      console.log(this.config.mostrar_tipo_marcacion);
     }));
 
 
@@ -77,9 +72,9 @@ export class ReporteComponent implements OnInit {
         this.fecha_final = new Date(params['fecha_final']);
         this._generarReporte();
       } else {
-         this.fecha_final = new Date(Date.now());
-         this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
-         this.generarReporte();
+        this.fecha_final = new Date(Date.now());
+        this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+        this.generarReporte();
       }
     });
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
@@ -147,7 +142,7 @@ export class ReporteComponent implements OnInit {
   }
 
   obtenerIcono(m: Marcacion): String {
-    if (this.config.mostrar_tipo_marcacion) {
+    if (!this.config.mostrar_tipo_marcacion) {
       return null;
     }
     if (m == null) {

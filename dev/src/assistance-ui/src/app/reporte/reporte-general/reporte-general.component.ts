@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada } from '../../entities/asistencia';
+import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
 import { Location } from '@angular/common';
 
 import { AssistanceService } from '../../assistance.service';
@@ -35,6 +35,7 @@ export class ReporteGeneralComponent implements OnInit {
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
   buscando: boolean = false;
   modulos: string[] = [];
+  config: Configuracion = null;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -46,6 +47,11 @@ export class ReporteGeneralComponent implements OnInit {
 
   ngOnInit() {
     this.buscando = false;
+
+    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
+      this.config = r;
+    }));
+
     this.route.params.subscribe(params => {
       this.ids = params['ids'].split(",");
       this.fecha = new Date(params['fecha']) || new Date(Date.now());
@@ -105,6 +111,9 @@ export class ReporteGeneralComponent implements OnInit {
   }
 
   obtenerIcono(m: Marcacion): String {
+    if (!this.config.mostrar_tipo_marcacion) {
+      return null;
+    }
     if (m == null) {
       return null
     }
