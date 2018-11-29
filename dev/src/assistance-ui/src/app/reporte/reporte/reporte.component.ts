@@ -147,7 +147,7 @@ export class ReporteComponent implements OnInit {
   }
 
   obtenerIcono(m: Marcacion): String {
-    if (this.config.mostrar_tipo_marcacion == "0") {
+    if (this.config.mostrar_tipo_marcacion) {
       return null;
     }
     if (m == null) {
