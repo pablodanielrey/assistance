@@ -227,7 +227,7 @@ export class AssistanceService {
                         apellido: 'Macagno',
                         dni: '34928857'
                       },
-                      cantidad: 33,
+                      cantidad: 2,
                       compensatorios: [
                         {registro_id: '1',
                         fecha: '2018-05-04',

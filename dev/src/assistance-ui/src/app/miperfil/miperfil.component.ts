@@ -67,7 +67,6 @@ export class MiperfilComponent implements OnInit {
     .subscribe(r => {
       this.perfil = r;
       this.usuario = this.perfil.usuario;
-      console.log(r);
       this.cargando = false;
     }));
   }

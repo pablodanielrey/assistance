@@ -73,6 +73,7 @@ import { UpdateService } from './update.service';
 import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
 import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
 import { CompensatoriosModificarComponent } from './compensatorios/compensatorios-modificar/compensatorios-modificar.component';
+import { CompensatoriosConsultaComponent } from './compensatorios/compensatorios-consulta/compensatorios-consulta.component';
 
 
 export function windowFactory() {
@@ -125,7 +126,8 @@ export function windowFactory() {
     SeleccionarUsuarioJustificacionesComponent,
     MarcacionesUsuarioPorFechaComponent,
     CompensatoriosInicialComponent,
-    CompensatoriosModificarComponent
+    CompensatoriosModificarComponent,
+    CompensatoriosConsultaComponent
   ],
   imports: [
     BrowserModule,
