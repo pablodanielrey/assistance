@@ -442,10 +442,10 @@ export class Compensatorio {
 export class Configuracion {
 
   mostrar_tipo_marcacion: boolean;
-	mostrar_detalle_reporte: boolean;
-	mostrar_detalle_avanzado_reporte: boolean;
-	mostrar_detalle_horas_reporte: boolean;
-	mostrar_detalle_entrada_salida_reporte: boolean;
+  mostrar_detalle_reporte: boolean;
+  mostrar_detalle_avanzado_reporte: boolean;
+  mostrar_detalle_horas_reporte: boolean;
+  mostrar_detalle_entrada_salida_reporte: boolean;
   
   constructor(o:Object) {
     try {

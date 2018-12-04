@@ -109,7 +109,7 @@ export class JustificacionPersonalComponent implements OnInit {
   obtenerDias(): number {
     let dt1 = new Date(this.fechaInicio);
     let dt2 = new Date(this.fechaFin);
-    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+    return (Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24))+1);
   }
 
   justificar() {
