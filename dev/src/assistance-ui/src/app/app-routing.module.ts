@@ -61,7 +61,7 @@ const routes: Routes = [
     children: [
       //{ path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
       { path: 'inicial', component: PantallaPrincipalComponent },
-      { path: 'miperfil', component: MiperfilComponent },
+      { path: 'miperfil/:uid', component: MiperfilComponent },
       {
         path: 'notificaciones',
         children: [

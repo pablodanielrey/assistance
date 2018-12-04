@@ -17,6 +17,10 @@
   padding: 20px;
 }
 
+.linkTexto {
+  color:inherit;
+  text-decoration: none;
+}
 
 /* ---------------------------------------*/
 

@@ -35,17 +35,22 @@ export class MiperfilComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.info = this.oauthService.getIdentityClaims();
+    //this.info = this.oauthService.getIdentityClaims();    
     this.cargando = false;
     // TODO: consultar la entidad usuario correcta.
-    this.usuario = new Usuario(
-      {
-        id: this.info.sub,
-        nombre: this.info.name
-      }
-    );
+    //this.usuario = new Usuario(
+    //  {
+    //    id: this.info.sub,
+    //    nombre: this.info.name
+    //  }
+    //);
     this.route.params.subscribe(params => {
       console.log(params);
+      this.usuario = new Usuario(
+        {
+          id: params['uid']
+        }
+      )
       if (params['fecha']) {
         this.fecha = new Date(params['fecha']);
         this._actualizarPerfil();
@@ -58,7 +63,7 @@ export class MiperfilComponent implements OnInit {
 
 
   actualizarPerfil(event):void {
-    this.router.navigate(['/sistema/miperfil', {fecha:this.fecha.toISOString()}]);
+    this.router.navigate(['/sistema/miperfil/'+this.usuario.id, {fecha:this.fecha.toISOString()}]);
   }
 
   _actualizarPerfil() {
@@ -164,6 +169,18 @@ export class MiperfilComponent implements OnInit {
   obtener_fecha_inicial() {
     let data = (new Date(this.fecha.getTime() - (7 * 24 * 60 * 60 * 1000)).toISOString());
     return data;
+  }
+
+  generar_back() {
+    return btoa('/sistema/miperfil/' + this.usuario.id);
+  }
+
+  generar_query_params() {
+    return {
+      fecha_inicial:this.obtener_fecha_inicial(),
+      fecha_final:this.obtener_fecha_final(),
+      back: this.generar_back()
+    }
   }
 
   ver_reporte() {

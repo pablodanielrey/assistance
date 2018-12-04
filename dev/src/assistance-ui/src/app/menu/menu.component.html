@@ -10,7 +10,7 @@
     </button><br>
     -->
     <span *ngIf="chequearPerfil(['super-admin','inicio_personal']) | async">
-      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/miperfil">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/miperfil/{{usuarioId}}">
         <mat-icon class="icoMenu">perm_identity</mat-icon> Inicio
       </button><br>
     </span>
