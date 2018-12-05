@@ -34,26 +34,25 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe(parameters => {
+      this.back = {
+        url: (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal/',
+        fecha_inicial: new Date(parameters.get('fecha_inicial')),
+        fecha_final: new Date(parameters.get('fecha_final'))
+      }
+      console.log(this.back);
+    });
+
     this.route.paramMap.subscribe(p => {
       this.usuario_id = p.get('uid');
-
-      this.back = {
-        url: p.get('back') ? p.get('back') : '/sistema/reportes/personal/',
-        fecha_inicial: p.get('fecha_inicial'),
-        fecha_final: p.get('fecha_final')
-      }
-
       let fecha = new Date(p.get('fecha'));
       this.cargando = true;
-      
       this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
         this.config = r;
         if (this.config.mostrar_tipo_marcacion) {
           this.columnas.push('Tipo');
         }
       }));
-
-
       this.subscriptions.push(this.service.generarReporte(this.usuario_id, fecha, fecha).subscribe(r => {
         this.cargando = false;
         let renglon_reporte = r.reportes.pop();
@@ -76,10 +75,11 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   }
 
   volver() {
+    console.log(this.back);
     if (this.back.fecha_inicial != null && this.back.fecha_final != null) {
-      this.router.navigate([this.back.url, this.usuario_id, {fecha_inicial: this.back.fecha_inicial, fecha_final: this.back.fecha_final}]);
+      this.router.navigate([this.back.url, {fecha_inicial: this.back.fecha_inicial, fecha_final: this.back.fecha_final}]);
     }else{
-      this.router.navigate([this.back.url, this.usuario_id]);
+      this.router.navigate([this.back.url]);
     }
   }
 

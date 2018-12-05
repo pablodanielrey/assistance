@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
+import { BehaviorSubject } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -37,13 +38,15 @@ export class ReporteComponent implements OnInit {
               public dialog: MatDialog,
               private location: Location) {
 
-                this.onResize();
+      this.onResize();
+      this.reportes = new BehaviorSubject<RenglonReporte[]>([]);
 
-              }
+  }
 
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
 
   reporte: Reporte = null;
+  reportes : BehaviorSubject<RenglonReporte[]> = null;
   info: any = null;
   fecha_inicial: Date = null;
   fecha_final: Date = null;
@@ -60,16 +63,16 @@ export class ReporteComponent implements OnInit {
     this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
       this.config = r;
     }));
-
-
     this.route.params.subscribe(params => {
       console.log('parametros cambiaron');
       console.log(params);
       this.usuario_id = params['uid'];
-      this.back = (params['back']) ? params['back'] : '/sistema/reportes/personal';
-      if (params['fecha_inicial'] && params['fecha_final']) {
-        this.fecha_inicial = new Date(params['fecha_inicial']);
-        this.fecha_final = new Date(params['fecha_final']);
+    });
+    this.route.queryParamMap.subscribe(parameters => {
+      this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
+      if (parameters.get('fecha_inicial') && parameters.get('fecha_final')) {
+        this.fecha_inicial = new Date(parameters.get('fecha_inicial'));
+        this.fecha_final = new Date(parameters.get('fecha_final'));
         this._generarReporte();
       } else {
         this.fecha_final = new Date(Date.now());
@@ -79,9 +82,8 @@ export class ReporteComponent implements OnInit {
     });
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
       this.modulos = modulos;
-      console.log(this.modulos);
     }));
- 
+    this._generarReporte();
   }
 
   ngOnDestroy() {
@@ -94,17 +96,25 @@ export class ReporteComponent implements OnInit {
   }
 
   _generarReporte(): void {
+    if (this.usuario_id == null || this.fecha_final == null || this.fecha_final == null) {
+      return;
+    }
     this.reporte = null;
     this.buscando = true;
     this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha_inicial, this.fecha_final)
     .subscribe(r => {
       this.buscando = false;
       this.reporte = r;
+      this.reportes.next(r.reportes);
     }));
   }
 
   generarReporte():void {
     this.router.navigate(['/sistema/reportes/personal', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString(), back: this.back}]);
+  }
+
+  generar_back() {
+    return btoa('/sistema/reportes/personal/' + this.usuario_id);
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {
@@ -114,10 +124,12 @@ export class ReporteComponent implements OnInit {
   }
 
   _obtenerParametrosMarcacionIndividual(r: RenglonReporte) {
-    return {
+    let a = {
       fecha_inicial:this.fecha_inicial.toISOString(), 
-      fecha_final:this.fecha_final.toISOString()
-    }
+      fecha_final:this.fecha_final.toISOString(),
+      back: this.generar_back()
+    }; 
+    return a;
   }
 
 
