@@ -423,16 +423,14 @@ export class DatosCompensatorio {
 export class Compensatorio {
   registro_id: string;
   fecha: Date = null;
-  notas: string = null;
+  notas: string;
   autorizador_id: string;
   cantidad: number;
-  cuenta_id: string;
-  asiento_id: string;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
-      this.fecha = (this.fecha == null ? null : new Date(this.fecha));
+      this.fecha = (this.fecha == null) ? null : new Date(this.fecha);
     } catch(e) {
       console.log(e);
     }

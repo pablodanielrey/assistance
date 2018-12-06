@@ -19,6 +19,7 @@ export class CompensatoriosModificarComponent implements OnInit {
   back: string ='/sistema/compensatorios/inicial';
   subscriptions: any[] = [];
   compensatorios : BehaviorSubject<Compensatorio[]> = new BehaviorSubject<Compensatorio[]>([]);
+  alta: Compensatorio;
 
   constructor(private service: AssistanceService,
               private router: Router,
@@ -28,6 +29,7 @@ export class CompensatoriosModificarComponent implements OnInit {
   ngOnInit() {
     this.cargando = true;
     let params = this.route.snapshot.paramMap;
+    this.alta = new Compensatorio({});
     this.usuario_id = params.get('uid');
     this.subscriptions.push(this.service.obtenerCompensatorios(this.usuario_id).subscribe(r => {
       this.cargando = false;
@@ -47,6 +49,12 @@ export class CompensatoriosModificarComponent implements OnInit {
 
   volver() {
     this.location.back();
+  }
+
+  crearCompensatorio(): void {
+    this.service.crearCompensatorio(this.alta).subscribe(res => {
+      console.log(res);
+    })
   }
 
 }

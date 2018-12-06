@@ -30,48 +30,52 @@
     <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
     <mat-divider></mat-divider>
     <div *ngIf="!cargando">
-      <app-compensatorios-consulta></app-compensatorios-consulta>
+      <mat-tab-group>
+        <mat-tab label='Agregar'>
+          <div class="detalleDeUsuario">
+            <form class="contentDetail">
+              <mat-form-field>
+                <input matInput required type='text'  placeholder="Motivo" name='motivo' [(ngModel)]='alta.notas'/>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput required type='text'  placeholder="Cantidad" name='cantidad' [(ngModel)]='alta.cantidad'/>
+              </mat-form-field>
+            </form>
+             <button mat-button class="btnSiguiente" (click)='crearCompensatorio()'>AGREGAR</button>
+          </div>
+        </mat-tab>
+        <mat-tab label='Cargados'>
+          <mat-table [dataSource]=' compensatorios | async' matSort>
+            <ng-container matColumnDef='Fecha'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+              <mat-cell *matCellDef='let compensatorio'> 
+                {{compensatorio.fecha | date:'dd/MM/yyyy'}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef='Cantidad'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+              <mat-cell *matCellDef='let compensatorio'> 
+                {{compensatorio.cantidad}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef='Nota'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Nota </mat-header-cell>
+              <mat-cell *matCellDef='let compensatorio'> 
+                {{compensatorio.notas}}
+              </mat-cell>
+            </ng-container>
+            &nbsp;
+            <ng-container matColumnDef='Creador'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Creador </mat-header-cell>
+              <mat-cell *matCellDef='let compensatorio'>  
+                {{compensatorio.autorizador_id}}
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="['Fecha','Cantidad','Nota','Creador']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['Fecha','Cantidad','Nota','Creador']"></mat-row>
+          </mat-table> 
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>
-
-<!-->mat-tab-group>
-  <mat-tab label='Compensatorios'>
-      <mat-table [dataSource]=' compensatorios | async' matSort>
-        <ng-container matColumnDef='Fecha'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
-          <mat-cell *matCellDef='let compensatorio'> 
-            {{compensatorio.fecha | date:'dd/MM/yyyy'}}
-          </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef='Cantidad'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
-          <mat-cell *matCellDef='let compensatorio'> 
-            {{compensatorio.cantidad}}
-          </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef='Nota'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Nota </mat-header-cell>
-          <mat-cell *matCellDef='let compensatorio'> 
-            {{compensatorio.notas}}
-          </mat-cell>
-        </ng-container>
-        &nbsp;
-        <ng-container matColumnDef='Justificador'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Justificador </mat-header-cell>
-          <mat-cell *matCellDef='let compensatorio'>  
-            {{compensatorio.autorizador_id}}
-          </mat-cell>
-        </ng-container>
-        &nbsp;
-        <ng-container matColumnDef='Asiento'>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Asiento </mat-header-cell>
-          <mat-cell *matCellDef='let compensatorio'>
-            {{compensatorio.asiento_id}} 
-          </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="['Fecha','Cantidad','Nota','Justificador','Asiento']"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: ['Fecha','Cantidad','Nota','Justificador','Asiento']"></mat-row>
-      </mat-table> 
-  </mat-tab>
-</mat-tab-group-->

@@ -19,6 +19,22 @@
 
 /* ---------------------------------------*/
 
+.contentDetail {
+  display: flex;
+  -webkit-display: flex;
+  -moz-display: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+}
+
+.btnSiguiente {
+  background-color: #4186E1;
+  color: white;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
 .cabeceraReporte {
   display: flex;
   -moz-display: flex;

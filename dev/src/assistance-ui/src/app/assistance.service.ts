@@ -18,7 +18,8 @@ import { Reloj,
          Lugar, 
          ReporteJustificaciones,
          DatosCompensatorio,
-         Configuracion} from './entities/asistencia';
+         Configuracion,
+         Compensatorio} from './entities/asistencia';
 
 import { TelegramToken } from './entities/telegram';
 
@@ -201,7 +202,6 @@ export class AssistanceService {
   }
 
   generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
-
     const options = { params: new HttpParams()
               .set('inicio', fecha_inicio.toDateString())
               .set('fin', fecha_fin.toDateString())
@@ -211,59 +211,23 @@ export class AssistanceService {
   }
 
   generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<ReporteGeneral[]> {
-
     const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
     let apiUrl = `${ASSISTANCE_API_URL}/reportes`;
     return this.http.post<ReporteGeneral[]>(apiUrl, options).pipe(map(datos => datos.map(d => new ReporteGeneral(d))));
   }
 
   obtenerCompensatorios(uid: string): Observable<DatosCompensatorio> {
-    //Observable de prueba
-    let result = [  
-                    {
-                      usuario: {
-                        id: '1',
-                        nombre: 'Miguel',
-                        apellido: 'Macagno',
-                        dni: '34928857'
-                      },
-                      cantidad: 2,
-                      compensatorios: [
-                        {registro_id: '1',
-                        fecha: '2018-05-04',
-                        notas: 'Por venir a trabajar en feriado',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 2,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'},
-                        {registro_id: '2',
-                        fecha: '2018-08-07',
-                        notas: 'Por computo de horas extra',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 23,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'},
-                        {registro_id: '3',
-                        fecha: '2018-09-04',
-                        notas: 'Por venir a trabajar en feriado',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 1,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'},
-                        {registro_id: '4',
-                        fecha: '2018-10-04',
-                        notas: 'Por que si',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 7,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'}
-                      ]
-                    }                    
-                  ]
-  
-    return from(result).pipe(map(datos => new DatosCompensatorio(datos)));
+    let apiUrl = `${ASSISTANCE_API_URL}/compensatorios/${uid}`;
+    return this.http.get<DatosCompensatorio>(apiUrl).pipe(map(datos => new DatosCompensatorio(datos)));
   }
 
+  //Comentado hasta implementar funcionalidad en API
+  //crearCompensatorio(comp: Compensatorio): Observable<Compensatorio> {
+  //  let apiUrl = `${ASSISTANCE_API_URL}/compensatorios`;
+  //  return this.http.put<Compensatorio>(apiUrl, comp);
+  //}
+
+  //Ejemplo de prueba sin necesidad de crear una api.
   //generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
   //  let result = [  
   //                  {
@@ -295,7 +259,7 @@ export class AssistanceService {
   //                  }                    
   //                ]
   //  return from(result).pipe(map(datos => new ReporteJustificaciones(datos)));
-  //} Ejemplo de Observable de prueba sin necesidad de crear una api.
+  //} 
   
   generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
     const options = { params: new HttpParams()

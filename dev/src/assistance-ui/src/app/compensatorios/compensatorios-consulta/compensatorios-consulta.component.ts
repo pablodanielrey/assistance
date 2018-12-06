@@ -21,9 +21,7 @@ export class CompensatoriosConsultaComponent implements OnInit {
 
   ngOnInit() {
     let params = this.route.snapshot.paramMap;
-    let info: any =  this.oauthService.getIdentityClaims();
-    this.usuario_id = (params.get('uid')) ? params.get('uid') : info.sub;
-  
+    this.usuario_id = params.get('uid');
     this.subscriptions.push(this.service.obtenerCompensatorios(this.usuario_id).subscribe(r => {
       this.cantidad = r.cantidad;
     }));
