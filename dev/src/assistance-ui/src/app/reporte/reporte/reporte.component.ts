@@ -67,6 +67,7 @@ export class ReporteComponent implements OnInit {
       console.log('parametros cambiaron');
       console.log(params);
       this.usuario_id = params['uid'];
+      this._generarReporte();
     });
     this.route.queryParamMap.subscribe(parameters => {
       this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
