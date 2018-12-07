@@ -422,6 +422,7 @@ export class DatosCompensatorio {
 
 export class Compensatorio {
   registro_id: string;
+  usuario_id: string;
   fecha: Date = null;
   notas: string;
   autorizador_id: string;

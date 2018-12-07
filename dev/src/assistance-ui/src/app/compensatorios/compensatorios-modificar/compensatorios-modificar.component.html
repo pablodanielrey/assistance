@@ -40,8 +40,8 @@
               <mat-form-field>
                 <input matInput required type='text'  placeholder="Cantidad" name='cantidad' [(ngModel)]='alta.cantidad'/>
               </mat-form-field>
+              <button mat-button class="btnSiguiente" (click)='crearCompensatorio()'>AGREGAR</button>
             </form>
-             <button mat-button class="btnSiguiente" (click)='crearCompensatorio()'>AGREGAR</button>
           </div>
         </mat-tab>
         <mat-tab label='Cargados'>

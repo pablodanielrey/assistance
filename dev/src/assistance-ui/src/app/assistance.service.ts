@@ -221,11 +221,10 @@ export class AssistanceService {
     return this.http.get<DatosCompensatorio>(apiUrl).pipe(map(datos => new DatosCompensatorio(datos)));
   }
 
-  //Comentado hasta implementar funcionalidad en API
-  //crearCompensatorio(comp: Compensatorio): Observable<Compensatorio> {
-  //  let apiUrl = `${ASSISTANCE_API_URL}/compensatorios`;
-  //  return this.http.put<Compensatorio>(apiUrl, comp);
-  //}
+  crearCompensatorio(comp: Compensatorio): Observable<Compensatorio> {
+    let apiUrl = `${ASSISTANCE_API_URL}/compensatorios`;
+    return this.http.put<Compensatorio>(apiUrl, comp);
+  }
 
   //Ejemplo de prueba sin necesidad de crear una api.
   //generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
