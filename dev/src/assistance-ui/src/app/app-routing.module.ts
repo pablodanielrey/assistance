@@ -37,6 +37,7 @@ import { JustificacionGeneralComponent } from './justificacion/justificacion-gen
 
 import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
 import { CompensatoriosModificarComponent } from './compensatorios/compensatorios-modificar/compensatorios-modificar.component';
+import { CompensatoriosAltaComponent } from './compensatorios/compensatorios-alta/compensatorios-alta.component';
 
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
@@ -130,7 +131,8 @@ const routes: Routes = [
         path: 'compensatorios',
         children: [
             { path: 'inicial', component: CompensatoriosInicialComponent },
-            { path: 'modificar/:uid', component: CompensatoriosModificarComponent }
+            { path: 'modificar/:uid', component: CompensatoriosModificarComponent },
+            { path: 'alta/:uid', component: CompensatoriosAltaComponent }
         ]
       }
     ]

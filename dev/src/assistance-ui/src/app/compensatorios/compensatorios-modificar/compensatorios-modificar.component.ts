@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { BehaviorSubject } from 'rxjs';
@@ -19,10 +19,8 @@ export class CompensatoriosModificarComponent implements OnInit {
   back: string ='/sistema/compensatorios/inicial';
   subscriptions: any[] = [];
   compensatorios : BehaviorSubject<Compensatorio[]> = new BehaviorSubject<Compensatorio[]>([]);
-  alta: Compensatorio =new Compensatorio({});
 
   constructor(private service: AssistanceService,
-              private router: Router,
               private location: Location,
               private route: ActivatedRoute) { }
 
@@ -46,18 +44,4 @@ export class CompensatoriosModificarComponent implements OnInit {
   volver() {
     this.location.back();
   }
-
-  crearCompensatorio(): void {
-    if (this.alta.cantidad > 0 && this.alta.notas != '') {
-      this.alta.usuario_id = this.usuario_id;
-      this.alta.fecha = new Date(Date.now());
-      this.service.crearCompensatorio(this.alta).subscribe(res => {
-      console.log("Se agregaron " + this.alta.cantidad + " compensatorios a " + this.info.usuario.nombre + " " + this.info.usuario.apellido);
-      console.log(res);
-    })}
-    else {
-      console.log('No se envia')
-    }
-  }
-
 }

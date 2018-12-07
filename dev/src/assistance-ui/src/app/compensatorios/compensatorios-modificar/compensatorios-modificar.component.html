@@ -17,34 +17,13 @@
           </mat-list-item>
         </mat-list>
       </div>
-      <div class="contenedorDetallesDeReporte">
-        <mat-list class="listaUsuario">
-          <mat-list-item class="itemLista">
-            <h3 matLine>
-              Disponibles: {{info?.cantidad}}
-            </h3>
-          </mat-list-item>
-        </mat-list>
-      </div>
+      <app-compensatorios-consulta></app-compensatorios-consulta>
     </div>
     <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
     <mat-divider></mat-divider>
     <div *ngIf="!cargando">
       <mat-tab-group>
-        <mat-tab label='Agregar'>
-          <div class="detalleDeUsuario">
-            <form class="contentDetail">
-              <mat-form-field>
-                <input matInput required type='text'  placeholder="Motivo" name='motivo' [(ngModel)]='alta.notas'/>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput required type='text'  placeholder="Cantidad" name='cantidad' [(ngModel)]='alta.cantidad'/>
-              </mat-form-field>
-              <button mat-button class="btnSiguiente" (click)='crearCompensatorio()'>AGREGAR</button>
-            </form>
-          </div>
-        </mat-tab>
-        <mat-tab label='Cargados'>
+        <mat-tab label='Historial'>
           <mat-table [dataSource]=' compensatorios | async' matSort>
             <ng-container matColumnDef='Fecha'>
               <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
@@ -76,6 +55,7 @@
           </mat-table> 
         </mat-tab>
       </mat-tab-group>
+      <button mat-button class="btnSiguiente" routerLink="/sistema/compensatorios/alta/{{usuario_id}}">AGREGAR</button>
     </div>
   </div>
 </div>
