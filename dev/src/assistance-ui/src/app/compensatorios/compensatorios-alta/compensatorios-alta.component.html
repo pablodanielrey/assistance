@@ -27,9 +27,9 @@
           <input matInput required type='text'  placeholder="Motivo" name='motivo' [(ngModel)]='alta.notas'/>
         </mat-form-field>
         <mat-form-field>
-          <input matInput required type='text'  placeholder="Cantidad" name='cantidad' [(ngModel)]='alta.cantidad'/>
+          <input matInput required type='number'  placeholder="Cantidad" name='cantidad' [(ngModel)]='alta.cantidad'/>
         </mat-form-field>
-        <button mat-button class="btnSiguiente" (click)='crearCompensatorio()'>AGREGAR</button>
+        <button mat-button class="btnSiguiente" (click)='crearCompensatorio()'>MODIFICAR</button>
       </form>
     </div>
   </div>

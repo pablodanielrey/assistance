@@ -18,7 +18,8 @@ export class CompensatoriosModificarComponent implements OnInit {
   info: DatosCompensatorio = new DatosCompensatorio({});
   back: string ='/sistema/compensatorios/inicial';
   subscriptions: any[] = [];
-  compensatorios : BehaviorSubject<Compensatorio[]> = new BehaviorSubject<Compensatorio[]>([]);
+  compensatorios$ : BehaviorSubject<Compensatorio[]> = new BehaviorSubject<Compensatorio[]>([]);
+  columnas$ : BehaviorSubject<string[]> = new BehaviorSubject(['Fecha','Cantidad','Nota','Creador']);
 
   constructor(private service: AssistanceService,
               private location: Location,
@@ -29,10 +30,11 @@ export class CompensatoriosModificarComponent implements OnInit {
     let params = this.route.snapshot.paramMap;
     this.usuario_id = params.get('uid');
     this.subscriptions.push(this.service.obtenerCompensatorios(this.usuario_id).subscribe(r => {
+      console.log(r);
       this.cargando = false;
       this.info = r;
       let comp = r.compensatorios;
-      this.compensatorios.next(comp);
+      this.compensatorios$.next(comp);
     }));
   }
 

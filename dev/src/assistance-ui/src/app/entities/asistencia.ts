@@ -410,6 +410,7 @@ export class DatosCompensatorio {
   compensatorios:  Array<Compensatorio>;
   cantidad: number;
   usuario: Usuario;
+
   constructor(o:Object) {
     try {
       Object.assign(this, o);
@@ -421,17 +422,16 @@ export class DatosCompensatorio {
 }
 
 export class Compensatorio {
-  registro_id: string;
-  usuario_id: string;
-  fecha: Date = null;
+  usuario_id : string = null;
+  creado: Date = null;
   notas: string;
-  autorizador_id: string;
+  autorizador: Usuario;
   cantidad: number;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
-      this.fecha = (this.fecha == null) ? null : new Date(this.fecha);
+      this.creado = (this.creado == null) ? null : new Date(this.creado);
     } catch(e) {
       console.log(e);
     }

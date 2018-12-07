@@ -43,13 +43,13 @@ export class CompensatoriosAltaComponent implements OnInit {
   }
 
   crearCompensatorio(): void {
-    if (this.alta.cantidad > 0 && this.alta.notas != '') {
+    if (this.alta.notas != '') {
       this.alta.usuario_id = this.usuario_id;
-      this.alta.fecha = new Date(Date.now());
       this.service.crearCompensatorio(this.alta).subscribe(res => {
-      console.log("Se agregaron " + this.alta.cantidad + " compensatorios a " + this.info.usuario.nombre + " " + this.info.usuario.apellido);
-      this.volver();
-    })}
+        console.log("Se agregaron " + this.alta.cantidad + " compensatorios a " + this.info.usuario.nombre + " " + this.info.usuario.apellido);
+        this.volver();
+      })
+    }
     else {
       console.log('Falta completar datos')
     }
