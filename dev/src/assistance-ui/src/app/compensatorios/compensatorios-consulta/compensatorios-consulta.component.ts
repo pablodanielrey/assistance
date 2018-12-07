@@ -11,7 +11,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class CompensatoriosConsultaComponent implements OnInit {
   usuario_id: string = null;
-  cantidad: number = null;
+  cantidad: number = 0;
   subscriptions: any[] = [];
 
   constructor(public service: AssistanceService,
@@ -23,6 +23,7 @@ export class CompensatoriosConsultaComponent implements OnInit {
     let params = this.route.snapshot.paramMap;
     this.usuario_id = params.get('uid');
     this.subscriptions.push(this.service.obtenerCompensatorios(this.usuario_id).subscribe(r => {
+      console.log(r);
       this.cantidad = r.cantidad;
     }));
   }
