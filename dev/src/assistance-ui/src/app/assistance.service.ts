@@ -20,6 +20,7 @@ import { Reloj,
          DatosCompensatorio,
          Configuracion,
          Compensatorio} from './entities/asistencia';
+import { Usuario } from './entities/usuario';
 
 import { TelegramToken } from './entities/telegram';
 
@@ -87,7 +88,7 @@ export class AssistanceService {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/search/algo`;
     return this.http.get<DatosAsistencia[]>(apiUrl, options)
     //.map(datos => datos.map(d => d));
     /*
@@ -115,13 +116,13 @@ export class AssistanceService {
     return this.http.get<DatosAsistencia>(apiUrl).pipe(map(info => new DatosAsistencia(info)));
   }
 
-  buscarUsuariosAsistencia(texto:string): Observable<DatosAsistencia[]> {
+  buscarUsuariosAsistencia(texto:string): Observable<Usuario[]> {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')
               .set('assistance', 'true')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
-    return this.http.get<DatosAsistencia[]>(apiUrl, options);
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/search/${texto}`;
+    return this.http.get<Usuario[]>(apiUrl, options);
                     //.map(datos => datos.filter(d => d.asistencia != null));
   }
 

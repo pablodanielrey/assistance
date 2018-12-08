@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { Usuario } from '../../entities/usuario';
 import { DatosAsistencia } from '../../entities/asistencia';
-
 import { AssistanceService } from '../../assistance.service';
 
 
@@ -13,7 +12,7 @@ import { AssistanceService } from '../../assistance.service';
 })
 export class JustificacionPersonalInicioComponent implements OnInit {
 
-  usuarios: Array<DatosAsistencia> = new Array<DatosAsistencia>();
+  usuarios: Array<Usuario> = new Array<Usuario>();
   subscriptions: any[] = [];
   cargando: boolean = false;
 
@@ -32,8 +31,8 @@ export class JustificacionPersonalInicioComponent implements OnInit {
     this.subscriptions.push(this.service.buscarUsuariosAsistencia(event)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
-          var aFull = (a.usuario.nombre + a.usuario.apellido).toLowerCase()
-          var bFull = (b.usuario.nombre + b.usuario.apellido).toLowerCase()
+          var aFull = (a.nombre + a.apellido).toLowerCase()
+          var bFull = (b.nombre + b.apellido).toLowerCase()
           if (aFull > bFull) {
             return 1
           }
