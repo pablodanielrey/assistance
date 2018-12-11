@@ -39,7 +39,7 @@ export class SeleccionarUsuarioComponent implements OnInit {
     this.usuarios = [];
     //this.busqueda = this.busqueda.replace('\.', '').trim();
     this.cargando = true;
-    this.subscriptions.push(this.service.buscarUsuariosAsistencia(this.busqueda)
+    this.subscriptions.push(this.service.buscarUsuarios(this.busqueda)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
           var aFull = (a.nombre + a.apellido).toLowerCase()

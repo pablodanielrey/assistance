@@ -62,40 +62,19 @@ export class AssistanceService {
     return of(r);
   }
 
-    //   } else {
-    //     this.obtenerAccesoModulos().pipe(share()).pipe(switchMap(
-    //       (m) => {
-    //         this.modulos = m;
-    //         return this.chequearPerfil(profiles);
-    //       }
-    //     )).subscribe(b => {
-    //       obs.next(b);
-    //       obs.complete();
-    //     });
-    //   }
-    // });
-    // return o.pipe(share());
+  buscarUsuario(uid:string): Observable<DatosAsistencia> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
+    return this.http.get<DatosAsistencia>(apiUrl).pipe(map(info => new DatosAsistencia(info)));
+  }
 
-
-    // let r = false;
-    // if (this.modulos != null) {
-    // }
-    // return r;
-  
-
-
-  buscarUsuarios(texto:string): Observable<DatosAsistencia[]> {
+  buscarUsuarios(texto:string): Observable<Usuario[]> {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')
+              .set('assistance', 'true')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/search/algo`;
-    return this.http.get<DatosAsistencia[]>(apiUrl, options)
-    //.map(datos => datos.map(d => d));
-    /*
-    .map(datos => datos; console.log(datos))
-    .filter(datos => datos.filter(d => { d.asistencia != null }))
-    .map(datos => datos.map(d => new DatosAsistencia(d)));
-    */
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/search/${texto}`;
+    return this.http.get<Usuario[]>(apiUrl, options);
+                    //.map(datos => datos.filter(d => d.asistencia != null));
   }
 
   buscarLugares(texto:string): Observable<Lugar[]> {
@@ -111,20 +90,6 @@ export class AssistanceService {
 
   }
 
-  buscarUsuario(uid:string): Observable<DatosAsistencia> {
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
-    return this.http.get<DatosAsistencia>(apiUrl).pipe(map(info => new DatosAsistencia(info)));
-  }
-
-  buscarUsuariosAsistencia(texto:string): Observable<Usuario[]> {
-    const options = { params: new HttpParams()
-              .set('q', texto ? texto : 'algoquenoexiste')
-              .set('assistance', 'true')
-          };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/search/${texto}`;
-    return this.http.get<Usuario[]>(apiUrl, options);
-                    //.map(datos => datos.filter(d => d.asistencia != null));
-  }
 
   buscarJustificaciones(): Observable<Justificacion[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificaciones`;

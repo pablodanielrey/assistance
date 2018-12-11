@@ -28,7 +28,7 @@ export class JustificacionPersonalInicioComponent implements OnInit {
   buscar(event) {
     this.usuarios = [];
     this.cargando = true;
-    this.subscriptions.push(this.service.buscarUsuariosAsistencia(event)
+    this.subscriptions.push(this.service.buscarUsuarios(event)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
           var aFull = (a.nombre + a.apellido).toLowerCase()
