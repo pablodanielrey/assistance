@@ -11,16 +11,11 @@
     <div class="contenidoPantalla">
 
         <div class="contenedorIzquierdo">
-
-
           <div class="listado">
             <app-seleccionar-justificacion [justificaciones]="justificaciones" (selected)="seleccionarJustificacion($event)"></app-seleccionar-justificacion>
             <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
 
           </div>
-
-
-
         </div>
 
         <div class="contenedorDerecho">
@@ -78,7 +73,6 @@
                   <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
                   <mat-datepicker #datePickerFin></mat-datepicker>
                 </mat-form-field><br>
-
               </div>
 
               <div>
@@ -90,9 +84,7 @@
 
             </div>
 
-
             <div *ngIf="seleccionFecha == 'rango'" class="textDiasSeleccionados">{{obtenerDias()}} días seleccionados</div>
-
             <button mat-button type='submit' [disabled]="!justificacion" class="btnClasico">JUSTIFICAR</button>
 
         </form>
