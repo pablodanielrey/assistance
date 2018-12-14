@@ -96,7 +96,11 @@ export class ReporteGeneralComponent implements OnInit {
 
   generarReporte(): void {
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/sistema/reportes/general/generar/', this.fecha.toISOString()], {queryParams:{ids: this.ids.join(',')}});
+    let ids = '';
+    if (this.ids != undefined && this.ids.length > 0) {
+      ids = this.ids.join(',');
+    }
+    this.router.navigate(['/sistema/reportes/general/generar/', this.fecha.toISOString()], {queryParams:{ids: ids}});
   }
 
   obtenerHoraEntrada(r: RenglonReporte) {
