@@ -145,6 +145,7 @@ export class FechaJustificada {
   fecha_inicio: Date;
   fecha_fin: Date;
   usuario_id: string;
+  notas: string;
   justificacion: Justificacion;
   id: string;
 

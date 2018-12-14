@@ -31,6 +31,7 @@ export class JustificacionPersonalComponent implements OnInit {
   cargando: boolean = false;
   cargandoJustificaciones: boolean = false
   cargandoUsuario: boolean = false;
+  notas: string = '';
 
 
   constructor(private route: ActivatedRoute,
@@ -124,6 +125,7 @@ export class JustificacionPersonalComponent implements OnInit {
       fj.fecha_inicio = this.setInit(this.fechaInicio);
       fj.fecha_fin = this.setInit(this.fechaFin);
     }
+    fj.notas = this.notas;
 
     this.subscriptions.push(this.service.justificar(fj)
       .subscribe(r => {

@@ -104,7 +104,10 @@
                     <div *ngIf='renglon.justificaciones.length > 0'>
                       <mat-chip-list #chipList>
                         <mat-chip *ngFor="let j of renglon.justificaciones">
-                          {{j.nombre }}
+                          <div style='flex-direction:column'>
+                            <div>{{j.nombre }}</div>
+                            <div *ngIf='j.notas'>{{j.notas.substring(0,10)}}...</div>
+                          </div>
                           <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm'])" (click)=eliminarJustificacion(j)>cancel</mat-icon>
                         </mat-chip>
                       </mat-chip-list>
