@@ -92,7 +92,7 @@
                 <ng-container matColumnDef='Horas_trabajadas'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
                   <mat-cell *matCellDef='let renglon'>
-                    <a class='linkTexto' routerLink='/sistema/marcaciones/personal/{{usuario_id}}/{{renglon.fecha}}' [queryParams]=_obtenerParametrosMarcacionIndividual(renglon)>
+                    <a class='linkTexto' routerLink='/sistema/marcaciones/personal/{{usuario_id}}/{{renglon.fecha}}' [queryParams]=generarBack(renglon)>
                       {{obtenerHorasTrabajadas(renglon)}}
                     </a>
                     </mat-cell>

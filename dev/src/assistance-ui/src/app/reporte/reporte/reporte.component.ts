@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -23,6 +24,7 @@ export class ReporteComponent implements OnInit {
 
   height;
   width;
+  navEnd: Observable<NavigationEnd>;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
@@ -41,6 +43,10 @@ export class ReporteComponent implements OnInit {
       this.onResize();
       this.reportes = new BehaviorSubject<RenglonReporte[]>([]);
 
+      this.navEnd = router.events.pipe(
+        filter(evt => evt instanceof NavigationEnd)
+      ) as Observable<NavigationEnd>;
+  
   }
 
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
@@ -60,31 +66,30 @@ export class ReporteComponent implements OnInit {
   ngOnInit() {
     this.buscando = false;
 
-    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
-      this.config = r;
-    }));
-    this.route.params.subscribe(params => {
-      console.log('parametros cambiaron');
-      console.log(params);
-      this.usuario_id = params['uid'];
-      this._generarReporte();
-    });
-    this.route.queryParamMap.subscribe(parameters => {
-      this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
-      if (parameters.get('fecha_inicial') && parameters.get('fecha_final')) {
-        this.fecha_inicial = new Date(parameters.get('fecha_inicial'));
-        this.fecha_final = new Date(parameters.get('fecha_final'));
-        this._generarReporte();
-      } else {
-        this.fecha_final = new Date(Date.now());
-        this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
-        this.generarReporte();
-      }
-    });
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
       this.modulos = modulos;
     }));
-    this._generarReporte();
+
+    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
+      this.config = r;
+    }));
+  
+    this.route.paramMap.subscribe(params => {
+      this.usuario_id = params.get('uid');
+    });
+
+    this.route.queryParamMap.subscribe(parameters => {
+      //this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
+      if (parameters.get('fecha_inicial') && parameters.get('fecha_final')) {
+        this.fecha_inicial = new Date(parameters.get('fecha_inicial'));
+        this.fecha_final = new Date(parameters.get('fecha_final'));
+      } else {
+        this.fecha_final = new Date(Date.now());
+        this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+      }
+    });
+
+    this.navEnd.subscribe(n => this._generarReporte());
   }
 
   ngOnDestroy() {
@@ -111,11 +116,17 @@ export class ReporteComponent implements OnInit {
   }
 
   generarReporte():void {
-    this.router.navigate(['/sistema/reportes/personal', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString(), back: this.back}]);
-  }
-
-  generar_back() {
-    return btoa('/sistema/reportes/personal/' + this.usuario_id);
+    this.router.onSameUrlNavigation = 'reload';
+    let params = {
+      fecha_inicial:this.fecha_inicial.toISOString(), 
+      fecha_final:this.fecha_final.toISOString(), 
+      back: this.back
+    };
+    this.router.navigate(['/sistema/reportes/personal', this.usuario_id], {queryParams:params}).then(b => {
+      if (!b) {
+        this._generarReporte(); 
+      }
+    });
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {
@@ -124,13 +135,16 @@ export class ReporteComponent implements OnInit {
     return marcaciones;
   }
 
-  _obtenerParametrosMarcacionIndividual(r: RenglonReporte) {
-    let a = {
-      fecha_inicial:this.fecha_inicial.toISOString(), 
-      fecha_final:this.fecha_final.toISOString(),
-      back: this.generar_back()
+  generarBack(r: RenglonReporte) {
+    let back = {
+      url: '/sistema/reportes/personal/' + this.usuario_id,
+      params: {
+        fecha_inicial:this.fecha_inicial.toISOString(),
+        fecha_final:this.fecha_final.toISOString()
+      }
     }; 
-    return a;
+    let sjson = btoa(JSON.stringify(back));
+    return {back:sjson};
   }
 
 

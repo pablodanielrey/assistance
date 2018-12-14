@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
 import { Location } from '@angular/common';
+
+import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { AssistanceService } from '../../assistance.service';
 
@@ -28,6 +31,7 @@ export class ReporteGeneralComponent implements OnInit {
     this.width = window.innerWidth;
   }
 
+  navEnd: Observable<NavigationEnd>;
   subscriptions: any[] = [];
   fecha: Date;
   ids: string[];
@@ -38,12 +42,16 @@ export class ReporteGeneralComponent implements OnInit {
   config: Configuracion = null;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private service: AssistanceService,
-              public dialog: MatDialog,
-              private location: Location) { 
-                this.onResize();
-              }
+    private router: Router,
+    private service: AssistanceService,
+    public dialog: MatDialog,
+    private location: Location) {
+    this.onResize();
+
+    this.navEnd = router.events.pipe(
+      filter(evt => evt instanceof NavigationEnd)
+    ) as Observable<NavigationEnd>;    
+  }
 
   ngOnInit() {
     this.buscando = false;
@@ -52,16 +60,19 @@ export class ReporteGeneralComponent implements OnInit {
       this.config = r;
     }));
 
-    this.route.params.subscribe(params => {
-      this.ids = params['ids'].split(",");
-      this.fecha = new Date(params['fecha']) || new Date(Date.now());
-      this._generarReporte();
+    this.route.paramMap.subscribe(params => {
+      this.fecha = new Date(params.get('fecha')) || new Date(Date.now());
     });
+    this.route.queryParamMap.subscribe(params => {
+      this.ids = params.get('ids').split(",");
+    });
+
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
       this.modulos = modulos;
       console.log(this.modulos);
     }));
 
+    this.navEnd.subscribe(n => this._generarReporte());
   }
 
   ngOnDestroy() {
@@ -73,18 +84,19 @@ export class ReporteGeneralComponent implements OnInit {
     this.router.navigate(['/sistema/reportes/general/seleccion']);
   }
 
-  _generarReporte():void {
+  _generarReporte(): void {
     this.reportes = [];
-    this.buscando = true;
+    this.buscando = true; 
     this.subscriptions.push(this.service.generarReporteGeneral(this.ids, this.fecha)
-    .subscribe(r => {
-      this.reportes = r;
-      this.buscando = false;
-    }));
+      .subscribe(r => {
+        this.reportes = r;
+        this.buscando = false;
+      }));
   }
 
-  generarReporte():void {
-    this.router.navigate(['/sistema/reportes/general/generar/', this.fecha.toISOString(), {ids: this.ids}]);
+  generarReporte(): void {
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/sistema/reportes/general/generar/', this.fecha.toISOString()], {queryParams:{ids: this.ids.join(',')}});
   }
 
   obtenerHoraEntrada(r: RenglonReporte) {
@@ -128,7 +140,7 @@ export class ReporteGeneralComponent implements OnInit {
     }
   }
 
-  obtenerHorasTrabajadas(r:RenglonReporte) {
+  obtenerHorasTrabajadas(r: RenglonReporte) {
     let segundos = r.cantidad_horas_trabajadas;
     let min = Math.trunc((segundos / 60) % 60);
     let hs = Math.trunc((segundos / 60) / 60);
@@ -149,15 +161,15 @@ export class ReporteGeneralComponent implements OnInit {
     r.marcaciones.forEach(m => marcaciones = marcaciones + '<br>' + new Date(m.marcacion));
     return marcaciones;
   }
-  
-  eliminarJustificacion(justificacion:any, uid: any) {
-    this.eliminarJustificacionDialogRef = this.dialog.open(DialogoEliminarFechaJustificadaComponent, {data: justificacion});
+
+  eliminarJustificacion(justificacion: any, uid: any) {
+    this.eliminarJustificacionDialogRef = this.dialog.open(DialogoEliminarFechaJustificadaComponent, { data: justificacion });
     this.eliminarJustificacionDialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.subscriptions.push(this.service.eliminarFechaJustificada(uid, justificacion.id)
-        .subscribe(r => {
-          this.clearJustificaciones(r);
-        }));
+          .subscribe(r => {
+            this.clearJustificaciones(r);
+          }));
       }
     });
   }
@@ -182,6 +194,17 @@ export class ReporteGeneralComponent implements OnInit {
       }
     });
     return r
+  }
+
+  generarBack() {
+    let back = {
+      url: '/sistema/reportes/general/generar/' + this.fecha.toISOString(),
+      params: {
+        ids: this.ids.join(',')
+      }
+    };
+    let sjson = btoa(JSON.stringify(back));
+    return { back: sjson };
   }
 
 }

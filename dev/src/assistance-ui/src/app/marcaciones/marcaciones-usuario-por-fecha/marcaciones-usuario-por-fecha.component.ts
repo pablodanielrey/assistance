@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -35,11 +35,18 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(parameters => {
+
+      let sjson = atob(parameters.get('back'))
+      this.back = JSON.parse(sjson);
+
+      /*
       this.back = {
-        url: (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal/',
-        fecha_inicial: new Date(parameters.get('fecha_inicial')),
-        fecha_final: new Date(parameters.get('fecha_final'))
+        url: (parameters.get('back_url')) ? atob(parameters.get('back_url')) : '/sistema/reportes/personal/',
+        params: parameters.get('back_params')
+//        fecha_inicial: new Date(parameters.get('fecha_inicial')),
+//        fecha_final: new Date(parameters.get('fecha_final'))
       }
+      */
       console.log(this.back);
     });
 
@@ -76,8 +83,9 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
 
   volver() {
     console.log(this.back);
-    if (this.back.fecha_inicial != null && this.back.fecha_final != null) {
-      this.router.navigate([this.back.url, {fecha_inicial: this.back.fecha_inicial, fecha_final: this.back.fecha_final}]);
+    if (this.back.params != null) {
+      //this.router.navigate([this.back.url, {fecha_inicial: this.back.fecha_inicial, fecha_final: this.back.fecha_final}]);
+      this.router.navigate([this.back.url], {queryParams:this.back.params});
     }else{
       this.router.navigate([this.back.url]);
     }
