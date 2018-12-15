@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { RenglonReporte, Marcacion, Configuracion } from '../../entities/asistencia';
+import { RenglonReporte, Marcacion, Configuracion, FechaJustificada } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -21,16 +21,19 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   fecha_final: string = null;
   config: Configuracion = null;
   columnas: string[] = ['Dia','Fecha','Marcacion','Reloj'];
+  columnasJustificaciones: string[] = ['Justificacion','Notas','Creador'];
 
   marcaciones : BehaviorSubject<Marcacion[]>;
   marcaciones_duplicadas : BehaviorSubject<Marcacion[]>;
   
+  justificaciones : BehaviorSubject<FechaJustificada[]>;
 
   constructor(private route : ActivatedRoute,
               private router: Router,
               private service : AssistanceService) {
     this.marcaciones = new BehaviorSubject<Marcacion[]>([]);
     this.marcaciones_duplicadas = new BehaviorSubject<Marcacion[]>([]);
+    this.justificaciones = new BehaviorSubject<FechaJustificada[]>([]);
   }
 
   ngOnInit() {
@@ -70,7 +73,7 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
           horario: this.obtenerHorario(renglon_reporte),
           horas_trabajadas: this.obtenerHorasTrabajadas(renglon_reporte)
         }
-        console.log(r);
+        this.justificaciones.next(renglon_reporte.justificaciones);
         this.marcaciones.next(renglon_reporte.marcaciones);
         this.marcaciones_duplicadas.next(renglon_reporte.duplicadas);
       }));

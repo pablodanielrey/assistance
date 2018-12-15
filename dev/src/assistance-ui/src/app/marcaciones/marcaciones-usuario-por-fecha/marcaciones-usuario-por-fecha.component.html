@@ -37,7 +37,6 @@
     <div *ngIf="!cargando">
         <mat-tab-group>
           <mat-tab label='Marcaciones'>
-
               <mat-table [dataSource]='marcaciones | async' matSort>
                 <ng-container matColumnDef='Dia'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
@@ -118,7 +117,32 @@
                 <mat-row *matRowDef="let row; columns: columnas"></mat-row>
               </mat-table>  
         </mat-tab>
-  
+
+        <!-- Justificaiones del dia -->
+        <mat-tab label='Justificaciones'>
+          <mat-table [dataSource]='justificaciones | async' matSort>
+            <ng-container matColumnDef='Justificacion'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+              <mat-cell *matCellDef='let fechaJustificada'> 
+                {{fechaJustificada.nombre +' ('+ fechaJustificada.codigo +')'|| "Sin Notas"}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef='Notas'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Notas </mat-header-cell>
+              <mat-cell *matCellDef='let fechaJustificada'>  
+                {{fechaJustificada.notas || "Sin Notas"}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef='Creador'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Creador </mat-header-cell>
+              <mat-cell *matCellDef='let fechaJustificada'>  
+                {{fechaJustificada.creador?.nombre || "Sin Datos"}}
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="columnasJustificaciones"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnasJustificaciones"></mat-row>
+          </mat-table>
+        </mat-tab>  
       </mat-tab-group>
       
     </div>
