@@ -70,6 +70,7 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
           horario: this.obtenerHorario(renglon_reporte),
           horas_trabajadas: this.obtenerHorasTrabajadas(renglon_reporte)
         }
+        console.log(r);
         this.marcaciones.next(renglon_reporte.marcaciones);
         this.marcaciones_duplicadas.next(renglon_reporte.duplicadas);
       }));

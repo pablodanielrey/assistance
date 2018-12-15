@@ -149,7 +149,9 @@ export class FechaJustificada {
   justificacion: Justificacion;
   id: string;
   creador_id: string;
+  creador: Usuario;
   eliminador_id: string;
+  eliminador: Usuario;
 
   constructor(o:Object) {
     try {
