@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ReporteJustificaciones } from '../../entities/asistencia';
+import { BehaviorSubject } from 'rxjs';
+
+import { ReporteJustificaciones, FechaJustificada } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -17,6 +19,10 @@ export class ReporteJustificacionesComponent implements OnInit {
   fecha_final: Date = null;
   reporte: ReporteJustificaciones = null;
   subscriptions: any[] = [];
+
+  fechasJustificadas : BehaviorSubject<FechaJustificada[]>;
+  columnasActivas: string[] = ['Inicio','Fin','Justificacion','Notas','Creador'];
+  columnasEliminadas: string[] = ['Inicio','Fin','Justificacion','Notas','Creador','Eliminador'];
   //stock: any[] = [
   //                            {id: '1',
   //                            nombre: 'Boleta de Salida',
@@ -32,7 +38,9 @@ export class ReporteJustificacionesComponent implements OnInit {
   constructor(
               private service: AssistanceService,
               private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router) {
+    this.fechasJustificadas = new BehaviorSubject<FechaJustificada[]>([]);
+  }
 
   ngOnInit() {
     this.buscando = false;
@@ -67,6 +75,8 @@ export class ReporteJustificacionesComponent implements OnInit {
     .subscribe(r => {
       this.buscando = false;
       this.reporte = r;
+      this.fechasJustificadas.next(r.justificaciones);
+      console.log(this.reporte);
     }));
   }
 
