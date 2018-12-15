@@ -106,7 +106,7 @@
               <ng-container matColumnDef='Horas_trabajadas'>
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
                 <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> 
-                  <a class='linkTexto' routerLink='/sistema/marcaciones/personal/{{renglon.usuario.id}}/{{renglon.fecha}}' [queryParams]=generarBack()>
+                  <a style='text-decoration: none; color: inherit' class='linkTexto' routerLink='/sistema/marcaciones/personal/{{renglon.usuario.id}}/{{renglon.fecha}}' [queryParams]=generarBack()>
                     {{obtenerHorasTrabajadas(renglon)}}
                   </a>
                 </mat-cell>

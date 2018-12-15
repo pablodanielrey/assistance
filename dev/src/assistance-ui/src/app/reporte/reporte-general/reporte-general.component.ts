@@ -47,10 +47,6 @@ export class ReporteGeneralComponent implements OnInit {
     public dialog: MatDialog,
     private location: Location) {
     this.onResize();
-
-    this.navEnd = router.events.pipe(
-      filter(evt => evt instanceof NavigationEnd)
-    ) as Observable<NavigationEnd>;    
   }
 
   ngOnInit() {
@@ -62,17 +58,17 @@ export class ReporteGeneralComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       this.fecha = new Date(params.get('fecha')) || new Date(Date.now());
+      this._generarReporte();
     });
     this.route.queryParamMap.subscribe(params => {
       this.ids = params.get('ids').split(",");
+      this._generarReporte();
     });
 
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
       this.modulos = modulos;
       console.log(this.modulos);
     }));
-
-    this.navEnd.subscribe(n => this._generarReporte());
   }
 
   ngOnDestroy() {
@@ -85,6 +81,9 @@ export class ReporteGeneralComponent implements OnInit {
   }
 
   _generarReporte(): void {
+    if (this.ids == null || this.fecha == null) {
+      return;
+    } 
     this.reportes = [];
     this.buscando = true; 
     this.subscriptions.push(this.service.generarReporteGeneral(this.ids, this.fecha)
