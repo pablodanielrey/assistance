@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -14,6 +14,13 @@ import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion } f
 import { AssistanceService } from '../../assistance.service';
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+
+
+interface ReporteParams {
+  usuario_id: string;
+  fecha_inicial: Date;
+  fecha_final: Date;
+}
 
 @Component({
   selector: 'app-reporte',
@@ -43,10 +50,23 @@ export class ReporteComponent implements OnInit {
       this.onResize();
       this.reportes = new BehaviorSubject<RenglonReporte[]>([]);
 
+      /*
       this.navEnd = router.events.pipe(
         filter(evt => evt instanceof NavigationEnd)
       ) as Observable<NavigationEnd>;
-  
+      this.navEnd.subscribe(n => this._generarReporte());
+      */
+
+      this.parameters$.subscribe(p => {
+        if (p == null) {
+          return;
+        }
+        this.usuario_id = p.usuario_id;
+        this.fecha_final = p.fecha_final;
+        this.fecha_inicial = p.fecha_inicial;
+        this._generarReporte();
+      });
+   
   }
 
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
@@ -57,11 +77,15 @@ export class ReporteComponent implements OnInit {
   fecha_inicial: Date = null;
   fecha_final: Date = null;
   usuario_id: string = null;
+  
   subscriptions: any[] = [];
   buscando: boolean = false;
   back: string;
   modulos: string[] = [];
   config: Configuracion = null;
+
+  parameters$: BehaviorSubject<ReporteParams> = new BehaviorSubject(null);
+  
 
   ngOnInit() {
     this.buscando = false;
@@ -73,23 +97,36 @@ export class ReporteComponent implements OnInit {
     this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
       this.config = r;
     }));
-  
+
+    //this.usuario_id$ = this.route.paramMap.pipe(map(params => params.get('uid')));
     this.route.paramMap.subscribe(params => {
-      this.usuario_id = params.get('uid');
+      let uid = params.get('uid');
+      this.parameters$.next({
+        usuario_id: uid,
+        fecha_inicial: this.fecha_inicial,
+        fecha_final: this.fecha_final
+      });
     });
 
     this.route.queryParamMap.subscribe(parameters => {
       //this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
+      let fi : Date = null;
+      let ff : Date = null;
       if (parameters.get('fecha_inicial') && parameters.get('fecha_final')) {
-        this.fecha_inicial = new Date(parameters.get('fecha_inicial'));
-        this.fecha_final = new Date(parameters.get('fecha_final'));
+        fi = new Date(parameters.get('fecha_inicial'));
+        ff = new Date(parameters.get('fecha_final'));
       } else {
-        this.fecha_final = new Date(Date.now());
-        this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+        fi = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+        ff = new Date(Date.now());
       }
+      this.parameters$.next({
+        usuario_id: this.usuario_id,
+        fecha_inicial: fi,
+        fecha_final: ff
+      });
     });
 
-    this.navEnd.subscribe(n => this._generarReporte());
+    
   }
 
   ngOnDestroy() {
@@ -103,6 +140,7 @@ export class ReporteComponent implements OnInit {
 
   _generarReporte(): void {
     if (this.usuario_id == null || this.fecha_final == null || this.fecha_final == null) {
+      console.log('no están cargados los parámetros');
       return;
     }
     this.reporte = null;
