@@ -43,6 +43,7 @@
     <mat-progress-bar *ngIf="buscando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
     <mat-divider></mat-divider>
     <mat-tab-group>
+            
       <mat-tab label='Reporte'>
         <div class="detalleReporte" *ngIf="!buscando">
           <div class="columna">
@@ -74,6 +75,8 @@
           </div>
         </div>
       </mat-tab>
+
+
       <mat-tab label='Justificaciones'>
         <mat-table [dataSource]='fechasJustificadas | async' matSort>
           <ng-container matColumnDef='Inicio'>
@@ -97,19 +100,79 @@
           <ng-container matColumnDef='Notas'>
             <mat-header-cell *matHeaderCellDef mat-sort-header> Notas </mat-header-cell>
             <mat-cell *matCellDef='let fechaJustificada'>  
-              {{fechaJustificada.notas || "Sin Notas"}}
+              {{fechaJustificada.notas || ""}}
             </mat-cell>
           </ng-container>
+          <ng-container matColumnDef='Creada'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Creada </mat-header-cell>
+              <mat-cell *matCellDef='let fechaJustificada'> 
+                {{fechaJustificada.creado | date:'dd/MM/yyyy'}}
+              </mat-cell>
+          </ng-container>          
           <ng-container matColumnDef='Creador'>
             <mat-header-cell *matHeaderCellDef mat-sort-header> Creador </mat-header-cell>
             <mat-cell *matCellDef='let fechaJustificada'>  
-              {{fechaJustificada.creador?.nombre || "Sin Datos"}}
+              {{fechaJustificada.creador?.nombre || ""}}
+              {{fechaJustificada.creador?.apellido || ""}}
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="columnasActivas"></mat-header-row>
           <mat-row *matRowDef="let row; columns: columnasActivas"></mat-row>
         </mat-table>
       </mat-tab>
+        
+      <mat-tab label='Justificaciones Eliminadas'>
+        <mat-table [dataSource]='fechasEliminadas | async' matSort>
+          <ng-container matColumnDef='Inicio'>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Inicio </mat-header-cell>
+            <mat-cell *matCellDef='let fechaJustificada'> 
+              {{fechaJustificada.fecha_inicio | date:'dd/MM/yyyy'}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef='Fin'>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Fin </mat-header-cell>
+            <mat-cell *matCellDef='let fechaJustificada'> 
+              {{fechaJustificada.fecha_fin | date:'dd/MM/yyyy'}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef='Justificacion'>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+            <mat-cell *matCellDef='let fechaJustificada'> 
+              {{fechaJustificada.justificacion.nombre +' ('+ fechaJustificada.justificacion.codigo +')'}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef='Notas'>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Notas </mat-header-cell>
+            <mat-cell *matCellDef='let fechaJustificada'>  
+              {{fechaJustificada.notas || ""}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef='Creador'>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Creador </mat-header-cell>
+            <mat-cell *matCellDef='let fechaJustificada'>  
+              {{fechaJustificada.creador?.nombre || ""}}
+              {{fechaJustificada.creador?.apellido || ""}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef='Eliminada'>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Eliminada </mat-header-cell>
+              <mat-cell *matCellDef='let fechaJustificada'> 
+                {{fechaJustificada.eliminado | date:'dd/MM/yyyy'}}
+              </mat-cell>
+          </ng-container>          
+          <ng-container matColumnDef='Eliminador'>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Eliminador </mat-header-cell>
+            <mat-cell *matCellDef='let fechaJustificada'>  
+              {{fechaJustificada.eliminador?.nombre || ""}}
+              {{fechaJustificada.eliminador?.apellido || ""}}
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="columnasEliminadas"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columnasEliminadas"></mat-row>
+        </mat-table>
+      </mat-tab>
+
+
     </mat-tab-group>
   </div>
 </div>

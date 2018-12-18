@@ -118,7 +118,9 @@
                   <div *ngIf='renglon.justificaciones.length > 0'>
                     <mat-chip-list #chipList>
                       <mat-chip *ngFor="let j of renglon.justificaciones">
-                        {{j.nombre }}
+                        <a style='text-decoration: none; color: inherit' routerLink='/sistema/reportes/justificaciones/{{renglon.usuario.id}}'>
+                          {{j.nombre }}
+                        </a>
                         <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm'])" (click)="eliminarJustificacion(j, renglon.usuario.id)">cancel</mat-icon>
                       </mat-chip>
                     </mat-chip-list>

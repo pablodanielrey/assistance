@@ -21,8 +21,9 @@ export class ReporteJustificacionesComponent implements OnInit {
   subscriptions: any[] = [];
 
   fechasJustificadas : BehaviorSubject<FechaJustificada[]>;
-  columnasActivas: string[] = ['Inicio','Fin','Justificacion','Notas','Creador'];
-  columnasEliminadas: string[] = ['Inicio','Fin','Justificacion','Notas','Creador','Eliminador'];
+  columnasActivas: string[] = ['Inicio','Fin','Justificacion','Notas','Creada','Creador'];
+  fechasEliminadas : BehaviorSubject<FechaJustificada[]>;  
+  columnasEliminadas: string[] = ['Inicio','Fin','Justificacion','Notas','Creador','Eliminada','Eliminador'];
   //stock: any[] = [
   //                            {id: '1',
   //                            nombre: 'Boleta de Salida',
@@ -40,6 +41,7 @@ export class ReporteJustificacionesComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router) {
     this.fechasJustificadas = new BehaviorSubject<FechaJustificada[]>([]);
+    this.fechasEliminadas = new BehaviorSubject<FechaJustificada[]>([]);
   }
 
   ngOnInit() {
@@ -76,6 +78,7 @@ export class ReporteJustificacionesComponent implements OnInit {
       this.buscando = false;
       this.reporte = r;
       this.fechasJustificadas.next(r.justificaciones);
+      this.fechasEliminadas.next(r.justificaciones_eliminadas);
       console.log(this.reporte);
     }));
   }
