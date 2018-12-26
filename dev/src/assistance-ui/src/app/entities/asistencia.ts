@@ -454,6 +454,8 @@ export class Configuracion {
   mostrar_detalle_avanzado_reporte: boolean;
   mostrar_detalle_horas_reporte: boolean;
   mostrar_detalle_entrada_salida_reporte: boolean;
+  mostrar_creador_justificaciones: boolean;
+  mostrar_eliminador_justificaciones: boolean;
   
   constructor(o:Object) {
     try {

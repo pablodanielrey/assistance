@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { ReporteJustificaciones, FechaJustificada } from '../../entities/asistencia';
+import { ReporteJustificaciones, FechaJustificada, Configuracion } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -21,9 +21,11 @@ export class ReporteJustificacionesComponent implements OnInit {
   subscriptions: any[] = [];
 
   fechasJustificadas : BehaviorSubject<FechaJustificada[]>;
-  columnasActivas: string[] = ['Inicio','Fin','Justificacion','Notas','Creada','Creador'];
+  columnasActivas: string[] = ['Inicio','Fin','Justificacion','Notas','Creada'];
   fechasEliminadas : BehaviorSubject<FechaJustificada[]>;  
-  columnasEliminadas: string[] = ['Inicio','Fin','Justificacion','Notas','Creador','Eliminada','Eliminador'];
+  columnasEliminadas: string[] = ['Inicio','Fin','Justificacion','Notas','Eliminada'];
+
+  config: Configuracion = null;
   //stock: any[] = [
   //                            {id: '1',
   //                            nombre: 'Boleta de Salida',
@@ -45,6 +47,16 @@ export class ReporteJustificacionesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
+      this.config = r;
+      if (this.config.mostrar_creador_justificaciones){
+        this.columnasActivas.push('Creador');
+        this.columnasEliminadas.splice(4, 0, 'Creador');
+      }
+      if (this.config.mostrar_eliminador_justificaciones){
+        this.columnasEliminadas.push('Eliminador');
+      }
+    }));
     this.buscando = false;
     this.route.params.subscribe(params => {
       console.log(params);
@@ -79,7 +91,6 @@ export class ReporteJustificacionesComponent implements OnInit {
       this.reporte = r;
       this.fechasJustificadas.next(r.justificaciones);
       this.fechasEliminadas.next(r.justificaciones_eliminadas);
-      console.log(this.reporte);
     }));
   }
 

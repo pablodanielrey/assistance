@@ -136,7 +136,8 @@
             <ng-container matColumnDef='Creador'>
               <mat-header-cell *matHeaderCellDef mat-sort-header> Creador </mat-header-cell>
               <mat-cell *matCellDef='let fechaJustificada'>  
-                {{fechaJustificada.creador?.nombre || "Sin Datos"}}
+                {{fechaJustificada.creador?.nombre || ""}}
+                {{fechaJustificada.creador?.apellido || ""}}
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="columnasJustificaciones"></mat-header-row>
