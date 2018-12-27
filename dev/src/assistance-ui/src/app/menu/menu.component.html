@@ -54,6 +54,12 @@
         <mat-icon class="icoMenu">send</mat-icon> Telegram
       </button><br>
     </span>
+    <span  *ngIf="chequearPerfil(['super-admin']) | async">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/marcaciones/marcar-remoto/{{usuarioId}}">
+        <mat-icon class="icoMenu">send</mat-icon> Marcar Remoto
+      </button><br>
+    </span>
+
     <!-- <button class="btn" mat-button (click)='onInternalItem()' routerLink="/relojes/buscar"><mat-icon class="icoMenu">query_builder</mat-icon> Administrar Relojes &nbsp;</button><br> -->
   </span>
   </mat-sidenav>

@@ -27,6 +27,7 @@ import { ReporteJustificacionesComponent } from './reporte/reporte-justificacion
 import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-justificaciones/seleccionar-usuario-justificaciones/seleccionar-usuario-justificaciones.component';
 
 import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
+import { MarcarRemotoComponent } from './marcaciones/marcar-remoto/marcar-remoto.component';
 
 import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
@@ -124,7 +125,8 @@ const routes: Routes = [
       {
         path: 'marcaciones',
         children: [
-            { path: 'personal/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent }
+            { path: 'personal/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent },
+            { path: 'marcar-remoto/:uid', component: MarcarRemotoComponent }
         ]
       },
       {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, BehaviorSubject } from 'rxjs';
 import { map, switchMap, flatMap, share, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
@@ -28,7 +28,8 @@ import { TelegramToken } from './entities/telegram';
 export class AssistanceService {
 
   modulos: string[] = null;
-
+  marcaciones = {};
+  
   constructor(private http: HttpClient) { 
     let s = this.obtenerAccesoModulos().subscribe(m => { this.modulos = m; s.unsubscribe(); });
   }
@@ -125,6 +126,33 @@ export class AssistanceService {
     let apiUrl = `${ASSISTANCE_API_URL}/justificar`;
     return this.http.put<string>(apiUrl, fj);
   }
+
+
+  ////////////////////
+
+  obtenerMarcacionesRemotas(uid:string):Observable<any[]> {
+    if (this.marcaciones[uid] == undefined) {
+      this.marcaciones[uid] = new BehaviorSubject<any[]>([]);
+    }
+
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/logs`;
+    let s = this.http.get<any[]>(apiUrl).subscribe(logs => {
+      this.marcaciones[uid].next(logs);
+      s.unsubscribe();
+    });
+
+    return this.marcaciones[uid];
+  }
+
+  marcarRemotoUsuario(uid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/logs`;
+    return this.http.post<any>(apiUrl, {});
+  }
+
+
+  ///////////////////////////
+
+  
 
   obtenerUsuario(uid:string): Observable<DatosAsistencia> {
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
