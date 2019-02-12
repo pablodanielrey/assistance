@@ -6,10 +6,11 @@ import { GlobalErrorHandler } from './error.handler';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
+import { OAuthModule, OAuthStorage, OAuthResourceServerErrorHandler } from 'angular-oauth2-oidc';
 import { OidpGuard } from './oauth2/oidp.guard';
 import { Oauth2Component } from './oauth2/oauth2.component';
 import { Oauth2Service } from './oauth2/oauth2.service';
+import { OauthErrorHandler } from './oauth2/oauth-error.service';
 
 import { MyMaterialModule } from './material.module';
 
@@ -156,7 +157,8 @@ export function windowFactory() {
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
       OidpGuard,
-      { provide: OAuthStorage, useValue: localStorage }
+      { provide: OAuthStorage, useValue: localStorage },
+      { provide: OAuthResourceServerErrorHandler, useClass: OauthErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
