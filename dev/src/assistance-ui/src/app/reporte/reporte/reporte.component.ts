@@ -86,7 +86,7 @@ export class ReporteComponent implements OnInit {
     });
 
     this.route.queryParamMap.subscribe(parameters => {
-      //this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
+      this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
       if (parameters.get('fecha_inicial') && parameters.get('fecha_final')) {
         this.fecha_inicial = new Date(parameters.get('fecha_inicial'));
         this.fecha_final = new Date(parameters.get('fecha_final'));
