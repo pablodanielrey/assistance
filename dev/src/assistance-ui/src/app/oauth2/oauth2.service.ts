@@ -86,6 +86,10 @@ export class Oauth2Service {
     return this.oauthService.hasValidAccessToken();
   }
 
+  invalidateSession() {
+    this.oauthService.logOut(true);
+    return of(true);
+  }
 
   getId() {
     let c = this.oauthService.getIdentityClaims();
