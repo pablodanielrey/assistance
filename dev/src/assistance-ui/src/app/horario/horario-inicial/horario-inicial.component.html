@@ -20,11 +20,11 @@
       <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
       <!-- Lista -->
       <mat-list>
-        <mat-list-item class="itemLista"  *ngFor="let datos of usuarios" routerLink="/sistema/horarios/detalle/{{datos.usuario.id}}">
+        <mat-list-item class="itemLista"  *ngFor="let usuario of usuarios" routerLink="/sistema/horarios/detalle/{{usuario.id}}">
           <img matListAvatar src="/assets/img/icono_usuario.jpg">
-          <h3 matLine> {{datos.usuario.nombre }} {{datos.usuario.apellido}} </h3>
+          <h3 matLine> {{usuario.nombre }} {{usuario.apellido}} </h3>
           <p matLine>
-            <span class="itemTextoSubtitulo">{{datos.usuario.dni}}</span>
+            <span class="itemTextoSubtitulo">{{usuario.dni}}</span>
           </p>
         </mat-list-item>
       </mat-list>

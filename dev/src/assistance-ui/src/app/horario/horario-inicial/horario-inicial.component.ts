@@ -28,13 +28,12 @@ export class HorarioInicialComponent implements OnInit {
 
   buscarUsuarios(): void {
     this.usuarios = [];
-    this.busqueda = this.busqueda.replace('\.','');
     this.cargando = true;
     this.subscriptions.push(this.service.buscarUsuarios(this.busqueda)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
-          var aFull = (a.usuario.nombre + a.usuario.apellido).toLowerCase()
-          var bFull = (b.usuario.nombre + b.usuario.apellido).toLowerCase()
+          var aFull = (a.nombre + a.apellido).toLowerCase()
+          var bFull = (b.nombre + b.apellido).toLowerCase()
           if (aFull > bFull) {
             return 1
           }

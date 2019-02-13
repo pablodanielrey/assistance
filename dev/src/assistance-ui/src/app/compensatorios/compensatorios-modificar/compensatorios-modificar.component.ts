@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { Compensatorio } from '../../entities/asistencia';
+import { Compensatorio,DatosCompensatorio } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -13,15 +13,15 @@ import { AssistanceService } from '../../assistance.service';
   styleUrls: ['./compensatorios-modificar.component.css']
 })
 export class CompensatoriosModificarComponent implements OnInit {
-  usuario_id: string = null;
+  usuario_id: string;
   cargando: boolean = false;
-  info: any = null;
+  info: DatosCompensatorio = new DatosCompensatorio({});
   back: string ='/sistema/compensatorios/inicial';
   subscriptions: any[] = [];
-  compensatorios : BehaviorSubject<Compensatorio[]> = new BehaviorSubject<Compensatorio[]>([]);
+  compensatorios$ : BehaviorSubject<Compensatorio[]> = new BehaviorSubject<Compensatorio[]>([]);
+  columnas$ : BehaviorSubject<string[]> = new BehaviorSubject(['Fecha','Cantidad','Nota','Creador']);
 
   constructor(private service: AssistanceService,
-              private router: Router,
               private location: Location,
               private route: ActivatedRoute) { }
 
@@ -30,13 +30,11 @@ export class CompensatoriosModificarComponent implements OnInit {
     let params = this.route.snapshot.paramMap;
     this.usuario_id = params.get('uid');
     this.subscriptions.push(this.service.obtenerCompensatorios(this.usuario_id).subscribe(r => {
+      console.log(r);
       this.cargando = false;
-      this.info = {
-        usuario: r.usuario,
-        cantidad: r.cantidad
-      };
+      this.info = r;
       let comp = r.compensatorios;
-      this.compensatorios.next(comp);
+      this.compensatorios$.next(comp);
     }));
   }
 
@@ -48,5 +46,4 @@ export class CompensatoriosModificarComponent implements OnInit {
   volver() {
     this.location.back();
   }
-
 }

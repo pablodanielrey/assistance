@@ -18,7 +18,7 @@ export class ListadoUsuariosComponent implements OnInit {
   search: EventEmitter<string> = new EventEmitter<string>();
 
   @Input()
-  usuarios: Array<DatosAsistencia> = new Array<DatosAsistencia>();
+  usuarios: Array<Usuario> = new Array<Usuario>();
 
   busqueda: string = "";
 

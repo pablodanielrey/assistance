@@ -1,0 +1,16 @@
+<div>
+  Marcación remota: {{usuario}}
+
+  <mat-divider></mat-divider>
+  <mat-list>
+    <mat-list-item *ngFor='let r of responses$ | async'>
+      <h1 matLine>Fecha: {{r.marcacion | date:'dd/MM/yyyy'}}</h1>
+      <h1 matLine>Hora: {{r.marcacion | date:'HH:mm'}}</h1>
+    </mat-list-item>
+  </mat-list>
+  <mat-divider></mat-divider>
+
+  <a routerLink='/sistema/marcaciones/personal/{{usuario}}/{{fecha}}'>VER REPORTE MARCACIONES</a>
+  <button mat-button (click)='marcar()'>MARCAR</button>
+
+</div>

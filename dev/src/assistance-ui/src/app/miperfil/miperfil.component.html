@@ -99,7 +99,11 @@
 
           </div>
 
-          <button mat-button (click)='ver_reporte()' class="btnGenerar"> VER REPORTE DE MARCACIONES</button>
+          <button mat-button class="btnGenerar"> 
+            <a class="linkTexto"  routerLink='/sistema/reportes/personal/{{usuario.id}}' [queryParams]=generar_query_params()>
+                VER REPORTE DE MARCACIONES
+            </a>
+          </button>
 
           <mat-divider></mat-divider>
 
@@ -114,6 +118,16 @@
                         <div class="textJustificacion">{{j.nombre}}</div>
                         <div class="textoCantidad">{{j.cantidad}}</div>
                     </div>
+                </div>
+              </div>
+          </div>
+          <div class="contenedorJustificaciones">
+            <div class="titulo">Compensatorios</div>
+              <div class="justificaciones">
+                <div class="bloqueJustificaciones">
+                  <a style='color:inherit; text-decoration: none;' routerLink='/sistema/compensatorios/modificar/{{usuario.id}}'>
+                    <app-compensatorios-consulta></app-compensatorios-consulta>
+                  </a>
                 </div>
               </div>
           </div>

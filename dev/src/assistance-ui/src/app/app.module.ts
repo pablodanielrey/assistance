@@ -6,10 +6,11 @@ import { GlobalErrorHandler } from './error.handler';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
+import { OAuthModule, OAuthStorage, OAuthResourceServerErrorHandler } from 'angular-oauth2-oidc';
 import { OidpGuard } from './oauth2/oidp.guard';
 import { Oauth2Component } from './oauth2/oauth2.component';
 import { Oauth2Service } from './oauth2/oauth2.service';
+import { OauthErrorHandler } from './oauth2/oauth-error.service';
 
 import { MyMaterialModule } from './material.module';
 
@@ -73,6 +74,9 @@ import { UpdateService } from './update.service';
 import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
 import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
 import { CompensatoriosModificarComponent } from './compensatorios/compensatorios-modificar/compensatorios-modificar.component';
+import { CompensatoriosConsultaComponent } from './compensatorios/compensatorios-consulta/compensatorios-consulta.component';
+import { CompensatoriosAltaComponent } from './compensatorios/compensatorios-alta/compensatorios-alta.component';
+import { MarcarRemotoComponent } from './marcaciones/marcar-remoto/marcar-remoto.component';
 
 
 export function windowFactory() {
@@ -125,7 +129,10 @@ export function windowFactory() {
     SeleccionarUsuarioJustificacionesComponent,
     MarcacionesUsuarioPorFechaComponent,
     CompensatoriosInicialComponent,
-    CompensatoriosModificarComponent
+    CompensatoriosModificarComponent,
+    CompensatoriosConsultaComponent,
+    CompensatoriosAltaComponent,
+    MarcarRemotoComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +157,8 @@ export function windowFactory() {
       { provide: LOCALE_ID, useValue: "es" },
       { provide: ErrorHandler, useClass: GlobalErrorHandler },
       OidpGuard,
-      { provide: OAuthStorage, useValue: localStorage }
+      { provide: OAuthStorage, useValue: localStorage },
+      { provide: OAuthResourceServerErrorHandler, useClass: OauthErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

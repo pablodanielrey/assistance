@@ -30,8 +30,8 @@ export class CompensatoriosInicialComponent implements OnInit {
     this.subscriptions.push(this.service.buscarUsuarios(this.busqueda)
       .subscribe(usuarios => {
         usuarios.sort((a,b) => {
-          var aFull = (a.usuario.nombre + a.usuario.apellido).toLowerCase()
-          var bFull = (b.usuario.nombre + b.usuario.apellido).toLowerCase()
+          var aFull = (a.nombre + a.apellido).toLowerCase()
+          var bFull = (b.nombre + b.apellido).toLowerCase()
           if (aFull > bFull) {
             return 1
           }

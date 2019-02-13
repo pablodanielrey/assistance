@@ -55,8 +55,8 @@
           <mat-tab *ngIf='is_desktop()' label="Reporte" class="Tabs">
 
 
-              <div *ngIf='reporte'>
-              <mat-table [dataSource]='reporte.reportes' matSort>
+              <div>
+              <mat-table [dataSource]='reportes | async' matSort>
 
                 <ng-container matColumnDef='Dia'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Dia </mat-header-cell>
@@ -92,7 +92,7 @@
                 <ng-container matColumnDef='Horas_trabajadas'>
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
                   <mat-cell *matCellDef='let renglon'>
-                    <a class='linkTexto' routerLink='/sistema/marcaciones/personal/{{usuario_id}}/{{renglon.fecha}}' queryParamMap='_obtenerParametrosMarcacionIndividual(renglon)'>
+                    <a class='linkTexto' routerLink='/sistema/marcaciones/personal/{{usuario_id}}/{{renglon.fecha}}' [queryParams]=generarBack(renglon)>
                       {{obtenerHorasTrabajadas(renglon)}}
                     </a>
                     </mat-cell>
@@ -104,12 +104,17 @@
                     <div *ngIf='renglon.justificaciones.length > 0'>
                       <mat-chip-list #chipList>
                         <mat-chip *ngFor="let j of renglon.justificaciones">
-                          {{j.nombre }}
+                          <div>
+                            <a style='text-decoration: none; color: inherit' routerLink='/sistema/reportes/justificaciones/{{usuario_id}}'>
+                              {{j.nombre }}
+                            </a>
+                          </div>
+                          <div *ngIf='j.notas'><i class="material-icons icoMarcacionDerecho">insert_comment</i></div>
                           <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm'])" (click)=eliminarJustificacion(j)>cancel</mat-icon>
                         </mat-chip>
                       </mat-chip-list>
                     </div>
-                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && chequearPerfil(['super-admin','justificacion_personal_a','justificacion_general_a'])" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm','justificacion_personal_a','justificacion_general_a'])" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
                   </mat-cell>
                 </ng-container>
 
@@ -125,7 +130,7 @@
           <mat-tab *ngIf='!is_desktop()' label="Reporte" class="Tabs">
 
             <div *ngIf='reporte'>
-            <mat-table [dataSource]='reporte.reportes' matSort>
+            <mat-table [dataSource]='reportes | async' matSort>
 
               <ng-container matColumnDef='Fecha'>
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>

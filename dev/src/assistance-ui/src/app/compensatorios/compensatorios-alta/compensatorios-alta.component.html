@@ -1,0 +1,36 @@
+<div  class="reporte">
+  <div class="seccionSistema">
+    <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+     | Compensatorios
+  </div>
+  <mat-divider></mat-divider>
+  <div class="contenidoPantalla">
+    <div *ngIf='info' class='cabeceraReporte'>
+      <div class='contendeorListaUsuario'>
+        <mat-list class='listaUsuario'>
+          <mat-list-item class="itemLista">
+            <img matListAvatar src="/assets/img/icono_usuario.jpg">
+            <h3 matLine> {{info.usuario?.nombre}} {{info.usuario?.apellido}} </h3>
+            <p matLine>
+            <span class="itemTextoSubtitulo">{{info.usuario?.dni}}</span>
+          </p>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <app-compensatorios-consulta></app-compensatorios-consulta>
+    </div>
+    <mat-progress-bar *ngIf="cargando" mode="indeterminate" value="10" class="preload"></mat-progress-bar>
+    <mat-divider></mat-divider>
+    <div class="detalleDeUsuario">
+      <form class="contentDetail">
+        <mat-form-field>
+          <input matInput required type='text'  placeholder="Motivo" name='motivo' [(ngModel)]='alta.notas'/>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput required type='number'  placeholder="Cantidad" name='cantidad' [(ngModel)]='alta.cantidad'/>
+        </mat-form-field>
+        <button mat-button class="btnSiguiente" (click)='crearCompensatorio()'>MODIFICAR</button>
+      </form>
+    </div>
+  </div>
+</div>

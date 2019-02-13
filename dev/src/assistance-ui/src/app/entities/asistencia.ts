@@ -145,8 +145,13 @@ export class FechaJustificada {
   fecha_inicio: Date;
   fecha_fin: Date;
   usuario_id: string;
+  notas: string;
   justificacion: Justificacion;
   id: string;
+  creador_id: string;
+  creador: Usuario;
+  eliminador_id: string;
+  eliminador: Usuario;
 
   constructor(o:Object) {
     try {
@@ -337,16 +342,20 @@ export class ReporteJustificaciones {
   usuario: Usuario;
   fecha_inicial: Date;
   fecha_final: Date;
-  justificaciones: Array<JustificacionRenglon>;
-  justificaciones_generales: Array<JustificacionRenglon>;
+  suma_justificaciones: Array<JustificacionRenglon>;
+  suma_justificaciones_generales: Array<JustificacionRenglon>;
+  justificaciones: Array<FechaJustificada>;
+  justificaciones_eliminadas: Array<FechaJustificada>;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
       this.fecha_inicial = (this.fecha_inicial == null ? null : new Date(this.fecha_inicial));
       this.fecha_final = (this.fecha_final == null ? null : new Date(this.fecha_final));
-      this.justificaciones = (this.justificaciones == null) ? [] : this.justificaciones.map(j => new JustificacionRenglon(j));
-      this.justificaciones_generales = (this.justificaciones_generales == null) ? [] : this.justificaciones_generales.map(j => new JustificacionRenglon(j));
+      this.suma_justificaciones = (this.suma_justificaciones == null) ? [] : this.suma_justificaciones.map(j => new JustificacionRenglon(j));
+      this.suma_justificaciones_generales = (this.suma_justificaciones_generales == null) ? [] : this.suma_justificaciones_generales.map(j => new JustificacionRenglon(j));
+      this.justificaciones = (this.justificaciones == null) ? [] : this.justificaciones.map(j => new FechaJustificada(j));
+      this.justificaciones_eliminadas = (this.justificaciones_eliminadas == null) ? [] : this.justificaciones_eliminadas.map(j => new FechaJustificada(j));
     } catch(e) {
       console.log(e);
     }
@@ -410,6 +419,7 @@ export class DatosCompensatorio {
   compensatorios:  Array<Compensatorio>;
   cantidad: number;
   usuario: Usuario;
+
   constructor(o:Object) {
     try {
       Object.assign(this, o);
@@ -421,18 +431,16 @@ export class DatosCompensatorio {
 }
 
 export class Compensatorio {
-  registro_id: string;
-  fecha: Date = null;
-  notas: string = null;
-  autorizador_id: string;
+  usuario_id : string = null;
+  creado: Date = null;
+  notas: string;
+  autorizador: Usuario;
   cantidad: number;
-  cuenta_id: string;
-  asiento_id: string;
 
   constructor(o:Object) {
     try {
       Object.assign(this, o);
-      this.fecha = (this.fecha == null ? null : new Date(this.fecha));
+      this.creado = (this.creado == null) ? null : new Date(this.creado);
     } catch(e) {
       console.log(e);
     }
@@ -442,10 +450,12 @@ export class Compensatorio {
 export class Configuracion {
 
   mostrar_tipo_marcacion: boolean;
-	mostrar_detalle_reporte: boolean;
-	mostrar_detalle_avanzado_reporte: boolean;
-	mostrar_detalle_horas_reporte: boolean;
-	mostrar_detalle_entrada_salida_reporte: boolean;
+  mostrar_detalle_reporte: boolean;
+  mostrar_detalle_avanzado_reporte: boolean;
+  mostrar_detalle_horas_reporte: boolean;
+  mostrar_detalle_entrada_salida_reporte: boolean;
+  mostrar_creador_justificaciones: boolean;
+  mostrar_eliminador_justificaciones: boolean;
   
   constructor(o:Object) {
     try {

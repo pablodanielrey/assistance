@@ -27,6 +27,7 @@ import { ReporteJustificacionesComponent } from './reporte/reporte-justificacion
 import { SeleccionarUsuarioJustificacionesComponent } from './reporte/reporte-justificaciones/seleccionar-usuario-justificaciones/seleccionar-usuario-justificaciones.component';
 
 import { MarcacionesUsuarioPorFechaComponent } from './marcaciones/marcaciones-usuario-por-fecha/marcaciones-usuario-por-fecha.component';
+import { MarcarRemotoComponent } from './marcaciones/marcar-remoto/marcar-remoto.component';
 
 import { JustificacionInicialComponent } from './justificacion/justificacion-inicial/justificacion-inicial.component';
 import { JustificacionAdminComponent } from './justificacion/justificacion-admin/justificacion-admin.component';
@@ -37,6 +38,7 @@ import { JustificacionGeneralComponent } from './justificacion/justificacion-gen
 
 import { CompensatoriosInicialComponent } from './compensatorios/compensatorios-inicial/compensatorios-inicial.component';
 import { CompensatoriosModificarComponent } from './compensatorios/compensatorios-modificar/compensatorios-modificar.component';
+import { CompensatoriosAltaComponent } from './compensatorios/compensatorios-alta/compensatorios-alta.component';
 
 import { HorarioInicialComponent } from './horario/horario-inicial/horario-inicial.component';
 import { HorarioDetalleComponent } from './horario/horario-detalle/horario-detalle.component';
@@ -61,7 +63,7 @@ const routes: Routes = [
     children: [
       //{ path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
       { path: 'inicial', component: PantallaPrincipalComponent },
-      { path: 'miperfil', component: MiperfilComponent },
+      { path: 'miperfil/:uid', component: MiperfilComponent },
       {
         path: 'notificaciones',
         children: [
@@ -123,14 +125,16 @@ const routes: Routes = [
       {
         path: 'marcaciones',
         children: [
-            { path: 'personal/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent }
+            { path: 'personal/:uid/:fecha', component: MarcacionesUsuarioPorFechaComponent },
+            { path: 'marcar-remoto/:uid', component: MarcarRemotoComponent }
         ]
       },
       {
         path: 'compensatorios',
         children: [
             { path: 'inicial', component: CompensatoriosInicialComponent },
-            { path: 'modificar/:uid', component: CompensatoriosModificarComponent }
+            { path: 'modificar/:uid', component: CompensatoriosModificarComponent },
+            { path: 'alta/:uid', component: CompensatoriosAltaComponent }
         ]
       }
     ]
@@ -163,7 +167,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, { enableTracing: false }) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

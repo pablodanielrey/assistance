@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, BehaviorSubject } from 'rxjs';
 import { map, switchMap, flatMap, share, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
@@ -18,7 +18,9 @@ import { Reloj,
          Lugar, 
          ReporteJustificaciones,
          DatosCompensatorio,
-         Configuracion} from './entities/asistencia';
+         Configuracion,
+         Compensatorio} from './entities/asistencia';
+import { Usuario } from './entities/usuario';
 
 import { TelegramToken } from './entities/telegram';
 
@@ -26,7 +28,8 @@ import { TelegramToken } from './entities/telegram';
 export class AssistanceService {
 
   modulos: string[] = null;
-
+  marcaciones = {};
+  
   constructor(private http: HttpClient) { 
     let s = this.obtenerAccesoModulos().subscribe(m => { this.modulos = m; s.unsubscribe(); });
   }
@@ -60,40 +63,19 @@ export class AssistanceService {
     return of(r);
   }
 
-    //   } else {
-    //     this.obtenerAccesoModulos().pipe(share()).pipe(switchMap(
-    //       (m) => {
-    //         this.modulos = m;
-    //         return this.chequearPerfil(profiles);
-    //       }
-    //     )).subscribe(b => {
-    //       obs.next(b);
-    //       obs.complete();
-    //     });
-    //   }
-    // });
-    // return o.pipe(share());
+  buscarUsuario(uid:string): Observable<DatosAsistencia> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
+    return this.http.get<DatosAsistencia>(apiUrl).pipe(map(info => new DatosAsistencia(info)));
+  }
 
-
-    // let r = false;
-    // if (this.modulos != null) {
-    // }
-    // return r;
-  
-
-
-  buscarUsuarios(texto:string): Observable<DatosAsistencia[]> {
+  buscarUsuarios(texto:string): Observable<Usuario[]> {
     const options = { params: new HttpParams()
               .set('q', texto ? texto : 'algoquenoexiste')
+              .set('assistance', 'true')
           };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
-    return this.http.get<DatosAsistencia[]>(apiUrl, options)
-    //.map(datos => datos.map(d => d));
-    /*
-    .map(datos => datos; console.log(datos))
-    .filter(datos => datos.filter(d => { d.asistencia != null }))
-    .map(datos => datos.map(d => new DatosAsistencia(d)));
-    */
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/search/${texto}`;
+    return this.http.get<Usuario[]>(apiUrl, options);
+                    //.map(datos => datos.filter(d => d.asistencia != null));
   }
 
   buscarLugares(texto:string): Observable<Lugar[]> {
@@ -109,20 +91,6 @@ export class AssistanceService {
 
   }
 
-  buscarUsuario(uid:string): Observable<DatosAsistencia> {
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
-    return this.http.get<DatosAsistencia>(apiUrl).pipe(map(info => new DatosAsistencia(info)));
-  }
-
-  buscarUsuariosAsistencia(texto:string): Observable<DatosAsistencia[]> {
-    const options = { params: new HttpParams()
-              .set('q', texto ? texto : 'algoquenoexiste')
-              .set('assistance', 'true')
-          };
-    let apiUrl = `${ASSISTANCE_API_URL}/usuarios`;
-    return this.http.get<DatosAsistencia[]>(apiUrl, options);
-                    //.map(datos => datos.filter(d => d.asistencia != null));
-  }
 
   buscarJustificaciones(): Observable<Justificacion[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/justificaciones`;
@@ -158,6 +126,33 @@ export class AssistanceService {
     let apiUrl = `${ASSISTANCE_API_URL}/justificar`;
     return this.http.put<string>(apiUrl, fj);
   }
+
+
+  ////////////////////
+
+  obtenerMarcacionesRemotas(uid:string):Observable<any[]> {
+    if (this.marcaciones[uid] == undefined) {
+      this.marcaciones[uid] = new BehaviorSubject<any[]>([]);
+    }
+
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/logs`;
+    let s = this.http.get<any[]>(apiUrl).subscribe(logs => {
+      this.marcaciones[uid].next(logs);
+      s.unsubscribe();
+    });
+
+    return this.marcaciones[uid];
+  }
+
+  marcarRemotoUsuario(uid:string): Observable<any> {
+    let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}/logs`;
+    return this.http.post<any>(apiUrl, {});
+  }
+
+
+  ///////////////////////////
+
+  
 
   obtenerUsuario(uid:string): Observable<DatosAsistencia> {
     let apiUrl = `${ASSISTANCE_API_URL}/usuarios/${uid}`;
@@ -201,7 +196,6 @@ export class AssistanceService {
   }
 
   generarReporte(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<Reporte> {
-
     const options = { params: new HttpParams()
               .set('inicio', fecha_inicio.toDateString())
               .set('fin', fecha_fin.toDateString())
@@ -211,59 +205,22 @@ export class AssistanceService {
   }
 
   generarReporteGeneral(lugares: Array<string>, fecha: Date): Observable<ReporteGeneral[]> {
-
     const options = {'lugares': lugares, 'fecha': fecha.toDateString()};
     let apiUrl = `${ASSISTANCE_API_URL}/reportes`;
     return this.http.post<ReporteGeneral[]>(apiUrl, options).pipe(map(datos => datos.map(d => new ReporteGeneral(d))));
   }
 
   obtenerCompensatorios(uid: string): Observable<DatosCompensatorio> {
-    //Observable de prueba
-    let result = [  
-                    {
-                      usuario: {
-                        id: '1',
-                        nombre: 'Miguel',
-                        apellido: 'Macagno',
-                        dni: '34928857'
-                      },
-                      cantidad: 33,
-                      compensatorios: [
-                        {registro_id: '1',
-                        fecha: '2018-05-04',
-                        notas: 'Por venir a trabajar en feriado',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 2,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'},
-                        {registro_id: '2',
-                        fecha: '2018-08-07',
-                        notas: 'Por computo de horas extra',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 23,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'},
-                        {registro_id: '3',
-                        fecha: '2018-09-04',
-                        notas: 'Por venir a trabajar en feriado',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 1,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'},
-                        {registro_id: '4',
-                        fecha: '2018-10-04',
-                        notas: 'Por que si',
-                        autorizador_id: '1234-65465-789',
-                        cantidad: 7,
-                        cuenta_id: '23131332',
-                        asiento_id: '2564879642'}
-                      ]
-                    }                    
-                  ]
-  
-    return from(result).pipe(map(datos => new DatosCompensatorio(datos)));
+    let apiUrl = `${ASSISTANCE_API_URL}/compensatorios/${uid}`;
+    return this.http.get<DatosCompensatorio>(apiUrl).pipe(map(datos => new DatosCompensatorio(datos)));
   }
 
+  crearCompensatorio(comp: Compensatorio): Observable<Compensatorio> {
+    let apiUrl = `${ASSISTANCE_API_URL}/compensatorios`;
+    return this.http.put<Compensatorio>(apiUrl, comp);
+  }
+
+  //Ejemplo de prueba sin necesidad de crear una api.
   //generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
   //  let result = [  
   //                  {
@@ -295,7 +252,7 @@ export class AssistanceService {
   //                  }                    
   //                ]
   //  return from(result).pipe(map(datos => new ReporteJustificaciones(datos)));
-  //} Ejemplo de Observable de prueba sin necesidad de crear una api.
+  //} 
   
   generarReporteJustificaciones(uid: string, fecha_inicio: Date, fecha_fin: Date): Observable<ReporteJustificaciones> {
     const options = { params: new HttpParams()

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ReporteJustificaciones } from '../../entities/asistencia';
+import { BehaviorSubject } from 'rxjs';
+
+import { ReporteJustificaciones, FechaJustificada, Configuracion } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -17,6 +19,13 @@ export class ReporteJustificacionesComponent implements OnInit {
   fecha_final: Date = null;
   reporte: ReporteJustificaciones = null;
   subscriptions: any[] = [];
+
+  fechasJustificadas : BehaviorSubject<FechaJustificada[]>;
+  columnasActivas: string[] = ['Inicio','Fin','Justificacion','Notas','Creada'];
+  fechasEliminadas : BehaviorSubject<FechaJustificada[]>;  
+  columnasEliminadas: string[] = ['Inicio','Fin','Justificacion','Notas','Eliminada'];
+
+  config: Configuracion = null;
   //stock: any[] = [
   //                            {id: '1',
   //                            nombre: 'Boleta de Salida',
@@ -32,9 +41,22 @@ export class ReporteJustificacionesComponent implements OnInit {
   constructor(
               private service: AssistanceService,
               private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router) {
+    this.fechasJustificadas = new BehaviorSubject<FechaJustificada[]>([]);
+    this.fechasEliminadas = new BehaviorSubject<FechaJustificada[]>([]);
+  }
 
   ngOnInit() {
+    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
+      this.config = r;
+      if (this.config.mostrar_creador_justificaciones){
+        this.columnasActivas.push('Creador');
+        this.columnasEliminadas.splice(4, 0, 'Creador');
+      }
+      if (this.config.mostrar_eliminador_justificaciones){
+        this.columnasEliminadas.push('Eliminador');
+      }
+    }));
     this.buscando = false;
     this.route.params.subscribe(params => {
       console.log(params);
@@ -67,6 +89,8 @@ export class ReporteJustificacionesComponent implements OnInit {
     .subscribe(r => {
       this.buscando = false;
       this.reporte = r;
+      this.fechasJustificadas.next(r.justificaciones);
+      this.fechasEliminadas.next(r.justificaciones_eliminadas);
     }));
   }
 

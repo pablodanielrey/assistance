@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 
 import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
-
-
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
 
@@ -25,6 +25,7 @@ export class ReporteComponent implements OnInit {
 
   height;
   width;
+  navEnd: Observable<NavigationEnd>;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
@@ -40,18 +41,27 @@ export class ReporteComponent implements OnInit {
               public dialog: MatDialog,
               private location: Location) {
 
-                this.onResize();
+      this.onResize();
+      this.reportes = new BehaviorSubject<RenglonReporte[]>([]);
 
-              }
-
+      /*
+      this.navEnd = router.events.pipe(
+        filter(evt => evt instanceof NavigationEnd)
+      ) as Observable<NavigationEnd>;
+      this.navEnd.subscribe(n => this._generarReporte());
+      */
+  
+  }
 
   eliminarJustificacionDialogRef: MatDialogRef<DialogoEliminarFechaJustificadaComponent>;
 
   reporte: Reporte = null;
+  reportes : BehaviorSubject<RenglonReporte[]> = null;
   info: any = null;
   fecha_inicial: Date = null;
   fecha_final: Date = null;
   usuario_id: string = null;
+  
   subscriptions: any[] = [];
   buscando: boolean = false;
   back: string;
@@ -61,32 +71,33 @@ export class ReporteComponent implements OnInit {
   ngOnInit() {
     this.buscando = false;
 
-    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
-      this.config = r;
-      console.log(this.config.mostrar_tipo_marcacion);
-    }));
-
-
-    this.route.params.subscribe(params => {
-      console.log('parametros cambiaron');
-      console.log(params);
-      this.usuario_id = params['uid'];
-      this.back = (params['back']) ? params['back'] : '/sistema/reportes/personal';
-      if (params['fecha_inicial'] && params['fecha_final']) {
-        this.fecha_inicial = new Date(params['fecha_inicial']);
-        this.fecha_final = new Date(params['fecha_final']);
-        this._generarReporte();
-      } else {
-         this.fecha_final = new Date(Date.now());
-         this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
-         this.generarReporte();
-      }
-    });
     this.subscriptions.push(this.service.obtenerAccesoModulos().subscribe(modulos => {
       this.modulos = modulos;
-      console.log(this.modulos);
     }));
- 
+
+    this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
+      this.config = r;
+    }));
+
+    //this.usuario_id$ = this.route.paramMap.pipe(map(params => params.get('uid')));
+    this.route.paramMap.subscribe(params => {
+      this.usuario_id = params.get('uid');
+      this._generarReporte();
+    });
+
+    this.route.queryParamMap.subscribe(parameters => {
+      //this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
+      if (parameters.get('fecha_inicial') && parameters.get('fecha_final')) {
+        this.fecha_inicial = new Date(parameters.get('fecha_inicial'));
+        this.fecha_final = new Date(parameters.get('fecha_final'));
+      } else {
+        this.fecha_inicial = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000) );
+        this.fecha_final = new Date(Date.now());
+      }
+      this._generarReporte();
+    });
+
+    
   }
 
   ngOnDestroy() {
@@ -99,17 +110,32 @@ export class ReporteComponent implements OnInit {
   }
 
   _generarReporte(): void {
+    if (this.usuario_id == null || this.fecha_final == null || this.fecha_final == null) {
+      console.log('no están cargados los parámetros');
+      return;
+    }
     this.reporte = null;
     this.buscando = true;
     this.subscriptions.push(this.service.generarReporte(this.usuario_id, this.fecha_inicial, this.fecha_final)
     .subscribe(r => {
       this.buscando = false;
       this.reporte = r;
+      this.reportes.next(r.reportes);
     }));
   }
 
   generarReporte():void {
-    this.router.navigate(['/sistema/reportes/personal', this.usuario_id, {fecha_inicial:this.fecha_inicial.toISOString(), fecha_final:this.fecha_final.toISOString(), back: this.back}]);
+    this.router.onSameUrlNavigation = 'reload';
+    let params = {
+      fecha_inicial:this.fecha_inicial.toISOString(), 
+      fecha_final:this.fecha_final.toISOString(), 
+      back: this.back
+    };
+    this.router.navigate(['/sistema/reportes/personal', this.usuario_id], {queryParams:params}).then(b => {
+      if (!b) {
+        this._generarReporte(); 
+      }
+    });
   }
 
   obtenerMarcacionesIndividuales(r: RenglonReporte): string {
@@ -118,11 +144,16 @@ export class ReporteComponent implements OnInit {
     return marcaciones;
   }
 
-  _obtenerParametrosMarcacionIndividual(r: RenglonReporte) {
-    return {
-      fecha_inicial:this.fecha_inicial.toISOString(), 
-      fecha_final:this.fecha_final.toISOString()
-    }
+  generarBack(r: RenglonReporte) {
+    let back = {
+      url: '/sistema/reportes/personal/' + this.usuario_id,
+      params: {
+        fecha_inicial:this.fecha_inicial.toISOString(),
+        fecha_final:this.fecha_final.toISOString()
+      }
+    }; 
+    let sjson = btoa(JSON.stringify(back));
+    return {back:sjson};
   }
 
 
@@ -147,7 +178,7 @@ export class ReporteComponent implements OnInit {
   }
 
   obtenerIcono(m: Marcacion): String {
-    if (this.config.mostrar_tipo_marcacion) {
+    if (!this.config.mostrar_tipo_marcacion) {
       return null;
     }
     if (m == null) {

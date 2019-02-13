@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { RenglonReporte, Marcacion, Configuracion } from '../../entities/asistencia';
+import { RenglonReporte, Marcacion, Configuracion, FechaJustificada } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -21,50 +21,61 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   fecha_final: string = null;
   config: Configuracion = null;
   columnas: string[] = ['Dia','Fecha','Marcacion','Reloj'];
+  columnasJustificaciones: string[] = ['Justificacion','Notas'];
 
   marcaciones : BehaviorSubject<Marcacion[]>;
   marcaciones_duplicadas : BehaviorSubject<Marcacion[]>;
   
+  justificaciones : BehaviorSubject<FechaJustificada[]>;
 
   constructor(private route : ActivatedRoute,
               private router: Router,
               private service : AssistanceService) {
     this.marcaciones = new BehaviorSubject<Marcacion[]>([]);
     this.marcaciones_duplicadas = new BehaviorSubject<Marcacion[]>([]);
+    this.justificaciones = new BehaviorSubject<FechaJustificada[]>([]);
   }
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe(parameters => {
+
+      let sjson = atob(parameters.get('back'))
+      this.back = JSON.parse(sjson);
+
+      /*
+      this.back = {
+        url: (parameters.get('back_url')) ? atob(parameters.get('back_url')) : '/sistema/reportes/personal/',
+        params: parameters.get('back_params')
+//        fecha_inicial: new Date(parameters.get('fecha_inicial')),
+//        fecha_final: new Date(parameters.get('fecha_final'))
+      }
+      */
+      console.log(this.back);
+    });
+
     this.route.paramMap.subscribe(p => {
       this.usuario_id = p.get('uid');
-
-      this.back = {
-        url: p.get('back') ? p.get('back') : '/sistema/reportes/personal/',
-        fecha_inicial: p.get('fecha_inicial'),
-        fecha_final: p.get('fecha_final')
-      }
-
       let fecha = new Date(p.get('fecha'));
       this.cargando = true;
-      
       this.subscriptions.push(this.service.obtenerConfiguracion().subscribe(r => {
         this.config = r;
         if (this.config.mostrar_tipo_marcacion) {
-          this.columnas.push('Tipo');
+          this.columnas.splice(2, 0, 'Tipo');
         }
-        console.log(this.config.mostrar_tipo_marcacion);
+        if (this.config.mostrar_creador_justificaciones){
+          this.columnasJustificaciones.push('Creador');
+        }
       }));
-
-
       this.subscriptions.push(this.service.generarReporte(this.usuario_id, fecha, fecha).subscribe(r => {
         this.cargando = false;
         let renglon_reporte = r.reportes.pop();
-
         this.info = {
           usuario: r.usuario,
           fecha: renglon_reporte.fecha,
           horario: this.obtenerHorario(renglon_reporte),
           horas_trabajadas: this.obtenerHorasTrabajadas(renglon_reporte)
         }
+        this.justificaciones.next(renglon_reporte.justificaciones);
         this.marcaciones.next(renglon_reporte.marcaciones);
         this.marcaciones_duplicadas.next(renglon_reporte.duplicadas);
       }));
@@ -77,10 +88,12 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   }
 
   volver() {
-    if (this.back.fecha_inicial != null && this.back.fecha_final != null) {
-      this.router.navigate([this.back.url, this.usuario_id, {fecha_inicial: this.back.fecha_inicial, fecha_final: this.back.fecha_final}]);
+    console.log(this.back);
+    if (this.back.params != null) {
+      //this.router.navigate([this.back.url, {fecha_inicial: this.back.fecha_inicial, fecha_final: this.back.fecha_final}]);
+      this.router.navigate([this.back.url], {queryParams:this.back.params});
     }else{
-      this.router.navigate([this.back.url, this.usuario_id]);
+      this.router.navigate([this.back.url]);
     }
   }
 

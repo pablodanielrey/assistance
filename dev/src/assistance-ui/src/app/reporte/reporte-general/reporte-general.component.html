@@ -105,7 +105,11 @@
 
               <ng-container matColumnDef='Horas_trabajadas'>
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Horas </mat-header-cell>
-                <mat-cell *matCellDef='let renglon' matTooltip='{{obtenerMarcacionesIndividuales(renglon)}}'> {{obtenerHorasTrabajadas(renglon)}} </mat-cell>
+                <mat-cell *matCellDef='let renglon'> 
+                  <a class='linkTexto' class='linkTexto' routerLink='/sistema/marcaciones/personal/{{renglon.usuario.id}}/{{renglon.fecha}}' [queryParams]=generarBack()>
+                    {{obtenerHorasTrabajadas(renglon)}}
+                  </a>
+                </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef='Justificacion'>
@@ -114,7 +118,9 @@
                   <div *ngIf='renglon.justificaciones.length > 0'>
                     <mat-chip-list #chipList>
                       <mat-chip *ngFor="let j of renglon.justificaciones">
-                        {{j.nombre }}
+                        <a style='text-decoration: none; color: inherit' routerLink='/sistema/reportes/justificaciones/{{renglon.usuario.id}}'>
+                          {{j.nombre }}
+                        </a>
                         <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm'])" (click)="eliminarJustificacion(j, renglon.usuario.id)">cancel</mat-icon>
                       </mat-chip>
                     </mat-chip-list>
