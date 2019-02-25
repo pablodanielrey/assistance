@@ -129,7 +129,7 @@ export class ReporteComponent implements OnInit {
     let params = {
       fecha_inicial:this.fecha_inicial.toISOString(), 
       fecha_final:this.fecha_final.toISOString(), 
-      back: this.back
+      back: btoa(this.back)
     };
     this.router.navigate(['/sistema/reportes/personal', this.usuario_id], {queryParams:params}).then(b => {
       if (!b) {
