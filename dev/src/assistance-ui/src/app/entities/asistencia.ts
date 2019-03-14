@@ -280,6 +280,7 @@ export class RenglonReporte {
   salida: Marcacion;
   cantidad_horas_trabajadas: number;
   justificaciones: Array<FechaJustificada>;
+  usuario: Usuario;
 
   constructor(o:Object) {
     try {

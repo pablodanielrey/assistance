@@ -13,6 +13,8 @@ import { AssistanceService } from '../../assistance.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+import { Oauth2Service } from 'src/app/oauth2/oauth2.service';
+
 
 
 @Component({
@@ -45,7 +47,8 @@ export class ReporteGeneralComponent implements OnInit {
     private router: Router,
     private service: AssistanceService,
     public dialog: MatDialog,
-    private location: Location) {
+    private location: Location,
+    private Oauth2Service: Oauth2Service) {
     this.onResize();
   }
 
@@ -198,6 +201,30 @@ export class ReporteGeneralComponent implements OnInit {
     });
     return r
   }
+
+  accesoARemoverJustificaciones(r: RenglonReporte): boolean {
+    if (this.chequearPerfil(['super-admin'])) {
+      return true;
+    }
+    let uid = this.Oauth2Service.getId();
+    if (uid == r.usuario.id) {
+      return false;
+    }
+    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
+  }
+
+  accesoAJustificaciones(r: RenglonReporte): boolean {
+    if (this.chequearPerfil(['super-admin'])) {
+      return true;
+    }
+    let uid = this.Oauth2Service.getId();
+    if (uid == r.usuario.id) {
+      return false;
+    }
+    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
+  }
+
+
 
   generarBack() {
     let back = {
