@@ -14,6 +14,8 @@ import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion } f
 import { AssistanceService } from '../../assistance.service';
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+import { Oauth2Service } from 'src/app/oauth2/oauth2.service';
+
 
 
 @Component({
@@ -34,6 +36,7 @@ export class ReporteComponent implements OnInit {
   }
 
   constructor(private oauthService: OAuthService,
+              private Oauth2Service: Oauth2Service,
               private service: AssistanceService,
               private http: HttpClient,
               private route: ActivatedRoute,
@@ -260,10 +263,32 @@ export class ReporteComponent implements OnInit {
     let r = false;
     profiles.forEach(p => {
       if (this.modulos.includes(p)) {
-        r = true;
+        r = true; 
       }
     });
     return r
+  }
+
+  accesoARemoverJustificaciones(r: Reporte): boolean {
+    if (this.chequearPerfil(['super-admin'])) {
+      return true;
+    }
+    let uid = this.Oauth2Service.getId();
+    if (uid == r.usuario.id) {
+      return false;
+    }
+    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
+  }
+
+  accesoAJustificaciones(r: Reporte): boolean {
+    if (this.chequearPerfil(['super-admin'])) {
+      return true;
+    }
+    let uid = this.Oauth2Service.getId();
+    if (uid == r.usuario.id) {
+      return false;
+    }
+    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
   }
 
 }
