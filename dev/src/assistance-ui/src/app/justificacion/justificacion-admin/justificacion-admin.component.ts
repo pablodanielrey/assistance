@@ -31,7 +31,7 @@ export class JustificacionAdminComponent implements OnInit {
   buscarJustificaciones() {
     this.justificaciones = [];
     this.cargando = true;
-    this.subscriptions.push(this.service.buscarJustificaciones()
+    this.subscriptions.push(this.service.buscarJustificaciones('')
       .subscribe(justificaciones => {
         this.justificaciones = justificaciones;
         this.justificaciones.sort((a,b):number => {
