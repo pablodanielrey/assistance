@@ -11,7 +11,9 @@ export class JustificacionInicialComponent implements OnInit {
 
   permisos: PermisosService;
 
-  constructor(permisos: PermisosService) { }
+  constructor(permisos: PermisosService) {
+    this.permisos = permisos;
+  }
 
   ngOnInit() {
     
