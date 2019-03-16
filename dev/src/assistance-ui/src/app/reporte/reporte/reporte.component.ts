@@ -260,41 +260,5 @@ export class ReporteComponent implements OnInit {
   is_desktop() {
     return this.width >= 769;
   }
-
-
-  /*
-
-  chequearPerfil(profiles: string[]): boolean {
-    let r = false;
-    profiles.forEach(p => {
-      if (this.modulos.includes(p)) {
-        r = true; 
-      }
-    });
-    return r
-  }
-
-  accesoARemoverJustificaciones(r: Reporte): boolean {
-    if (this.chequearPerfil(['super-admin'])) {
-      return true;
-    }
-    let uid = this.Oauth2Service.getId();
-    if (uid == r.usuario.id) {
-      return false;
-    }
-    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
-  }
-
-  accesoAJustificaciones(r: Reporte): boolean {
-    if (this.chequearPerfil(['super-admin'])) {
-      return true;
-    }
-    let uid = this.Oauth2Service.getId();
-    if (uid == r.usuario.id) {
-      return false;
-    }
-    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
-  }
-
-  */
+  
 }

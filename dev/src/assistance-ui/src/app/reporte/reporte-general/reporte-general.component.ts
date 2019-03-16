@@ -194,42 +194,6 @@ export class ReporteGeneralComponent implements OnInit {
     return this.width >= 769;
   }
 
-
-/*
-  chequearPerfil(profiles: string[]): boolean {
-    let r = false;
-    profiles.forEach(p => {
-      if (this.modulos.includes(p)) {
-        r = true;
-      }
-    });
-    return r
-  }
-
-  accesoARemoverJustificaciones(r: RenglonReporte): boolean {
-    if (this.chequearPerfil(['super-admin'])) {
-      return true;
-    }
-    let uid = this.Oauth2Service.getId();
-    if (uid == r.usuario.id) {
-      return false;
-    }
-    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
-  }
-
-  accesoAJustificaciones(r: RenglonReporte): boolean {
-    if (this.chequearPerfil(['super-admin'])) {
-      return true;
-    }
-    let uid = this.Oauth2Service.getId();
-    if (uid == r.usuario.id) {
-      return false;
-    }
-    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
-  }
-*/
-
-
   generarBack() {
     let back = {
       url: '/sistema/reportes/general/generar/' + this.fecha.toISOString(),

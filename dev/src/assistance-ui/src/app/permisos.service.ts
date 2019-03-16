@@ -32,6 +32,10 @@ export class PermisosService {
     return r
   }
 
+  obtenerUsuarioLogueadoId(): string {
+    return this.Oauth2Service.getId();
+  }
+
   accesoARemoverJustificaciones(usuario_id: string): boolean {
     if (this.chequearPerfil(['super-admin'])) {
       return true;
