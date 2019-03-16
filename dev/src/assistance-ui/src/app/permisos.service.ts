@@ -36,6 +36,18 @@ export class PermisosService {
     return this.Oauth2Service.getId();
   }
 
+  esJefe(): boolean {
+    return this.chequearPerfil(['super-admin','justificacion_personal_abm']);
+  }
+
+  accesoAAdministrarJustificaciones(): boolean {
+    return this.chequearPerfil(['super-admin','justificacion_tipo_abm']);
+  }
+  
+  accesoAAgregarJustificacionesGenerales(): boolean {
+    return this.chequearPerfil(['super-admin','justificacion_general_a']);
+  }  
+
   accesoARemoverJustificaciones(usuario_id: string): boolean {
     if (this.chequearPerfil(['super-admin'])) {
       return true;
@@ -56,10 +68,6 @@ export class PermisosService {
       return false;
     }
     return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
-  }
-
-  accesoAJustificacionesGenerales(usuario_id: string): boolean {
-    return false;
   }
 
 }

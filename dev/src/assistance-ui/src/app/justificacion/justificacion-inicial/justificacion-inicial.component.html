@@ -8,9 +8,18 @@
     <mat-divider></mat-divider>
 
     <div class="contenidoPantalla">
-      <button mat-button class="btnPrimario" routerLink="/sistema/justificaciones/personal"><mat-icon class="btnIco">person</mat-icon> JUSTIFICACION PERSONAL</button><br>
-      <button mat-button class="btnPrimario" routerLink="/sistema/justificaciones/general"><mat-icon class="btnIco">people</mat-icon> JUSTIFICACION GENERAL</button><br>
-      <button mat-button class="btnPrimario" routerLink="/sistema/justificaciones/admin/seleccion"><mat-icon class="btnIco">star</mat-icon> ADMINISTRAR JUSTIFICACIONES</button>
+      <button *ngIf='permisos.esJefe()' mat-button class="btnPrimario" routerLink="/sistema/justificaciones/personal">
+        <mat-icon class="btnIco">person</mat-icon> 
+        JUSTIFICACION PERSONAL
+      </button>
+      <button *ngIf='permisos.accesoAAgregarJustificacionesGenerales()' mat-button class="btnPrimario" routerLink="/sistema/justificaciones/general">
+        <mat-icon class="btnIco">people</mat-icon> 
+        JUSTIFICACION GENERAL
+      </button>
+      <button *ngIf='permisos.accesoAAdministrarJustificaciones()' mat-button class="btnPrimario" routerLink="/sistema/justificaciones/admin/seleccion">
+        <mat-icon class="btnIco">star</mat-icon> 
+        ADMINISTRAR JUSTIFICACIONES
+      </button>
 
     </div>
 
