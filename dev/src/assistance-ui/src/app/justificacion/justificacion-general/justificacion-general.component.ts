@@ -52,7 +52,7 @@ export class JustificacionGeneralComponent implements OnInit {
   buscarJustificaciones() {
     this.justificaciones = [];
     this.cargando = true;
-    this.subscriptions.push(this.service.buscarJustificaciones('').pipe(
+    this.subscriptions.push(this.service.buscarJustificaciones('1').pipe(
       map(justificaciones => justificaciones.filter(j => j.general ? j.general : false)))
       .subscribe(justificaciones => {
         justificaciones.sort((a,b) => {
