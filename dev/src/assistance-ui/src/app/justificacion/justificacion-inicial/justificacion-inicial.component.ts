@@ -9,7 +9,9 @@ import { PermisosService } from '../../permisos.service';
 })
 export class JustificacionInicialComponent implements OnInit {
 
-  constructor(private permisos: PermisosService) { }
+  permisos: PermisosService;
+
+  constructor(permisos: PermisosService) { }
 
   ngOnInit() {
     
