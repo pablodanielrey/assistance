@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { AssistanceService } from '../../assistance.service';
+import { PermisosService } from '../../permisos.service';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -48,7 +49,8 @@ export class ReporteGeneralComponent implements OnInit {
     private service: AssistanceService,
     public dialog: MatDialog,
     private location: Location,
-    private Oauth2Service: Oauth2Service) {
+    private Oauth2Service: Oauth2Service,
+    private permisos: PermisosService) {
     this.onResize();
   }
 
@@ -192,6 +194,8 @@ export class ReporteGeneralComponent implements OnInit {
     return this.width >= 769;
   }
 
+
+/*
   chequearPerfil(profiles: string[]): boolean {
     let r = false;
     profiles.forEach(p => {
@@ -223,7 +227,7 @@ export class ReporteGeneralComponent implements OnInit {
     }
     return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
   }
-
+*/
 
 
   generarBack() {

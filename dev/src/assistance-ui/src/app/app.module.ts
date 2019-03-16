@@ -12,6 +12,8 @@ import { Oauth2Component } from './oauth2/oauth2.component';
 import { Oauth2Service } from './oauth2/oauth2.service';
 import { OauthErrorHandler } from './oauth2/oauth-error.service';
 
+import { PermisosService } from './permisos.service';
+
 import { MyMaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
@@ -152,6 +154,7 @@ export function windowFactory() {
   providers: [
       UpdateService,
       AssistanceService,
+      PermisosService,
       NotificacionesService,
       { provide: 'window', useFactory: windowFactory },
       { provide: LOCALE_ID, useValue: "es" },

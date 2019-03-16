@@ -15,6 +15,7 @@ import { AssistanceService } from '../../assistance.service';
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
 import { Oauth2Service } from 'src/app/oauth2/oauth2.service';
+import { PermisosService } from 'src/app/permisos.service';
 
 
 
@@ -38,6 +39,7 @@ export class ReporteComponent implements OnInit {
   constructor(private oauthService: OAuthService,
               private Oauth2Service: Oauth2Service,
               private service: AssistanceService,
+              private permisos: PermisosService,
               private http: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
@@ -259,6 +261,9 @@ export class ReporteComponent implements OnInit {
     return this.width >= 769;
   }
 
+
+  /*
+
   chequearPerfil(profiles: string[]): boolean {
     let r = false;
     profiles.forEach(p => {
@@ -291,4 +296,5 @@ export class ReporteComponent implements OnInit {
     return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
   }
 
+  */
 }
