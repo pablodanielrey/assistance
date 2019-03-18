@@ -1,0 +1,42 @@
+
+Cantidad<input type=number [(ngModel)]='cantidad'></input>
+<button (click)='generar()'>generar</button>
+
+<mat-table [dataSource]='justificaciones$ | async' matSort>
+  <ng-container matColumnDef='Inicio'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Inicio </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'> 
+      {{fechaJustificada.fecha_inicio | date:'dd/MM/yyyy'}}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='Fin'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Fin </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'> 
+      {{fechaJustificada.fecha_fin | date:'dd/MM/yyyy'}}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='Justificacion'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'> 
+      {{fechaJustificada.justificacion.nombre +' ('+ fechaJustificada.justificacion.codigo +')'}}
+    </mat-cell>
+  </ng-container>
+
+  <!--
+  <ng-container matColumnDef='Notas'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Notas </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      {{fechaJustificada.notas || ""}}
+    </mat-cell>
+  </ng-container>
+  -->  
+  <ng-container matColumnDef='Creador'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Creador </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      {{fechaJustificada.creador?.nombre || ""}}
+      {{fechaJustificada.creador?.apellido || ""}}
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnasActivas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnasActivas"></mat-row>
+</mat-table>
