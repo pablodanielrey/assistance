@@ -79,7 +79,9 @@ import { CompensatoriosModificarComponent } from './compensatorios/compensatorio
 import { CompensatoriosConsultaComponent } from './compensatorios/compensatorios-consulta/compensatorios-consulta.component';
 import { CompensatoriosAltaComponent } from './compensatorios/compensatorios-alta/compensatorios-alta.component';
 import { MarcarRemotoComponent } from './marcaciones/marcar-remoto/marcar-remoto.component';
-import { ReporteUltimasJustificacionesComponent } from './reporte/reporte-ultimas-justificaciones/reporte-ultimas-justificaciones.component';
+
+import { MenuComponent as MenuReportesInternosComponent } from './reportes-internos/menu/menu.component';
+import { ReporteUltimasJustificacionesComponent } from './reportes-internos/reporte-ultimas-justificaciones/reporte-ultimas-justificaciones.component';
 
 
 export function windowFactory() {
@@ -136,6 +138,7 @@ export function windowFactory() {
     CompensatoriosConsultaComponent,
     CompensatoriosAltaComponent,
     MarcarRemotoComponent,
+    MenuReportesInternosComponent,
     ReporteUltimasJustificacionesComponent
   ],
   imports: [

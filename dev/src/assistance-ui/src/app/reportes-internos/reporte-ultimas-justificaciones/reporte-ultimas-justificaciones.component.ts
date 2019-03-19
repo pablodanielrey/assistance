@@ -3,7 +3,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import { switchMap, tap, mergeMap, reduce, scan, map } from 'rxjs/operators';
 
 
-import { AssistanceService } from 'src/app/assistance.service';
+import { ReportesInternosService } from 'src/app/reportes-internos.service';
 import { FechaJustificada } from 'src/app/entities/asistencia';
 
 
@@ -21,7 +21,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
   oficinas$ = null;
   cantidad_oficinas$ = null;
 
-  constructor(service: AssistanceService) {
+  constructor(service: ReportesInternosService) {
     this.justificaciones$ = this.generar$.pipe(
       switchMap(v => service.ultimasJustificaciones(v)),
       tap(v => console.log(v))

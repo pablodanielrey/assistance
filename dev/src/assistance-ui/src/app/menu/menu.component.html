@@ -29,6 +29,11 @@
         <mat-icon class="icoMenu">list</mat-icon> Reportes
       </button><br>
     </span>
+    <span *ngIf="chequearPerfil(['super-admin']) | async">
+      <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/reportes-internos">
+        <mat-icon class="icoMenu">list</mat-icon> Reportes Internos
+      </button><br>
+    </span>    
     <span *ngIf="chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm','justificacion_tipo_abm']) | async">
       <button class="btn" mat-button (click)='onInternalItem()' routerLink="/sistema/justificaciones/seleccion">
         <mat-icon class="icoMenu">star_border</mat-icon> Justificaciones

@@ -36,6 +36,10 @@ export class PermisosService {
     return this.Oauth2Service.getId();
   }
 
+  esAdministrador(): boolean {
+    return this.chequearPerfil(['super-admin']);
+  }
+
   esJefe(): boolean {
     return this.chequearPerfil(['super-admin','justificacion_personal_abm']);
   }
