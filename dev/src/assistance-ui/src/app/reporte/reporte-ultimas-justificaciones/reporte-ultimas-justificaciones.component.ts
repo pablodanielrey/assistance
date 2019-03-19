@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { switchMap, tap, mergeMap, reduce, scan } from 'rxjs/operators';
+import { switchMap, tap, mergeMap, reduce, scan, map } from 'rxjs/operators';
 
 
 import { AssistanceService } from 'src/app/assistance.service';
@@ -17,7 +17,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
   justificaciones$: Observable<any[]>;
   cantidad: number = 10;
   generar$ = new BehaviorSubject<number>(this.cantidad);
-  columnasActivas = ['Inicio','Fin','Creador','Persona','Oficina','Justificacion'];
+  columnasActivas = ['Inicio', 'Fin', 'Creador', 'Persona', 'Oficina', 'Justificacion'];
   oficinas$ = null;
 
   constructor(service: AssistanceService) {
@@ -26,7 +26,31 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
       tap(v => console.log(v))
     );
     this.oficinas$ = this.justificaciones$.pipe(
-      scan((a,vs:any[]) => {
+      map(vs => {
+          let a = {};
+          for (let fj of vs) {
+            if ('usuario' in fj) {
+              for (let o of fj.usuario.oficinas) {
+                if (o in a) {
+                  a[o] = a[o] + 1;
+                } else {
+                  a[o] = 1;
+                }
+              }
+            }
+          }
+          return a;
+        }
+      ),
+      map(vs => {
+        let a = [];
+        for (let k of Object.keys(vs)) {
+          a.push({nombre:k, cantidad:vs[k]})
+        }
+        return a;
+      }),
+      /*
+      scan((a, vs: any[]) => {
         console.log('recibi');
         console.log(vs);
         for (let v of vs) {
@@ -40,7 +64,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
                 }
               }
               if (!encontrado) {
-                a.push({nombre: v1, cantidad:1});
+                a.push({ nombre: v1, cantidad: 1 });
               }
             }
           }
@@ -48,7 +72,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
         console.log('retorno');
         console.log(a);
         return a;
-      },[]),
+      }, []),*/
       tap(v => console.log(v)));
   }
 
