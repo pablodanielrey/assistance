@@ -48,6 +48,7 @@ import { HorarioHistoricoComponent } from './horario/horario-historico/horario-h
 import { MiperfilComponent } from './miperfil/miperfil.component';
 
 import { TelegramComponent } from './notificaciones/telegram/telegram.component';
+import { ReporteUltimasJustificacionesComponent } from './reporte/reporte-ultimas-justificaciones/reporte-ultimas-justificaciones.component';
 
 
 const routes: Routes = [
@@ -84,7 +85,8 @@ const routes: Routes = [
           { path: 'personal/:uid', component: ReporteComponent },
           { path: 'horas_semanales/:uid', component: ReporteHorasSemanalComponent },
           { path: 'justificaciones', component: SeleccionarUsuarioJustificacionesComponent },
-          { path: 'justificaciones/:uid', component: ReporteJustificacionesComponent }
+          { path: 'justificaciones/:uid', component: ReporteJustificacionesComponent },
+          { path: 'justificaciones_generadas', component: ReporteUltimasJustificacionesComponent }
         ]
       },
       {

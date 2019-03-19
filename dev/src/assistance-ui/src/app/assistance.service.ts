@@ -97,7 +97,7 @@ export class AssistanceService {
   }
 
   ultimasJustificaciones(cantidad: number): Observable<any[]> {
-    let apiUrl = `${ASSISTANCE_API_URL}//reporte_justificaciones_realizadas/${cantidad}`;
+    let apiUrl = `${ASSISTANCE_API_URL}/reporte_justificaciones_realizadas/${cantidad}`;
     return this.http.get<any[]>(apiUrl);
   }
 
