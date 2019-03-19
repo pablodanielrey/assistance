@@ -77,7 +77,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
       tap(v => console.log(v)));
 
       this.cantidad_oficinas$ = this.oficinas$.pipe(
-        map(vs => {return vs.length;})
+        map((vs:any[]) => {return vs.length;})
       );
   }
 
