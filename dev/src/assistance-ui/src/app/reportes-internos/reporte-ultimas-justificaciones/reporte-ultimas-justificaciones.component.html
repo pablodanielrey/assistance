@@ -2,6 +2,9 @@
 Cantidad<input type=number [(ngModel)]='cantidad'/>
 <button (click)='generar()'>generar</button>
 
+<mat-spinner *ngIf='cargando$ | async'></mat-spinner>
+<mat-spinner *ngIf='procesando$ | async'></mat-spinner>
+
 <mat-table [dataSource]='justificaciones$ | async' matSort>
   <ng-container matColumnDef='Inicio'>
     <mat-header-cell *matHeaderCellDef mat-sort-header> Inicio </mat-header-cell>
@@ -52,7 +55,6 @@ Cantidad<input type=number [(ngModel)]='cantidad'/>
       <div  *ngFor='let o of fechaJustificada.usuario?.oficinas'>
         {{o}}
       </div>
-      {{fechaJustificada.usuario?.oficinas[0]}}
     </mat-cell>
   </ng-container>
 

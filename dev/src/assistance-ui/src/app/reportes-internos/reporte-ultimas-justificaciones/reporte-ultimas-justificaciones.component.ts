@@ -20,10 +20,18 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
   columnasActivas = ['Inicio', 'Fin', 'Creador', 'Persona', 'Oficina', 'Justificacion'];
   oficinas$ = null;
   cantidad_oficinas$ = null;
+  cargando$ = null;
+  procesando$ = null;
 
   constructor(service: ReportesInternosService) {
+
+    this.cargando$ = new BehaviorSubject<Boolean>(false);
+    this.procesando$ = new BehaviorSubject<Boolean>(false);
+
     this.justificaciones$ = this.generar$.pipe(
+      tap(v => this.cargando$.next(true)),
       switchMap(v => service.ultimasJustificaciones(v)),
+      tap(v => {this.cargando$.next(false); this.procesando$.next(true)}),
       tap(v => console.log(v))
     );
     this.oficinas$ = this.justificaciones$.pipe(
@@ -48,7 +56,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
         for (let k of Object.keys(vs)) {
           a.push({nombre:k, cantidad:vs[k]})
         }
-        return a;
+        return a.sort((a1,a2) => a2.cantidad - a1.cantidad);
       }),
       /*
       scan((a, vs: any[]) => {
@@ -74,6 +82,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
         console.log(a);
         return a;
       }, []),*/
+      tap(v => this.procesando$.next(false)),
       tap(v => console.log(v)));
 
       this.cantidad_oficinas$ = this.oficinas$.pipe(
