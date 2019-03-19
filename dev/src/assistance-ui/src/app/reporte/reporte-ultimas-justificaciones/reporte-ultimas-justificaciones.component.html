@@ -37,6 +37,15 @@ Cantidad<input type=number [(ngModel)]='cantidad'/>
       {{fechaJustificada.creador?.apellido || ""}}
     </mat-cell>
   </ng-container>
+
+  <ng-container matColumnDef='Persona'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Persona </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      {{fechaJustificada.usuario?.nombre || ""}}
+      {{fechaJustificada.usuario?.apellido || ""}}
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="columnasActivas"></mat-header-row>
   <mat-row *matRowDef="let row; columns: columnasActivas"></mat-row>
 </mat-table>

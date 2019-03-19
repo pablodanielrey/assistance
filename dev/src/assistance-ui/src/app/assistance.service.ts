@@ -98,7 +98,7 @@ export class AssistanceService {
 
   ultimasJustificaciones(cantidad: number): Observable<any[]> {
     let apiUrl = `${ASSISTANCE_API_URL}/reporte_justificaciones_realizadas/${cantidad}`;
-    return this.http.get<any[]>(apiUrl);
+    return this.http.get<any[]>(apiUrl).pipe(map(datos => datos.map(j => new FechaJustificada(j))));
   }
 
   obtenerJustificacion(jid:string): Observable<Justificacion> {
