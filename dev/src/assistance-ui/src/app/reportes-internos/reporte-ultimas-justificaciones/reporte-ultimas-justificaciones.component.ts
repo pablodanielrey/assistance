@@ -19,6 +19,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
   generar$ = new BehaviorSubject<number>(this.cantidad);
   columnasActivas = ['Inicio', 'Fin', 'Creador', 'Persona', 'Oficina', 'Justificacion'];
   oficinas$ = null;
+  personas$ = null;
   cantidad_oficinas$ = null;
   cargando$ = null;
   procesando$ = null;
@@ -34,6 +35,42 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
       tap(v => {this.cargando$.next(false); this.procesando$.next(true)}),
       tap(v => console.log(v))
     );
+
+    this.personas$ = this.justificaciones$.pipe(
+      map(vs => {
+        let a = {};
+        for (let fj of vs) {
+          if ('usuario' in fj) {
+            let u = fj.usuario.dni;
+            if (u in a) {
+              a[u] = {
+                usuario: fj.usuario,
+                cantidad: a[u].cantidad + 1
+              }
+            } else {
+              a[u] = {
+                usuario: fj.usuario,
+                cantidad: 1
+              };
+            }
+          }
+        }
+        return a;
+      }
+    ),
+    tap(v => console.log(v)),
+    map(vs => {
+      let a = [];
+      for (let k of Object.keys(vs)) {
+        a.push({
+          nombre: vs[k].usuario.nombre + ' ' + vs[k].usuario.apellido,
+          cantidad: vs[k].cantidad
+        })
+      }
+      return a.sort((a1,a2) => a2.cantidad - a1.cantidad);
+    }),
+    tap(v => console.log(v)));
+
     this.oficinas$ = this.justificaciones$.pipe(
       map(vs => {
           let a = {};
