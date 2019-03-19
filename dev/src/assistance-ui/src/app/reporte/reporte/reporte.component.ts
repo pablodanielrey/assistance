@@ -195,7 +195,7 @@ export class ReporteComponent implements OnInit {
     if (m.tipo == 1) {
       return 'fingerprint';
     }
-    if (m.tipo == 3) {
+    if (m.tipo == 100) {
       return 'laptop';
     }
   }
