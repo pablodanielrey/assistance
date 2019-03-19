@@ -78,3 +78,7 @@ Cantidad<input type=number [(ngModel)]='cantidad'/>
     <mat-header-row *matHeaderRowDef="['Oficina','Cantidad']"></mat-header-row>
     <mat-row *matRowDef="let row; columns: ['Oficina','Cantidad']"></mat-row>
 </mat-table>
+
+<div>
+  {{cantidad_oficinas$ | async}}
+</div>

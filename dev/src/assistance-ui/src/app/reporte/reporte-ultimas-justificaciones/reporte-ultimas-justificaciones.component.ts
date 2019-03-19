@@ -19,6 +19,7 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
   generar$ = new BehaviorSubject<number>(this.cantidad);
   columnasActivas = ['Inicio', 'Fin', 'Creador', 'Persona', 'Oficina', 'Justificacion'];
   oficinas$ = null;
+  cantidad_oficinas$ = null;
 
   constructor(service: AssistanceService) {
     this.justificaciones$ = this.generar$.pipe(
@@ -74,6 +75,10 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
         return a;
       }, []),*/
       tap(v => console.log(v)));
+
+      this.cantidad_oficinas$ = this.oficinas$.pipe(
+        map(vs => {return vs.length;})
+      );
   }
 
   ngOnInit() {
