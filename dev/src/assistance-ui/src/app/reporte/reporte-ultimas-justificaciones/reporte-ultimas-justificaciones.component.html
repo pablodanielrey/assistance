@@ -46,6 +46,35 @@ Cantidad<input type=number [(ngModel)]='cantidad'/>
     </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef='Oficina'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Oficina </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      <div  *ngFor='let o of fechaJustificada.usuario?.oficinas'>
+        {{o}}
+      </div>
+      {{fechaJustificada.usuario?.oficinas[0]}}
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="columnasActivas"></mat-header-row>
   <mat-row *matRowDef="let row; columns: columnasActivas"></mat-row>
+</mat-table>
+
+<mat-table [dataSource]='oficinas$ | async' matSort>
+    <ng-container matColumnDef='Oficina'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Oficina </mat-header-cell>
+        <mat-cell *matCellDef='let off'>  
+          {{off.nombre}}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef='Cantidad'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+        <mat-cell *matCellDef='let off'>  
+          {{off.cantidad}}
+        </mat-cell>
+    </ng-container>
+      
+    <mat-header-row *matHeaderRowDef="['Oficina','Cantidad']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['Oficina','Cantidad']"></mat-row>
 </mat-table>
