@@ -64,7 +64,8 @@ export class ReporteUltimasJustificacionesComponent implements OnInit {
       for (let k of Object.keys(vs)) {
         a.push({
           nombre: vs[k].usuario.nombre + ' ' + vs[k].usuario.apellido,
-          cantidad: vs[k].cantidad
+          cantidad: vs[k].cantidad,
+          oficinas: vs[k].usuario.oficinas
         })
       }
       return a.sort((a1,a2) => a2.cantidad - a1.cantidad);
