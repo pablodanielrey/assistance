@@ -71,7 +71,7 @@ export class PermisosService {
     if (uid == usuario_id) {
       return false;
     }
-    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm']);
+    return this.chequearPerfil(['justificacion_personal_abm','justificacion_general_abm','justificacion_personal_a','justificacion_general_a']);
   }
 
 }
