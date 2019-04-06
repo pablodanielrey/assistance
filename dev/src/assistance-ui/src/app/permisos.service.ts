@@ -49,7 +49,7 @@ export class PermisosService {
   }
   
   accesoAAgregarJustificacionesGenerales(): boolean {
-    return this.chequearPerfil(['super-admin','justificacion_general_a']);
+    return this.chequearPerfil(['super-admin','justificacion_general_abm']);
   }  
 
   accesoARemoverJustificaciones(usuario_id: string): boolean {
