@@ -55,7 +55,7 @@
           </mat-table> 
         </mat-tab>
       </mat-tab-group>
-      <button mat-button class="btnSiguiente">
+      <button *ngIf='permisos.esAdministrador()' mat-button class="btnSiguiente">
         <a style='color:inherit; text-decoration: none;' routerLink="/sistema/compensatorios/alta/{{usuario_id}}">MODIFICAR</a>
       </button>
     </div>

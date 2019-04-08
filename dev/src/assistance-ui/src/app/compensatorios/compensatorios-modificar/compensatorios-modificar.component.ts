@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Compensatorio,DatosCompensatorio } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
+import { PermisosService } from '../../permisos.service';
+
 @Component({
   selector: 'app-compensatorios-modificar',
   templateUrl: './compensatorios-modificar.component.html',
@@ -23,7 +25,10 @@ export class CompensatoriosModificarComponent implements OnInit {
 
   constructor(private service: AssistanceService,
               private location: Location,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private permisos: PermisosService) 
+              {this.permisos = permisos; 
+  }
 
   ngOnInit() {
     this.cargando = true;
