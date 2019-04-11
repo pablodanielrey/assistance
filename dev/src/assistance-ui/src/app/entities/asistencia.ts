@@ -252,7 +252,7 @@ export class Horario {
 }
 
 export class Detalle {
-
+  minutos_totales_trabajados: number;
 }
 
 export class Lugar {

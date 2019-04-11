@@ -17,7 +17,7 @@ import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fe
 import { Oauth2Service } from 'src/app/oauth2/oauth2.service';
 import { PermisosService } from 'src/app/permisos.service';
 
-
+import { ExportacionesService } from '../../exportaciones.service';
 
 @Component({
   selector: 'app-reporte',
@@ -44,7 +44,8 @@ export class ReporteComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
-              private location: Location) {
+              private location: Location,
+              private exportaciones:ExportacionesService) {
 
       this.onResize();
       this.reportes = new BehaviorSubject<RenglonReporte[]>([]);
@@ -260,5 +261,33 @@ export class ReporteComponent implements OnInit {
   is_desktop() {
     return this.width >= 769;
   }
-  
+ 
+  exportarExcel():void {
+    if (this.reporte != null){
+      let dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+      let reporte: any = [{
+        Apellido: this.reporte.usuario.apellido,
+        Nombre: this.reporte.usuario.nombre,
+        DNI: this.reporte.usuario.dni,
+        Inicio: this.reporte.fecha_inicial.toLocaleDateString(),
+        Fin: this.reporte.fecha_final.toLocaleDateString(),
+        Trabajado: this.obtenerHorasString(this.reporte.detalle.minutos_totales_trabajados)
+      }]
+      this.reporte.reportes.forEach(r => {
+        reporte.push({
+              Dia: dias[r.fecha.getDay()],   
+              Fecha: r.fecha.toLocaleDateString(),
+              Horario: this.obtenerHorario(r),
+              Entrada: (r.entrada) ? (this.obtenerMarcacion(r.entrada).toLocaleTimeString()) : (''),
+              Salida: (r.salida) ? (this.obtenerMarcacion(r.salida).toLocaleTimeString()) : (''),
+              Horas: (r.salida && r.entrada) ? (this.obtenerHorasTrabajadas(r)) :(''),
+              Justificaciones: ('')
+        });
+      });
+      let fini =  this.reporte.fecha_inicial.toLocaleDateString();
+      let ffin =  this.reporte.fecha_final.toLocaleDateString();
+      let titulo = 'Reporte-'+this.reporte.usuario.apellido+'-'+fini+'a'+ffin;
+      this.exportaciones.exportarArchivoExcel(reporte, titulo);
+    }
+  }
 }

@@ -26,8 +26,10 @@
     "@angular/service-worker": "^6.1.10",
     "angular-oauth2-oidc": "^4.0.3",
     "core-js": "^2.5.4",
+    "file-saver": "^2.0.1",
     "rxjs": "^6.3.3",
     "screenfull": "^3.3.3",
+    "xlsx": "^0.14.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
