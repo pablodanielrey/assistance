@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
 
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
+import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada, Configuracion, JustificacionReporte } from '../../entities/asistencia';
 import { Location } from '@angular/common';
 
 import { Observable } from 'rxjs';
@@ -186,8 +186,8 @@ export class ReporteGeneralComponent implements OnInit {
     this.reportes.forEach(rep => rep.reportes.forEach(r => r.justificaciones = this.eliminarJustificacionDeRenglon(r.justificaciones, jid)));
   }
 
-  eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
-    return justificaciones.filter(j => j.id != jid);;
+  eliminarJustificacionDeRenglon(justificaciones: JustificacionReporte[], jid): Array<any> {
+    return justificaciones.filter(j => j.id != jid);
   }
 
   is_desktop() {

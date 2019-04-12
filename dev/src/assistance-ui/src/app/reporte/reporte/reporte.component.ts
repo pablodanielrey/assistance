@@ -10,7 +10,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 
-import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
+import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion, JustificacionReporte } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
@@ -254,7 +254,7 @@ export class ReporteComponent implements OnInit {
     console.log(this.reporte.reportes);
   }
 
-  eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
+  eliminarJustificacionDeRenglon(justificaciones: JustificacionReporte[], jid): Array<any> {
     return justificaciones.filter(j => j.id != jid);;
   }
 

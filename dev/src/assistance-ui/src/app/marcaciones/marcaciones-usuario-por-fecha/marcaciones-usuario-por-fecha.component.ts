@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { RenglonReporte, Marcacion, Configuracion, FechaJustificada } from '../../entities/asistencia';
+import { RenglonReporte, Marcacion, Configuracion, FechaJustificada, JustificacionReporte } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 @Component({
@@ -26,14 +26,14 @@ export class MarcacionesUsuarioPorFechaComponent implements OnInit {
   marcaciones : BehaviorSubject<Marcacion[]>;
   marcaciones_duplicadas : BehaviorSubject<Marcacion[]>;
   
-  justificaciones : BehaviorSubject<FechaJustificada[]>;
+  justificaciones : BehaviorSubject<JustificacionReporte[]>;
 
   constructor(private route : ActivatedRoute,
               private router: Router,
               private service : AssistanceService) {
     this.marcaciones = new BehaviorSubject<Marcacion[]>([]);
     this.marcaciones_duplicadas = new BehaviorSubject<Marcacion[]>([]);
-    this.justificaciones = new BehaviorSubject<FechaJustificada[]>([]);
+    this.justificaciones = new BehaviorSubject<JustificacionReporte[]>([]);
   }
 
   ngOnInit() {
