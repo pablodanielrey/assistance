@@ -274,6 +274,10 @@ export class ReporteComponent implements OnInit {
         Trabajado: this.obtenerHorasString(this.reporte.detalle.minutos_totales_trabajados)
       }]
       this.reporte.reportes.forEach(r => {
+        let jus = [];
+        r.justificaciones.forEach(j => {
+          jus.push(j.codigo);
+        })
         reporte.push({
               Dia: dias[r.fecha.getDay()],   
               Fecha: r.fecha.toLocaleDateString(),
@@ -281,12 +285,10 @@ export class ReporteComponent implements OnInit {
               Entrada: (r.entrada) ? (this.obtenerMarcacion(r.entrada).toLocaleTimeString()) : (''),
               Salida: (r.salida) ? (this.obtenerMarcacion(r.salida).toLocaleTimeString()) : (''),
               Horas: (r.salida && r.entrada) ? (this.obtenerHorasTrabajadas(r)) :(''),
-              Justificaciones: ('')
+              Justificaciones: jus.toString()
         });
       });
-      let fini =  this.reporte.fecha_inicial.toLocaleDateString();
-      let ffin =  this.reporte.fecha_final.toLocaleDateString();
-      let titulo = 'Reporte-'+this.reporte.usuario.apellido+'-'+fini+'a'+ffin;
+      let titulo = 'Reporte-'+this.reporte.usuario.apellido;
       this.exportaciones.exportarArchivoExcel(reporte, titulo);
     }
   }
