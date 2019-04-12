@@ -22,6 +22,7 @@ export class JustificacionGeneralComponent implements OnInit {
   justificaciones: Justificacion[];
   justificacion: Justificacion = null;
   cargando: boolean = false;
+  notas: string = '';
 
   subscriptions: any[] = [];
   seleccionFecha: string = 'simple';
@@ -51,7 +52,7 @@ export class JustificacionGeneralComponent implements OnInit {
   buscarJustificaciones() {
     this.justificaciones = [];
     this.cargando = true;
-    this.subscriptions.push(this.service.buscarJustificaciones().pipe(
+    this.subscriptions.push(this.service.buscarJustificaciones('1').pipe(
       map(justificaciones => justificaciones.filter(j => j.general ? j.general : false)))
       .subscribe(justificaciones => {
         justificaciones.sort((a,b) => {
@@ -101,6 +102,7 @@ export class JustificacionGeneralComponent implements OnInit {
       fj.fecha_inicio = this.setInit(this.fechaInicio);
       fj.fecha_fin = this.setInit(this.fechaFin);
     }
+    fj.notas = this.notas;
 
     this.subscriptions.push(this.service.justificar(fj)
       .subscribe(r => {

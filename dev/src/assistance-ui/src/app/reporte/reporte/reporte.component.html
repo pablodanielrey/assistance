@@ -39,9 +39,9 @@
             </div>
           </form>
           <div class="contenedorBtnAcciones">
-            <!-- <button mat-button class="btnAcciones" title="Imprimir"><i class="material-icons">print</i></button>
-            <button mat-button class="btnAcciones" title="Descargar"><i class="material-icons">cloud_download</i></button>
-            <button mat-button class="btnAcciones" title="Compartir"><i class="material-icons">share</i></button> -->
+            <!-- <button mat-button class="btnAcciones" title="Imprimir"><i class="material-icons">print</i></button> -->
+            <button mat-button class="btnAcciones" (click)="exportarExcel()" title="Descargar"><i class="material-icons">cloud_download</i></button>
+            <!-- <button mat-button class="btnAcciones" title="Compartir"><i class="material-icons">share</i></button> -->
           </div>
       </div>
 
@@ -110,11 +110,11 @@
                             </a>
                           </div>
                           <div *ngIf='j.notas'><i class="material-icons icoMarcacionDerecho">insert_comment</i></div>
-                          <mat-icon matChipRemove *ngIf="j.esPrimerDia && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm'])" (click)=eliminarJustificacion(j)>cancel</mat-icon>
+                          <mat-icon matChipRemove *ngIf="j.esPrimerDia && permisos.accesoARemoverJustificaciones(reporte.usuario.id)" (click)=eliminarJustificacion(j)>cancel</mat-icon>
                         </mat-chip>
                       </mat-chip-list>
                     </div>
-                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && chequearPerfil(['super-admin','justificacion_personal_abm','justificacion_general_abm','justificacion_personal_a','justificacion_general_a'])" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
+                    <button mat-icon-button *ngIf="renglon.justificaciones <= 0 && permisos.accesoAJustificaciones(reporte.usuario.id)" routerLink="/sistema/justificaciones/personal/{{reporte.usuario.id}}" [queryParams]="{ fecha: renglon.fecha }" class="btnJustificar" title="Justificar"><i class="material-icons">add_circle_outline</i></button>
                   </mat-cell>
                 </ng-container>
 
@@ -203,7 +203,7 @@
               </div>
           </mat-tab>
 
-          <mat-tab *ngIf="config?.mostrar_detalle_avanzado_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_avanzado_reporte && reporte && reporte.detalle && permisos.chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Avanzado" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Detalle sobre días</div>
@@ -285,7 +285,7 @@
               </div>
           </mat-tab>
 
-          <mat-tab *ngIf="config?.mostrar_detalle_horas_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_horas_reporte && reporte && reporte.detalle && permisos.chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Detalle Horas" class="Tabs">
               <div clasS="detalleReporte">
                   <div class="columna">
                       <div class="titulo">Trabajadas</div>
@@ -367,7 +367,7 @@
                 </div>
           </mat-tab>
 
-          <mat-tab *ngIf="config?.mostrar_detalle_entrada_salida_reporte && reporte && reporte.detalle && chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
+          <mat-tab *ngIf="config?.mostrar_detalle_entrada_salida_reporte && reporte && reporte.detalle && permisos.chequearPerfil(['super-admin','reporte_detalles_avanzados'])" label="Entradas/Salidas" class="Tabs">
             <div clasS="detalleReporte">
                 <div class="columna">
                   <div class="titulo">Entradas</div>

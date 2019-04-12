@@ -1,4 +1,30 @@
-<div>
+<div  class="reporte">
+  <div class="seccionSistema">
+    <button mat-button class="btnVolverSeccion" (click)="volver()"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+     | Marcar Remoto
+  </div>
+  <mat-divider></mat-divider>
+  <div class="contenidoPantalla">
+    <div class="cabeceraReporte">
+      Marcación remota: {{usuario}}
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+      <mat-list>
+        <mat-list-item *ngFor='let r of responses$ | async'>
+          <h1 matLine>Fecha: {{r.marcacion | date:'dd/MM/yyyy'}}</h1>
+          <h1 matLine>Hora: {{r.marcacion | date:'HH:mm'}}</h1>
+        </mat-list-item>
+      </mat-list>
+      <mat-divider></mat-divider>
+      <a routerLink='/sistema/marcaciones/personal/{{usuario}}/{{fecha}}'>MI REPORTE</a>
+      <button mat-button (click)='marcar()'>MARCAR</button>
+    </div>
+  </div>
+</div>
+
+
+<!--div>
   Marcación remota: {{usuario}}
 
   <mat-divider></mat-divider>
@@ -10,7 +36,7 @@
   </mat-list>
   <mat-divider></mat-divider>
 
-  <a routerLink='/sistema/marcaciones/personal/{{usuario}}/{{fecha}}'>VER REPORTE MARCACIONES</a>
+  <a routerLink='/sistema/marcaciones/personal/{{usuario}}/{{fecha}}'>MI REPORTE</a>
   <button mat-button (click)='marcar()'>MARCAR</button>
 
-</div>
+</div-->

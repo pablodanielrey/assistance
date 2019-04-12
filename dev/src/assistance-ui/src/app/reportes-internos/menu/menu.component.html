@@ -1,0 +1,16 @@
+<div class="reportes">
+
+  <div class="seccionSistema">
+    <button mat-button class="btnVolverSeccion" routerLink="/sistema/inicial"><mat-icon>keyboard_arrow_left</mat-icon> volver</button>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="contenidoPantalla">
+    <button *ngIf='permisos.esAdministrador()' mat-button class="btnPrimario" routerLink="/sistema/reportes-internos/ultimas-justificaciones">
+      <mat-icon class="btnIco">person</mat-icon> 
+      ÚLTIMAS JUSTIFICACIONES
+    </button>
+  </div>
+
+</div>

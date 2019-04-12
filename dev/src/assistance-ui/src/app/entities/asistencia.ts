@@ -252,7 +252,7 @@ export class Horario {
 }
 
 export class Detalle {
-
+  minutos_totales_trabajados: number;
 }
 
 export class Lugar {
@@ -270,6 +270,19 @@ export class Lugar {
   }
 }
 
+
+export class JustificacionReporte {
+  esPrimerDia: boolean;
+  id: string;
+  nombre: string;
+  codigo: string;
+  tipo: string;
+  descripcion: string;
+  notas: string;
+  creador_id: string;
+  eliminador_id: string;
+}
+
 export class RenglonReporte {
 
   fecha: Date;
@@ -279,7 +292,8 @@ export class RenglonReporte {
   entrada: Marcacion;
   salida: Marcacion;
   cantidad_horas_trabajadas: number;
-  justificaciones: Array<FechaJustificada>;
+  justificaciones: Array<JustificacionReporte>;
+  usuario: Usuario;
 
   constructor(o:Object) {
     try {
@@ -362,7 +376,7 @@ export class ReporteJustificaciones {
   }
 }
 
-export class JustificacionRenglon{
+export class JustificacionRenglon {
   nombre: string;
   codigo: string;
   general: boolean;

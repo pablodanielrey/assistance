@@ -2,17 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
 
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
+import { ReporteGeneral, RenglonReporte, Marcacion, FechaJustificada, Configuracion, JustificacionReporte } from '../../entities/asistencia';
 import { Location } from '@angular/common';
 
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { AssistanceService } from '../../assistance.service';
+import { PermisosService } from '../../permisos.service';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+import { Oauth2Service } from 'src/app/oauth2/oauth2.service';
+
 
 
 @Component({
@@ -45,7 +48,9 @@ export class ReporteGeneralComponent implements OnInit {
     private router: Router,
     private service: AssistanceService,
     public dialog: MatDialog,
-    private location: Location) {
+    private location: Location,
+    private Oauth2Service: Oauth2Service,
+    private permisos: PermisosService) {
     this.onResize();
   }
 
@@ -181,22 +186,12 @@ export class ReporteGeneralComponent implements OnInit {
     this.reportes.forEach(rep => rep.reportes.forEach(r => r.justificaciones = this.eliminarJustificacionDeRenglon(r.justificaciones, jid)));
   }
 
-  eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
-    return justificaciones.filter(j => j.id != jid);;
+  eliminarJustificacionDeRenglon(justificaciones: JustificacionReporte[], jid): Array<any> {
+    return justificaciones.filter(j => j.id != jid);
   }
 
   is_desktop() {
     return this.width >= 769;
-  }
-
-  chequearPerfil(profiles: string[]): boolean {
-    let r = false;
-    profiles.forEach(p => {
-      if (this.modulos.includes(p)) {
-        r = true;
-      }
-    });
-    return r
   }
 
   generarBack() {

@@ -50,6 +50,10 @@ import { MiperfilComponent } from './miperfil/miperfil.component';
 import { TelegramComponent } from './notificaciones/telegram/telegram.component';
 
 
+import { MenuComponent as MenuReportesInternosComponent } from './reportes-internos/menu/menu.component';
+import { ReporteUltimasJustificacionesComponent } from './reportes-internos/reporte-ultimas-justificaciones/reporte-ultimas-justificaciones.component';
+
+
 const routes: Routes = [
 
   { path: 'error/:error', component: ErrorComponent },
@@ -85,6 +89,14 @@ const routes: Routes = [
           { path: 'horas_semanales/:uid', component: ReporteHorasSemanalComponent },
           { path: 'justificaciones', component: SeleccionarUsuarioJustificacionesComponent },
           { path: 'justificaciones/:uid', component: ReporteJustificacionesComponent }
+        ]
+      },
+      {
+        path: 'reportes-internos',
+        children: [
+          { path: 'menu', component: MenuReportesInternosComponent },
+          { path: 'ultimas-justificaciones', component: ReporteUltimasJustificacionesComponent },
+          { path: '**', redirectTo: 'menu', pathMatch: 'full' }
         ]
       },
       {

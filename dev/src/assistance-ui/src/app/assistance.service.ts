@@ -91,9 +91,8 @@ export class AssistanceService {
 
   }
 
-
-  buscarJustificaciones(): Observable<Justificacion[]> {
-    let apiUrl = `${ASSISTANCE_API_URL}/justificaciones`;
+  buscarJustificaciones(uid: string): Observable<Justificacion[]> {
+    let apiUrl = `${ASSISTANCE_API_URL}/justificaciones/${uid}/permitidas`;
     return this.http.get<Justificacion[]>(apiUrl).pipe(map(datos => datos.map(j => new Justificacion(j))));
   }
 

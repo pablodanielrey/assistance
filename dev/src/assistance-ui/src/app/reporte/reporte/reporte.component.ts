@@ -10,11 +10,14 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 
-import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion } from '../../entities/asistencia';
+import { Reporte, RenglonReporte, Marcacion, FechaJustificada, Configuracion, JustificacionReporte } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
 import { DialogoEliminarFechaJustificadaComponent } from '../dialogo-eliminar-fecha-justificada/dialogo-eliminar-fecha-justificada.component';
+import { Oauth2Service } from 'src/app/oauth2/oauth2.service';
+import { PermisosService } from 'src/app/permisos.service';
 
+import { ExportacionesService } from '../../exportaciones.service';
 
 @Component({
   selector: 'app-reporte',
@@ -34,12 +37,15 @@ export class ReporteComponent implements OnInit {
   }
 
   constructor(private oauthService: OAuthService,
+              private Oauth2Service: Oauth2Service,
               private service: AssistanceService,
+              private permisos: PermisosService,
               private http: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
-              private location: Location) {
+              private location: Location,
+              private exportaciones:ExportacionesService) {
 
       this.onResize();
       this.reportes = new BehaviorSubject<RenglonReporte[]>([]);
@@ -86,7 +92,7 @@ export class ReporteComponent implements OnInit {
     });
 
     this.route.queryParamMap.subscribe(parameters => {
-      //this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
+      this.back = (parameters.get('back')) ? atob(parameters.get('back')) : '/sistema/reportes/personal';
       if (parameters.get('fecha_inicial') && parameters.get('fecha_final')) {
         this.fecha_inicial = new Date(parameters.get('fecha_inicial'));
         this.fecha_final = new Date(parameters.get('fecha_final'));
@@ -129,7 +135,7 @@ export class ReporteComponent implements OnInit {
     let params = {
       fecha_inicial:this.fecha_inicial.toISOString(), 
       fecha_final:this.fecha_final.toISOString(), 
-      back: this.back
+      back: btoa(this.back)
     };
     this.router.navigate(['/sistema/reportes/personal', this.usuario_id], {queryParams:params}).then(b => {
       if (!b) {
@@ -190,7 +196,7 @@ export class ReporteComponent implements OnInit {
     if (m.tipo == 1) {
       return 'fingerprint';
     }
-    if (m.tipo == 3) {
+    if (m.tipo == 100) {
       return 'laptop';
     }
   }
@@ -248,22 +254,42 @@ export class ReporteComponent implements OnInit {
     console.log(this.reporte.reportes);
   }
 
-  eliminarJustificacionDeRenglon(justificaciones: FechaJustificada[], jid): Array<any> {
+  eliminarJustificacionDeRenglon(justificaciones: JustificacionReporte[], jid): Array<any> {
     return justificaciones.filter(j => j.id != jid);;
   }
 
   is_desktop() {
     return this.width >= 769;
   }
-
-  chequearPerfil(profiles: string[]): boolean {
-    let r = false;
-    profiles.forEach(p => {
-      if (this.modulos.includes(p)) {
-        r = true;
-      }
-    });
-    return r
+ 
+  exportarExcel():void {
+    if (this.reporte != null){
+      let dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+      let reporte: any = [{
+        Apellido: this.reporte.usuario.apellido,
+        Nombre: this.reporte.usuario.nombre,
+        DNI: this.reporte.usuario.dni,
+        Inicio: this.reporte.fecha_inicial.toLocaleDateString(),
+        Fin: this.reporte.fecha_final.toLocaleDateString(),
+        Trabajado: this.obtenerHorasString(this.reporte.detalle.minutos_totales_trabajados)
+      }]
+      this.reporte.reportes.forEach(r => {
+        let jus = [];
+        r.justificaciones.forEach(j => {
+          jus.push(j.codigo);
+        })
+        reporte.push({
+              Dia: dias[r.fecha.getDay()],   
+              Fecha: r.fecha.toLocaleDateString(),
+              Horario: this.obtenerHorario(r),
+              Entrada: (r.entrada) ? (this.obtenerMarcacion(r.entrada).toLocaleTimeString()) : (''),
+              Salida: (r.salida) ? (this.obtenerMarcacion(r.salida).toLocaleTimeString()) : (''),
+              Horas: (r.salida && r.entrada) ? (this.obtenerHorasTrabajadas(r)) :(''),
+              Justificaciones: jus.toString()
+        });
+      });
+      let titulo = 'Reporte-'+this.reporte.usuario.apellido;
+      this.exportaciones.exportarArchivoExcel(reporte, titulo);
+    }
   }
-
 }

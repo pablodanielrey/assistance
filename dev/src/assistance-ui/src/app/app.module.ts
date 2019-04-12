@@ -12,6 +12,8 @@ import { Oauth2Component } from './oauth2/oauth2.component';
 import { Oauth2Service } from './oauth2/oauth2.service';
 import { OauthErrorHandler } from './oauth2/oauth-error.service';
 
+import { PermisosService } from './permisos.service';
+
 import { MyMaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
@@ -78,6 +80,9 @@ import { CompensatoriosConsultaComponent } from './compensatorios/compensatorios
 import { CompensatoriosAltaComponent } from './compensatorios/compensatorios-alta/compensatorios-alta.component';
 import { MarcarRemotoComponent } from './marcaciones/marcar-remoto/marcar-remoto.component';
 
+import { MenuComponent as MenuReportesInternosComponent } from './reportes-internos/menu/menu.component';
+import { ReporteUltimasJustificacionesComponent } from './reportes-internos/reporte-ultimas-justificaciones/reporte-ultimas-justificaciones.component';
+
 
 export function windowFactory() {
   return window;
@@ -132,7 +137,9 @@ export function windowFactory() {
     CompensatoriosModificarComponent,
     CompensatoriosConsultaComponent,
     CompensatoriosAltaComponent,
-    MarcarRemotoComponent
+    MarcarRemotoComponent,
+    MenuReportesInternosComponent,
+    ReporteUltimasJustificacionesComponent
   ],
   imports: [
     BrowserModule,
@@ -152,6 +159,7 @@ export function windowFactory() {
   providers: [
       UpdateService,
       AssistanceService,
+      PermisosService,
       NotificacionesService,
       { provide: 'window', useFactory: windowFactory },
       { provide: LOCALE_ID, useValue: "es" },

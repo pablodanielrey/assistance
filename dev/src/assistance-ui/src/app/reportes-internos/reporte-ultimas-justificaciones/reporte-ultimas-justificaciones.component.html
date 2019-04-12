@@ -1,0 +1,123 @@
+
+Cantidad<input type=number [(ngModel)]='cantidad'/>
+<button (click)='generar()'>generar</button>
+
+<mat-spinner *ngIf='cargando$ | async'></mat-spinner>
+<mat-spinner *ngIf='procesando$ | async'></mat-spinner>
+
+<mat-divider></mat-divider>
+
+<mat-table [dataSource]='justificaciones$ | async' matSort>
+  <ng-container matColumnDef='Inicio'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Inicio </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'> 
+      {{fechaJustificada.fecha_inicio | date:'dd/MM/yyyy'}}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='Fin'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Fin </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'> 
+      {{fechaJustificada.fecha_fin | date:'dd/MM/yyyy'}}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='Justificacion'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Justificacion </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'> 
+      {{fechaJustificada.justificacion.nombre +' ('+ fechaJustificada.justificacion.codigo +')'}}
+    </mat-cell>
+  </ng-container>
+
+  <!--
+  <ng-container matColumnDef='Notas'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Notas </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      {{fechaJustificada.notas || ""}}
+    </mat-cell>
+  </ng-container>
+  -->  
+  <ng-container matColumnDef='Creador'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Creador </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      {{fechaJustificada.creador?.nombre || ""}}
+      {{fechaJustificada.creador?.apellido || ""}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef='Persona'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Persona </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      {{fechaJustificada.usuario?.nombre || ""}}
+      {{fechaJustificada.usuario?.apellido || ""}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef='Oficina'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Oficina </mat-header-cell>
+    <mat-cell *matCellDef='let fechaJustificada'>  
+      <div  *ngFor='let o of fechaJustificada.usuario?.oficinas'>
+        {{o}}
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnasActivas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnasActivas"></mat-row>
+</mat-table>
+
+
+<mat-divider></mat-divider>
+
+<mat-table [dataSource]='oficinas$ | async' matSort>
+    <ng-container matColumnDef='Oficina'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Oficina </mat-header-cell>
+        <mat-cell *matCellDef='let off'>  
+          {{off.nombre}}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef='Cantidad'>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+        <mat-cell *matCellDef='let off'>  
+          {{off.cantidad}}
+        </mat-cell>
+    </ng-container>
+      
+    <mat-header-row *matHeaderRowDef="['Oficina','Cantidad']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['Oficina','Cantidad']"></mat-row>
+</mat-table>
+
+
+<mat-divider></mat-divider>
+
+<mat-table [dataSource]='personas$ | async' matSort>
+  <ng-container matColumnDef='Persona'>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Persona </mat-header-cell>
+      <mat-cell *matCellDef='let p'>  
+        {{p.nombre}}
+      </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef='Cantidad'>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+      <mat-cell *matCellDef='let p'>  
+        {{p.cantidad}}
+      </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef='Oficina'>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Oficina </mat-header-cell>
+    <mat-cell *matCellDef='let p'>  
+      <div  *ngFor='let o of p.oficinas'>
+        {{o}}
+      </div>
+    </mat-cell>
+  </ng-container>
+  
+  <mat-header-row *matHeaderRowDef="['Persona','Cantidad','Oficina']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['Persona','Cantidad','Oficina']"></mat-row>
+</mat-table>
+
+
+<div>
+  {{cantidad_oficinas$ | async}}
+</div>

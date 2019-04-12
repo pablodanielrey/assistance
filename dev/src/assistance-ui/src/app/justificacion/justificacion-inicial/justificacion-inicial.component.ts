@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PermisosService } from '../../permisos.service';
+
 @Component({
   selector: 'app-justificacion-inicial',
   templateUrl: './justificacion-inicial.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JustificacionInicialComponent implements OnInit {
 
-  constructor() { }
+  permisos: PermisosService;
+
+  constructor(permisos: PermisosService) {
+    this.permisos = permisos;
+  }
 
   ngOnInit() {
+    
   }
 
 }
