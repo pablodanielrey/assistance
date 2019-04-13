@@ -262,15 +262,18 @@ export class ReporteComponent implements OnInit {
     return this.width >= 769;
   }
  
-  exportarExcel():void {
+  exportarExcelJson():void {
+    /*
+    * Crea un Json a esribir en el xlsx y lo envia al service de creacion para exportacion.
+    */
     if (this.reporte != null){
       let dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
       let reporte: any = [{
         Apellido: this.reporte.usuario.apellido,
         Nombre: this.reporte.usuario.nombre,
         DNI: this.reporte.usuario.dni,
-        Inicio: this.reporte.fecha_inicial.toLocaleDateString(),
-        Fin: this.reporte.fecha_final.toLocaleDateString(),
+        Inicio: new Date(this.reporte.fecha_inicial.getTime() + (1000*60*60*24)).toLocaleDateString(),
+        Fin: new Date(this.reporte.fecha_final.getTime() + (1000*60*60*24)).toLocaleDateString(),
         Trabajado: this.obtenerHorasString(this.reporte.detalle.minutos_totales_trabajados)
       }]
       this.reporte.reportes.forEach(r => {
@@ -282,14 +285,52 @@ export class ReporteComponent implements OnInit {
               Dia: dias[r.fecha.getDay()],   
               Fecha: r.fecha.toLocaleDateString(),
               Horario: this.obtenerHorario(r),
-              Entrada: (r.entrada) ? (this.obtenerMarcacion(r.entrada).toLocaleTimeString()) : (''),
-              Salida: (r.salida) ? (this.obtenerMarcacion(r.salida).toLocaleTimeString()) : (''),
+              Entrada: (r.entrada) ? (this.obtenerMarcacion(r.entrada).toLocaleTimeString().slice(0,5)) : (''),
+              Salida: (r.salida) ? (this.obtenerMarcacion(r.salida).toLocaleTimeString().slice(0,5)) : (''),
               Horas: (r.salida && r.entrada) ? (this.obtenerHorasTrabajadas(r)) :(''),
               Justificaciones: jus.toString()
         });
       });
       let titulo = 'Reporte-'+this.reporte.usuario.apellido;
-      this.exportaciones.exportarArchivoExcel(reporte, titulo);
+      this.exportaciones.exportarJsonAExcel(reporte, titulo);
+    }
+  }
+
+  exportarExcelAtoA():void {
+    /*
+    * Crea un arreglo por linea a esribir en el xlsx y lo envia al service de creacion para exportacion.
+    */
+    if (this.reporte != null){
+      let dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+      let reporte = [
+        ['Apellido','Nombre','DNI','Inicio','Fin','Trabajado'],
+        [this.reporte.usuario.apellido,
+         this.reporte.usuario.nombre,
+         this.reporte.usuario.dni,
+         new Date(this.reporte.fecha_inicial.getTime() + (1000*60*60*24)).toLocaleDateString(),
+         new Date(this.reporte.fecha_final.getTime() + (1000*60*60*24)).toLocaleDateString(),
+         this.obtenerHorasString(this.reporte.detalle.minutos_totales_trabajados)
+        ],
+        [],
+        ['Día','Fecha','Horario','Entrada','Salida','Horas','Justificación']
+      ]
+      this.reporte.reportes.forEach(r => {
+        let jus = [];
+        r.justificaciones.forEach(j => {
+          jus.push(j.codigo);
+        })
+        reporte.push([
+              dias[r.fecha.getDay()],   
+              r.fecha.toLocaleDateString(),
+              this.obtenerHorario(r),
+              (r.entrada) ? (this.obtenerMarcacion(r.entrada).toLocaleTimeString().slice(0,5)) : (''),
+              (r.salida) ? (this.obtenerMarcacion(r.salida).toLocaleTimeString().slice(0,5)) : (''),
+              (r.salida && r.entrada) ? (this.obtenerHorasTrabajadas(r)) :(''),
+              jus.toString()
+        ]);
+      });      
+      let titulo = 'Reporte-'+this.reporte.usuario.apellido.charAt(0).toUpperCase()+this.reporte.usuario.apellido.slice(1).toLowerCase();
+      this.exportaciones.exportarArregloAExcel(reporte, titulo);
     }
   }
 }

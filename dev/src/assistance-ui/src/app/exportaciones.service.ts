@@ -10,15 +10,31 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root'
 })
 export class ExportacionesService {
+  /*
+  * Service para la exportacion de datos en XLSX,PDF y mas...
+  */
 
   constructor() { }
 
-  public exportarArchivoExcel(json: any[], excelFileName: string): void {
-    
+  public exportarJsonAExcel(json: any[], excelFileName: string): void {
+    /*
+    * Crea un XLSX desde un JSON obtenido por parametros y con nombre de archivo excelFileName.
+    */
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+    this.saveAsExcelFile(excelBuffer, excelFileName);
+  }
+
+  public exportarArregloAExcel(datos: any[], excelFileName: string): void {
+    /*
+    * Crea un XLSX desde un arreglo de arreglos obtenido por parametros y con nombre de archivo excelFileName.
+    * Cada linea del XLSX es un arreglo donde las cada elemento del arreglo es una columna del XLSX
+    */
+    let wb = XLSX.utils.book_new();
+    let ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(datos);
+    XLSX.utils.book_append_sheet(wb,ws,'Reporte');
+    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
 
