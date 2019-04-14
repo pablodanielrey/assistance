@@ -149,6 +149,7 @@ export class FechaJustificada {
   justificacion: Justificacion;
   id: string;
   creador_id: string;
+  creado: Date;
   creador: Usuario;
   eliminador_id: string;
   eliminador: Usuario;
@@ -156,6 +157,7 @@ export class FechaJustificada {
   constructor(o:Object) {
     try {
       Object.assign(this, o);
+      this.creado = (this.creado == null ? null : new Date(this.creado));
       this.fecha_inicio = (this.fecha_inicio == null ? null : new Date(this.fecha_inicio));
       this.fecha_fin = (this.fecha_fin == null ? null : new Date(this.fecha_fin));
     } catch(e) {

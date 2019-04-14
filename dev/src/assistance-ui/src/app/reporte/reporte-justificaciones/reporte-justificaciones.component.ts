@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { ReporteJustificaciones, FechaJustificada, Configuracion } from '../../entities/asistencia';
 import { AssistanceService } from '../../assistance.service';
 
+import { ExportacionesService } from '../../exportaciones.service';
+
 @Component({
   selector: 'app-reporte-justificaciones',
   templateUrl: './reporte-justificaciones.component.html',
@@ -41,7 +43,8 @@ export class ReporteJustificacionesComponent implements OnInit {
   constructor(
               private service: AssistanceService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private exportaciones: ExportacionesService) {
     this.fechasJustificadas = new BehaviorSubject<FechaJustificada[]>([]);
     this.fechasEliminadas = new BehaviorSubject<FechaJustificada[]>([]);
   }
@@ -94,4 +97,56 @@ export class ReporteJustificacionesComponent implements OnInit {
     }));
   }
 
+  obtenerDias(ini:Date, fin:Date): number {
+    return (Math.floor((Date.UTC(fin.getFullYear(), fin.getMonth(), fin.getDate()) - Date.UTC(ini.getFullYear(), ini.getMonth(), ini.getDate()) ) /(1000 * 60 * 60 * 24))+1);
+  }
+
+  exportarExcelAtoA():void {
+    /*
+    * Crea un arreglo por linea a esribir en el xlsx y lo envia al service de creacion para exportacion.
+    */
+    if (this.reporte != null){
+      let reporte = [
+        ['Informe Generado','Apellido','Nombre','DNI','Inicio','Fin'],
+        [
+         new Date().toLocaleString(),
+         this.reporte.usuario.apellido,
+         this.reporte.usuario.nombre,
+         this.reporte.usuario.dni,
+         new Date(this.reporte.fecha_inicial.getTime() + (1000*60*60*24)).toLocaleDateString(),
+         new Date(this.reporte.fecha_final.getTime() + (1000*60*60*24)).toLocaleDateString()
+        ],
+        [],
+        ['Justificaciones Personales'],
+        ['Justificación','Cantidad']
+      ]
+      this.reporte.suma_justificaciones.forEach( j => {
+        reporte.push([j.nombre+'('+j.codigo+')', j.cantidad.toString()])
+      });
+      reporte.push(
+        [],
+        ['Justificaciones Generales']
+      )
+      this.reporte.suma_justificaciones_generales.forEach( j => {
+        reporte.push([j.nombre+'('+j.codigo+')', j.cantidad.toString()])
+      });
+      reporte.push(
+        [],
+        ['Detalle Justificaciones'],
+        ['Justificación','Inicio','Fin','Días','Notas','Creada']
+      )
+      this.reporte.justificaciones.forEach( j => {
+        reporte.push([
+          j.justificacion.nombre+'('+j.justificacion.codigo+')',
+          j.fecha_inicio.toLocaleDateString(),
+          (j.fecha_fin)? (j.fecha_fin.toLocaleDateString()) : (''),
+          (j.fecha_fin)? (this.obtenerDias(j.fecha_inicio,j.fecha_fin).toString()) : ('1'),
+          j.notas,
+          j.creado.toLocaleDateString()
+        ])
+      })
+      let titulo = 'Reporte-Justificaciones-'+this.reporte.usuario.apellido.charAt(0).toUpperCase()+this.reporte.usuario.apellido.slice(1).toLowerCase();
+      this.exportaciones.exportarArregloAExcel(reporte, titulo);
+    }
+  }
 }
