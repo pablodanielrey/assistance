@@ -230,6 +230,12 @@ export class ReporteComponent implements OnInit {
     return String(hs) + ":" + String(min);
   }
 
+  segundosAHorasString(segundos:number) {
+    let min = Math.trunc((segundos / 60) % 60);
+    let hs = Math.trunc((segundos / 60)/60);
+    return String(hs) + ":" + String(min);
+  }
+
   obtenerReportes() {
     if (this.reporte ==  null) {
       return []
@@ -301,6 +307,7 @@ export class ReporteComponent implements OnInit {
     * Crea un arreglo por linea a esribir en el xlsx y lo envia al service de creacion para exportacion.
     */
     if (this.reporte != null){
+      let trabajadoSemanal = 0;
       let dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
       let reporte = [
         ['Apellido','Nombre','DNI','Inicio','Fin','Trabajado'],
@@ -319,6 +326,7 @@ export class ReporteComponent implements OnInit {
         r.justificaciones.forEach(j => {
           jus.push(j.codigo);
         })
+        trabajadoSemanal += r.cantidad_horas_trabajadas;
         reporte.push([
               dias[r.fecha.getDay()],   
               r.fecha.toLocaleDateString(),
@@ -328,7 +336,14 @@ export class ReporteComponent implements OnInit {
               (r.salida && r.entrada) ? (this.obtenerHorasTrabajadas(r)) :(''),
               jus.toString()
         ]);
-      });      
+        if (r.fecha.getDay() == 0){
+          reporte.push(['','Total Semanal', this.segundosAHorasString(trabajadoSemanal)])
+          trabajadoSemanal = 0
+        }      
+      });
+      if (trabajadoSemanal != 0){
+        reporte.push(['','Total Semanal', this.segundosAHorasString(trabajadoSemanal)])
+      }      
       let titulo = 'Reporte-'+this.reporte.usuario.apellido.charAt(0).toUpperCase()+this.reporte.usuario.apellido.slice(1).toLowerCase();
       this.exportaciones.exportarArregloAExcel(reporte, titulo);
     }
