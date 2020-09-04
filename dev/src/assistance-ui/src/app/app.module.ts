@@ -7,11 +7,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { OAuthModule, OAuthStorage, OAuthResourceServerErrorHandler } from 'angular-oauth2-oidc';
+/*
 import { OidpGuard } from './oauth2/oidp.guard';
 import { Oauth2Component } from './oauth2/oauth2.component';
 import { Oauth2Service } from './oauth2/oauth2.service';
 import { OauthErrorHandler } from './oauth2/oauth-error.service';
-
+*/
 import { PermisosService } from './permisos.service';
 
 import { MyMaterialModule } from './material.module';
@@ -82,11 +83,14 @@ import { MarcarRemotoComponent } from './marcaciones/marcar-remoto/marcar-remoto
 
 import { MenuComponent as MenuReportesInternosComponent } from './reportes-internos/menu/menu.component';
 import { ReporteUltimasJustificacionesComponent } from './reportes-internos/reporte-ultimas-justificaciones/reporte-ultimas-justificaciones.component';
+import { AuthModule, OAuth2Config } from './modules/auth/auth.module';
 
 
 export function windowFactory() {
   return window;
 }
+
+const oauthconf: OAuth2Config = environment.auth;
 
 @NgModule({
   declarations: [
@@ -127,7 +131,7 @@ export function windowFactory() {
     MiperfilComponent,
     HorarioHistoricoComponent,
     TelegramComponent,
-    Oauth2Component,
+  //  Oauth2Component,
     ErrorComponent,
     ReporteHorasSemanalComponent,
     ReporteJustificacionesComponent,
@@ -143,16 +147,19 @@ export function windowFactory() {
   ],
   imports: [
     BrowserModule,
+    AuthModule.forRoot(oauthconf),
     HttpClientModule,
     MyMaterialModule,
     FormsModule,
     AppRoutingModule,
+    /*
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['http'],
         sendAccessToken: true
       }
     }),
+    */
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [DialogoEliminarFechaJustificadaComponent, DialogoEliminarJustificacionComponent],
@@ -163,10 +170,10 @@ export function windowFactory() {
       NotificacionesService,
       { provide: 'window', useFactory: windowFactory },
       { provide: LOCALE_ID, useValue: "es" },
-      { provide: ErrorHandler, useClass: GlobalErrorHandler },
-      OidpGuard,
-      { provide: OAuthStorage, useValue: localStorage },
-      { provide: OAuthResourceServerErrorHandler, useClass: OauthErrorHandler }
+      { provide: ErrorHandler, useClass: GlobalErrorHandler }
+      //OidpGuard,
+      //{ provide: OAuthStorage, useValue: localStorage },
+      //{ provide: OAuthResourceServerErrorHandler, useClass: OauthErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

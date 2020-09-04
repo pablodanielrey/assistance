@@ -19,4 +19,13 @@ export const environment = {
 
   pantallaPrincipalLogo: '/assets/img/logo_asistencia_fce.png',
 
+  auth: {
+    issuer: 'https://oidc.econo.unlp.edu.ar/',
+    redirectUri: 'https://asistencia.econo.unlp.edu.ar/auth/oauth2',
+    clientId: 'assistance-ui',
+    scope: 'openid profile email',
+    waitForTokenInMsec: 2000,
+    requireHttps: true
+  }
+
 };

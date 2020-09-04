@@ -52,18 +52,19 @@ import { TelegramComponent } from './notificaciones/telegram/telegram.component'
 
 import { MenuComponent as MenuReportesInternosComponent } from './reportes-internos/menu/menu.component';
 import { ReporteUltimasJustificacionesComponent } from './reportes-internos/reporte-ultimas-justificaciones/reporte-ultimas-justificaciones.component';
+import { AuthRoutingModule } from './modules/auth/auth-routing.module';
 
 
 const routes: Routes = [
 
   { path: 'error/:error', component: ErrorComponent },
-  { path: 'oauth2', component: Oauth2Component },
+ 
   { path: 'loader', component: LoaderComponent },
   //{ path: 'telegram/:code', component: TelegramComponent },
   {
     path: 'sistema',
     component: SistemaComponent,
-    canActivate: [OidpGuard],
+    //canActivate: [OidpGuard],
     children: [
       //{ path: 'inicial', outlet:"pantalla", component: PantallaPrincipalComponent },
       { path: 'inicial', component: PantallaPrincipalComponent },
@@ -179,7 +180,10 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, { enableTracing: false }) ],
+  imports: [ 
+    RouterModule.forRoot(routes, { enableTracing: false }),
+    AuthRoutingModule
+  ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
